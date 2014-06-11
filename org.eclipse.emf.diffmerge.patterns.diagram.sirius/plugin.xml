@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<!-- Generic Type Util implementation Extension -->
+   <extension
+         point="org.eclipse.emf.diffmerge.patterns.core.genericTypeUtil">
+      <client
+            class="org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.SiriusGenericTypeUtil">
+      </client>
+   </extension>
+   
+<!-- Diagram Util implementation Extension -->
+   
+   <extension
+         point="org.eclipse.emf.diffmerge.patterns.diagram.diagramUtil">
+      <client
+            class="org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.SiriusDiagramUtil"></client>
+   </extension>
+
+<!-- Operation Factory Extension -->
+
+ <extension
+                point="org.eclipse.emf.diffmerge.patterns.diagram.operationFactory">
+             <client
+                   class="org.eclipse.emf.diffmerge.patterns.diagram.sirius.factories.SiriusPatternOperationFactory">
+             </client>
+ </extension>
+
+</plugin>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2014 Thales Global Services S.A.S.
+  All rights reserved. This program and the accompanying materials
+   are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+  
+   Contributors:
+  Thales Global Services S.A.S - initial API and implementation
+-->
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="patterninstances"
+    nsURI="http://org.eclipse.emf.patterns/support/1.0.0" nsPrefix="org.eclipse.emf.diffmerge.patterns.support">
+  <eClassifiers xsi:type="ecore:EClass" name="CommonPatternInstanceSet" eSuperTypes="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//AbstractIdentifiedElement platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//predefined/IPatternInstanceMarker">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedInstances" upperBound="-1"
+        eType="#//CommonPatternInstance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CommonPatternInstance" eSuperTypes="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//AbstractPatternInstance"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ResourceLocation" eSuperTypes="#//AbstractIDBasedAtomicLocation platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//predefined/IResourceLocation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementLocation" eSuperTypes="#//AbstractElementRelativeLocation platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//predefined/IElementLocation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeLocation" eSuperTypes="#//AbstractElementRelativeLocation platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//predefined/IAttributeLocation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EAttribute"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReferenceLocation" eSuperTypes="#//AbstractElementRelativeLocation platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//predefined/IReferenceLocation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reference" lowerBound="1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractIDBasedAtomicLocation" abstract="true"
+      eSuperTypes="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//AbstractAtomicLocation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementId" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractElementRelativeLocation" abstract="true"
+      eSuperTypes="#//AbstractIDBasedAtomicLocation platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//predefined/IElementRelativeLocation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementMappingLocation" eSuperTypes="#//AbstractIDBasedAtomicLocation platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//predefined/IElementMappingLocation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mapping" upperBound="-1"
+        eType="#//ElementMappingEntry" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementMappingEntry" instanceClassName="java.util.Map$Entry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//ElementLocation"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

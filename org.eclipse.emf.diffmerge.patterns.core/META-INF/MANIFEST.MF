@@ -1,0 +1,30 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.7.1
+Created-By: 16.0-b13 (Sun Microsystems Inc.)
+Export-Package: org.eclipse.emf.diffmerge.patterns.core;uses:="org.eclipse.osgi.util,org.eclipse.core.runtime,org.osgi.framework",
+ org.eclipse.emf.diffmerge.patterns.core.api,
+ org.eclipse.emf.diffmerge.patterns.core.api.ext,
+ org.eclipse.emf.diffmerge.patterns.core.api.locations;uses:="org.eclipse.emf.ecore.resource,org.eclipse.emf.ecore,org.eclipse.emf.diffmerge.patterns.core.api",
+ org.eclipse.emf.diffmerge.patterns.core.api.status,
+ org.eclipse.emf.diffmerge.patterns.core.environment,
+ org.eclipse.emf.diffmerge.patterns.core.operations,
+ org.eclipse.emf.diffmerge.patterns.core.util,
+ org.eclipse.emf.diffmerge.patterns.core.util.locations
+Bundle-ActivationPolicy: lazy
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.edit,
+ org.eclipse.jface,
+ org.eclipse.core.resources,
+ org.eclipse.emf.transaction
+Bundle-Vendor: %providerName
+Bundle-Version: 0.3.0.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.emf.diffmerge.patterns.core.CorePattern
+ sPlugin
+Bundle-SymbolicName: org.eclipse.emf.diffmerge.patterns.core;singleto
+ n:=true
+

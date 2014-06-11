@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+ <extension
+         point="org.eclipse.emf.diffmerge.patterns.core.patternSupport">
+      <client
+            class="org.eclipse.emf.diffmerge.patterns.support.contributions.BasicPatternSupport">
+      </client>
+   </extension>
+       
+   <extension
+         point="org.eclipse.emf.diffmerge.patterns.core.modelEnvironment">
+      <client
+            class="org.eclipse.emf.diffmerge.patterns.support.environment.DefaultModelEnvironment">
+      </client>
+   </extension>
+</plugin>

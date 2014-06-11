@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="textualLanguageInterpreterFacade" name="TextualLanguageInterpreterFacade" schema="schema/textualLanguageInterpreterFacade.exsd"/>
+   <extension-point id="semanticRuleProvider" name="SemanticRuleProvider" schema="schema/SemanticRuleProvider.exsd"/>
+   <extension
+         point="org.eclipse.emf.diffmerge.patterns.templates.gen.templatePatternsEngine">
+      <client
+            class="org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternEngine">
+      </client>
+   </extension>
+
+</plugin>

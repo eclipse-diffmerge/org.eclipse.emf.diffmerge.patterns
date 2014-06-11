@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2014 Thales Global Services S.A.S.
+  All rights reserved. This program and the accompanying materials
+   are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+  
+   Contributors:
+  Thales Global Services S.A.S - initial API and implementation
+-->
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.emf.diffmerge.patterns.core.gen/src"
+    modelPluginID="org.eclipse.emf.diffmerge.patterns.core.gen" modelName="CorePatterns"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>CorePatterns.ecore</foreignModel>
+  <genPackages prefix="Corepatterns" basePackage="org.eclipse.emf.diffmerge.patterns.core.gen"
+      disposableProviderFactory="true" ecorePackage="CorePatterns.ecore#/">
+    <genClasses ecoreClass="CorePatterns.ecore#//CompositeLocation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CorePatterns.ecore#//CompositeLocation/ownedLocations"/>
+    </genClasses>
+    <genClasses ecoreClass="CorePatterns.ecore#//PatternRepository">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CorePatterns.ecore#//PatternRepository/patterns"/>
+      <genOperations ecoreOperation="CorePatterns.ecore#//PatternRepository/getPattern">
+        <genParameters ecoreParameter="CorePatterns.ecore#//PatternRepository/getPattern/symbol"/>
+      </genOperations>
+      <genOperations ecoreOperation="CorePatterns.ecore#//PatternRepository/getPatternByName">
+        <genParameters ecoreParameter="CorePatterns.ecore#//PatternRepository/getPatternByName/name"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="CorePatterns.ecore#//PatternRoleBinding">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CorePatterns.ecore#//PatternRoleBinding/location"/>
+    </genClasses>
+    <genClasses ecoreClass="CorePatterns.ecore#//PatternRoleSymbol">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CorePatterns.ecore#//PatternRoleSymbol/roleId"/>
+    </genClasses>
+    <genClasses ecoreClass="CorePatterns.ecore#//PatternSymbol"/>
+    <genClasses ecoreClass="CorePatterns.ecore#//PatternVersion">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CorePatterns.ecore#//PatternVersion/patternSymbol"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CorePatterns.ecore#//AbstractAtomicLocation"/>
+    <genClasses image="false" ecoreClass="CorePatterns.ecore#//AbstractDescribedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CorePatterns.ecore#//AbstractDescribedElement/description"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CorePatterns.ecore#//AbstractIdentifiedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CorePatterns.ecore#//AbstractIdentifiedElement/id"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CorePatterns.ecore#//AbstractLocation"/>
+    <genClasses image="false" ecoreClass="CorePatterns.ecore#//AbstractNamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CorePatterns.ecore#//AbstractNamedElement/name"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CorePatterns.ecore#//AbstractPattern">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CorePatterns.ecore#//AbstractPattern/authors"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CorePatterns.ecore#//AbstractPattern/lastModificationStamp"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CorePatterns.ecore#//AbstractPattern/executionEnvironments"/>
+      <genOperations ecoreOperation="CorePatterns.ecore#//AbstractPattern/getRole">
+        <genParameters ecoreParameter="CorePatterns.ecore#//AbstractPattern/getRole/symbol"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CorePatterns.ecore#//AbstractPatternInstance">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CorePatterns.ecore#//AbstractPatternInstance/folded"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CorePatterns.ecore#//AbstractPatternInstance/roleBindings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CorePatterns.ecore#//AbstractPatternInstance/patternVersion"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CorePatterns.ecore#//AbstractPatternInstance/patternData"/>
+      <genOperations ecoreOperation="CorePatterns.ecore#//AbstractPatternInstance/setLocation">
+        <genParameters ecoreParameter="CorePatterns.ecore#//AbstractPatternInstance/setLocation/role"/>
+        <genParameters ecoreParameter="CorePatterns.ecore#//AbstractPatternInstance/setLocation/location"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CorePatterns.ecore#//AbstractPatternRole"/>
+    <genClasses image="false" ecoreClass="CorePatterns.ecore#//AbstractPatternData">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference CorePatterns.ecore#//AbstractPatternData/instance"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CorePatterns.ecore#//AbstractPatternSymbol">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CorePatterns.ecore#//AbstractPatternSymbol/repositoryId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CorePatterns.ecore#//AbstractPatternSymbol/patternId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CorePatterns.ecore#//AbstractPatternSymbol/lastPath"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CorePatterns.ecore#//AbstractRoleRelativeElement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CorePatterns.ecore#//AbstractRoleRelativeElement/roleSymbol"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CorePatterns.ecore#//AbstractVersionedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CorePatterns.ecore#//AbstractVersionedElement/version"/>
+    </genClasses>
+    <nestedGenPackages prefix="Predefined" disposableProviderFactory="true" ecorePackage="CorePatterns.ecore#//predefined">
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IDescribedElement"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IIdentifiedElement"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/INamedElement"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IPattern"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IPatternApplication"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IPatternBasedBijection"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IPatternBasedFunction"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IPatternConformityStatus"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IPatternData"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IPatternInstance"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IPatternInstanceMarker"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IPatternRepository"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IPatternRole"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IPatternRoleSymbol"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IPatternSymbol"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IPatternVersion"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IVersionedElement"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IAtomicLocation"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IAttributeLocation"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/ICompositeLocation"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IElementLocation"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IElementRelativeLocation"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/ILocation"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IReferenceLocation"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/IResourceLocation"/>
+      <genClasses image="false" ecoreClass="CorePatterns.ecore#//predefined/Resource"/>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

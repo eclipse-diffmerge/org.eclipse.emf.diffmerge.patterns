@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+
+<!-- Model Environment Extension point Declaration -->
+
+   <extension-point id="org.eclipse.emf.diffmerge.patterns.ui.modelenvironmentui" 
+   			name="Model Environment UI" 
+   			schema="schema/modelEnvironmentUI.exsd"/>
+
+
+<!-- Page Factory Extension point Declaration -->
+
+	<extension-point id="org.eclipse.emf.diffmerge.patterns.ui.pageFactory" name="pageFactory" schema="schema/PageFactory.exsd"/>
+
+<!-- Actions Factory Extension point Declaration -->
+
+	<extension-point id="org.eclipse.emf.diffmerge.patterns.ui.actionFactory" name="actionFactory" schema="schema/ActionFactory.exsd"/>
+
+<!-- Job Factory Extension point Declaration -->
+
+	<extension-point id="org.eclipse.emf.diffmerge.patterns.ui.jobFactory" name="jobFactory" schema="schema/JobFactory.exsd"/>
+
+<!-- Dialog and Wizard Factory Extension point Declaration -->
+
+	<extension-point id="org.eclipse.emf.diffmerge.patterns.ui.dialogAndWizardFactory" name="dialogAndWizardFactory" schema="schema/DialogAndWizardFactory.exsd"/>
+ 
+ <!-- ISemanticUI Util Extension point Declaration -->
+ 
+ 	<extension-point id="org.eclipse.emf.diffmerge.patterns.ui.uiExtender" name="UIExtender" schema="schema/UIExtender.exsd"/>
+
+  
+</plugin>

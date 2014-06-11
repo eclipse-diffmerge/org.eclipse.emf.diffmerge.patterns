@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+ <!-- DiagramUtil implementation Extension point Declaration -->
+
+	<extension-point id="org.eclipse.emf.diffmerge.patterns.diagram.diagramUtil" name="diagramUtil" schema="schema/DiagramUtil.exsd"/>
+
+<!-- Semantic Mapping Extension point Declaration -->
+
+	<extension-point id="org.eclipse.emf.diffmerge.patterns.diagram.semanticMapping" name="SemanticMapping" schema="schema/SemanticMapping.exsd"/>
+
+<!-- Operations Factory Extension point Declaration -->
+
+	<extension-point id="org.eclipse.emf.diffmerge.patterns.diagram.operationFactory" name="operationFactory" schema="schema/OperationFactory.exsd"/>
+
+
+</plugin>

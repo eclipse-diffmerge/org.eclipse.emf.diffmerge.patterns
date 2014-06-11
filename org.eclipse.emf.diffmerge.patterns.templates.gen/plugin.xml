@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+   <extension-point id="templatePatternsEngine" name="TemplatePatternsEngine" schema="schema/templatePatternsEngine.exsd"/>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://org.eclipse.com/emf/diffmerge/patterns/templates/1.0.0" 
+       class = "org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatepatternsPackage"
+       genModel = "model/TemplatePatterns.genmodel" /> 
+  </extension>
+
+</plugin>

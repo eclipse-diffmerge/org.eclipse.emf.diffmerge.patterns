@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.CorepatternsPackage"
+            genModel="model/CorePatterns.genmodel"
+            uri="http://org.eclipse.com/emf/diffmerge/patterns/core/1.0.0">
+      </package>
+   </extension>
+
+
+</plugin>

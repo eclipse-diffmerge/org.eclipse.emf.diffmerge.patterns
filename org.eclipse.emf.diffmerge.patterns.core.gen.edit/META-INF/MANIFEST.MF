@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.7.1
+Created-By: 16.0-b13 (Sun Microsystems Inc.)
+Export-Package: org.eclipse.emf.diffmerge.patterns.core.gen.corepatte
+ rns.predefined.provider,org.eclipse.emf.diffmerge.patterns.core.gen.
+ corepatterns.provider
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.core.runtime,org.eclipse.emf.diffmerge.patterns.core,org.eclipse.emf.diffmerge.patterns.core.gen;visibility:=
+ reexport,org.eclipse.emf.edit;visibility:=reexport,org.eclipse.emf.ec
+ ore;visibility:=reexport,org.eclipse.emf.ecore.edit;visibility:=reexp
+ ort
+Bundle-Vendor: %providerName
+Bundle-Version: 0.3.0.qualifier
+Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.emf.diffmerge.patterns.core.gen.corepat
+ terns.provider.CorePatternsEditPlugin$Implementation
+Bundle-SymbolicName: org.eclipse.emf.diffmerge.patterns.core.gen.edit
+ ; singleton:=true
+

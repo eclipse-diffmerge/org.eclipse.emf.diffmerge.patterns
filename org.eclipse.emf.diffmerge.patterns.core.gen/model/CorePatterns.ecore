@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2014 Thales Global Services S.A.S.
+  All rights reserved. This program and the accompanying materials
+   are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+  
+   Contributors:
+  Thales Global Services S.A.S - initial API and implementation
+-->
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="corepatterns" nsURI="http://org.eclipse.com/emf/diffmerge/patterns/core/1.0.0"
+    nsPrefix="org.eclipse.emf.diffmerge.patterns.core">
+  <eClassifiers xsi:type="ecore:EClass" name="CompositeLocation" eSuperTypes="#//AbstractLocation #//predefined/ICompositeLocation">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedLocations" upperBound="-1"
+        eType="#//predefined/IAtomicLocation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternRepository" eSuperTypes="#//AbstractNamedElement #//predefined/IPatternRepository">
+    <eOperations name="getPath" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eOperations name="getPattern" eType="#//AbstractPattern">
+      <eParameters name="symbol" lowerBound="1" eType="#//predefined/IPatternSymbol"/>
+    </eOperations>
+    <eOperations name="getPatternByName" eType="#//AbstractPattern">
+      <eParameters name="name" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patterns" upperBound="-1"
+        eType="#//AbstractPattern" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternRoleBinding" eSuperTypes="#//AbstractRoleRelativeElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="location" lowerBound="1"
+        eType="#//AbstractLocation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternRoleSymbol" eSuperTypes="#//AbstractPatternSymbol #//predefined/IPatternRoleSymbol">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="roleId" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternSymbol" eSuperTypes="#//AbstractPatternSymbol"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternVersion" eSuperTypes="#//AbstractVersionedElement #//predefined/IPatternVersion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patternSymbol" lowerBound="1"
+        eType="#//PatternSymbol" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractAtomicLocation" abstract="true"
+      eSuperTypes="#//AbstractLocation #//predefined/IAtomicLocation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractDescribedElement" abstract="true"
+      eSuperTypes="#//AbstractIdentifiedElement #//predefined/IDescribedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" lowerBound="1"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractIdentifiedElement" abstract="true"
+      eSuperTypes="#//predefined/IIdentifiedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+        iD="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractLocation" abstract="true" eSuperTypes="#//AbstractIdentifiedElement #//predefined/ILocation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractNamedElement" abstract="true"
+      eSuperTypes="#//AbstractIdentifiedElement #//predefined/INamedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractPattern" abstract="true" eSuperTypes="#//AbstractNamedElement #//AbstractDescribedElement #//AbstractVersionedElement #//predefined/IPattern">
+    <eOperations name="getRole" eType="#//AbstractPatternRole">
+      <eParameters name="symbol" lowerBound="1" eType="#//predefined/IPatternRoleSymbol"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="authors" lowerBound="1"
+        upperBound="-1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastModificationStamp"
+        lowerBound="1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="executionEnvironments"
+        upperBound="-1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="template" lowerBound="1"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        defaultValueLiteral="false"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractPatternInstance" abstract="true"
+      eSuperTypes="#//AbstractIdentifiedElement #//predefined/IPatternInstance">
+    <eOperations name="setLocation">
+      <eParameters name="role" lowerBound="1" eType="#//predefined/IPatternRole"/>
+      <eParameters name="location" eType="#//AbstractLocation"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="folded" lowerBound="1"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roleBindings" lowerBound="1"
+        upperBound="-1" eType="#//PatternRoleBinding" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patternVersion" lowerBound="1"
+        eType="#//PatternVersion" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="patternData" eType="#//AbstractPatternData"
+        containment="true" eOpposite="#//AbstractPatternData/instance"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractPatternRole" abstract="true"
+      eSuperTypes="#//AbstractNamedElement #//AbstractDescribedElement #//predefined/IPatternRole"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractPatternData" abstract="true"
+      eSuperTypes="#//AbstractIdentifiedElement #//predefined/IPatternData">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instance" lowerBound="1"
+        eType="#//AbstractPatternInstance" eOpposite="#//AbstractPatternInstance/patternData"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractPatternSymbol" abstract="true"
+      eSuperTypes="#//AbstractNamedElement #//predefined/IPatternSymbol">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="repositoryId" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="patternId" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastPath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractRoleRelativeElement" abstract="true"
+      eSuperTypes="#//AbstractIdentifiedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roleSymbol" lowerBound="1"
+        eType="#//PatternRoleSymbol" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractVersionedElement" abstract="true"
+      eSuperTypes="#//AbstractIdentifiedElement #//predefined/IVersionedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="version" lowerBound="1"
+        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eSubpackages name="predefined" nsURI="http://org.eclipse.com/emf/diffmerge/patterns/core/predefined"
+      nsPrefix="org.eclipse.emf.diffmerge.patterns.core.predefined">
+    <eClassifiers xsi:type="ecore:EClass" name="IDescribedElement" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.IDescribedElement"
+        abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IIdentifiedElement" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.IIdentifiedElement"
+        abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="INamedElement" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.INamedElement"
+        abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IPattern" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.IPattern"
+        abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IPatternApplication" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication"
+        abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IPatternBasedBijection" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.IPatternBasedBijection"
+        abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IPatternBasedFunction" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.IPatternBasedFunction"
+        abstract="true" interface="true" eSuperTypes="#//predefined/IPatternBasedBijection"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IPatternConformityStatus" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.status.IPatternConformityStatus"
+        abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IPatternData" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.IPatternData"
+        abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IPatternInstance" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance"
+        abstract="true" interface="true" eSuperTypes="#//predefined/IPatternApplication"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IPatternInstanceMarker" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstanceMarker"
+        abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IPatternRepository" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository"
+        abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IPatternRole" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.IPatternRole"
+        abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IPatternRoleSymbol" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.IPatternRoleSymbol"
+        abstract="true" interface="true" eSuperTypes="#//predefined/IPatternSymbol"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IPatternSymbol" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.IPatternSymbol"
+        abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IPatternVersion" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.IPatternVersion"
+        abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IVersionedElement" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.IVersionedElement"
+        abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IAtomicLocation" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.locations.IAtomicLocation"
+        abstract="true" interface="true" eSuperTypes="#//predefined/ILocation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IAttributeLocation" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.locations.IAttributeLocation"
+        abstract="true" interface="true" eSuperTypes="#//predefined/IElementRelativeLocation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ICompositeLocation" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.locations.ICompositeLocation"
+        abstract="true" interface="true" eSuperTypes="#//predefined/ILocation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IElementLocation" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.locations.IElementLocation"
+        abstract="true" interface="true" eSuperTypes="#//predefined/IElementRelativeLocation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IElementRelativeLocation" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.locations.IElementRelativeLocation"
+        abstract="true" interface="true" eSuperTypes="#//predefined/IAtomicLocation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ILocation" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.locations.ILocation"
+        abstract="true" interface="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IReferenceLocation" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.locations.IReferenceLocation"
+        abstract="true" interface="true" eSuperTypes="#//predefined/IElementRelativeLocation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IResourceLocation" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.locations.IResourceLocation"
+        abstract="true" interface="true" eSuperTypes="#//predefined/IAtomicLocation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="IElementMappingLocation" instanceClassName="org.eclipse.emf.diffmerge.patterns.core.api.locations.IElementMappingLocation"
+        abstract="true" interface="true" eSuperTypes="#//predefined/IAtomicLocation"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Resource" instanceClassName="org.eclipse.emf.ecore.resource.Resource"
+        abstract="true" interface="true"/>
+  </eSubpackages>
+</ecore:EPackage>

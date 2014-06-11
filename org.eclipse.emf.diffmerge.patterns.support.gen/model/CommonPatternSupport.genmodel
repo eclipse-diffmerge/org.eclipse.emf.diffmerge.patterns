@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2014 Thales Global Services S.A.S.
+  All rights reserved. This program and the accompanying materials
+   are made available under the terms of the Eclipse Public License v1.0
+  which accompanies this distribution, and is available at
+  http://www.eclipse.org/legal/epl-v10.html
+  
+   Contributors:
+  Thales Global Services S.A.S - initial API and implementation
+-->
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.emf.diffmerge.patterns.support.gen/src"
+    modelPluginID="org.eclipse.emf.diffmerge.patterns.support.gen" modelName="CommonPatternSupport"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.genmodel#//corepatterns platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>CommonPatternSupport.ecore</foreignModel>
+  <genPackages prefix="Commonpatternsupport" basePackage="org.eclipse.emf.diffmerge.patterns.support.gen"
+      disposableProviderFactory="true" ecorePackage="CommonPatternSupport.ecore#/">
+    <genClasses ecoreClass="CommonPatternSupport.ecore#//CommonPatternInstanceSet">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonPatternSupport.ecore#//CommonPatternInstanceSet/ownedInstances"/>
+    </genClasses>
+    <genClasses ecoreClass="CommonPatternSupport.ecore#//CommonPatternInstance"/>
+    <genClasses ecoreClass="CommonPatternSupport.ecore#//ResourceLocation"/>
+    <genClasses ecoreClass="CommonPatternSupport.ecore#//ElementLocation"/>
+    <genClasses ecoreClass="CommonPatternSupport.ecore#//AttributeLocation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CommonPatternSupport.ecore#//AttributeLocation/attribute"/>
+    </genClasses>
+    <genClasses ecoreClass="CommonPatternSupport.ecore#//ReferenceLocation">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference CommonPatternSupport.ecore#//ReferenceLocation/reference"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CommonPatternSupport.ecore#//AbstractIDBasedAtomicLocation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonPatternSupport.ecore#//AbstractIDBasedAtomicLocation/elementId"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="CommonPatternSupport.ecore#//AbstractElementRelativeLocation"/>
+    <genClasses ecoreClass="CommonPatternSupport.ecore#//ElementMappingLocation">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonPatternSupport.ecore#//ElementMappingLocation/mapping"/>
+    </genClasses>
+    <genClasses ecoreClass="CommonPatternSupport.ecore#//ElementMappingEntry">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute CommonPatternSupport.ecore#//ElementMappingEntry/key"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference CommonPatternSupport.ecore#//ElementMappingEntry/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

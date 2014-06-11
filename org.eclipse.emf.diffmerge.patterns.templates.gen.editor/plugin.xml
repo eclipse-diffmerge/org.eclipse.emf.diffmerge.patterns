@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated TemplatePatterns -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.presentation.TemplatepatternsModelWizardID"
+            name="%_UI_TemplatepatternsModelWizard_label"
+            class="org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.presentation.TemplatepatternsModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/TemplatepatternsModelFile.gif">
+         <description>%_UI_TemplatepatternsModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated TemplatePatterns -->
+      <!--editor
+            id="org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.presentation.TemplatepatternsEditorID"
+            name="%_UI_TemplatepatternsEditor_label"
+            icon="icons/full/obj16/TemplatepatternsModelFile.gif"
+            extensions="templatepatterns"
+            class="org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.presentation.TemplatepatternsEditor"
+            contributorClass="org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.presentation.TemplatepatternsActionBarContributor">
+      </editor-->
+      
+      <!-- Editors Declaration : has only effects on icons -->
+   
+      <editor
+            class="org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.presentation.TemplatepatternsEditor"
+            extensions="patterns"
+            icon="icons/full/catalog.gif"
+            id="org.eclipse.emf.diffmerge.patterns.ui.PatternsEditorID"
+            name="Pattern Catalog"
+            contributorClass="org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.presentation.TemplatepatternsActionBarContributor">
+      </editor>
+      <editor
+            class="org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.presentation.TemplatepatternsEditor"
+            extensions="patterninstances"
+            icon="icons/full/instance.gif"
+            id="org.eclipse.emf.diffmerge.patterns.ui.PatternsEditorID2"
+            name="Instance Repository"
+            contributorClass="org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.presentation.TemplatepatternsActionBarContributor">
+      </editor>
+      
+   </extension>
+
+</plugin>

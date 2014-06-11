@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="patternSupport" name="PatternSupport" schema="schema/PatternSupport.exsd"/>
+   <extension-point id="idProvider" name="IDProvider" schema="schema/IdProvider.exsd"/>
+   <extension-point id="modelEnvironment" name="ModelEnvironment" schema="schema/ModelEnvironment.exsd"/>
+   <extension-point id="deleteOperationProvider" name="DeleteOperationProvider" schema="schema/DeleteOperationProvider.exsd"/>
+
+<!-- GenericTypeUtil implementation Extension point Declaration -->
+	<extension-point id="org.eclipse.emf.diffmerge.patterns.core.genericTypeUtil" name="GenericTypeUtil" schema="schema/GenericTypeUtil.exsd"/>
+
+</plugin>

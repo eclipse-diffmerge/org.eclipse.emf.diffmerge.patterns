@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="templatepatterns" nsURI="http://org.eclipse.com/emf/diffmerge/patterns/templates/1.0.0"
+    nsPrefix="org.eclipse.emf.diffmerge.patterns.templates">
+  <eClassifiers xsi:type="ecore:EClass" name="TemplatePattern" eSuperTypes="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//AbstractPattern">
+    <eOperations name="isUnique" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+      <eParameters name="element" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roles" lowerBound="1" upperBound="-1"
+        eType="#//TemplatePatternRole" containment="true" eOpposite="#//TemplatePatternRole/pattern"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="templateElements" upperBound="-1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="multiElements" upperBound="-1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="image" eType="#//ImageSpecification"
+        containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="layoutData" upperBound="-1"
+        eType="#//LayoutEntry" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplatePatternData" eSuperTypes="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//AbstractPatternData platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//predefined/IPatternBasedFunction">
+    <eOperations name="clear"/>
+    <eOperations name="clearUnfolded"/>
+    <eOperations name="getInstanceElements" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    <eOperations name="getMultiparts" lowerBound="1" upperBound="-1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eOperations name="getMultipartOf" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString">
+      <eParameters name="element" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    </eOperations>
+    <eOperations name="getRolesOf" upperBound="-1" eType="#//TemplatePatternRole">
+      <eParameters name="instanceElement_p" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    </eOperations>
+    <eOperations name="isInMultipart" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+      <eParameters name="element" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+      <eParameters name="multipart" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    </eOperations>
+    <eOperations name="isInOtherMultipart" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+      <eParameters name="element" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+      <eParameters name="multipart" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    </eOperations>
+    <eOperations name="map">
+      <eParameters name="instanceElement" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+      <eParameters name="templateElement" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+      <eParameters name="multipart" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    </eOperations>
+    <eOperations name="markAsUnfolded">
+      <eParameters name="instanceElement" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    </eOperations>
+    <eOperations name="rename">
+      <eParameters name="newNamingRule" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eParameters name="keepUserNames" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    </eOperations>
+    <eOperations name="wasUnfolded" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+      <eParameters name="instanceElement" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="namingRule" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicity" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instanceIds" upperBound="-1"
+        eType="#//InstanceIdEntry" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="templateIds" upperBound="-1"
+        eType="#//TemplateIdEntry" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="unfoldedIds" upperBound="-1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplatePatternRole" eSuperTypes="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//AbstractPatternRole">
+    <eOperations name="acceptsAddition" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eOperations name="acceptsMerge" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eOperations name="checkConstraints" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//predefined/IPatternConformityStatus">
+      <eParameters name="location" eType="ecore:EClass platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//predefined/ILocation"/>
+    </eOperations>
+    <eOperations name="isDerivable" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean">
+      <eParameters name="forMerge" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    </eOperations>
+    <eOperations name="isMany" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eOperations name="isUniLocation" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="additionKind" lowerBound="1"
+        eType="#//AdditionKind"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+        eType="#//AbstractRoleConstraint" containment="true" eOpposite="#//AbstractRoleConstraint/role"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exclusive" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
+        eType="#//TemplatePattern" eOpposite="#//TemplatePattern/roles"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="additionDerivationRule"
+        eType="#//AbstractRoleDerivationRule" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="mergeDerivationRule" eType="#//AbstractRoleDerivationRule"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preferredContainment" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="templateElements" upperBound="-1"
+        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractRoleSpecification" abstract="true"
+      eSuperTypes="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//AbstractIdentifiedElement">
+    <eOperations name="getRole" eType="#//TemplatePatternRole"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractRoleConstraint" abstract="true"
+      eSuperTypes="#//AbstractRoleSpecification">
+    <eOperations name="check" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//predefined/IPatternConformityStatus">
+      <eParameters name="location" eType="ecore:EClass platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//predefined/ILocation"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="role" eType="#//TemplatePatternRole"
+        eOpposite="#//TemplatePatternRole/constraints"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractRoleDerivationRule" abstract="true"
+      eSuperTypes="#//AbstractRoleSpecification">
+    <eOperations name="deriveCandidateElements" upperBound="-1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject">
+      <eParameters name="context" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//predefined/IPatternApplication"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IdBasedDerivationRule" eSuperTypes="#//AbstractRoleDerivationRule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementId" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QNameBasedDerivationRule" eSuperTypes="#//AbstractRoleDerivationRule">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="names" lowerBound="1" upperBound="-1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractTextualQuery" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="specification" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="language" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TextualRoleDerivationRule" eSuperTypes="#//AbstractTextualQuery #//AbstractRoleDerivationRule"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TextualRoleConstraint" eSuperTypes="#//AbstractTextualQuery #//AbstractRoleConstraint"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="AdditionKind">
+    <eLiterals name="FORBIDDEN"/>
+    <eLiterals name="PREFERRED_CONTAINMENT"/>
+    <eLiterals name="ANY_CONTAINMENT"/>
+    <eLiterals name="ANY_STORAGE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceCounterpart" eSuperTypes="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//AbstractIdentifiedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="templateId" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multipart" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceIdEntry" instanceClassName="java.util.Map$Entry"
+      eSuperTypes="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//AbstractIdentifiedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//InstanceCounterpart"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateIdEntry" instanceClassName="java.util.Map$Entry"
+      eSuperTypes="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//AbstractIdentifiedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//TemplateCounterpart"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateCounterpart" eSuperTypes="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//AbstractIdentifiedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instanceParts" upperBound="-1"
+        eType="#//InstancePart" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InstancePart" instanceClassName="java.util.Map$Entry"
+      eSuperTypes="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//AbstractIdentifiedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImageSpecification" eSuperTypes="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//AbstractIdentifiedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="contents" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LayoutEntry" instanceClassName="java.util.Map$Entry"
+      eSuperTypes="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//AbstractIdentifiedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="key" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1" eType="#//Layout"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Layout" abstract="true" eSuperTypes="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//AbstractIdentifiedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeLayout" eSuperTypes="#//ShapeLayout">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="x" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="y" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="width" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containedFontStyles" upperBound="-1"
+        eType="#//TemplateFontStyle" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedStyle" eType="#//NodeStyle"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EdgeLayout" eSuperTypes="#//Layout #//ShapeLayout">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bendpoints" upperBound="-1"
+        eType="#//EdgeBendpoint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="linewidth" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="linecolor" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ownedStyle" eType="#//EdgeStyle"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="beginFontStyle" eType="#//TemplateFontStyle"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endFontStyle" eType="#//TemplateFontStyle"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="centerFontStyle" eType="#//TemplateFontStyle"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EdgeBendpoint" eSuperTypes="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.ecore#//AbstractIdentifiedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceX" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceY" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetX" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetY" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ShapeLayout" abstract="true" eSuperTypes="#//Layout">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="fontStyle" eType="#//TemplateFontStyle"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TemplateFontStyle">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bold" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="italic" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="underline" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="strikethrough" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Style" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeStyle" eSuperTypes="#//Style">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bordercolor" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="bordersize" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="shapecolor" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transparency" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="backgroundcolor" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="foregroundcolor" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EdgeStyle" eSuperTypes="#//Style">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="linestyle" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="routingstyle" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetarrow" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourcearrow" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>

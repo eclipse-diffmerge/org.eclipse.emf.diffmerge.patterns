@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <!-- Declaring the PatternCatalogXMIResourceFactory mapping -->
+   
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="org.eclipse.emf.diffmerge.patterns.repositories.catalogs.resources.PatternCatalogXMIResourceFactoryImpl"
+            type="patterns">
+      </parser>
+   </extension>
+
+</plugin>
