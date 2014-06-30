@@ -20,26 +20,28 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.sirius.business.api.dialect.DialectManager;
+import org.eclipse.sirius.diagram.AbstractDNode;
+import org.eclipse.sirius.diagram.DDiagram;
+import org.eclipse.sirius.diagram.DDiagramElement;
+import org.eclipse.sirius.diagram.DDiagramElementContainer;
+import org.eclipse.sirius.diagram.DNode;
+import org.eclipse.sirius.diagram.DNodeContainer;
+import org.eclipse.sirius.diagram.business.internal.metamodel.description.extensions.IContainerMappingExt;
+import org.eclipse.sirius.diagram.business.internal.metamodel.helper.ContainerMappingHelper;
+import org.eclipse.sirius.diagram.description.AbstractNodeMapping;
+import org.eclipse.sirius.diagram.description.ContainerMapping;
+import org.eclipse.sirius.diagram.description.ContainerMappingImport;
+import org.eclipse.sirius.diagram.description.DiagramDescription;
+import org.eclipse.sirius.diagram.description.DiagramElementMapping;
+import org.eclipse.sirius.diagram.description.Layer;
+import org.eclipse.sirius.diagram.description.NodeMapping;
+import org.eclipse.sirius.diagram.description.NodeMappingImport;
 import org.eclipse.sirius.ecore.extender.business.api.accessor.ModelAccessor;
 import org.eclipse.sirius.ecore.extender.business.api.accessor.ModelAccessorsRegistry;
-import org.eclipse.sirius.viewpoint.AbstractDNode;
 import org.eclipse.sirius.viewpoint.DContainer;
-import org.eclipse.sirius.viewpoint.DDiagram;
-import org.eclipse.sirius.viewpoint.DDiagramElement;
-import org.eclipse.sirius.viewpoint.DDiagramElementContainer;
-import org.eclipse.sirius.viewpoint.DNode;
-import org.eclipse.sirius.viewpoint.DNodeContainer;
 import org.eclipse.sirius.viewpoint.SiriusPlugin;
 import org.eclipse.sirius.viewpoint.description.AbstractMappingImport;
-import org.eclipse.sirius.viewpoint.description.AbstractNodeMapping;
-import org.eclipse.sirius.viewpoint.description.ContainerMapping;
-import org.eclipse.sirius.viewpoint.description.ContainerMappingImport;
-import org.eclipse.sirius.viewpoint.description.DescriptionPackage;
-import org.eclipse.sirius.viewpoint.description.DiagramDescription;
-import org.eclipse.sirius.viewpoint.description.DiagramElementMapping;
-import org.eclipse.sirius.viewpoint.description.Layer;
-import org.eclipse.sirius.viewpoint.description.NodeMapping;
-import org.eclipse.sirius.viewpoint.description.NodeMappingImport;
+import org.eclipse.sirius.diagram.description.DescriptionPackage;
 
 
 
@@ -48,7 +50,7 @@ import org.eclipse.sirius.viewpoint.description.NodeMappingImport;
  * Utility class providing services related to Viewpoint concepts
  * @author O. CONSTANT
  */
-@SuppressWarnings("deprecation")
+@SuppressWarnings({ "deprecation", "restriction" })
 public final class SiriusUtil {
   
   /**
@@ -96,10 +98,13 @@ public final class SiriusUtil {
             NodeMapping nm = (NodeMapping)mapping_p;
             candidates = nm.getNodesCandidates(semanticOfGraphicalContainer,
                 semanticOfGraphicalContainer, graphicalContainer_p);
-          } else if (mapping_p instanceof ContainerMapping) {
-            ContainerMapping cm = (ContainerMapping)mapping_p;
-            candidates = cm.getNodesCandidates(semanticOfGraphicalContainer,
+          } else if (mapping_p instanceof IContainerMappingExt) {
+//            ContainerMapping cm = (ContainerMapping)mapping_p;
+//             candidates = cm.getNodesCandidates(semanticOfGraphicalContainer,
+//            semanticOfGraphicalContainer, graphicalContainer_p);
+            candidates = ContainerMappingHelper.getNodesCandidates((IContainerMappingExt)mapping_p, semanticOfGraphicalContainer,
                 semanticOfGraphicalContainer, graphicalContainer_p);
+
           }
         }
         result = null != candidates && candidates.contains(semanticElt_p);

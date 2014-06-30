@@ -27,21 +27,25 @@ import org.eclipse.emf.diffmerge.util.ModelsUtil;
 import org.eclipse.emf.diffmerge.util.structures.FHashMap;
 import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.sirius.common.tools.api.interpreter.IInterpreter;
 import org.eclipse.sirius.diagram.ui.tools.api.layout.PinHelper;
-import org.eclipse.sirius.viewpoint.AbstractDNode;
+import org.eclipse.sirius.diagram.AbstractDNode;
 import org.eclipse.sirius.viewpoint.DContainer;
-import org.eclipse.sirius.viewpoint.DDiagram;
-import org.eclipse.sirius.viewpoint.DNodeContainer;
+import org.eclipse.sirius.viewpoint.SiriusPlugin;
+import org.eclipse.sirius.diagram.DDiagram;
+import org.eclipse.sirius.diagram.DNodeContainer;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
-import org.eclipse.sirius.viewpoint.description.AbstractNodeMapping;
-import org.eclipse.sirius.viewpoint.description.ContainerMapping;
-import org.eclipse.sirius.viewpoint.description.NodeMapping;
+import org.eclipse.sirius.diagram.business.internal.metamodel.description.extensions.IContainerMappingExt;
+import org.eclipse.sirius.diagram.business.internal.metamodel.helper.ContainerMappingHelper;
+import org.eclipse.sirius.diagram.description.AbstractNodeMapping;
+import org.eclipse.sirius.diagram.description.NodeMapping;
 
 /**
  * A Sirius-specific operation for representing a given set of semantic elements in a given Melody diagram.
  * @author Olivier Constant
  * @author Skander TURKI
  */
+@SuppressWarnings("restriction")
 public class SiriusDisplayOperation extends AbstractDisplayOperation<AbstractDNode, DDiagram>{
 
   /** The non-null behaviour for pinning graphical elements */
@@ -187,7 +191,6 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation<AbstractDNo
    *        (DNodeContainer or DDiagram)
    * @return the diagram element being created, or null if failure
    */
-  @SuppressWarnings("deprecation")
   private AbstractDNode showElement(AbstractNodeMapping mapping_p,
       EObject semanticTarget_p, DContainer graphicalContainer_p) {
     AbstractDNode result = null;
@@ -200,9 +203,10 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation<AbstractDNo
       try {
         if (((ISiriusSemanticMapping)mapping).conformsToMapping(
             semanticTarget_p, mapping_p, true, true, graphicalContainer_p)) {
-          if (mapping_p instanceof ContainerMapping) {
-            ContainerMapping cm = (ContainerMapping)mapping_p;
-            result = cm.createContainer(semanticTarget_p, target, diagram);
+          if (mapping_p instanceof IContainerMappingExt) {
+            IInterpreter interpreter = SiriusPlugin.getDefault().getInterpreterRegistry().getInterpreter(semanticTarget_p);
+            ContainerMappingHelper cmh = new ContainerMappingHelper(interpreter);
+            result = cmh.createContainer((IContainerMappingExt)mapping_p, semanticTarget_p, target, diagram);
           } else if (mapping_p instanceof NodeMapping) {
             NodeMapping nm = (NodeMapping)mapping_p;
             result = nm.createNode(semanticTarget_p, target, diagram);

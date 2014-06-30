@@ -31,12 +31,12 @@ import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.sirius.viewpoint.DDiagram;
-import org.eclipse.sirius.viewpoint.DDiagramElement;
+import org.eclipse.sirius.diagram.DDiagram;
+import org.eclipse.sirius.diagram.DDiagramElement;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
-import org.eclipse.sirius.viewpoint.EdgeArrows;
-import org.eclipse.sirius.viewpoint.EdgeRouting;
-import org.eclipse.sirius.viewpoint.LineStyle;
+import org.eclipse.sirius.diagram.EdgeArrows;
+import org.eclipse.sirius.diagram.EdgeRouting;
+import org.eclipse.sirius.diagram.LineStyle;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 

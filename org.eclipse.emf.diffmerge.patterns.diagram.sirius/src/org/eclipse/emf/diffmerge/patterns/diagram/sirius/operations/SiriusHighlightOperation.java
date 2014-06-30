@@ -16,20 +16,22 @@ import java.util.Collections;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractHighlightOperation;
 import org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.SiriusUtil;
+import org.eclipse.sirius.diagram.BeginLabelStyle;
+import org.eclipse.sirius.diagram.BorderedStyle;
+import org.eclipse.sirius.diagram.CenterLabelStyle;
+import org.eclipse.sirius.diagram.DDiagram;
+import org.eclipse.sirius.diagram.DEdge;
+import org.eclipse.sirius.diagram.DNode;
+import org.eclipse.sirius.diagram.DNodeContainer;
+import org.eclipse.sirius.diagram.DNodeList;
+import org.eclipse.sirius.diagram.DiagramFactory;
+import org.eclipse.sirius.diagram.DiagramPackage;
+import org.eclipse.sirius.diagram.EdgeStyle;
+import org.eclipse.sirius.diagram.EndLabelStyle;
+import org.eclipse.sirius.diagram.Square;
 import org.eclipse.sirius.viewpoint.BasicLabelStyle;
-import org.eclipse.sirius.viewpoint.BeginLabelStyle;
-import org.eclipse.sirius.viewpoint.BorderedStyle;
-import org.eclipse.sirius.viewpoint.CenterLabelStyle;
-import org.eclipse.sirius.viewpoint.DDiagram;
-import org.eclipse.sirius.viewpoint.DEdge;
-import org.eclipse.sirius.viewpoint.DNode;
-import org.eclipse.sirius.viewpoint.DNodeContainer;
-import org.eclipse.sirius.viewpoint.DNodeList;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
-import org.eclipse.sirius.viewpoint.EdgeStyle;
-import org.eclipse.sirius.viewpoint.EndLabelStyle;
 import org.eclipse.sirius.viewpoint.RGBValues;
-import org.eclipse.sirius.viewpoint.Square;
 import org.eclipse.sirius.viewpoint.ViewpointFactory;
 import org.eclipse.sirius.viewpoint.ViewpointPackage;
 import org.eclipse.swt.graphics.RGB;
@@ -146,11 +148,11 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
           style.setBorderColor(newColor);
           setHighlighted(newColor);
         }
-        style.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
+        style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
         style.setBorderSize(_innerHighlightOperation.get_borderSize());
         style.setBorderSizeComputationExpression(_innerHighlightOperation.get_borderSize().toString());
-        style.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getBorderedStyle_BorderSize().getName());
-        style.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName());
+        style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSize().getName());
+        style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName());
         style.refresh();
       }
     }
@@ -164,15 +166,15 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
         EdgeStyle style = (EdgeStyle) edge_p.getStyle();
         if (style.getStrokeColor() != null) {
           setHighlighted(style.getStrokeColor());
-          style.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName());
+          style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName());
         }
         style.setSize(Integer.valueOf(3));
-        style.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getEdgeStyle_Size().getName());
+        style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getEdgeStyle_Size().getName());
         CenterLabelStyle centerlabelStyle = style.getCenterLabelStyle();
         if (centerlabelStyle != null){
           updateBasicLabelStyle(centerlabelStyle);
         } else {
-          CenterLabelStyle newLabelStyle = ViewpointFactory.eINSTANCE.createCenterLabelStyle();
+          CenterLabelStyle newLabelStyle = DiagramFactory.eINSTANCE.createCenterLabelStyle();
           highlightBasicLabelStyle(newLabelStyle);
           style.setCenterLabelStyle(newLabelStyle);
         }
@@ -180,7 +182,7 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
         if(beginlabelStyle != null){
           updateBasicLabelStyle(beginlabelStyle);
         }else{
-          BeginLabelStyle newLabelStyle = ViewpointFactory.eINSTANCE.createBeginLabelStyle();
+          BeginLabelStyle newLabelStyle = DiagramFactory.eINSTANCE.createBeginLabelStyle();
           highlightBasicLabelStyle(newLabelStyle);
           style.setBeginLabelStyle(newLabelStyle);
         }   
@@ -188,7 +190,7 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
         if(endlabelStyle != null){
           updateBasicLabelStyle(endlabelStyle);
         } else {
-          EndLabelStyle newLabelStyle = ViewpointFactory.eINSTANCE.createEndLabelStyle();
+          EndLabelStyle newLabelStyle = DiagramFactory.eINSTANCE.createEndLabelStyle();
           highlightBasicLabelStyle(newLabelStyle);
           style.setEndLabelStyle(newLabelStyle);
         }
@@ -231,12 +233,12 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
           style.setBorderColor(newColor);
           setHighlighted(newColor);
         }
-        style.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
+        style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
         // not stable with a diagram resresh
         style.setBorderSize(_innerHighlightOperation.get_borderSize());
         style.setBorderSizeComputationExpression(_innerHighlightOperation.get_borderSize().toString());
-        style.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getBorderedStyle_BorderSize().getName());
-        style.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName());
+        style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSize().getName());
+        style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName());
         //
         style.refresh();
       }
@@ -278,12 +280,12 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
           style.setBorderColor(newColor);
           setHighlighted(newColor);
         }
-        style.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
+        style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
         // not stable with a diagram refresh
         style.setBorderSize(_innerHighlightOperation.get_borderSize());
         style.setBorderSizeComputationExpression(_innerHighlightOperation.get_borderSize().toString());
-        style.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getBorderedStyle_BorderSize().getName());
-        style.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName());
+        style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSize().getName());
+        style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName());
         //
         style.refresh();
       }

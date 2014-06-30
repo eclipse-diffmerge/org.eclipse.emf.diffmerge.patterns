@@ -15,14 +15,14 @@ import java.util.Collections;
 
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractRestoreOperation;
-import org.eclipse.sirius.viewpoint.BorderedStyle;
-import org.eclipse.sirius.viewpoint.DDiagram;
-import org.eclipse.sirius.viewpoint.DEdge;
+import org.eclipse.sirius.diagram.BorderedStyle;
+import org.eclipse.sirius.diagram.DDiagram;
+import org.eclipse.sirius.diagram.DEdge;
+import org.eclipse.sirius.diagram.DiagramPackage;
+import org.eclipse.sirius.diagram.EdgeStyle;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.sirius.viewpoint.DStylizable;
-import org.eclipse.sirius.viewpoint.EdgeStyle;
 import org.eclipse.sirius.viewpoint.Style;
-import org.eclipse.sirius.viewpoint.ViewpointPackage;
 
 /**
  * An operation for restoring diagram elements based on specific criteria on semantic elements.
@@ -87,21 +87,21 @@ public class SiriusRestoreOperation extends SiriusFilteredGraphicalUpdateOperati
           }
           // not stable with a diagram refresh
           edgeStyle.setSize(1);
-          edgeStyle.getCustomFeatures().remove(ViewpointPackage.eINSTANCE.getEdgeStyle_Size().getName());
+          edgeStyle.getCustomFeatures().remove(DiagramPackage.eINSTANCE.getEdgeStyle_Size().getName());
         }
       }
       if (decorator_p instanceof DStylizable) {
         DStylizable stylizable = (DStylizable) decorator_p;
-        stylizable.getStyle().getCustomFeatures().remove(ViewpointPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
-        stylizable.getStyle().getCustomFeatures().remove(ViewpointPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName());
+        stylizable.getStyle().getCustomFeatures().remove(DiagramPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
+        stylizable.getStyle().getCustomFeatures().remove(DiagramPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName());
         stylizable.getStyle().refresh();
         if (stylizable.getStyle() instanceof BorderedStyle) {
           BorderedStyle style = (BorderedStyle) stylizable.getStyle();
           // not stable with a diagram refresh
           style.setBorderSize(1);
           style.setBorderSizeComputationExpression("0"); //$NON-NLS-1$
-          style.getCustomFeatures().remove(ViewpointPackage.eINSTANCE.getBorderedStyle_BorderSize().getName());
-          style.getCustomFeatures().remove(ViewpointPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName());
+          style.getCustomFeatures().remove(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSize().getName());
+          style.getCustomFeatures().remove(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName());
         }
       }
     }   

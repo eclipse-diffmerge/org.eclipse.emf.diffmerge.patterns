@@ -20,8 +20,8 @@ import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractFilteredGra
 import org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.SiriusUtil;
 import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.sirius.viewpoint.DDiagram;
-import org.eclipse.sirius.viewpoint.DDiagramElement;
+import org.eclipse.sirius.diagram.DDiagram;
+import org.eclipse.sirius.diagram.DDiagramElement;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
 /**

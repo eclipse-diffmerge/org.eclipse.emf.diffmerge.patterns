@@ -42,17 +42,18 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.ShapeStyle;
 import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.sirius.diagram.tools.api.editor.DDiagramEditor;
 import org.eclipse.sirius.viewpoint.BasicLabelStyle;
-import org.eclipse.sirius.viewpoint.ContainerStyle;
-import org.eclipse.sirius.viewpoint.DDiagramElement;
-import org.eclipse.sirius.viewpoint.DDiagramElementContainer;
-import org.eclipse.sirius.viewpoint.DEdge;
+import org.eclipse.sirius.diagram.ContainerStyle;
+import org.eclipse.sirius.diagram.DDiagramElement;
+import org.eclipse.sirius.diagram.DDiagramElementContainer;
+import org.eclipse.sirius.diagram.DEdge;
+import org.eclipse.sirius.diagram.DiagramPackage;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
-import org.eclipse.sirius.viewpoint.EdgeStyle;
-import org.eclipse.sirius.viewpoint.FlatContainerStyle;
+import org.eclipse.sirius.diagram.EdgeStyle;
+import org.eclipse.sirius.diagram.FlatContainerStyle;
 import org.eclipse.sirius.viewpoint.FontFormat;
-import org.eclipse.sirius.viewpoint.Square;
+import org.eclipse.sirius.diagram.Square;
+import org.eclipse.sirius.diagram.ui.tools.api.editor.DDiagramEditor;
 import org.eclipse.sirius.viewpoint.ViewpointPackage;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
@@ -213,28 +214,28 @@ extends AbstractPatternWithLayoutOperation<T, IGraphicalEditPart>{
   private void getLocalEdgeStyleData(LocalEdgeStyle localEdgeStyle_p,
       EdgeStyle edgeStyle_p, EList<String> customFeatures_p) {
     if (customFeatures_p.contains(
-        ViewpointPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName())) {
+        DiagramPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName())) {
       localEdgeStyle_p.selectedLineColor =
           ColorUtil.convertRGBValuesToIntColor(edgeStyle_p.getStrokeColor());
     }
     if (customFeatures_p.contains(
-        ViewpointPackage.eINSTANCE.getEdgeStyle_Size().getName())) {
+        DiagramPackage.eINSTANCE.getEdgeStyle_Size().getName())) {
       localEdgeStyle_p.selectedLineWidth = edgeStyle_p.getSize();
     }
     if (customFeatures_p.contains(
-        ViewpointPackage.eINSTANCE.getEdgeStyle_LineStyle().getName())) {
+        DiagramPackage.eINSTANCE.getEdgeStyle_LineStyle().getName())) {
       localEdgeStyle_p.selectedLineStyle = edgeStyle_p.getLineStyle();
     }
     if (customFeatures_p.contains(
-        ViewpointPackage.eINSTANCE.getEdgeStyle_RoutingStyle().getName())) {
+        DiagramPackage.eINSTANCE.getEdgeStyle_RoutingStyle().getName())) {
       localEdgeStyle_p.selectedEdgeRouting = edgeStyle_p.getRoutingStyle();
     }
     if (customFeatures_p.contains(
-        ViewpointPackage.eINSTANCE.getEdgeStyle_TargetArrow().getName())) {
+        DiagramPackage.eINSTANCE.getEdgeStyle_TargetArrow().getName())) {
       localEdgeStyle_p.selectedTargetArrow = edgeStyle_p.getTargetArrow();
     }
     if (customFeatures_p.contains(
-        ViewpointPackage.eINSTANCE.getEdgeStyle_SourceArrow().getName())) {
+        DiagramPackage.eINSTANCE.getEdgeStyle_SourceArrow().getName())) {
       localEdgeStyle_p.selectedSourceArrow = edgeStyle_p.getSourceArrow();
     }
 
@@ -303,11 +304,11 @@ extends AbstractPatternWithLayoutOperation<T, IGraphicalEditPart>{
   private void getLocalEdgeStyleDataFromConnector(LocalEdgeStyle localEdgeStyle_p,
       ConnectorStyle connectorStyle_p, List<String> customFeatures_p) {
     if (customFeatures_p.contains(
-        ViewpointPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName())) {
+        DiagramPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName())) {
       localEdgeStyle_p.selectedLineColor = connectorStyle_p.getLineColor();
     }
     if (customFeatures_p.contains(
-        ViewpointPackage.eINSTANCE.getEdgeStyle_Size().getName())) {
+        DiagramPackage.eINSTANCE.getEdgeStyle_Size().getName())) {
       localEdgeStyle_p.selectedLineWidth = connectorStyle_p.getLineWidth();
     }
   }
@@ -463,35 +464,35 @@ extends AbstractPatternWithLayoutOperation<T, IGraphicalEditPart>{
       localNodeStyle_p.selectedNSShapeColor = shapeStyle_p.getFillColor();
     }
     if (customFeatures_p.contains(
-        ViewpointPackage.eINSTANCE.getFlatContainerStyle_ForegroundColor().getName()) &&
+        DiagramPackage.eINSTANCE.getFlatContainerStyle_ForegroundColor().getName()) &&
         customFeatures_p.contains(
-            ViewpointPackage.eINSTANCE.getFlatContainerStyle_BackgroundColor().getName())) {
+            DiagramPackage.eINSTANCE.getFlatContainerStyle_BackgroundColor().getName())) {
       localNodeStyle_p.selectedNSShapeColor = shapeStyle_p.getFillColor();
     }
     if (customFeatures_p.contains(
-        ViewpointPackage.eINSTANCE.getBorderedStyle_BorderColor().getName())) {
+        DiagramPackage.eINSTANCE.getBorderedStyle_BorderColor().getName())) {
       localNodeStyle_p.selectedNSBorderColor = shapeStyle_p.getLineColor();
     }
     if (customFeatures_p.contains(
-        ViewpointPackage.eINSTANCE.getBorderedStyle_BorderSize().getName())) {
+        DiagramPackage.eINSTANCE.getBorderedStyle_BorderSize().getName())) {
       localNodeStyle_p.selectedNSBorderSize = shapeStyle_p.getLineWidth();
     }
     if (nodeElement_p instanceof DDiagramElementContainer) {
       DDiagramElementContainer container = (DDiagramElementContainer) nodeElement_p;
       ContainerStyle containerstyle = container.getOwnedStyle();
       if (customFeatures_p.contains(
-          ViewpointPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName())) {
+          DiagramPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName())) {
         localNodeStyle_p.selectedNSBorderSize = containerstyle.getBorderSize().intValue();
       }
       if (containerstyle instanceof FlatContainerStyle) {
         FlatContainerStyle flatcontainerstyle = (FlatContainerStyle) containerstyle;
         if (customFeatures_p.contains(
-            ViewpointPackage.eINSTANCE.getFlatContainerStyle_ForegroundColor().getName())) {
+            DiagramPackage.eINSTANCE.getFlatContainerStyle_ForegroundColor().getName())) {
           localNodeStyle_p.selectedNSForegroundColor =
               ColorUtil.convertRGBValuesToIntColor(flatcontainerstyle.getForegroundColor());
         }
         if (customFeatures_p.contains(
-            ViewpointPackage.eINSTANCE.getFlatContainerStyle_BackgroundColor().getName())) {
+            DiagramPackage.eINSTANCE.getFlatContainerStyle_BackgroundColor().getName())) {
           localNodeStyle_p.selectedNSBackgroundColor =
               ColorUtil.convertRGBValuesToIntColor(flatcontainerstyle.getBackgroundColor());
         }
@@ -502,16 +503,16 @@ extends AbstractPatternWithLayoutOperation<T, IGraphicalEditPart>{
       if (elementstyle instanceof Square) {
         Square squareelementstyle = (Square) elementstyle;
         if (customFeatures_p.contains(
-            ViewpointPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName())) {
+            DiagramPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName())) {
           localNodeStyle_p.selectedNSBorderSize = squareelementstyle.getBorderSize().intValue();
         }
         if (customFeatures_p.contains(
-            ViewpointPackage.eINSTANCE.getFlatContainerStyle_ForegroundColor().getName())) {
+            DiagramPackage.eINSTANCE.getFlatContainerStyle_ForegroundColor().getName())) {
           localNodeStyle_p.selectedNSForegroundColor =
               ColorUtil.convertRGBValuesToIntColor(squareelementstyle.getColor());
         }
         if (customFeatures_p.contains(
-            ViewpointPackage.eINSTANCE.getFlatContainerStyle_BackgroundColor().getName())) {
+            DiagramPackage.eINSTANCE.getFlatContainerStyle_BackgroundColor().getName())) {
           localNodeStyle_p.selectedNSBackgroundColor =
               ColorUtil.convertRGBValuesToIntColor(squareelementstyle.getColor());
         }

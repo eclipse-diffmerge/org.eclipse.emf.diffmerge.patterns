@@ -36,34 +36,35 @@ import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.ShapeStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
-import org.eclipse.sirius.viewpoint.AbstractDNode;
+import org.eclipse.sirius.diagram.AbstractDNode;
+import org.eclipse.sirius.diagram.BeginLabelStyle;
+import org.eclipse.sirius.diagram.BorderedStyle;
+import org.eclipse.sirius.diagram.BundledImage;
+import org.eclipse.sirius.diagram.CenterLabelStyle;
+import org.eclipse.sirius.diagram.DDiagram;
+import org.eclipse.sirius.diagram.DDiagramElement;
+import org.eclipse.sirius.diagram.DEdge;
+import org.eclipse.sirius.diagram.DNode;
+import org.eclipse.sirius.diagram.DNodeContainer;
+import org.eclipse.sirius.diagram.DNodeList;
+import org.eclipse.sirius.diagram.DiagramFactory;
+import org.eclipse.sirius.diagram.DiagramPackage;
+import org.eclipse.sirius.diagram.Dot;
+import org.eclipse.sirius.diagram.EdgeArrows;
+import org.eclipse.sirius.diagram.EdgeRouting;
+import org.eclipse.sirius.diagram.EdgeStyle;
+import org.eclipse.sirius.diagram.Ellipse;
+import org.eclipse.sirius.diagram.EndLabelStyle;
+import org.eclipse.sirius.diagram.FlatContainerStyle;
+import org.eclipse.sirius.diagram.LineStyle;
+import org.eclipse.sirius.diagram.Lozenge;
+import org.eclipse.sirius.diagram.Note;
+import org.eclipse.sirius.diagram.Square;
 import org.eclipse.sirius.viewpoint.BasicLabelStyle;
-import org.eclipse.sirius.viewpoint.BeginLabelStyle;
-import org.eclipse.sirius.viewpoint.BorderedStyle;
-import org.eclipse.sirius.viewpoint.BundledImage;
-import org.eclipse.sirius.viewpoint.CenterLabelStyle;
-import org.eclipse.sirius.viewpoint.DDiagram;
-import org.eclipse.sirius.viewpoint.DDiagramElement;
-import org.eclipse.sirius.viewpoint.DEdge;
-import org.eclipse.sirius.viewpoint.DNode;
-import org.eclipse.sirius.viewpoint.DNodeContainer;
-import org.eclipse.sirius.viewpoint.DNodeList;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.sirius.viewpoint.DStylizable;
-import org.eclipse.sirius.viewpoint.Dot;
-import org.eclipse.sirius.viewpoint.EdgeArrows;
-import org.eclipse.sirius.viewpoint.EdgeRouting;
-import org.eclipse.sirius.viewpoint.EdgeStyle;
-import org.eclipse.sirius.viewpoint.Ellipse;
-import org.eclipse.sirius.viewpoint.EndLabelStyle;
-import org.eclipse.sirius.viewpoint.FlatContainerStyle;
 import org.eclipse.sirius.viewpoint.FontFormat;
-import org.eclipse.sirius.viewpoint.LineStyle;
-import org.eclipse.sirius.viewpoint.Lozenge;
-import org.eclipse.sirius.viewpoint.Note;
-import org.eclipse.sirius.viewpoint.Square;
 import org.eclipse.sirius.viewpoint.Style;
-import org.eclipse.sirius.viewpoint.ViewpointFactory;
 import org.eclipse.sirius.viewpoint.ViewpointPackage;
 import org.eclipse.swt.graphics.Point;
 
@@ -120,7 +121,7 @@ public final class LayoutUtil {
           EdgeStyle edgestyle = (EdgeStyle) style;
           if (edgeLayout_p.getLinecolor() != -1) {
             edgestyle.setStrokeColor(ColorUtil.convertIntColorToRGBValues(edgeLayout_p.getLinecolor()));
-            style.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName());
+            style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName());
           }
         }
       }
@@ -151,17 +152,17 @@ public final class LayoutUtil {
         // set size
         if (edgeLayout_p.getLinewidth() != -1) {
           ownedstyle.setSize(edgeLayout_p.getLinewidth());
-          ownedstyle.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getEdgeStyle_Size().getName());
+          ownedstyle.getCustomFeatures().add(DiagramPackage.eINSTANCE.getEdgeStyle_Size().getName());
         }
         // set line style
         if (edgestyle.getLinestyle() != null) {
           setEdgeLineStyle(edgestyle.getLinestyle(), ownedstyle);
-          ownedstyle.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getEdgeStyle_LineStyle().getName());
+          ownedstyle.getCustomFeatures().add(DiagramPackage.eINSTANCE.getEdgeStyle_LineStyle().getName());
         }
         // set routing style
         if (edgestyle.getRoutingstyle() != null) {
           setEdgeRoutingStyle(edgestyle.getRoutingstyle(), ownedstyle);
-          ownedstyle.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getEdgeStyle_RoutingStyle().getName());
+          ownedstyle.getCustomFeatures().add(DiagramPackage.eINSTANCE.getEdgeStyle_RoutingStyle().getName());
           if (connectorstyle != null) {
             if ("straight".equals(edgestyle.getRoutingstyle())) { //$NON-NLS-1$
               connectorstyle.setRouting(Routing.MANUAL_LITERAL);
@@ -175,12 +176,12 @@ public final class LayoutUtil {
         // set source arrow
         if (edgestyle.getSourcearrow() != null) {
           setEdgeSourceArrowStyle(edgestyle.getSourcearrow(), ownedstyle);
-          ownedstyle.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getEdgeStyle_SourceArrow().getName());
+          ownedstyle.getCustomFeatures().add(DiagramPackage.eINSTANCE.getEdgeStyle_SourceArrow().getName());
         }
         // set target arrow
         if (edgestyle.getTargetarrow() != null) {
           setEdgeTargetArrowStyle(edgestyle.getTargetarrow(), ownedstyle);
-          ownedstyle.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getEdgeStyle_TargetArrow().getName());
+          ownedstyle.getCustomFeatures().add(DiagramPackage.eINSTANCE.getEdgeStyle_TargetArrow().getName());
         }
       }
     }
@@ -203,21 +204,21 @@ public final class LayoutUtil {
         EdgeStyle edgestyle = edge.getOwnedStyle();
         // BUILD the appropriate center label style after this point
         if (edgelayout_p.getCenterFontStyle() != null) {
-          CenterLabelStyle newcenterstyle = ViewpointFactory.eINSTANCE.createCenterLabelStyle();
+          CenterLabelStyle newcenterstyle = DiagramFactory.eINSTANCE.createCenterLabelStyle();
           edgestyle.setCenterLabelStyle(newcenterstyle);
           centerlabelstyle = edgestyle.getCenterLabelStyle();
           applyLabelStyleToEdge(edgelayout_p.getCenterFontStyle(), centerlabelstyle);
         }
         // BUILD the appropriate end label style after this point
         if (edgelayout_p.getEndFontStyle() != null) {
-          EndLabelStyle newendstyle = ViewpointFactory.eINSTANCE.createEndLabelStyle();
+          EndLabelStyle newendstyle = DiagramFactory.eINSTANCE.createEndLabelStyle();
           edgestyle.setEndLabelStyle(newendstyle);
           endlabelstyle = edgestyle.getEndLabelStyle();
           applyLabelStyleToEdge(edgelayout_p.getEndFontStyle(), endlabelstyle);
         }
         // BUILD the appropriate begin label style after this point
         if (edgelayout_p.getBeginFontStyle() != null) {
-          BeginLabelStyle newbeginstyle = ViewpointFactory.eINSTANCE.createBeginLabelStyle();
+          BeginLabelStyle newbeginstyle = DiagramFactory.eINSTANCE.createBeginLabelStyle();
           edgestyle.setBeginLabelStyle(newbeginstyle);
           beginlabelstyle = edgestyle.getBeginLabelStyle();
           applyLabelStyleToEdge(edgelayout_p.getBeginFontStyle(), beginlabelstyle);
@@ -253,7 +254,7 @@ public final class LayoutUtil {
 
     if (element_p instanceof EdgeStyle) {
       EdgeStyle edgestyle = (EdgeStyle) element_p;
-      edgestyle.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName());
+      edgestyle.getCustomFeatures().add(DiagramPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName());
       edgestyle.setStrokeColor(null);
       edgestyle.getCenterLabelStyle().setLabelColor(ColorUtil.convertIntColorToRGBValues(edgefontstyle.getColor()));
       edgestyle.getCenterLabelStyle().setLabelSize(edgefontstyle.getHeight());
@@ -616,7 +617,7 @@ public final class LayoutUtil {
         // set shape style
         if (sourcenodestyle_p.getBordercolor() != -1) {
           targetshapestyle.setLineColor(sourcenodestyle_p.getBordercolor());
-          customfeatures.add(ViewpointPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
+          customfeatures.add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
         }
         if (sourcenodestyle_p.getBordersize() != -1) {
           targetshapestyle.setLineWidth(sourcenodestyle_p.getBordersize());
@@ -640,7 +641,7 @@ public final class LayoutUtil {
           BorderedStyle targetborderedstyle = (BorderedStyle) targetelementstyle;
           if (sourcenodestyle_p.getBordercolor() != -1) {
             targetborderedstyle.setBorderColor(ColorUtil.convertIntColorToRGBValues(sourcenodestyle_p.getBordercolor()));
-            customfeatures.add(ViewpointPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
+            customfeatures.add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
           }
           if (sourcenodestyle_p.getBordersize() != -1) {
             targetborderedstyle.setBorderSize(sourcenodestyle_p.getBordersize());
@@ -652,8 +653,8 @@ public final class LayoutUtil {
           FillStyle targetfillstyle = (FillStyle) targetelementstyle;
           if (sourcenodestyle_p.getShapecolor() != -1) {
             targetfillstyle.setFillColor(sourcenodestyle_p.getShapecolor());
-            customfeatures.add(ViewpointPackage.eINSTANCE.getFlatContainerStyle_ForegroundColor().getName());
-            customfeatures.add(ViewpointPackage.eINSTANCE.getFlatContainerStyle_BackgroundColor().getName());
+            customfeatures.add(DiagramPackage.eINSTANCE.getFlatContainerStyle_ForegroundColor().getName());
+            customfeatures.add(DiagramPackage.eINSTANCE.getFlatContainerStyle_BackgroundColor().getName());
           }
           if (sourcenodestyle_p.getTransparency() != -1) {
             targetfillstyle.setTransparency(sourcenodestyle_p.getTransparency());
@@ -663,59 +664,59 @@ public final class LayoutUtil {
           Square targetsquare = (Square) targetelementstyle;
           if (sourcenodestyle_p.getShapecolor() != -1) {
             targetsquare.setColor(ColorUtil.convertIntColorToRGBValues(sourcenodestyle_p.getShapecolor()));
-            customfeatures.add(ViewpointPackage.eINSTANCE.getSquare_Color().getName());
+            customfeatures.add(DiagramPackage.eINSTANCE.getSquare_Color().getName());
           }
         }
         if (targetelementstyle instanceof Ellipse) {
           Ellipse targetellipse = (Ellipse) targetelementstyle;
           if (sourcenodestyle_p.getShapecolor() != -1) {
             targetellipse.setColor(ColorUtil.convertIntColorToRGBValues(sourcenodestyle_p.getShapecolor()));
-            customfeatures.add(ViewpointPackage.eINSTANCE.getEllipse_Color().getName());
+            customfeatures.add(DiagramPackage.eINSTANCE.getEllipse_Color().getName());
           }
         }
         if (targetelementstyle instanceof Note) {
           Note targetnote = (Note) targetelementstyle;
           if (sourcenodestyle_p.getShapecolor() != -1) {
             targetnote.setColor(ColorUtil.convertIntColorToRGBValues(sourcenodestyle_p.getShapecolor()));
-            customfeatures.add(ViewpointPackage.eINSTANCE.getNote_Color().getName());
+            customfeatures.add(DiagramPackage.eINSTANCE.getNote_Color().getName());
           }
         }
         if (targetelementstyle instanceof Lozenge) {
           Lozenge targetlozange = (Lozenge) targetelementstyle;
           if (sourcenodestyle_p.getShapecolor() != -1) {
             targetlozange.setColor(ColorUtil.convertIntColorToRGBValues(sourcenodestyle_p.getShapecolor()));
-            customfeatures.add(ViewpointPackage.eINSTANCE.getLozenge_Color().getName());
+            customfeatures.add(DiagramPackage.eINSTANCE.getLozenge_Color().getName());
           }
         }
         if (targetelementstyle instanceof BundledImage) {
           BundledImage targetimage = (BundledImage) targetelementstyle;
           if (sourcenodestyle_p.getShapecolor() != -1) {
             targetimage.setColor(ColorUtil.convertIntColorToRGBValues(sourcenodestyle_p.getShapecolor()));
-            customfeatures.add(ViewpointPackage.eINSTANCE.getBundledImage_Color().getName());
+            customfeatures.add(DiagramPackage.eINSTANCE.getBundledImage_Color().getName());
           }
         }
         if (targetelementstyle instanceof Dot) {
           Dot targetdot = (Dot) targetelementstyle;
           if (sourcenodestyle_p.getShapecolor() != -1) {
             targetdot.setBackgroundColor(ColorUtil.convertIntColorToRGBValues(sourcenodestyle_p.getShapecolor()));
-            customfeatures.add(ViewpointPackage.eINSTANCE.getDot_BackgroundColor().getName());
+            customfeatures.add(DiagramPackage.eINSTANCE.getDot_BackgroundColor().getName());
           }
         }
         if (targetelementstyle instanceof FlatContainerStyle) {
           FlatContainerStyle targetflatcontainerstyle = (FlatContainerStyle) targetelementstyle;
           if (sourcenodestyle_p.getBackgroundcolor() != -1) {
             targetflatcontainerstyle.setBackgroundColor(ColorUtil.convertIntColorToRGBValues(sourcenodestyle_p.getBackgroundcolor()));
-            customfeatures.add(ViewpointPackage.eINSTANCE.getFlatContainerStyle_BackgroundColor().getName());
+            customfeatures.add(DiagramPackage.eINSTANCE.getFlatContainerStyle_BackgroundColor().getName());
           } else {
             targetflatcontainerstyle.setBackgroundColor(null);
           }
           if (sourcenodestyle_p.getForegroundcolor() != -1) {
             targetflatcontainerstyle.setForegroundColor(
                 ColorUtil.convertIntColorToRGBValues(sourcenodestyle_p.getForegroundcolor()));
-            customfeatures.add(ViewpointPackage.eINSTANCE.getFlatContainerStyle_ForegroundColor().getName());
+            customfeatures.add(DiagramPackage.eINSTANCE.getFlatContainerStyle_ForegroundColor().getName());
             // NOTE : Here we add both the background and the foreground color tags into custom features, it looks non-logical
             // but this is how it should be done in order to obtain the same behavior as the "appearance" tab color picker of diagram editors
-            customfeatures.add(ViewpointPackage.eINSTANCE.getFlatContainerStyle_BackgroundColor().getName());
+            customfeatures.add(DiagramPackage.eINSTANCE.getFlatContainerStyle_BackgroundColor().getName());
           }
         }
         targetelementstyle.refresh();

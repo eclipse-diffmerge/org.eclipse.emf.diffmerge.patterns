@@ -12,8 +12,8 @@ package org.eclipse.emf.diffmerge.patterns.ui.sirius.actions;
 
 import org.eclipse.emf.diffmerge.patterns.ui.actions.AbstractResetPersistentSelectionAction;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.sirius.viewpoint.DDiagram;
-import org.eclipse.sirius.viewpoint.DDiagramElement;
+import org.eclipse.sirius.diagram.DDiagram;
+import org.eclipse.sirius.diagram.DDiagramElement;
 
 /**
  * A Sirius-specific action for clearing the persistent selection

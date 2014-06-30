@@ -18,8 +18,8 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.ITempl
 import org.eclipse.emf.diffmerge.patterns.ui.misc.AbstractPatternImageBuilderJob;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.sirius.viewpoint.DDiagram;
-import org.eclipse.sirius.viewpoint.DDiagramElement;
+import org.eclipse.sirius.diagram.DDiagram;
+import org.eclipse.sirius.diagram.DDiagramElement;
 
 
 
