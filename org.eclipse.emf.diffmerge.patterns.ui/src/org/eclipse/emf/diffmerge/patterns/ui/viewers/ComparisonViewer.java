@@ -115,7 +115,7 @@ public class ComparisonViewer extends ModelSubsetViewer {
   }
   
   /**
-   * Return the elements to show via the viewer
+   * Return the elements to be shown in the viewer
    * @param comparison_p a non-null comparison
    * @return a non-null, potentially empty, unmodifiable collection
    */
