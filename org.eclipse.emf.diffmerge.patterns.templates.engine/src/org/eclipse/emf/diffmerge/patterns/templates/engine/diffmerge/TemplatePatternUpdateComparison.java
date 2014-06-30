@@ -10,18 +10,13 @@
  ******************************************************************************/
 package org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge;
 
-import java.util.Collection;
-
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.diffmerge.api.IMatch;
 import org.eclipse.emf.diffmerge.api.IMergePolicy;
-import org.eclipse.emf.diffmerge.api.Role;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternUpdateSpecification;
-import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternData;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 
 
 /**
@@ -34,7 +29,7 @@ public class TemplatePatternUpdateComparison extends TemplatePatternComparison {
   
   /** The non-null update specification */
   private final TemplatePatternUpdateSpecification _specification;
-  
+
   /**
    * Constructor
    * @param pattern_p a non-null template pattern
@@ -45,33 +40,6 @@ public class TemplatePatternUpdateComparison extends TemplatePatternComparison {
         new TemplatePatternScope(specification_p.getOriginalPattern()),
         new TemplatePatternScope(specification_p.getPattern()));
     _specification = specification_p;
-  }
-  
-  /**
-   * Incrementally update the data of the instance according to the current mapping
-   */
-  private void extendPatternData() {
-    TemplatePatternApplicationComparison applicationComparison =
-      getSpecification().getComparison();
-    TemplatePatternData data = applicationComparison.getPatternData();
-    Role applicationRole = TemplatePatternApplicationComparison.getApplicationRole();
-    if (data != null) {
-      Collection<IMatch> updatedMatches = applicationComparison.getUpdatedMatches();
-      for (IMatch match : updatedMatches) {
-        EObject instanceElement = match.get(applicationRole);
-        EObject intermediateTemplateElement = match.get(getPatternRole());
-        IMatch patternMatch = getMapping().getMatchFor(intermediateTemplateElement, applicationRole);
-        if (patternMatch != null) {
-          EObject templateElement = patternMatch.get(getPatternRole());
-          String mappingMultipart = applicationComparison.getMainMultipart();
-          if (!getPattern().isUnique(templateElement) &&
-              applicationComparison.getCurrentMultipart() != null)
-            mappingMultipart = applicationComparison.getCurrentMultipart();
-          data.map(instanceElement, templateElement, mappingMultipart);
-          data.markAsUnfolded(instanceElement);
-        }
-      }
-    }
   }
   
   /**
@@ -105,8 +73,6 @@ public class TemplatePatternUpdateComparison extends TemplatePatternComparison {
       // Update original pattern
       merge(getPatternRole(), true, null);
       updateRoleOrder();
-      // Update pattern data in instance
-      extendPatternData();
     }
     return result;
   }

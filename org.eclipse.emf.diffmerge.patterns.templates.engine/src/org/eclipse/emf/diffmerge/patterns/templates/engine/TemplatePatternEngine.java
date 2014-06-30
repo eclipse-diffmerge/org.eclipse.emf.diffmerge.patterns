@@ -16,6 +16,8 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.diffmerge.api.IMatch;
+import org.eclipse.emf.diffmerge.api.Role;
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPattern;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication;
@@ -414,18 +416,19 @@ public class TemplatePatternEngine implements ITemplatePatternEngine {
    * @param specification_p a non-null specification of the update operation
    */
   public void updatePattern(final TemplatePatternUpdateSpecification specification_p) {
-    TemplatePatternUpdateComparison comparison =
+    final TemplatePatternUpdateComparison comparison =
         new TemplatePatternUpdateComparison(specification_p);
     IStatus status = comparison.updatePattern();
     if (status.isOK()) {
       // Pattern version of instance
-      InstanceOperation updateInstanceVersionOperation = new InstanceOperation(specification_p.getInstance(), null, null, 
+      InstanceOperation updateInstanceOperation = new InstanceOperation(specification_p.getInstance(), null, null, 
           specification_p.getInstance(), null){
         /**
          * @see org.eclipse.emf.diffmerge.patterns.core.operations.AbstractModelOperation#run()
          */
         @Override
         protected IEvaluationStatus run() {
+          extendPatternData();
           IPatternVersion instanceVersion = specification_p.getInstance().getPatternVersion();
           if (instanceVersion instanceof PatternVersion) {
             ((PatternVersion)instanceVersion).setVersion(
@@ -434,13 +437,43 @@ public class TemplatePatternEngine implements ITemplatePatternEngine {
           }
           return new SimpleStatus(false, "Couldn't update instance version"); //$NON-NLS-1$;
         }
+        
+        /**
+         * Incrementally update the data of the instance according to the current mapping
+         */
+        @SuppressWarnings("static-access")
+        private void extendPatternData() {
+          TemplatePatternApplicationComparison applicationComparison =
+              specification_p.getComparison();
+          TemplatePatternData data = applicationComparison.getPatternData();
+          Role applicationRole = TemplatePatternApplicationComparison.getApplicationRole();
+          if (data != null) {
+            Collection<IMatch> updatedMatches = applicationComparison.getUpdatedMatches();
+            for (IMatch match : updatedMatches) {
+              EObject instanceElement = match.get(applicationRole);
+              EObject intermediateTemplateElement = match.get(comparison.getPatternRole());
+              IMatch patternMatch = comparison.getMapping().getMatchFor(intermediateTemplateElement, applicationRole);
+              if (patternMatch != null) {
+                EObject templateElement = patternMatch.get(comparison.getPatternRole());
+                String mappingMultipart = applicationComparison.getMainMultipart();
+                if (!comparison.getPattern().isUnique(templateElement) &&
+                    applicationComparison.getCurrentMultipart() != null)
+                  mappingMultipart = applicationComparison.getCurrentMultipart();
+                data.map(instanceElement, templateElement, mappingMultipart);
+                data.markAsUnfolded(instanceElement);
+              }
+            }
+          }
+        }
       };
-      IEvaluationStatus result = CorePatternsPlugin.getDefault().getModelEnvironment().execute(updateInstanceVersionOperation);
+      IEvaluationStatus result = CorePatternsPlugin.getDefault().getModelEnvironment().execute(updateInstanceOperation);
       if(!result.isOk()){
         //TODO : inform user?!
       }
     }
   }
+  
+
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.templates.gen.ITemplatePatternEngine#renameElements(org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance, java.lang.String, boolean)
