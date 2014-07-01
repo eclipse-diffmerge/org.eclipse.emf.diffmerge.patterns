@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+    <extension
+         point="org.eclipse.emf.diffmerge.patterns.ui.modelenvironmentui">
+      <client
+            class="org.eclipse.emf.diffmerge.patterns.ui.umldesigner.ext.UMLDesignerModelEnvironmentUI">
+      </client>
+   </extension>
+
+<!--> Menu contribution <-->
+
+  <!--extension point="org.eclipse.ui.popupMenus">
+  
+  		<> Diagram contextual popup general menu contribution <-->
+  
+  
+           <!--objectContribution
+                 id ="org.eclipse.emf.diffmerge.patterns.ui.umldesigner.actions.PatternGeneralMenuActions"
+                 objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+                 <menu
+                       id="patternsmenu"
+                       label="Patterns">
+                    <separator
+                          name="separator5">
+                    </separator>
+                    <separator
+                          name="separator4">
+                    </separator>
+                    <separator
+                          name="separator3">
+                    </separator>
+                    <separator
+                          name="separator2">
+                    </separator>
+                    <separator
+                          name="separator1">
+                    </separator>
+                 </menu>
+                
+                 <action
+                       class="org.eclipse.emf.diffmerge.patterns.ui.sirius.actions.SiriusBrowseCatalogAction"
+                       id="org.eclipse.emf.diffmerge.patterns.ui.umldesigner.actions.BrowseCatalogAction"
+                       label="Browse catalogs"
+                       menubarPath="patternsmenu/separator1">
+                 </action>
+                 <action
+                       class="org.eclipse.emf.diffmerge.patterns.ui.sirius.actions.SiriusShowInInstanceExplorerViewAction"
+                       id="org.eclipse.emf.diffmerge.patterns.ui.umldesigner.actions.ShowInPatternInstanceExplorerAction"
+                       label="Show in pattern instance explorer"
+                       menubarPath="patternsmenu/separator2">
+                 </action>
+                 <action
+                       class="org.eclipse.emf.diffmerge.patterns.ui.sirius.actions.SiriusManageInstanceAction"
+                       id="org.eclipse.emf.diffmerge.patterns.ui.umldesigner.actions.ManageInstanceAction"
+                       label="Manage instance(s)..."
+                       menubarPath="patternsmenu/separator2">
+                 </action>
+                 <action
+                       class="org.eclipse.emf.diffmerge.patterns.ui.sirius.actions.SiriusCreateTemplateAction"
+                       id="org.eclipse.emf.diffmerge.patterns.ui.umldesigner.actions.CreateTemplateAction"
+                       label="Create template..."
+                       menubarPath="patternsmenu/separator3">
+                 </action>
+                 <action
+                       class="org.eclipse.emf.diffmerge.patterns.ui.sirius.actions.SiriusResetPersistentSelectionAction"
+                       id="org.eclipse.emf.diffmerge.patterns.ui.umldesigner.actions.ResetInclusionsAction"
+                       label="Reset inclusions"
+                       menubarPath="patternsmenu/separator4"
+                       state="false">
+                 </action>
+              	 <action
+                       class="org.eclipse.emf.diffmerge.patterns.ui.sirius.actions.SiriusAddToPersistentSelectionAction"
+                       id="org.eclipse.emf.diffmerge.patterns.ui.umldesigner.actions.IncludeInPatternsAction"
+                       label="Include in patterns"
+                       menubarPath="patternsmenu/separator4">
+              	 </action>
+              	 <action
+                       class="org.eclipse.emf.diffmerge.patterns.ui.sirius.actions.SiriusCreatePatternAction"
+                       id="org.eclipse.emf.diffmerge.patterns.ui.umldesigner.actions.CreatePatternAction"
+                       label="Create pattern..."
+                       menubarPath="patternsmenu/separator4">
+             	 </action>
+              	 <action
+                       class="org.eclipse.emf.diffmerge.patterns.ui.sirius.actions.SiriusApplyPatternAction"
+                       id="org.eclipse.emf.diffmerge.patterns.ui.umldesigner.actions.ApplyPatternAction"
+                       label="Apply pattern..."
+                       menubarPath="patternsmenu/separator5">
+              	 </action>
+           </objectContribution>
+           
+        
+      
+           
+      <> Explorers contextual popup menu for catalogs contribution <-->
+           
+ 	 <!--objectContribution
+            adaptable="false"
+            id="org.eclipse.emf.diffmerge.patterns.ui.umldesigner.actions.PatternCatalogMenuActions"
+            nameFilter="*.patterns"
+            objectClass="org.eclipse.core.resources.IFile">
+         <action
+               class="org.eclipse.emf.diffmerge.patterns.ui.sirius.actions.SiriusBrowseCatalogAction"
+               enablesFor="1"
+               id="com.thalesgroup.mde.melody.patterns.ui.catalogs.browse"
+               label="Browse catalogs"
+               menubarPath="group.catalogs">
+         </action>
+         <action
+               class="org.eclipse.emf.diffmerge.patterns.ui.actions.CloseCatalogAction"
+               enablesFor="+"
+               id="com.thalesgroup.mde.melody.patterns.ui.catalogs.close"
+               label="Close catalog"
+               menubarPath="group.catalogs">
+         </action>
+         <action
+               class="org.eclipse.emf.diffmerge.patterns.ui.sirius.actions.SiriusOpenCatalogAction"
+               enablesFor="+"
+               id="com.thalesgroup.mde.melody.patterns.ui.catalogs.open"
+               label="Open catalog"
+               menubarPath="group.catalogs">
+         </action>
+      </objectContribution>
+      
+                 
+       </extension-->
+</plugin>
