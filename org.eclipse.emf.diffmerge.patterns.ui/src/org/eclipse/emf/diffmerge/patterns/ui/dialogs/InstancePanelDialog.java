@@ -1457,7 +1457,7 @@ GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> extends Instan
     if (!instances.isEmpty()) {
       for(IPatternInstance instance : instances){
         for(EObject obj : instance.getElements()){
-          ISemanticRuleProvider provider =
+          ISemanticRuleProvider<?> provider =
               TemplatePatternsEnginePlugin.getDefault().getSemanticRuleProviderFor(obj);
           if (provider != null)
             if(provider.getOptionalMergeFeatures() != null){

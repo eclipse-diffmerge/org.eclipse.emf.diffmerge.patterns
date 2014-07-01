@@ -37,14 +37,14 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @author Olivier Constant
  * @author Skander Turki
  */
-public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider{
+public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider<Object>{
 
   /** List of all contributing rule providers */
   private List<ISemanticRuleProvider> _semanticRuleProviders;
 
   /** IDs related to the SemanticRuleProvider extension point */
   private static final String SEMANTIC_RULE_PROVIDER_EXTENSION_POINT =
-    "org.eclipse.emf.diffmerge.patterns.templates.engine.semanticRuleProvider"; //$NON-NLS-1$
+      "org.eclipse.emf.diffmerge.patterns.templates.engine.semanticRuleProvider"; //$NON-NLS-1$
   private static final String SEMANTIC_RULE_PROVIDER_EXTENSION_POINT_PROPERTY = "class"; //$NON-NLS-1$
 
 
@@ -344,10 +344,10 @@ public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider{
   public EObject getAutomaticMergeTarget(EObject element_p, Object targetScope_p) {
     EObject result = null;
     for(ISemanticRuleProvider provider : _semanticRuleProviders){
-        if(provider.isApplicableTo(element_p)){
-          result = provider.getAutomaticMergeTarget(element_p, targetScope_p);
-          if(result != null) return result;
-        }
+      if(provider.isApplicableTo(element_p)){
+        result = provider.getAutomaticMergeTarget(element_p, targetScope_p);
+        if(result != null) return result;
+      }
     }
     return result;
   }
@@ -414,6 +414,18 @@ public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider{
     for(ISemanticRuleProvider provider : _semanticRuleProviders){
       provider.postPatternApplication(_application, additions, merges);
     }
+  }
+
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#isAutomaticallyUpdatedDiagram(java.lang.Object)
+   */
+  public boolean isAutomaticallyUpdatedDiagram(Object diagram_p) {
+    for(ISemanticRuleProvider provider : _semanticRuleProviders){
+      if(provider.isMainModel()){
+        return provider.isAutomaticallyUpdatedDiagram(diagram_p);
+      }
+    }
+    return false;
   }
 
 

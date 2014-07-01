@@ -30,6 +30,7 @@ import org.eclipse.uml2.uml.Association;
  *
  * @author Skander TURKI
  */
+@SuppressWarnings("restriction")
 public class UMLDesignerSemanticMapping extends DefaultSemanticMapping{
 
   public UMLDesignerSemanticMapping(){

@@ -43,15 +43,15 @@ public class UMLMetamodelHelper {
   public static final String UML_JAVA_PRIMITIVE_TYPES_RESOURCE_URI = "pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml";
 
   /** The list of UML JAVA library primitive types names */
-  public static final List<String> UML_JAVA_PRIMITIVE_TYPE_NAMES = Arrays.asList(
+  private static final List<String> UML_JAVA_PRIMITIVE_TYPE_NAMES = Arrays.asList(
       "boolean", "byte", "char", "double", "float", "int", "long", "short");
-    
+  
   public static final String UML_BASIC_LIBRARY_PRIMITIVE_TYPES_RESOURCE_URI = "pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml";
   
   /** The list of UML basic library primitive types names */
-  public static final List<String> UML_BASIC_LIBRARY_PRIMITIVE_TYPE_NAMES = Arrays.asList(
+  private static final List<String> UML_BASIC_LIBRARY_PRIMITIVE_TYPE_NAMES = Arrays.asList(
       "Boolean", "String", "Integer", "Real", "UnlimitedNatural");
-  
+ 
   /**
    * Returns if the element_p is a UML library primitive type.
    * @param element_p a potentially null Object
@@ -282,16 +282,5 @@ public class UMLMetamodelHelper {
     return element_p.eContainer().eContainer();
   }
   
-  /**
-   * 
-   * @param element_p
-   * @return
-   */
-  public static boolean ownershipMightBeDerived(EObject element_p) {
-    return element_p instanceof Classifier ||
-        element_p instanceof Association ||
-        element_p instanceof DirectedRelationship ||
-        element_p instanceof DataType;
-  }
 
 }

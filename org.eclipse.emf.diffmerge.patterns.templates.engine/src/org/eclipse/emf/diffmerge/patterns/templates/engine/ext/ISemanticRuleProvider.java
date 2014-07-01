@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @author Olivier Constant
  * @author S. TURKI
  */
-public interface ISemanticRuleProvider {
+public interface ISemanticRuleProvider<DiagramType> {
 
   /**
    * Getter for _isMainModel
@@ -234,4 +234,10 @@ public interface ISemanticRuleProvider {
   public void postPatternApplication(IPatternApplication _application,
       Collection<EObject> additions, Collection<IDifference> merges);
   
+  /**
+   * Says if the given diagram is of a type that is automatically redrawn. 
+   * When true is returned the layout reuse is not executed on the given diagram after pattern application.
+   * See {@link org.eclipse.emf.diffmerge.patterns.ui.wizards.application.AbstractPatternApplicationWizard#doPerformFinish}
+   */
+  public boolean isAutomaticallyUpdatedDiagram(DiagramType diagram_p);
 }

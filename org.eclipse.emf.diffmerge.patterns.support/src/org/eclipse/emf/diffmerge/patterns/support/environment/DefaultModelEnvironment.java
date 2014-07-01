@@ -10,7 +10,6 @@
  ******************************************************************************/
 package org.eclipse.emf.diffmerge.patterns.support.environment;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
