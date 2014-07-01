@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+    <extension
+         point="org.eclipse.emf.diffmerge.patterns.core.idProvider">
+      <client
+            class="org.eclipse.emf.diffmerge.patterns.diagram.umldesigner.ext.UMLDesignerIdProvider"></client>
+   </extension>
+
+	<extension
+         point="org.eclipse.emf.diffmerge.patterns.core.modelEnvironment">
+      <client
+            class="org.eclipse.emf.diffmerge.patterns.diagram.umldesigner.ext.UMLDesignerModelEnvironment">
+      </client>
+   </extension>
+
+ 	<extension
+         point="org.eclipse.emf.diffmerge.patterns.templates.engine.semanticRuleProvider">
+      <client
+            class="org.eclipse.emf.diffmerge.patterns.diagram.umldesigner.ext.UMLDesignerRuleProvider">
+      </client>
+   </extension>
+   
+   <!--extension
+         point="org.eclipse.emf.diffmerge.patterns.core.deleteOperationProvider">
+      <client
+            class="org.eclipse.emf.diffmerge.patterns.diagram.umldesigner.ext.UMLDesignerDeleteOperationProvider">
+      </client>
+   </extension-->
+   
+   <extension
+         point="org.eclipse.emf.diffmerge.patterns.diagram.semanticMapping">
+      <client
+            class="org.eclipse.emf.diffmerge.patterns.diagram.umldesigner.ext.UMLDesignerSemanticMapping">
+      </client>
+   </extension>
+   
+   <!-- Declaring the PatternCatalogXMIResourceFactory mapping -->
+   
+   <!--extension
+         point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            class="org.eclipse.emf.diffmerge.patterns.diagram.umldesigner.resources.PatternCatalogXMIResourceFactoryImpl"
+            supportedTypes="PatternRepository"
+            uri="http://org.eclipse.com/emf/diffmerge/patterns/core/1.0.0">
+      </factory>
+   </extension-->
+   
+</plugin>
