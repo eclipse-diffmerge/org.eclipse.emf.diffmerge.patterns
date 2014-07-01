@@ -52,6 +52,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.window.Window;
+import org.eclipse.sirius.diagram.DDiagram;
+import org.eclipse.sirius.diagram.sequence.SequenceDDiagram;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.DirectedRelationship;
@@ -70,7 +72,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * A provider of business-specific UML Designer logics for consistently manipulating models.
  * @author Skander TURKI
  */
-public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider{
+public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider<DDiagram>{
 
   /** Saves storage by prompt locations when "Apply for all Similar Elements" is selected */
   Map<EClass, IReferenceLocation> _perTypeLocations;
@@ -230,8 +232,7 @@ public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider{
     // TypedElement: type
     if (element_p instanceof TypedElement) {
       TypedElement casted = (TypedElement)element_p;
-      if (casted.getType() != null)
-        //if( !casted.getType().getModel().getURI().startsWith("http://www.omg.org/spec/PrimitiveTypes/")){  //$NON-NLS-1$
+      if (casted.getType() != null )//&& !UMLMetamodelHelper.isUMLLibraryPrimitiveType(casted.getType()))
         result.add(casted.getType());
     }
     // Allocation: target element
@@ -709,6 +710,15 @@ public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider{
         return true;
       }
     }
+    return false;
+  }
+
+  /**
+   * Says if the given diagram is of a type that is automatically redrawn. 
+   */
+  public boolean isAutomaticallyUpdatedDiagram(DDiagram diagram_p) {
+    if(diagram_p instanceof SequenceDDiagram)
+      return true;
     return false;
   }
 

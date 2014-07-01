@@ -37,11 +37,11 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.sirius.diagram.ui.tools.api.layout.PinHelper;
 import org.eclipse.sirius.diagram.AbstractDNode;
-import org.eclipse.sirius.viewpoint.DContainer;
 import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.DDiagramElement;
+import org.eclipse.sirius.diagram.ui.tools.api.layout.PinHelper;
+import org.eclipse.sirius.viewpoint.DContainer;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.swt.graphics.Point;
 
@@ -147,7 +147,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
    * @see org.eclipse.emf.diffmerge.patterns.core.operations.AbstractModelOperation#run()
    */
   @Override
-  public Collection<DSemanticDecorator> run() {    
+  public Collection<DSemanticDecorator> run() {  
     Collection<DSemanticDecorator> result = new FOrderedSet<DSemanticDecorator>();
     boolean updated = false;
     // Get diagram elements that should be updated

@@ -33,6 +33,8 @@ import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractFilteredGra
 import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation;
 import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind;
 import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
+import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsEnginePlugin;
+import org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.operations.ApplyTemplatePatternOperation;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternApplicationSpecification;
 import org.eclipse.emf.diffmerge.patterns.ui.Messages;
@@ -170,9 +172,13 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification, Graphical
               applyAllOperation, _diagramToRefresh, refreshRequest);
         List<IPatternInstance> instances = execute(mainOperation);
         result = instances != null && !instances.isEmpty();
-        if (result && getData().mustReuseLayout() && _diagramToRefresh != null) {
-          // After execution of the main operation because the GMF/Doremi
-          // synchronization happens in post-commit listeners
+        // After execution of the main operation because the GMF/Doremi
+        // synchronization happens in post-commit listeners
+        ISemanticRuleProvider ruleProvider = null;
+        ruleProvider = TemplatePatternsEnginePlugin.getDefault().getSemanticRuleProviderFor(_diagramToRefresh);
+        if (result && getData().mustReuseLayout() 
+            && _diagramToRefresh != null
+            && ! ruleProvider.isAutomaticallyUpdatedDiagram(_diagramToRefresh)) {
           List<AbstractFilteredGraphicalUpdateOperation> layoutOperations =
             new ArrayList<AbstractFilteredGraphicalUpdateOperation>(instances.size());
           final int xOffset = MULTI_INSTANCE_OFFSET, yOffset = MULTI_INSTANCE_OFFSET;
