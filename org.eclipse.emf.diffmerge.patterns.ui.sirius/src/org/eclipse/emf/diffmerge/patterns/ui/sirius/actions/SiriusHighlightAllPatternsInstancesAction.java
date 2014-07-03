@@ -33,13 +33,13 @@ import org.eclipse.swt.widgets.Shell;
  * @author Skander TURKI
  */
 public class SiriusHighlightAllPatternsInstancesAction 
-extends AbstractHighlightAllPatternsInstancesAction<DDiagramElement, DDiagram>{
+extends AbstractHighlightAllPatternsInstancesAction<DDiagramElement>{
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.actions.AbstractHighlightAllPatternsInstancesAction#getPresentInstances(java.lang.Object, org.eclipse.emf.ecore.EObject, org.eclipse.swt.widgets.Shell)
    */
   @Override
-  protected Set<IPatternInstance> getPresentInstances(DDiagram context_p,
+  protected Set<IPatternInstance> getPresentInstances(Object context_p,
       EObject element_p, Shell shell_p) {
     return SiriusPatternsInstancesUtil.getPresentInstances(context_p, element_p, shell_p);
   }
@@ -48,8 +48,8 @@ extends AbstractHighlightAllPatternsInstancesAction<DDiagramElement, DDiagram>{
    * @see org.eclipse.emf.diffmerge.patterns.ui.actions.AbstractHighlightAllPatternsInstancesAction#getDiagramFromSelection(org.eclipse.jface.viewers.IStructuredSelection)
    */
   @Override
-  protected DDiagram getDiagramFromSelection(IStructuredSelection selection_p) {
-    AbstractDiagramUtil<DDiagramElement, DDiagram> diagramUtil = (AbstractDiagramUtil<DDiagramElement, DDiagram>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
+  protected Object getDiagramFromSelection(IStructuredSelection selection_p) {
+    AbstractDiagramUtil<DDiagramElement> diagramUtil = (AbstractDiagramUtil<DDiagramElement>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     if(diagramUtil != null){
       return diagramUtil.getDiagramFromSelection(selection_p);
     }

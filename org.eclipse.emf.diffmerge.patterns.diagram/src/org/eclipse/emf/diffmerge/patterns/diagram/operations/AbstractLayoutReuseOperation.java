@@ -19,8 +19,8 @@ import org.eclipse.emf.diffmerge.patterns.diagram.Messages;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class AbstractLayoutReuseOperation<DiagramType> 
-  extends AbstractGraphicalUpdateOperation<DiagramType>
+public abstract class AbstractLayoutReuseOperation 
+  extends AbstractGraphicalUpdateOperation
 {
 
   /** The name of the operation */

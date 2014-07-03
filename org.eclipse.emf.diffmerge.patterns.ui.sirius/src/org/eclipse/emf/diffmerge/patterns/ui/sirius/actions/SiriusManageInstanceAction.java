@@ -24,7 +24,7 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  * @author Skander TURKI
  */
 public class SiriusManageInstanceAction 
-extends AbstractManageInstanceAction<DDiagramElement, DDiagram>{
+extends AbstractManageInstanceAction<DDiagramElement>{
 
   // Only specifies generic types for Sirius
 

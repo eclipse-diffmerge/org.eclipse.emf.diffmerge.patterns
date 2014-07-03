@@ -57,7 +57,7 @@ public class ResetInclusionsHandler extends AbstractWorkbenchSelectionHandler {
   @SuppressWarnings("cast")
   protected AbstractResetPersistentSelectionAction instantiateResetPersistentSelectionAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
         return (AbstractResetPersistentSelectionAction)factory.instantiateResetPersistentSelectionAction();
       } 

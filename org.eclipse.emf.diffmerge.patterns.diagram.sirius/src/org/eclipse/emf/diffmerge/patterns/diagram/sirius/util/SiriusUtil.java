@@ -75,39 +75,42 @@ public final class SiriusUtil {
    *        semantic element
    */
   public static boolean conformsToMapping(EObject semanticElt_p, AbstractNodeMapping mapping_p,
-      boolean considerPrecondition_p, boolean considerCandidates_p, DContainer graphicalContainer_p) {
+      boolean considerPrecondition_p, boolean considerCandidates_p, Object graphicalContainer_p) {
     boolean result = false;
-    //ModelAccessorsRegistry reg = ViewpointPlugin.getDefault().getModelAccessorRegistry();
-    ModelAccessorsRegistry reg = SiriusPlugin.getDefault().getModelAccessorRegistry();
-    ModelAccessor accessor = reg.getModelAccessor(semanticElt_p);
-    // Check domain class
-    if (null != accessor) {
-      String domainClass = mapping_p.getDomainClass();
-      result = accessor.eInstanceOf(semanticElt_p, domainClass);
-      EObject semanticOfGraphicalContainer =
-        (null == graphicalContainer_p)? null: SiriusLayersUtil.getSemanticElement(graphicalContainer_p);
-      // Check precondition
-      if (result && considerPrecondition_p && null != graphicalContainer_p) {
-          result = mapping_p.checkPrecondition(semanticElt_p, semanticOfGraphicalContainer, graphicalContainer_p);
-      }
-      // Check semantic candidates
-      if (result && considerCandidates_p) {
-        List<EObject> candidates = null;
-        if (null != graphicalContainer_p) {
-          if (mapping_p instanceof NodeMapping) {
-            NodeMapping nm = (NodeMapping)mapping_p;
-            candidates = nm.getNodesCandidates(semanticOfGraphicalContainer,
-                semanticOfGraphicalContainer, graphicalContainer_p);
-          } else if (mapping_p instanceof IContainerMappingExt) {
-//            ContainerMapping cm = (ContainerMapping)mapping_p;
-//             candidates = cm.getNodesCandidates(semanticOfGraphicalContainer,
-//            semanticOfGraphicalContainer, graphicalContainer_p);
-            candidates = ContainerMappingHelper.getNodesCandidates((IContainerMappingExt)mapping_p, semanticOfGraphicalContainer,
-                semanticOfGraphicalContainer, graphicalContainer_p);
-
-          }
+    if(graphicalContainer_p instanceof DContainer){
+      DContainer container = (DContainer)graphicalContainer_p;
+      //ModelAccessorsRegistry reg = ViewpointPlugin.getDefault().getModelAccessorRegistry();
+      ModelAccessorsRegistry reg = SiriusPlugin.getDefault().getModelAccessorRegistry();
+      ModelAccessor accessor = reg.getModelAccessor(semanticElt_p);
+      // Check domain class
+      if (null != accessor) {
+        String domainClass = mapping_p.getDomainClass();
+        result = accessor.eInstanceOf(semanticElt_p, domainClass);
+        EObject semanticOfGraphicalContainer =
+          (null == container)? null: SiriusLayersUtil.getSemanticElement(container);
+        // Check precondition
+        if (result && considerPrecondition_p && null != container) {
+            result = mapping_p.checkPrecondition(semanticElt_p, semanticOfGraphicalContainer, container);
         }
-        result = null != candidates && candidates.contains(semanticElt_p);
+        // Check semantic candidates
+        if (result && considerCandidates_p) {
+          List<EObject> candidates = null;
+          if (null != container) {
+            if (mapping_p instanceof NodeMapping) {
+              NodeMapping nm = (NodeMapping)mapping_p;
+              candidates = nm.getNodesCandidates(semanticOfGraphicalContainer,
+                  semanticOfGraphicalContainer, container);
+            } else if (mapping_p instanceof IContainerMappingExt) {
+//              ContainerMapping cm = (ContainerMapping)mapping_p;
+//               candidates = cm.getNodesCandidates(semanticOfGraphicalContainer,
+//              semanticOfGraphicalContainer, graphicalContainer_p);
+              candidates = ContainerMappingHelper.getNodesCandidates((IContainerMappingExt)mapping_p, semanticOfGraphicalContainer,
+                  semanticOfGraphicalContainer, container);
+
+            }
+          }
+          result = null != candidates && candidates.contains(semanticElt_p);
+        }
       }
     }
     return result;

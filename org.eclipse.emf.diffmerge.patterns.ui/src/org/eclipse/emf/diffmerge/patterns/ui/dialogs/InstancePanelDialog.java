@@ -96,14 +96,14 @@ import org.eclipse.ui.PlatformUI;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class InstancePanelDialog<DiagramElementType, DiagramType> extends InstanceChoiceDialog {
+public abstract class InstancePanelDialog<DiagramElementType> extends InstanceChoiceDialog {
 
 
   /** The width of push buttons */
   private static final int BUTTON_WIDTH = 110;
 
   /** An optional diagram for graphical operations */
-  protected final DiagramType _diagram;
+  protected final Object _diagram;
 
   /** Whether the instance must be unfolded graphically */
   protected boolean _graphicalUnfolding;
@@ -148,7 +148,7 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
   protected HashMap<Button, EStructuralFeature> _structuralFeaturesCheckBoxesMap;
 
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType> _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+  private IPatternDialogAndWizardFactory<DiagramElementType> _factory = (IPatternDialogAndWizardFactory<DiagramElementType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
   /**
@@ -161,7 +161,7 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
    * @param graphicalContext_p a non-null, potentially empty list of GEF elements
    */
   public InstancePanelDialog(Shell parentShell_p, EObject referenceElement_p, List<? extends IPatternInstance> instances_p, 
-      DiagramType diagram_p, List<Object> graphicalContext_p) {
+      Object diagram_p, List<Object> graphicalContext_p) {
     super(parentShell_p, Messages.InstancePanelDialog_Header, Messages.InstancePanelDialog_Message, MessageDialog.QUESTION, referenceElement_p, instances_p,
         SelectionKind.MULTI, false);
     _diagram = diagram_p;
@@ -192,7 +192,7 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
    * @param featuresToIgnore_p a potentially null empty, non null list
    * @return a potentially null Pattern Update Wizard
    */
-  protected AbstractPatternUpdateWizard<DiagramElementType,DiagramType>
+  protected AbstractPatternUpdateWizard<DiagramElementType>
   instantiatePatternUpdateWizard(IPatternInstance instance_p,
       EObject referenceElement_p, List<Object> graphicalContext_p, List<EStructuralFeature> featuresToIgnore_p){
     if(_factory != null){
@@ -205,11 +205,11 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
   /**
    * Instantiates an operation that wraps an operation on a pattern instance and may perform different
    */
-  protected AbstractGraphicalWrappingInstanceOperation<IPatternInstance, DiagramType, DiagramElementType> 
-  instantiateGraphicalWrappingInstanceOperation(IModelOperation<? extends IPatternInstance> operation_p, DiagramType diagram_p,
+  protected AbstractGraphicalWrappingInstanceOperation<IPatternInstance, DiagramElementType> 
+  instantiateGraphicalWrappingInstanceOperation(IModelOperation<? extends IPatternInstance> operation_p, Object diagram_p,
       org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind refreshRequest_p){
-    IPatternOperationFactory<DiagramElementType, DiagramType> factory = 
-        (IPatternOperationFactory<DiagramElementType, DiagramType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<DiagramElementType> factory = 
+        (IPatternOperationFactory<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateGraphicalWrappingInstanceOperation(operation_p, diagram_p, refreshRequest_p);
     }
@@ -219,11 +219,11 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
   /**
    * Instantiates an operation that wraps an operation on a pattern instance and may perform different
    */
-  protected AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, DiagramType, DiagramElementType> 
-  instantiateGraphicalWrappingInstanceOperation(InstanceOperation operation_p, IPatternInstance instance_p, DiagramType diagram_p, 
+  protected AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, DiagramElementType> 
+  instantiateGraphicalWrappingInstanceOperation(InstanceOperation operation_p, IPatternInstance instance_p, Object diagram_p, 
       org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind refreshRequest_p){
-    IPatternOperationFactory<DiagramElementType, DiagramType> factory = 
-        (IPatternOperationFactory<DiagramElementType, DiagramType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<DiagramElementType> factory = 
+        (IPatternOperationFactory<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateGraphicalWrappingInstanceOperation(operation_p, instance_p, diagram_p, refreshRequest_p);
     }
@@ -234,12 +234,12 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
   /**
    * Instantiates an operation for highlighting diagram elements based on specific criteria on semantic elements.
    */
-  protected AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
-  instantiateHighlightOperation(DiagramType diagram_p, Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, boolean coverEdges_p,
+  protected AbstractFilteredGraphicalUpdateOperation<DiagramElementType> 
+  instantiateHighlightOperation(Object diagram_p, Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, boolean coverEdges_p,
       boolean coverNodes_p, boolean coverPorts_p)
       {
-    IPatternOperationFactory<DiagramElementType, DiagramType> factory = 
-        (IPatternOperationFactory<DiagramElementType, DiagramType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<DiagramElementType> factory = 
+        (IPatternOperationFactory<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateHighlightOperation(diagram_p, instances_p, color_p, borderSize_p, coverEdges_p,  coverNodes_p, coverPorts_p);
     }
@@ -249,12 +249,12 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
   /**
    * Instantiates an operation
    */
-  protected AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
-  instantiateLayoutReuseOperation(DiagramType diagram_p, IPatternInstance instance_p, Map<DiagramElementType, Point> initialElementsLocationsMap_p,
+  protected AbstractFilteredGraphicalUpdateOperation<DiagramElementType> 
+  instantiateLayoutReuseOperation(Object diagram_p, IPatternInstance instance_p, Map<DiagramElementType, Point> initialElementsLocationsMap_p,
       Map<DiagramElementType, Object> elementsContainersMap_p, boolean updateLayout_p, boolean updateStyle_p)
       {
-    IPatternOperationFactory<DiagramElementType, DiagramType> factory = 
-        (IPatternOperationFactory<DiagramElementType, DiagramType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<DiagramElementType> factory = 
+        (IPatternOperationFactory<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateLayoutReuseOperation(diagram_p, instance_p, initialElementsLocationsMap_p, elementsContainersMap_p, 0, 0, updateLayout_p, updateStyle_p, _diagram);
     }
@@ -267,10 +267,10 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
    * @param instances_p
    * @return
    */
-  protected AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
-  instantiateRestoreOperation(DiagramType diagram_p, Collection<? extends IPatternInstance>  instances_p){
-    IPatternOperationFactory<DiagramElementType, DiagramType> factory = 
-        (IPatternOperationFactory<DiagramElementType, DiagramType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+  protected AbstractFilteredGraphicalUpdateOperation<DiagramElementType> 
+  instantiateRestoreOperation(Object diagram_p, Collection<? extends IPatternInstance>  instances_p){
+    IPatternOperationFactory<DiagramElementType> factory = 
+        (IPatternOperationFactory<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateRestoreOperation(diagram_p, instances_p);
     }
@@ -284,7 +284,7 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
   public boolean close() {
     boolean result = super.close();
     if (globalPatternStateChanged()) {
-      AbstractInstanceExplorerView<DiagramElementType, DiagramType> view = getInstanceExplorerView();
+      AbstractInstanceExplorerView<DiagramElementType> view = getInstanceExplorerView();
       if (view != null) {
         view.refreshCurrent();
       }
@@ -914,7 +914,7 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
       @Override
       public void widgetSelected(SelectionEvent event_p) {
         List<IPatternInstance> instances = getSelectedInstances();
-        List<AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType>> operations = new ArrayList<AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType>>(instances.size());
+        List<AbstractFilteredGraphicalUpdateOperation<DiagramElementType>> operations = new ArrayList<AbstractFilteredGraphicalUpdateOperation<DiagramElementType>>(instances.size());
         for (IPatternInstance instance : instances) {
           operations.add(instantiateLayoutReuseOperation(_diagram, instance, new Hashtable<DiagramElementType, Point>(), new Hashtable<DiagramElementType, Object>(),
               _reuseLayoutAtUpdate, false));
@@ -1047,7 +1047,7 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
       @SuppressWarnings("unchecked")
       @Override
       public void widgetSelected(SelectionEvent e_p) {
-        AbstractInstanceExplorerView<DiagramElementType, DiagramType> view = null;
+        AbstractInstanceExplorerView<DiagramElementType> view = null;
         try {
           view = (AbstractInstanceExplorerView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(getInstanceExplorerViewID());
         } catch (Exception e) {
@@ -1092,7 +1092,7 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
         IPatternInstance instance = getSelectedInstance();
         if (instance != null) {
           RenameTemplateInstanceOperation coreOperation = new RenameTemplateInstanceOperation(instance, _namingRule, _keepUserNames, _diagram);
-          AbstractGraphicalWrappingInstanceOperation<IPatternInstance, ? ,?> wholeOperation =
+          AbstractGraphicalWrappingInstanceOperation<IPatternInstance, ?> wholeOperation =
               instantiateGraphicalWrappingInstanceOperation(coreOperation, _diagram, RefreshRequestKind.DIAGRAM);
           executeOperation(wholeOperation);
         }
@@ -1240,7 +1240,7 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
         CorePatternsPlugin.getDefault().getModelEnvironment().execute(instantiateRestoreOperation(_diagram, getSelectedInstances()));
         if (_reuseStyleAtUpdate) {
           List<IPatternInstance> instances = getSelectedInstances();
-          List<AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType>> operations = new ArrayList<AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType>>(instances.size());
+          List<AbstractFilteredGraphicalUpdateOperation<DiagramElementType>> operations = new ArrayList<AbstractFilteredGraphicalUpdateOperation<DiagramElementType>>(instances.size());
           for (IPatternInstance instance : instances) {
             operations.add(instantiateLayoutReuseOperation(_diagram, instance, new Hashtable<DiagramElementType, Point>(), new Hashtable<DiagramElementType, Object>(),
                 false, _reuseStyleAtUpdate));
@@ -1320,9 +1320,9 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
        */
       @Override
       public void widgetSelected(SelectionEvent event_p) {
-        List<AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, ?,?>> subOperations = new FOrderedSet<AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, ?, ?>>();
+        List<AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, ?>> subOperations = new FOrderedSet<AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, ?>>();
         for (IPatternInstance instance : getSelectedInstances()) {
-          AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, ? ,?> subOperation =
+          AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, ?> subOperation =
               instantiateGraphicalWrappingInstanceOperation(null, instance, _diagram, RefreshRequestKind.INSTANCE);
           subOperations.add(subOperation);
         }
@@ -1336,7 +1336,7 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
             } 
           }
           int created = 0;
-          for (AbstractGraphicalWrappingInstanceOperation<?, ?, ?> subOperation : subOperations) {
+          for (AbstractGraphicalWrappingInstanceOperation<?, ?> subOperation : subOperations) {
             created += subOperation.getNewDiagramElements().size();
           }
           String status =
@@ -1750,10 +1750,10 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
    * @return a potentially null instance explorer view
    */
   @SuppressWarnings("unchecked")
-  protected AbstractInstanceExplorerView<DiagramElementType, DiagramType> getInstanceExplorerView() {
-    AbstractInstanceExplorerView<DiagramElementType, DiagramType> result = null;
+  protected AbstractInstanceExplorerView<DiagramElementType> getInstanceExplorerView() {
+    AbstractInstanceExplorerView<DiagramElementType> result = null;
     try {
-      result = (AbstractInstanceExplorerView<DiagramElementType, DiagramType>) 
+      result = (AbstractInstanceExplorerView<DiagramElementType>) 
           PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView(getInstanceExplorerViewID());
     } catch (Exception e) {
       // Nothing
@@ -1919,16 +1919,16 @@ public abstract class InstancePanelDialog<DiagramElementType, DiagramType> exten
    */
   @SuppressWarnings("unchecked")
   protected void reuseAppearenceOnAdditions(Collection<? extends IModelOperation<?>> executedOperations_p, boolean reuseLayout_p, boolean reuseStyle_p) {
-    List<AbstractFilteredGraphicalUpdateOperation<?, ?>> newOperations = new ArrayList<AbstractFilteredGraphicalUpdateOperation<?, ?>>();
-    IPatternOperationFactory<DiagramElementType, ?> factory = (IPatternOperationFactory<DiagramElementType, ?>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    List<AbstractFilteredGraphicalUpdateOperation<?>> newOperations = new ArrayList<AbstractFilteredGraphicalUpdateOperation<?>>();
+    IPatternOperationFactory<DiagramElementType> factory = (IPatternOperationFactory<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       for (IModelOperation<?> executedOperation : executedOperations_p) {
         if (executedOperation instanceof AbstractGraphicalWrappingInstanceOperation) {
-          AbstractGraphicalWrappingInstanceOperation<?, ?, DiagramElementType> executedViewpointOperation = (AbstractGraphicalWrappingInstanceOperation<?, ?, DiagramElementType>) executedOperation;
+          AbstractGraphicalWrappingInstanceOperation<?, DiagramElementType> executedViewpointOperation = (AbstractGraphicalWrappingInstanceOperation<?, DiagramElementType>) executedOperation;
           IPatternInstance instance = executedViewpointOperation.getInstance();
           Collection<DiagramElementType> diagramElements = executedViewpointOperation.getNewDiagramElements();
           if ((instance != null) && !diagramElements.isEmpty()) {
-            AbstractFilteredGraphicalUpdateOperation<?, DiagramElementType> newOperation = 
+            AbstractFilteredGraphicalUpdateOperation<DiagramElementType> newOperation = 
                 factory.instantiateLayoutReuseOperation(diagramElements, instance, null, null, 0, 0, reuseLayout_p, reuseStyle_p, _diagram);
             newOperations.add(newOperation);
           }

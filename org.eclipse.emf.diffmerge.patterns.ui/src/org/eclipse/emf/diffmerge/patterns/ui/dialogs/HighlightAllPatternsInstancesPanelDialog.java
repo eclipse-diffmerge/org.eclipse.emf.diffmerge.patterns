@@ -60,11 +60,11 @@ import org.eclipse.swt.widgets.Table;
  * @author S. TURKI
  * @author O. CONSTANT
  */
-public abstract class HighlightAllPatternsInstancesPanelDialog<DiagramType, DiagramElementType> 
+public abstract class HighlightAllPatternsInstancesPanelDialog<DiagramElementType> 
 extends AbstractHighlightAllPatternsInstancesPanelDialog {
 
   /** The diagram from which the dialog has been called */
-  DiagramType _diagram;
+  Object _diagram;
 
   /** Color to use for the highlight */
   Object _color;
@@ -87,12 +87,12 @@ extends AbstractHighlightAllPatternsInstancesPanelDialog {
   /**
    * A dialog that is used to highlight pattern instances in the current diagram
    * @param instances_p a non-null set of IPatternInstance elements to highlight
-   * @param diagram_p a non-null DiagramType; the current diagram
+   * @param diagram_p a non-null Object; the current diagram
    * @param parentShell_p a non-null shell
    * @param dialogTitle_p a message used as the dialog title
    * @param dialogMessage_p a message used as an information to the user about this dialog
    */
-  public HighlightAllPatternsInstancesPanelDialog(Set<IPatternInstance> instances_p, DiagramType diagram_p, Shell parentShell_p, String dialogTitle_p,
+  public HighlightAllPatternsInstancesPanelDialog(Set<IPatternInstance> instances_p, Object diagram_p, Shell parentShell_p, String dialogTitle_p,
       String dialogMessage_p) {
     super(parentShell_p, instances_p);
     _diagram = diagram_p;
@@ -254,7 +254,7 @@ extends AbstractHighlightAllPatternsInstancesPanelDialog {
             }
             if (_reuseStyleAtUpdate && !(instancesWithNoAvailableLayout.size() == instances.size())) {
               for (IPatternInstance instance : instances) {
-                AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> lop = 
+                AbstractFilteredGraphicalUpdateOperation<DiagramElementType> lop = 
                     instantiateLayoutReuseOperation(_diagram, instance, new Hashtable<DiagramElementType, Point>(),
                         new Hashtable<DiagramElementType, Object>(), false, _reuseStyleAtUpdate);
                 env.execute(lop);
@@ -273,11 +273,11 @@ extends AbstractHighlightAllPatternsInstancesPanelDialog {
    * @param instances_p
    * @return
    */
-  protected AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
-  instantiateRestoreOperation(DiagramType diagram_p, Collection<? extends IPatternInstance>  instances_p)
+  protected AbstractFilteredGraphicalUpdateOperation<DiagramElementType> 
+  instantiateRestoreOperation(Object diagram_p, Collection<? extends IPatternInstance>  instances_p)
   {
-    IPatternOperationFactory<DiagramElementType, DiagramType> factory = 
-        (IPatternOperationFactory<DiagramElementType, DiagramType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<DiagramElementType> factory = 
+        (IPatternOperationFactory<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateRestoreOperation(diagram_p, instances_p);
     }
@@ -288,12 +288,12 @@ extends AbstractHighlightAllPatternsInstancesPanelDialog {
   /**
    * Instantiates an operation that is responsible of representing a given set of semantic elements in a given diagram.
    */
-  protected AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
-  instantiateLayoutReuseOperation(DiagramType diagram_p, IPatternInstance instance_p, Map<DiagramElementType, Point> initialElementsLocationsMap_p,
+  protected AbstractFilteredGraphicalUpdateOperation<DiagramElementType> 
+  instantiateLayoutReuseOperation(Object diagram_p, IPatternInstance instance_p, Map<DiagramElementType, Point> initialElementsLocationsMap_p,
       Map<DiagramElementType, Object> elementsContainersMap_p, boolean updateLayout_p, boolean updateStyle_p)
       {
-    IPatternOperationFactory<DiagramElementType, DiagramType> factory = 
-        (IPatternOperationFactory<DiagramElementType, DiagramType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<DiagramElementType> factory = 
+        (IPatternOperationFactory<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateLayoutReuseOperation(diagram_p, instance_p, initialElementsLocationsMap_p, elementsContainersMap_p, 0, 0, updateLayout_p, updateStyle_p, _diagram);
     }
@@ -303,12 +303,12 @@ extends AbstractHighlightAllPatternsInstancesPanelDialog {
   /**
    * Instantiates an operation for highlighting diagram elements based on specific criteria on semantic elements.
    */
-  protected AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
-  instantiateHighlightOperation(DiagramType diagram_p, Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, boolean coverEdges_p,
+  protected AbstractFilteredGraphicalUpdateOperation<DiagramElementType> 
+  instantiateHighlightOperation(Object diagram_p, Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, boolean coverEdges_p,
       boolean coverNodes_p, boolean coverPorts_p)
       {
-    IPatternOperationFactory<DiagramElementType, DiagramType> factory = 
-        (IPatternOperationFactory<DiagramElementType, DiagramType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<DiagramElementType> factory = 
+        (IPatternOperationFactory<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateHighlightOperation(diagram_p, instances_p, color_p, borderSize_p, coverEdges_p,  coverNodes_p, coverPorts_p);
     }

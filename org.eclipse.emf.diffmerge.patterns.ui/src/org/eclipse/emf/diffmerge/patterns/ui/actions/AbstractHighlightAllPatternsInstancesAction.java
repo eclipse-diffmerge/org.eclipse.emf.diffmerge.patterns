@@ -31,14 +31,14 @@ import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
  * @author S. TURKI
  * @author Skander TURKI
  */
-public abstract class AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType> 
-extends AbstractModelBasedAction<DiagramElementType, DiagramType> {
+public abstract class AbstractHighlightAllPatternsInstancesAction<DiagramElementType> 
+extends AbstractModelBasedAction<DiagramElementType> {
 
-  protected DiagramType _diagram;
+  protected Object _diagram;
   
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType> 
-    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType>)
+  private IPatternDialogAndWizardFactory<DiagramElementType> 
+    _factory = (IPatternDialogAndWizardFactory<DiagramElementType>)
         PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
   
   /**
@@ -74,13 +74,13 @@ extends AbstractModelBasedAction<DiagramElementType, DiagramType> {
    * Returns present instances in diagram
    * @return
    */
-  protected abstract Set<IPatternInstance> getPresentInstances(DiagramType context_p, EObject element_p, Shell shell_p);
+  protected abstract Set<IPatternInstance> getPresentInstances(Object contextDiagram_p, EObject element_p, Shell shell_p);
   
   /**
    * Returns current diagram from selection
    * @return
    */
-  protected abstract DiagramType getDiagramFromSelection(IStructuredSelection selection_p);
+  protected abstract Object getDiagramFromSelection(IStructuredSelection selection_p);
   
  /**
   *  

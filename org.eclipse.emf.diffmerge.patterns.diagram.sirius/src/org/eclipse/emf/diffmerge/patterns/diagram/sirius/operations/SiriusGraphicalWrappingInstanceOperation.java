@@ -24,7 +24,7 @@ import org.eclipse.sirius.diagram.DDiagramElement;
  * @author Skander TURKI
  */
 public class SiriusGraphicalWrappingInstanceOperation<F> 
-extends AbstractGraphicalWrappingInstanceOperation<F, DDiagram, DDiagramElement>{
+extends AbstractGraphicalWrappingInstanceOperation<F, DDiagramElement>{
 
   /**
    * Constructor
@@ -34,7 +34,7 @@ extends AbstractGraphicalWrappingInstanceOperation<F, DDiagram, DDiagramElement>
    */
   public SiriusGraphicalWrappingInstanceOperation(
       IModelOperation<? extends F> operation_p,
-      DDiagram diagram_p,
+      Object diagram_p,
       org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind refreshRequest_p) {
     super(operation_p, diagram_p, refreshRequest_p);
   }
@@ -47,7 +47,7 @@ extends AbstractGraphicalWrappingInstanceOperation<F, DDiagram, DDiagramElement>
    * @param refreshRequest_p
    */
   public SiriusGraphicalWrappingInstanceOperation(IModelOperation<? extends F> operation_p,
-      IPatternInstance instance_p, DDiagram diagram_p, 
+      IPatternInstance instance_p, Object diagram_p, 
       org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind refreshRequest_p){
     super(operation_p, instance_p, diagram_p, refreshRequest_p);
   }

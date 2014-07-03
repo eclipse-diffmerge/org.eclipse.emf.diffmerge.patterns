@@ -40,20 +40,19 @@ public class SiriusPatternsInstancesUtil {
  * @param shell_p 
  * @return a non-null HashSet of IPatternInstance objects
  */
-  public static Set<IPatternInstance> getPresentInstances(DDiagram graphicalContext_p, EObject element_p, Shell shell_p) {
+  public static Set<IPatternInstance> getPresentInstances(Object graphicalContext_p, EObject element_p, Shell shell_p) {
     Set<IPatternInstance> instances = new HashSet<IPatternInstance>();
     IPatternSupport support = null;
-    if (element_p != null) {
-      support = CorePatternsPlugin.getDefault().getPatternSupportFor(element_p);
-    }
-    if (support == null) {
-      PatternsInstancesUIUtil.informNoPatternSupport(shell_p);
-    } else if(graphicalContext_p != null){
-      if (graphicalContext_p instanceof DSemanticDecorator) {
-        instances.addAll(getIncludedPatternInstances(support, (DSemanticDecorator) graphicalContext_p));
+    if(graphicalContext_p instanceof DDiagram){
+      if (element_p != null) {
+        support = CorePatternsPlugin.getDefault().getPatternSupportFor(element_p);
       }
+      if (support == null) {
+        PatternsInstancesUIUtil.informNoPatternSupport(shell_p);
+      } else if (graphicalContext_p instanceof DSemanticDecorator) {
+          instances.addAll(getIncludedPatternInstances(support, (DSemanticDecorator) graphicalContext_p));
+        }
     }
-
     return instances;
   }
 

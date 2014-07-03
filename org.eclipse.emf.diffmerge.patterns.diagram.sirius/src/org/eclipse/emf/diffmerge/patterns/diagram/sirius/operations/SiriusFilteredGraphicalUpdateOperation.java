@@ -15,9 +15,11 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
+import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
 import org.eclipse.emf.diffmerge.patterns.diagram.misc.InstanceBasedFilter;
 import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractFilteredGraphicalUpdateOperation;
 import org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.SiriusUtil;
+import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
 import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.sirius.diagram.DDiagram;
@@ -31,7 +33,7 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
  * @author Skander TURKI
  */
 public abstract class SiriusFilteredGraphicalUpdateOperation 
-extends AbstractFilteredGraphicalUpdateOperation<DDiagram, DDiagramElement>{
+extends AbstractFilteredGraphicalUpdateOperation<DDiagramElement>{
 
   /**
    * Constructor
@@ -39,7 +41,7 @@ extends AbstractFilteredGraphicalUpdateOperation<DDiagram, DDiagramElement>{
    * @param diagram_p the non-null diagram to update
    * @param filter_p the non-null filter for semantic elements whose representation must be updated
    */
-  protected SiriusFilteredGraphicalUpdateOperation(String name_p, DDiagram diagram_p, 
+  protected SiriusFilteredGraphicalUpdateOperation(String name_p, Object diagram_p, 
       Collection<? extends IPatternInstance> instances_p, 
       boolean isDirtying_p, Object sourceContext_p) {
     super(name_p, diagram_p, new InstanceBasedFilter(instances_p), isDirtying_p, sourceContext_p);
@@ -51,7 +53,7 @@ extends AbstractFilteredGraphicalUpdateOperation<DDiagram, DDiagramElement>{
    * @param diagram_p the non-null diagram to update
    * @param filter_p the non-null filter for semantic elements whose representation must be updated
    */
-  protected SiriusFilteredGraphicalUpdateOperation(String name_p, DDiagram diagram_p, 
+  protected SiriusFilteredGraphicalUpdateOperation(String name_p, Object diagram_p, 
       IPatternInstance instance_p, boolean isDirtying_p, Object sourceContext_p) {
     super(name_p, diagram_p, new InstanceBasedFilter(instance_p), isDirtying_p, sourceContext_p);
   }
@@ -74,8 +76,11 @@ extends AbstractFilteredGraphicalUpdateOperation<DDiagram, DDiagramElement>{
     Collection<Object> result = new FOrderedSet<Object>();
     boolean updated = false;
     // Diagram elements
-    Collection<? extends DDiagramElement> toUpdate = _diagramElements != null ? getAllDiagramElements(_diagramElements) : _diagram.getDiagramElements();
+    AbstractDiagramUtil<DDiagramElement> diagramUtil = (AbstractDiagramUtil<DDiagramElement>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
+    Collection<? extends DDiagramElement> toUpdate = _diagramElements != null ? getAllDiagramElements(_diagramElements) : diagramUtil.getDiagramElements(_diagram);
 
+    
+    
     // Start the update
     // Diagram
     if (_diagram instanceof DSemanticDecorator) {

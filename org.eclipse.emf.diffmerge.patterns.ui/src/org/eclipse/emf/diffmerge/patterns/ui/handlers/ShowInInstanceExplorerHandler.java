@@ -24,7 +24,7 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Mohamed Sidati
  * @author Skander TURKI
  */
-public class ShowInInstanceExplorerHandler<DiagramElementType, DiagramType, D extends AbstractInstanceExplorerView> 
+public class ShowInInstanceExplorerHandler<DiagramElementType, D extends AbstractInstanceExplorerView> 
 extends AbstractWorkbenchSelectionHandler {
 
   /**
@@ -38,7 +38,7 @@ extends AbstractWorkbenchSelectionHandler {
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractShowInInstanceExplorerViewAction<DiagramElementType, DiagramType, D> action = 
+          AbstractShowInInstanceExplorerViewAction<DiagramElementType, D> action = 
               instantiateShowInInstanceExplorerViewAction();
           if(action != null){
             action.setActivePart(null, part);
@@ -56,11 +56,11 @@ extends AbstractWorkbenchSelectionHandler {
    * @return
    */
   @SuppressWarnings("unchecked")
-  protected AbstractShowInInstanceExplorerViewAction<DiagramElementType, DiagramType, D> instantiateShowInInstanceExplorerViewAction(){
+  protected AbstractShowInInstanceExplorerViewAction<DiagramElementType, D> instantiateShowInInstanceExplorerViewAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
-        return (AbstractShowInInstanceExplorerViewAction<DiagramElementType, DiagramType, D>)factory.instantiateShowInInstanceExplorerViewAction();
+        return (AbstractShowInInstanceExplorerViewAction<DiagramElementType, D>)factory.instantiateShowInInstanceExplorerViewAction();
       } 
     }
     catch(Exception e){

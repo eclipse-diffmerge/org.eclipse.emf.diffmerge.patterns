@@ -21,6 +21,6 @@ import org.eclipse.sirius.diagram.DDiagramElement;
  * @author Skander TURKI
  *
  */
-public class SiriusAddToPersistentSelectionAction extends AbstractAddToPersistentSelectionAction<DDiagramElement, DDiagram>{
+public class SiriusAddToPersistentSelectionAction extends AbstractAddToPersistentSelectionAction<DDiagramElement>{
 //Only specifies template types
 }

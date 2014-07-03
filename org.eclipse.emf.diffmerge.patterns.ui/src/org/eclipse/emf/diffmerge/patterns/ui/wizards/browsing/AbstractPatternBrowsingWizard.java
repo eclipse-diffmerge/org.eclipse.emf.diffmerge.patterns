@@ -30,7 +30,7 @@ import org.eclipse.emf.diffmerge.patterns.ui.wizards.CompositeWizardPage;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractPatternBrowsingWizard<DiagramElementType, DiagramType> extends
+public abstract class AbstractPatternBrowsingWizard<DiagramElementType> extends
 AbstractPatternWizard<TemplatePatternBrowsingSpecification> {
 
   /**
@@ -61,9 +61,9 @@ AbstractPatternWizard<TemplatePatternBrowsingSpecification> {
     setWindowTitle(Messages.PatternBrowsingWizard_Header);
   }
 
-  protected AbstractPatternBrowsingPresentationPage<DiagramElementType, DiagramType> 
+  protected AbstractPatternBrowsingPresentationPage<DiagramElementType> 
   instantiatePatternBrowsingPresentationPage(TemplatePatternBrowsingSpecification data_p){
-    AbstractPatternPageFactory<DiagramElementType, DiagramType>
+    AbstractPatternPageFactory<DiagramElementType>
     factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiatePatternBrowsingPresentationPage(data_p);

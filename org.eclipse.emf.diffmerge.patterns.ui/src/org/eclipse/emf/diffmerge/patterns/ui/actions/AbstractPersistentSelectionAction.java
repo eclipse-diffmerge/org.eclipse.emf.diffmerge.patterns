@@ -27,8 +27,8 @@ import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractPersistentSelectionAction<DiagramElementType, DiagramType> 
-extends AbstractModelBasedAction<DiagramElementType, DiagramType> {
+public abstract class AbstractPersistentSelectionAction<DiagramElementType> 
+extends AbstractModelBasedAction<DiagramElementType> {
   
   /**
    * Constructor

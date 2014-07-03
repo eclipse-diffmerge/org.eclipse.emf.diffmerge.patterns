@@ -44,14 +44,14 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  * @author Skander TURKI
  *
  */
-public class SiriusPatternActionFactory extends AbstractPatternActionFactory<DDiagramElement, DDiagram, SiriusInstanceExplorerView>{
+public class SiriusPatternActionFactory extends AbstractPatternActionFactory<DDiagramElement, SiriusInstanceExplorerView>{
 
 /**
  * 
  * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateApplyPatternAction()
  */
   @Override
-  public AbstractApplyPatternAction<DDiagramElement, DDiagram>
+  public AbstractApplyPatternAction<DDiagramElement>
   instantiateApplyPatternAction() {
     return new SiriusApplyPatternAction();
   }
@@ -61,7 +61,7 @@ public class SiriusPatternActionFactory extends AbstractPatternActionFactory<DDi
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateAbstractBrowseCatalogAction()
    */
   @Override
-  public AbstractBrowseCatalogAction<DDiagramElement, DDiagram> 
+  public AbstractBrowseCatalogAction<DDiagramElement> 
   instantiateBrowseCatalogAction() {
     return new SiriusBrowseCatalogAction();
   }
@@ -71,7 +71,7 @@ public class SiriusPatternActionFactory extends AbstractPatternActionFactory<DDi
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateCreatePatternAction()
    */
   @Override
-  public AbstractCreatePatternAction<DDiagramElement, DDiagram> 
+  public AbstractCreatePatternAction<DDiagramElement> 
   instantiateCreatePatternAction() {
     return new SiriusCreatePatternAction();
   }
@@ -81,7 +81,7 @@ public class SiriusPatternActionFactory extends AbstractPatternActionFactory<DDi
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateCreateTemplateAction()
    */
   @Override
-  public AbstractCreateTemplateAction<DDiagramElement, DDiagram> 
+  public AbstractCreateTemplateAction<DDiagramElement> 
   instantiateCreateTemplateAction() {
     return new SiriusCreateTemplateAction();
   }
@@ -91,7 +91,7 @@ public class SiriusPatternActionFactory extends AbstractPatternActionFactory<DDi
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateHighlightAllPatternsInstancesAction()
    */
   @Override
-  public AbstractHighlightAllPatternsInstancesAction<DDiagramElement, DDiagram> 
+  public AbstractHighlightAllPatternsInstancesAction<DDiagramElement> 
     instantiateHighlightAllPatternsInstancesAction() {
     return  new SiriusHighlightAllPatternsInstancesAction();
   }
@@ -101,7 +101,7 @@ public class SiriusPatternActionFactory extends AbstractPatternActionFactory<DDi
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateAddToPersistentSelectionAction()
    */
   @Override
-  public AbstractAddToPersistentSelectionAction<DDiagramElement, DDiagram> 
+  public AbstractAddToPersistentSelectionAction<DDiagramElement> 
   instantiateAddToPersistentSelectionAction() {
     return new SiriusAddToPersistentSelectionAction();
   }
@@ -111,7 +111,7 @@ public class SiriusPatternActionFactory extends AbstractPatternActionFactory<DDi
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateManageInstanceAction()
    */
   @Override
-  public AbstractManageInstanceAction<DDiagramElement, DDiagram> 
+  public AbstractManageInstanceAction<DDiagramElement> 
   instantiateManageInstanceAction() {
     return  new SiriusManageInstanceAction();
   }
@@ -121,7 +121,7 @@ public class SiriusPatternActionFactory extends AbstractPatternActionFactory<DDi
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateResetPersistentSelectionAction()
    */
   @Override
-  public AbstractResetPersistentSelectionAction<DDiagramElement, DDiagram>  
+  public AbstractResetPersistentSelectionAction<DDiagramElement>  
   instantiateResetPersistentSelectionAction() {
     return new SiriusResetPersistentSelectionAction();
   }
@@ -132,7 +132,7 @@ public class SiriusPatternActionFactory extends AbstractPatternActionFactory<DDi
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateShowInInstanceExplorerViewAction()
    */
   @Override
-  public AbstractShowInInstanceExplorerViewAction<DDiagramElement, DDiagram, SiriusInstanceExplorerView> 
+  public AbstractShowInInstanceExplorerViewAction<DDiagramElement, SiriusInstanceExplorerView> 
   instantiateShowInInstanceExplorerViewAction() {
     return  new SiriusShowInInstanceExplorerViewAction();
   }

@@ -33,8 +33,8 @@ import org.eclipse.emf.ecore.EObject;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class AbstractGraphicalWrappingInstanceOperation<F, DiagramType, DiagramElementType>
-extends AbstractGraphicalWrappingOperation<F, F, DiagramType> {
+public abstract class AbstractGraphicalWrappingInstanceOperation<F, DiagramElementType>
+extends AbstractGraphicalWrappingOperation<F, F> {
 
   /** Kinds of graphical refresh to perform */
   public static enum RefreshRequestKind { NONE, DIAGRAM, INSTANCE }
@@ -56,7 +56,7 @@ extends AbstractGraphicalWrappingOperation<F, F, DiagramType> {
    * @param refreshRequest_p the non-null refresh request for this operation
    */
   public AbstractGraphicalWrappingInstanceOperation(IModelOperation<? extends F> operation_p,
-      DiagramType diagram_p, RefreshRequestKind refreshRequest_p) {
+      Object diagram_p, RefreshRequestKind refreshRequest_p) {
     this(operation_p, null, diagram_p, refreshRequest_p);
   }
 
@@ -68,7 +68,7 @@ extends AbstractGraphicalWrappingOperation<F, F, DiagramType> {
    * @param refreshRequest_p the non-null refresh request for this operation
    */
   public AbstractGraphicalWrappingInstanceOperation(IModelOperation<? extends F> operation_p,
-      IPatternInstance instance_p, DiagramType diagram_p, RefreshRequestKind refreshRequest_p) {
+      IPatternInstance instance_p, Object diagram_p, RefreshRequestKind refreshRequest_p) {
     super(operation_p, diagram_p);
     _instances = new FArrayList<IPatternInstance>();
     if (instance_p != null)
@@ -126,12 +126,11 @@ extends AbstractGraphicalWrappingOperation<F, F, DiagramType> {
         refreshDiagram();
         break;
       case INSTANCE:
-        IPatternOperationFactory<? ,DiagramType> factory = 
-        (IPatternOperationFactory<? ,DiagramType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+        IPatternOperationFactory<?> factory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
         if(factory != null){
           for (IPatternInstance instance : _instances) {
             roots = TemplatePatternsUtil.getApplicationRoots(instance);
-            AbstractDisplayOperation<DiagramType> displayOperation = factory.instantiateDisplayOperation(roots, getDiagram(), true);
+            AbstractDisplayOperation displayOperation = factory.instantiateDisplayOperation(roots, getDiagram(), true);
             _createdDiagramElements.addAll((Collection<? extends DiagramElementType>) call(displayOperation));
           }
         }

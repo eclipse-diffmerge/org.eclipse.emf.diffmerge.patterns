@@ -15,10 +15,8 @@ package org.eclipse.emf.diffmerge.patterns.diagram.operations;
  * A graphical update operation
  * @author O. CONSTANT
  * @author S. TURKI
- *
- * @param <DiagramType>
  */
-public abstract class AbstractGraphicalUpdateOperation<DiagramType> {
+public abstract class AbstractGraphicalUpdateOperation {
 
   /**
    * Update the given representation

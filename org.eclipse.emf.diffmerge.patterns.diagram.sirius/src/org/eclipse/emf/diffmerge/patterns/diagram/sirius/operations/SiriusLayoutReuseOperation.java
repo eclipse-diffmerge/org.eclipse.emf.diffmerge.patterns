@@ -65,7 +65,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
   private InnerLayoutReuseOperation _innerLayoutReuseOperation;
 
   /** A diagramUtility class */
-  protected AbstractDiagramUtil<DDiagramElement, DDiagram> _diagramUtil;
+  protected AbstractDiagramUtil<DDiagramElement> _diagramUtil;
 
   /** The roots diagram elements */
   protected Collection<DDiagramElement> _roots;
@@ -75,7 +75,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
    * @param diagram_p the non-null diagram to update
    * @param instance_p the non-null instance whose elements must be highlighted
    */
-  public SiriusLayoutReuseOperation(DDiagram diagram_p, IPatternInstance instance_p, Map<DDiagramElement, Point> initialElementsLocationsMap_p,
+  public SiriusLayoutReuseOperation(Object diagram_p, IPatternInstance instance_p, Map<DDiagramElement, Point> initialElementsLocationsMap_p,
       Map<DDiagramElement, Object> elementsContainersMap_p, int vx_p, int vy_p, boolean updateLayout_p, boolean updateStyle_p, 
       Object sourceContext_p) {
     super(AbstractLayoutReuseOperation.getName(), diagram_p, instance_p, true, sourceContext_p);
@@ -85,7 +85,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
     _innerGraphicalOperation = new InnerLayoutReuseOperation(instance_p, updateLayout_p, updateStyle_p);
     _innerLayoutReuseOperation = (InnerLayoutReuseOperation) _innerGraphicalOperation;
     _diagramUtil = 
-        (AbstractDiagramUtil<DDiagramElement, DDiagram>) 
+        (AbstractDiagramUtil<DDiagramElement>) 
         PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     setVector(vx_p, vy_p);
   }
@@ -107,7 +107,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
     _innerGraphicalOperation = new InnerLayoutReuseOperation(instance_p, updateLayout_p, updateStyle_p);
     _innerLayoutReuseOperation = (InnerLayoutReuseOperation) _innerGraphicalOperation;
     _diagramUtil = 
-        (AbstractDiagramUtil<DDiagramElement, DDiagram>) 
+        (AbstractDiagramUtil<DDiagramElement>) 
         PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     setVector(vx_p, vy_p);
   }
@@ -335,7 +335,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
    */
   private Collection<DDiagramElement> getDiagramElementsToUpdate() {
     List<DDiagramElement> result = new ArrayList<DDiagramElement>();
-    List<DDiagramElement> initial = _diagramElements != null ? getAllDiagramElements(_diagramElements) : _diagram.getDiagramElements();
+    List<DDiagramElement> initial = _diagramElements != null ? getAllDiagramElements(_diagramElements) : _diagramUtil.getDiagramElements(_diagram);
     //filter list
     Iterator<DDiagramElement> it = initial.iterator();
     while(it.hasNext()){
@@ -352,7 +352,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
    * @author Skander TURKI
    *
    */
-  protected class InnerLayoutReuseOperation extends AbstractLayoutReuseOperation<DDiagram>{
+  protected class InnerLayoutReuseOperation extends AbstractLayoutReuseOperation{
 
     /**
      * Constructor

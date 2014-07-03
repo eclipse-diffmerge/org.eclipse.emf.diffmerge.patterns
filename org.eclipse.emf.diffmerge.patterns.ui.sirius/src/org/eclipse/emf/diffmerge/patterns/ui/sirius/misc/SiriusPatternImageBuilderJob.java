@@ -44,8 +44,8 @@ extends AbstractPatternImageBuilderJob{
 
   @Override
   protected String exportToSVG(List<Object> graphicalContext_p) {
-    AbstractDiagramUtil<DDiagramElement, DDiagram> diagramUtil = 
-        (AbstractDiagramUtil<DDiagramElement, DDiagram>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
+    AbstractDiagramUtil<DDiagramElement> diagramUtil = 
+        (AbstractDiagramUtil<DDiagramElement>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     if(diagramUtil != null){
       return diagramUtil.exportToSVG(graphicalContext_p);
     }

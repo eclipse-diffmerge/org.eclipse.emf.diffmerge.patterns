@@ -49,7 +49,7 @@ import org.eclipse.swt.graphics.RGB;
  * @author Skander TURKI
  *
  */
-public class SiriusPatternOperationFactory implements IPatternOperationFactory<DDiagramElement, DDiagram>{
+public class SiriusPatternOperationFactory implements IPatternOperationFactory<DDiagramElement>{
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory#instantiateCreatePatternAndInstanceOperation(org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternCreationSpecification, java.util.List)
@@ -63,8 +63,8 @@ public class SiriusPatternOperationFactory implements IPatternOperationFactory<D
   /**
    * @see org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory#instantiateDisplayOperation(java.util.Collection, java.lang.Object, boolean)
    */
-  public AbstractDisplayOperation<DDiagram> instantiateDisplayOperation(
-      Collection<? extends EObject> semanticElements_p, DDiagram diagram_p,
+  public AbstractDisplayOperation instantiateDisplayOperation(
+      Collection<? extends EObject> semanticElements_p, Object diagram_p,
       boolean refresh_p) {
     return new SiriusDisplayOperation(semanticElements_p, diagram_p, refresh_p);
   }
@@ -72,10 +72,10 @@ public class SiriusPatternOperationFactory implements IPatternOperationFactory<D
   /**
    * @see org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory#instantiateGraphicalWrappingInstanceOperation(org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelOperation, java.lang.Object, org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind)
    */
-  public AbstractGraphicalWrappingInstanceOperation<IPatternInstance, DDiagram, DDiagramElement> 
+  public AbstractGraphicalWrappingInstanceOperation<IPatternInstance, DDiagramElement> 
   instantiateGraphicalWrappingInstanceOperation(
       IModelOperation<? extends IPatternInstance> operation_p,
-      DDiagram diagram_p, RefreshRequestKind refreshRequest_p) {
+      Object diagram_p, RefreshRequestKind refreshRequest_p) {
     return  new SiriusGraphicalWrappingInstanceOperation<IPatternInstance>(operation_p, diagram_p, refreshRequest_p);
   }
 
@@ -83,10 +83,10 @@ public class SiriusPatternOperationFactory implements IPatternOperationFactory<D
   /**
    * @see org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory#instantiateGraphicalWrappingInstanceOperation(org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelOperation, java.lang.Object, org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind, boolean)
    */
-  public AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>, DDiagram, DDiagramElement> 
+  public AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>, DDiagramElement> 
   instantiateGraphicalWrappingInstanceOperation(
       IModelOperation<List<IPatternInstance>> operations_p,
-      DDiagram diagram_p, RefreshRequestKind refreshRequest_p, boolean signatureDifferentiator) {
+      Object diagram_p, RefreshRequestKind refreshRequest_p, boolean signatureDifferentiator) {
     return  new SiriusGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>>(operations_p, diagram_p, refreshRequest_p);
   }
 
@@ -95,19 +95,19 @@ public class SiriusPatternOperationFactory implements IPatternOperationFactory<D
    * A Sirius-specific factory that will instantiate the proper operations depending of the design environment
    * @see org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory#instantiateGraphicalWrappingInstanceOperation(org.eclipse.emf.diffmerge.patterns.core.operations.InstanceOperation, org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance, java.lang.Object, org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind)
    */
-  public AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, DDiagram, DDiagramElement> 
+  public AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, DDiagramElement> 
   instantiateGraphicalWrappingInstanceOperation(
       InstanceOperation operation_p, IPatternInstance instance_p,
-      DDiagram diagram_p, RefreshRequestKind refreshRequest_p) {
+      Object diagram_p, RefreshRequestKind refreshRequest_p) {
     return new SiriusGraphicalWrappingInstanceOperation<IEvaluationStatus>(operation_p, instance_p, diagram_p, refreshRequest_p);
   }
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory#instantiateHighlightOperation(java.lang.Object, java.util.Collection, org.eclipse.swt.graphics.RGB, int, boolean, boolean, boolean)
    */
-  public AbstractFilteredGraphicalUpdateOperation<DDiagram, DDiagramElement> 
+  public AbstractFilteredGraphicalUpdateOperation<DDiagramElement> 
   instantiateHighlightOperation(
-      DDiagram diagram_p, Collection<? extends IPatternInstance> instances_p,
+      Object diagram_p, Collection<? extends IPatternInstance> instances_p,
       RGB color_p, int borderSize_p, boolean coverEdges_p,
       boolean coverNodes_p, boolean coverPorts_p) {
     return  new SiriusHighlightOperation(diagram_p, instances_p, color_p, borderSize_p, coverEdges_p,
@@ -117,7 +117,7 @@ public class SiriusPatternOperationFactory implements IPatternOperationFactory<D
   /**
    * @see org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory#instantiateLayoutReuseOperation(java.util.Collection, org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance, java.util.Map, java.util.Map, boolean, boolean)
    */
-  public AbstractFilteredGraphicalUpdateOperation<DDiagram, DDiagramElement> 
+  public AbstractFilteredGraphicalUpdateOperation<DDiagramElement> 
   instantiateLayoutReuseOperation(
       Collection<DDiagramElement> diagramElements_p, IPatternInstance instance_p,
       Map<DDiagramElement, Point> initialElementsLocationsMap_p,
@@ -131,9 +131,9 @@ public class SiriusPatternOperationFactory implements IPatternOperationFactory<D
   /**
    * @see org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory#instantiateLayoutReuseOperation(java.lang.Object, org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance, java.util.Map, java.util.Map, boolean, boolean)
    */
-  public AbstractFilteredGraphicalUpdateOperation<DDiagram, DDiagramElement> 
+  public AbstractFilteredGraphicalUpdateOperation<DDiagramElement> 
   instantiateLayoutReuseOperation(
-      DDiagram diagram_p, IPatternInstance instance_p,
+      Object diagram_p, IPatternInstance instance_p,
       Map<DDiagramElement, Point> initialElementsLocationsMap_p,
       Map<DDiagramElement, Object> elementsContainersMap_p,
       int vx_p, int vy_p,
@@ -145,9 +145,9 @@ public class SiriusPatternOperationFactory implements IPatternOperationFactory<D
   /**
    * @see org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory#instantiateRestoreOperation(java.lang.Object, java.util.Collection)
    */
-  public AbstractFilteredGraphicalUpdateOperation<DDiagram, DDiagramElement> 
+  public AbstractFilteredGraphicalUpdateOperation<DDiagramElement> 
   instantiateRestoreOperation(
-      DDiagram diagram_p, Collection<? extends IPatternInstance> instances_p) {
+      Object diagram_p, Collection<? extends IPatternInstance> instances_p) {
     return new SiriusRestoreOperation(diagram_p, instances_p);
   }
 

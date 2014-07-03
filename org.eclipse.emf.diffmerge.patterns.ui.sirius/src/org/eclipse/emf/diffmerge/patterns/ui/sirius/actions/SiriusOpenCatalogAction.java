@@ -24,7 +24,7 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  * @author Skander TURKI
  */
 public class SiriusOpenCatalogAction 
-extends AbstractOpenCatalogAction<DDiagramElement, DDiagram>{
+extends AbstractOpenCatalogAction<DDiagramElement>{
 
 //Only specifies generic types
 

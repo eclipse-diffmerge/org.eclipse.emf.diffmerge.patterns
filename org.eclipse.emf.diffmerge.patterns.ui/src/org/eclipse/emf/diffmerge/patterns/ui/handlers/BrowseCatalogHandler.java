@@ -24,7 +24,7 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Mohamed Sidati
  * @author Skander TURKI
  */
-public class BrowseCatalogHandler<DiagramElementType, DiagramType>  
+public class BrowseCatalogHandler<DiagramElementType>  
 extends AbstractWorkbenchSelectionHandler {
 
   /**
@@ -38,7 +38,7 @@ extends AbstractWorkbenchSelectionHandler {
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractBrowseCatalogAction<DiagramElementType, DiagramType>  action = instantiateBrowseCatalogAction();
+          AbstractBrowseCatalogAction<DiagramElementType>  action = instantiateBrowseCatalogAction();
           if(action != null){
             action.setActivePart(null, part);
             action.selectionChanged(null, selection_p);
@@ -55,11 +55,11 @@ extends AbstractWorkbenchSelectionHandler {
    * @return
    */
   @SuppressWarnings("unchecked")
-  protected AbstractBrowseCatalogAction<DiagramElementType, DiagramType>  instantiateBrowseCatalogAction(){
+  protected AbstractBrowseCatalogAction<DiagramElementType>  instantiateBrowseCatalogAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
-        return (AbstractBrowseCatalogAction<DiagramElementType, DiagramType> )factory.instantiateBrowseCatalogAction();
+        return (AbstractBrowseCatalogAction<DiagramElementType> )factory.instantiateBrowseCatalogAction();
       }
     }
     catch(Exception e){

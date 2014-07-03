@@ -26,14 +26,14 @@ import org.eclipse.emf.ecore.EObject;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class AbstractDisplayOperation<DiagramType> 
+public abstract class AbstractDisplayOperation 
 extends AbstractModelOperation<Collection<Object>> {
 
   /** The non-null set of roots of the elements to display */
   private final Collection<EObject> _semanticRoots;
 
   /** The non-null diagram in which to display the instance */
-  private DiagramType _diagram;
+  private Object _diagram;
 
 
   /** Whether the diagram must be finally refreshed (required for displaying edges) */
@@ -50,7 +50,7 @@ extends AbstractModelOperation<Collection<Object>> {
    *        display edges
    */
   public AbstractDisplayOperation(Collection<? extends EObject> semanticElements_p,
-      DiagramType diagram_p, boolean refresh_p) {
+      Object diagram_p, boolean refresh_p) {
     super(Messages.ViewpointDisplayOperation_Name, null, true, false, true, diagram_p, null);
     _semanticRoots = new FOrderedSet<EObject>();
     _semanticRoots.addAll(ModelsUtil.getRoots(semanticElements_p));
@@ -96,12 +96,12 @@ extends AbstractModelOperation<Collection<Object>> {
    * @param diagram_p a non-null diagram
    * @return a non-null, potentially empty, unmodifiable set of the nodes created
    */
-  protected abstract Collection<Object> updateDiagram(DiagramType diagram_p);
+  protected abstract Collection<Object> updateDiagram(Object diagram_p);
 
   /**
    * Getter
    */
-  protected DiagramType get_diagram() {
+  protected Object get_diagram() {
     return _diagram;
   }
 

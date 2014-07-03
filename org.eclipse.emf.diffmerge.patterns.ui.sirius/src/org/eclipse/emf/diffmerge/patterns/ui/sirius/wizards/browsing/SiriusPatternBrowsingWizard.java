@@ -27,7 +27,7 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  * @author Skander TURKI
  */
 public class SiriusPatternBrowsingWizard 
-extends AbstractPatternBrowsingWizard<DDiagramElement, DDiagram>{
+extends AbstractPatternBrowsingWizard<DDiagramElement>{
   
   /**
    * Constructor

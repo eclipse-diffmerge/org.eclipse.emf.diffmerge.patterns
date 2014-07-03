@@ -36,7 +36,7 @@ public class SiriusRestoreOperation extends SiriusFilteredGraphicalUpdateOperati
    * @param diagram_p the diagram to update
    * @param instance_p the non-null instance whose elements must be highlighted
    */
-  public SiriusRestoreOperation(DDiagram diagram_p, IPatternInstance instance_p) {
+  public SiriusRestoreOperation(Object diagram_p, IPatternInstance instance_p) {
     this(diagram_p, Collections.singleton(instance_p));
   }
 
@@ -45,7 +45,7 @@ public class SiriusRestoreOperation extends SiriusFilteredGraphicalUpdateOperati
    * @param diagram_p the diagram to update
    * @param instances_p the non-null, non-empty collection of instances whose elements must be highlighted
    */
-  public SiriusRestoreOperation(DDiagram diagram_p, Collection<? extends IPatternInstance> instances_p) {
+  public SiriusRestoreOperation(Object diagram_p, Collection<? extends IPatternInstance> instances_p) {
     super(AbstractRestoreOperation.getName(), diagram_p, instances_p, true, instances_p);
     _innerGraphicalOperation = new InnerRestoreOperation();
   }
@@ -62,7 +62,7 @@ public class SiriusRestoreOperation extends SiriusFilteredGraphicalUpdateOperati
    * Inner class, simulates multiple inheritance of SiriusRestoreOperation --> (AbstractRestoreOperation, SiriusFilteredGraphicalUpdateOperation)
    * @author Skander TURKI
    */
-  protected class InnerRestoreOperation extends AbstractRestoreOperation<DDiagram>{
+  protected class InnerRestoreOperation extends AbstractRestoreOperation{
 
     /**
      * @see org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalUpdateOperation#update(java.lang.Object, boolean)

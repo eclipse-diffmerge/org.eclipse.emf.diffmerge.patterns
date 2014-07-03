@@ -86,7 +86,7 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Textual
  * A wizard page for applying an existing pattern.
  * @author O. CONSTANT
  */
-public abstract class AbstractPatternApplicationAssociationPage<DiagramType> 
+public abstract class AbstractPatternApplicationAssociationPage 
 extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> {
 
   /** A trivial enumeration for evaluation status of derivation rules */
@@ -156,14 +156,14 @@ extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> 
   protected Text _numberText;
 
   /** An optional diagram where application occurs */
-  protected final DiagramType _diagram;
+  protected final Object _diagram;
 
   /**
    * Constructor
    * @param data_p the non-null pattern application to be defined
    * @param diagram_p an optional diagram where application occurs
    */
-  public AbstractPatternApplicationAssociationPage(TemplatePatternApplicationSpecification data_p, DiagramType diagram_p) {
+  public AbstractPatternApplicationAssociationPage(TemplatePatternApplicationSpecification data_p, Object diagram_p) {
     super("ApplicationPage", Messages.PatternApplicationAssociationPage_Header, //$NON-NLS-1$
           Messages.PatternApplicationAssociationPage_Message, data_p, true);
     _diagram = diagram_p;

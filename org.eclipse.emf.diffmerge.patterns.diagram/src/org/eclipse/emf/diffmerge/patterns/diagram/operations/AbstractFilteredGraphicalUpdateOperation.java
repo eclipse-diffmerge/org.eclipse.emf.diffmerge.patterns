@@ -21,13 +21,13 @@ import org.eclipse.emf.diffmerge.util.ModelsUtil;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
+public abstract class AbstractFilteredGraphicalUpdateOperation<DiagramElementType> 
 extends AbstractModelOperation<Collection<Object>> {
 
   /**
    * The [non-null iff _diagramElements is null] diagram in which update must occur
    */
-  protected final DiagramType _diagram;
+  protected final Object _diagram;
 
   /**
    * The [non-null iff _diagram is null], potentially empty set of diagram elements to update
@@ -41,7 +41,7 @@ extends AbstractModelOperation<Collection<Object>> {
 
 
   /** Instance of inner class used to simulate multiple inheritance for leaf operations*/
-  protected AbstractGraphicalUpdateOperation<DiagramType> _innerGraphicalOperation;
+  protected AbstractGraphicalUpdateOperation _innerGraphicalOperation;
 
   /**
    * Constructor
@@ -49,7 +49,7 @@ extends AbstractModelOperation<Collection<Object>> {
    * @param diagram_p the non-null diagram to update
    * @param filter_p the non-null filter for semantic elements whose representation must be updated
    */
-  protected AbstractFilteredGraphicalUpdateOperation(String name_p, DiagramType diagram_p, 
+  protected AbstractFilteredGraphicalUpdateOperation(String name_p, Object diagram_p, 
       ModelsUtil.IElementFilter filter_p, boolean isDirtying_p, Object sourceContext_p) {
     super(name_p, null, isDirtying_p, false, true, diagram_p, sourceContext_p);
     _diagram = diagram_p;
@@ -89,7 +89,7 @@ extends AbstractModelOperation<Collection<Object>> {
    * Return the diagram in which update must occur
    * @return a non-null diagram
    */
-  public final DiagramType getDiagram() {
+  public final Object getDiagram() {
     return _diagram;
   }
 

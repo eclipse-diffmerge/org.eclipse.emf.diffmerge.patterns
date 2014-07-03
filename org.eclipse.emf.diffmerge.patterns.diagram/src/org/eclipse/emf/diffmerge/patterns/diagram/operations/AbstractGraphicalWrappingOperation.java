@@ -24,14 +24,14 @@ import org.eclipse.emf.diffmerge.patterns.diagram.Messages;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class AbstractGraphicalWrappingOperation<T, F, DiagramType> 
+public abstract class AbstractGraphicalWrappingOperation<T, F> 
 extends AbstractModelOperation<T> {
 
   /** The optional wrapped operation */
   private final IModelOperation<? extends F> _operation;
 
   /** The optional diagram for graphical concerns */
-  private final DiagramType _diagram;
+  private final Object _diagram;
 
   /**
    * Constructor
@@ -39,7 +39,7 @@ extends AbstractModelOperation<T> {
    * @param diagram_p an optional diagram to refresh
    */
   public AbstractGraphicalWrappingOperation(IModelOperation<? extends F> operation_p, 
-      DiagramType diagram_p) {
+      Object diagram_p) {
     super(
         operation_p != null? operation_p.getName(): Messages.AbstractViewpointWrappingOperation_Refresh,
             operation_p != null? operation_p.getResourceSet(): null,
@@ -55,7 +55,7 @@ extends AbstractModelOperation<T> {
    * Return the diagram for handling graphical concerns
    * @return a potentially null diagram
    */
-  public DiagramType getDiagram() {
+  public Object getDiagram() {
     return _diagram;
   }
 

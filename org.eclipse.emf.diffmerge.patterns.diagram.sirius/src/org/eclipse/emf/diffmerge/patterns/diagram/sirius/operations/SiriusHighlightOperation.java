@@ -53,7 +53,7 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
    * @param coverNodes_p whether nodes must be highlighted
    * @param coverPorts_p whether ports must be highlighted
    */
-  public SiriusHighlightOperation(DDiagram diagram_p, IPatternInstance instance_p, RGB color_p, int borderSize_p, boolean coverEdges_p, boolean coverNodes_p,
+  public SiriusHighlightOperation(Object diagram_p, IPatternInstance instance_p, RGB color_p, int borderSize_p, boolean coverEdges_p, boolean coverNodes_p,
       boolean coverPorts_p) {
     this(diagram_p, Collections.singleton(instance_p), color_p, borderSize_p, coverEdges_p, coverNodes_p, coverPorts_p);
     _innerGraphicalOperation = new InnerHighlightOperation(diagram_p, instance_p, color_p, borderSize_p, coverEdges_p, coverNodes_p,
@@ -70,7 +70,7 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
    * @param coverNodes_p whether nodes must be highlighted
    * @param coverPorts_p whether ports must be highlighted
    */
-  public SiriusHighlightOperation(DDiagram diagram_p, Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, boolean coverEdges_p,
+  public SiriusHighlightOperation(Object diagram_p, Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, boolean coverEdges_p,
       boolean coverNodes_p, boolean coverPorts_p) {
     super(AbstractHighlightOperation.getName(), diagram_p, instances_p, true, instances_p);
     _innerGraphicalOperation = new InnerHighlightOperation(diagram_p, instances_p, color_p, borderSize_p, coverEdges_p, coverNodes_p, coverPorts_p);
@@ -90,7 +90,7 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
    * @author Skander TURKI
    *
    */
-  protected class InnerHighlightOperation extends AbstractHighlightOperation<DDiagram>{
+  protected class InnerHighlightOperation extends AbstractHighlightOperation{
 
     /** Casted innerGraphicalOperation */
     private InnerHighlightOperation _innerHighlightOperation;
@@ -98,7 +98,7 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
     /**
      * Constructor
      */
-    public InnerHighlightOperation(DDiagram diagram_p, IPatternInstance instance_p, RGB color_p, int borderSize_p, boolean coverEdges_p, boolean coverNodes_p,
+    public InnerHighlightOperation(Object diagram_p, IPatternInstance instance_p, RGB color_p, int borderSize_p, boolean coverEdges_p, boolean coverNodes_p,
         boolean coverPorts_p) {
       super(diagram_p, instance_p, color_p, borderSize_p, coverEdges_p, coverNodes_p, coverPorts_p);
     }
@@ -106,7 +106,7 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
     /**
      * Constructor
      */
-    public InnerHighlightOperation(DDiagram diagram_p, Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, boolean coverEdges_p,
+    public InnerHighlightOperation(Object diagram_p, Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, boolean coverEdges_p,
         boolean coverNodes_p, boolean coverPorts_p) {
       super(diagram_p, instances_p, color_p, borderSize_p, coverEdges_p, coverNodes_p, coverPorts_p);
     }

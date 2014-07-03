@@ -49,12 +49,12 @@ import org.eclipse.swt.graphics.Point;
  * A wizard for applying an existing pattern.
  * @author O. CONSTANT
  */
-public abstract class AbstractPatternApplicationWizard<DiagramElementType, DiagramType> 
+public abstract class AbstractPatternApplicationWizard<DiagramElementType> 
 extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
 
 
   /** An optional diagram to refresh eventually */
-  protected final DiagramType _diagramToRefresh;
+  protected final Object _diagramToRefresh;
 
   /** The graphical offset for multi-instantiation */
   protected static final int MULTI_INSTANCE_OFFSET = 10;
@@ -64,7 +64,7 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
    * @param sources_p the elements from which the pattern must be created
    * @param diagram_p an optional diagram where application occurs
    */
-  public AbstractPatternApplicationWizard(List<? extends Object> sources_p, DiagramType diagram_p) {
+  public AbstractPatternApplicationWizard(List<? extends Object> sources_p, Object diagram_p) {
     super(new TemplatePatternApplicationSpecification(sources_p));
     _diagramToRefresh = diagram_p;
   }
@@ -87,7 +87,7 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
   protected boolean doPerformFinish() {
     Map<DiagramElementType, Point> elementsLocationsMap = new Hashtable<DiagramElementType, Point>();
     Map<DiagramElementType, Object> elementsContainersMap = new Hashtable<DiagramElementType, Object>();
-    AbstractDiagramUtil<DiagramElementType, DiagramType> diagramUtil = (AbstractDiagramUtil<DiagramElementType, DiagramType>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
+    AbstractDiagramUtil<DiagramElementType> diagramUtil = (AbstractDiagramUtil<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     AbstractGenericTypeUtil genericTypeUtil = CorePatternsPlugin.getDefault().getGenericTypeUtil();
     if(_diagramToRefresh != null && genericTypeUtil != null && diagramUtil != null){
       // Save current diagram elements locations
@@ -141,7 +141,7 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
           final int xOffset = MULTI_INSTANCE_OFFSET, yOffset = MULTI_INSTANCE_OFFSET;
           int currentVx = 0, currentVy = 0;
           for (IPatternInstance instance : instances) {
-            AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> layoutOperation = instantiateLayoutReuseOperation(_diagramToRefresh, instance, elementsLocationsMap,
+            AbstractFilteredGraphicalUpdateOperation<DiagramElementType> layoutOperation = instantiateLayoutReuseOperation(_diagramToRefresh, instance, elementsLocationsMap,
                 elementsContainersMap, currentVx, currentVy, true, true, getData().getScopeElement());
             layoutOperations.add(layoutOperation);
             currentVx += xOffset;
@@ -188,15 +188,15 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
   /**
    * Instantiates an operation that is responsible of representing a given set of semantic elements in a given diagram.
    */
-  protected AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
-  instantiateLayoutReuseOperation(DiagramType diagram_p, IPatternInstance instance_p, Map<DiagramElementType, Point> initialElementsLocationsMap_p,
+  protected AbstractFilteredGraphicalUpdateOperation<DiagramElementType> 
+  instantiateLayoutReuseOperation(Object diagram_p, IPatternInstance instance_p, Map<DiagramElementType, Point> initialElementsLocationsMap_p,
       Map<DiagramElementType, Object> elementsContainersMap_p, 
       int vx_p, int vy_p, boolean updateLayout_p, boolean updateStyle_p
       ,Object modelSideContext_p)
       {
     @SuppressWarnings("unchecked")
-    IPatternOperationFactory<DiagramElementType, DiagramType> factory = 
-    (IPatternOperationFactory<DiagramElementType, DiagramType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<DiagramElementType> factory = 
+    (IPatternOperationFactory<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateLayoutReuseOperation(diagram_p, instance_p, initialElementsLocationsMap_p, elementsContainersMap_p, vx_p, vy_p, updateLayout_p, updateStyle_p, modelSideContext_p);
     }
@@ -206,11 +206,11 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
   /**
    * Instantiates a concrete AbstractGraphicalWrappingInstanceOperation
    */
-  protected  AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>, DiagramType, DiagramElementType> 
-  instantiateGraphicalWrappingInstanceOperation(IModelOperation<List<IPatternInstance>> operation_p, DiagramType diagram_p, RefreshRequestKind refreshRequest_p){
+  protected  AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>, DiagramElementType> 
+  instantiateGraphicalWrappingInstanceOperation(IModelOperation<List<IPatternInstance>> operation_p, Object diagram_p, RefreshRequestKind refreshRequest_p){
     @SuppressWarnings("unchecked")
-    IPatternOperationFactory<DiagramElementType, DiagramType> factory =
-    (IPatternOperationFactory<DiagramElementType, DiagramType>)  PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<DiagramElementType> factory =
+      (IPatternOperationFactory<DiagramElementType>)  PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateGraphicalWrappingInstanceOperation(operation_p, diagram_p, refreshRequest_p, true);
     }
@@ -220,9 +220,9 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
   /**
    * Instantiates a PatternApplicationPresentationPage
    */
-  protected AbstractPatternApplicationPresentationPage<DiagramElementType, DiagramType>
+  protected AbstractPatternApplicationPresentationPage<DiagramElementType>
   instantiatePatternApplicationPresentationPage(TemplatePatternApplicationSpecification data_p){
-    AbstractPatternPageFactory<DiagramElementType, DiagramType> factory = PatternsUIPlugin.getDefault().getPageFactory();
+    AbstractPatternPageFactory<DiagramElementType> factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiatePatternApplicationPresentationPage(data_p);
     }
@@ -233,9 +233,9 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
    * Returns a concrete PatternApplicationAssociationPage
    * @return a non-null AbstractPatternApplicationAssociationPage
    */
-  protected AbstractPatternApplicationAssociationPage<DiagramType> 
+  protected AbstractPatternApplicationAssociationPage 
   instantiatePatternApplicationAssociationPage(){
-    AbstractPatternPageFactory<DiagramElementType, DiagramType> factory = PatternsUIPlugin.getDefault().getPageFactory();
+    AbstractPatternPageFactory<DiagramElementType> factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiatePatternApplicationAssociationPage(getData(), _diagramToRefresh);
     }

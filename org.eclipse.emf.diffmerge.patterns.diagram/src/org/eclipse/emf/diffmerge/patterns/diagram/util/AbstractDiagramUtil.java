@@ -22,16 +22,15 @@ import org.eclipse.swt.graphics.Point;
  * @author Skander TURKI
  *
  * @param <DiagramElementType>
- * @param <DiagramType>
  */
-public abstract class AbstractDiagramUtil<DiagramElementType, DiagramType> {
+public abstract class AbstractDiagramUtil<DiagramElementType> {
 
   /**
    * Returns a list of diagram elements in the given diagram
    * @param diagram_p
    * @return
    */
-  public abstract List<DiagramElementType> getDiagramElements(DiagramType diagram_p);
+  public abstract List<DiagramElementType> getDiagramElements(Object diagram_p);
 
   /**
    * Returns a list of the semantic elements represented by the given diagram element
@@ -66,7 +65,7 @@ public abstract class AbstractDiagramUtil<DiagramElementType, DiagramType> {
    * Return the current diagram, if any
    * @return a potentially null diagram
    */
-  public abstract DiagramType getDiagramFromSelection(IStructuredSelection selection_p);
+  public abstract Object getDiagramFromSelection(IStructuredSelection selection_p);
   
   /**
    * Export the given GEF edit parts to a string representation of an SVG image.

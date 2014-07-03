@@ -13,10 +13,13 @@ package org.eclipse.emf.diffmerge.patterns.ui.sirius.wizards.application;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
+import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternApplicationSpecification;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.application.AbstractPatternApplicationAssociationPage;
 import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 import org.eclipse.sirius.diagram.DDiagram;
+import org.eclipse.sirius.diagram.DDiagramElement;
 import org.eclipse.sirius.diagram.description.DiagramDescription;
 import org.eclipse.sirius.diagram.description.DiagramElementMapping;
 import org.eclipse.sirius.diagram.description.Layer;
@@ -26,10 +29,10 @@ import org.eclipse.sirius.diagram.description.Layer;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public class SiriusPatternApplicationAssociationPage extends AbstractPatternApplicationAssociationPage<DDiagram>{
+public class SiriusPatternApplicationAssociationPage extends AbstractPatternApplicationAssociationPage{
 
   public SiriusPatternApplicationAssociationPage(
-      TemplatePatternApplicationSpecification data_p, DDiagram diagram_p) {
+      TemplatePatternApplicationSpecification data_p, Object diagram_p) {
     super(data_p, diagram_p);
   }
 
@@ -39,24 +42,28 @@ public class SiriusPatternApplicationAssociationPage extends AbstractPatternAppl
   @Override
   protected boolean isShowInstanceEnabled() {
     boolean result = _diagram != null;
-    if (result) {
-      DiagramDescription description = _diagram.getDescription();
-      if (description != null) {
-        // Return false iff all available mappings are synchronized
-        Collection<DiagramElementMapping> allMappings = new FOrderedSet<DiagramElementMapping>();
-        for (Layer activeLayer : _diagram.getActivatedLayers()) {
-          allMappings.addAll(activeLayer.getContainerMappings());
-          allMappings.addAll(activeLayer.getNodeMappings());
-          allMappings.addAll(activeLayer.getEdgeMappings());
-        }
-        Iterator<DiagramElementMapping> it = allMappings.iterator();
-        result = false;
-        while (!result && it.hasNext()) {
-          DiagramElementMapping current = it.next();
-          result = !current.isSynchronizationLock();
+    if(_diagram instanceof DDiagram){
+      if (result) {
+        DDiagram diagram = (DDiagram)_diagram;
+        DiagramDescription description = diagram.getDescription();
+        if (description != null) {
+          // Return false iff all available mappings are synchronized
+          Collection<DiagramElementMapping> allMappings = new FOrderedSet<DiagramElementMapping>();
+          for (Layer activeLayer : diagram.getActivatedLayers()) {
+            allMappings.addAll(activeLayer.getContainerMappings());
+            allMappings.addAll(activeLayer.getNodeMappings());
+            allMappings.addAll(activeLayer.getEdgeMappings());
+          }
+          Iterator<DiagramElementMapping> it = allMappings.iterator();
+          result = false;
+          while (!result && it.hasNext()) {
+            DiagramElementMapping current = it.next();
+            result = !current.isSynchronizationLock();
+          }
         }
       }
     }
+   
     return result;
   }
   

@@ -38,53 +38,53 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Templat
  * @author Skander TURKI
  *
  */
-public interface IPatternDialogAndWizardFactory<DiagramElementType, DiagramType> {
+public interface IPatternDialogAndWizardFactory<DiagramElementType> {
 
 
 
-  HighlightAllPatternsInstancesPanelDialog<DiagramType, DiagramElementType> 
+  HighlightAllPatternsInstancesPanelDialog<DiagramElementType> 
   instantiateHighlightAllPatternsInstancesPanelDialog(
-      Set<IPatternInstance> instances_p, List<Object> selection_p, DiagramType diagram_p, Shell shell_p, String dialogTitle_p, String dialogMessage_p);
+      Set<IPatternInstance> instances_p, List<Object> selection_p, Object diagram_p, Shell shell_p, String dialogTitle_p, String dialogMessage_p);
 
-  InstancePanelDialog<DiagramElementType, DiagramType> 
+  InstancePanelDialog<DiagramElementType> 
   instantiateInstancePanelDialog(List<IPatternInstance> instances_p, EObject referenceElement_p, 
-      DiagramType diagram_p, List<Object> graphicalContext_p, Shell shell_p);
+      Object diagram_p, List<Object> graphicalContext_p, Shell shell_p);
 
-  AbstractPatternApplicationWizard<DiagramElementType, DiagramType>
-  instantiatePatternApplicationWizard(List<Object> selection_p, DiagramType diagram_p);
+  AbstractPatternApplicationWizard<DiagramElementType>
+  instantiatePatternApplicationWizard(List<Object> selection_p, Object diagram_p);
 
 
-  AbstractPatternBrowsingWizard<DiagramElementType, DiagramType>
+  AbstractPatternBrowsingWizard<DiagramElementType>
   instantiatePatternBrowsingWizard(EObject context_p, TemplatePattern pattern_p);
 
-  AbstractPatternBrowsingWizard<DiagramElementType, DiagramType>
+  AbstractPatternBrowsingWizard<DiagramElementType>
   instantiatePatternBrowsingWizard(EObject context_p, IPatternRepository repository_p);
 
-  AbstractPatternBrowsingWizard<DiagramElementType, DiagramType>
+  AbstractPatternBrowsingWizard<DiagramElementType>
   instantiatePatternBrowsingWizard(Object context_p, IPatternRepository repository_p);
 
-  AbstractPatternBrowsingWizard<DiagramElementType, DiagramType>
+  AbstractPatternBrowsingWizard<DiagramElementType>
   instantiatePatternBrowsingWizard(ResourceSet rset_p, IPatternRepository repository_p);
 
-  AbstractTemplateCreationWizard<DiagramElementType, DiagramType>
+  AbstractTemplateCreationWizard<DiagramElementType>
   instantiateTemplateCreationWizard(List<Object> selection_p, List<Object> graphicalContext_p);
 
-  AbstractPatternUpdateWizard<DiagramElementType, DiagramType>
+  AbstractPatternUpdateWizard<DiagramElementType>
   instantiatePatternUpdateWizard(
       IPatternInstance instance_p, EObject referenceElement_p,
       List<Object> graphicalContext_p,
       List<EStructuralFeature> featuresToIgnore_p);
 
   PatternWizardDialog instantiatePatternWizardDialog(Shell shell_p, 
-      AbstractPatternCreationWizard<DiagramElementType, DiagramType> _wizard);
+      AbstractPatternCreationWizard<DiagramElementType> _wizard);
 
-  AbstractPatternCreationWizard<DiagramElementType, DiagramType>
+  AbstractPatternCreationWizard<DiagramElementType>
   instantiatePatternCreationWizard(
       List<Object> selection_p, List<Object> graphicalContext_p,
       TemplatePatternCreationSpecification patternCreationSpecification_p,
       boolean createNextBackButtons_p);
 
-  AbstractTemplateUsageWizard<DiagramElementType, DiagramType>
+  AbstractTemplateUsageWizard<DiagramElementType>
   instantiateTemplateUsageWizard(
       AbstractModifiableTemplatePatternSpecification data_p);
 

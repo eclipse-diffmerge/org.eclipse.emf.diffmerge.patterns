@@ -26,7 +26,7 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  * @author Skander TURKI
  */
 public class SiriusPatternBrowsingPresentationPage 
-extends AbstractPatternBrowsingPresentationPage<DDiagramElement, DDiagram>{
+extends AbstractPatternBrowsingPresentationPage<DDiagramElement>{
 
   public SiriusPatternBrowsingPresentationPage(
       AbstractBijectiveTemplatePatternSpecification browsingData_p) {

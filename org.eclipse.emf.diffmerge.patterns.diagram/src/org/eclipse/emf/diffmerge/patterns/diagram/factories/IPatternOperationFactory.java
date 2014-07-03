@@ -34,7 +34,7 @@ import org.eclipse.swt.graphics.RGB;
  * The design environment (unique in the platform) must provide his own factory
  * @author Skander TURKI
  */
-public interface IPatternOperationFactory<DiagramElementType, DiagramType> {
+public interface IPatternOperationFactory<DiagramElementType> {
 
 
   /**
@@ -48,46 +48,46 @@ public interface IPatternOperationFactory<DiagramElementType, DiagramType> {
    * Instantiates an operation that is responsible of representing a given set of semantic elements in a given diagram.
    * @return a non-null AbstractDisplayOperation (must be a concrete DisplayOperation)
    */
-  AbstractDisplayOperation<DiagramType> instantiateDisplayOperation(Collection<? extends EObject> semanticElements_p,
-      DiagramType diagram_p, boolean refresh_p);
+  AbstractDisplayOperation instantiateDisplayOperation(Collection<? extends EObject> semanticElements_p,
+      Object diagram_p, boolean refresh_p);
 
   /**
    * Instantiates an operation that wraps an operation on a pattern instance and may perform different
    * kinds of refresh on a diagram to reflect the effect of the wrapped operation.
    * @return a non-null AbstractGraphicalWrappingInstanceOperation (must be a concrete GraphicalWrappingInstanceOperation)
    */
-  AbstractGraphicalWrappingInstanceOperation<IPatternInstance, DiagramType, DiagramElementType> 
+  AbstractGraphicalWrappingInstanceOperation<IPatternInstance, DiagramElementType> 
   instantiateGraphicalWrappingInstanceOperation(
       IModelOperation<? extends IPatternInstance> operation_p,
-      DiagramType diagram_p, RefreshRequestKind refreshRequest_p);
+      Object diagram_p, RefreshRequestKind refreshRequest_p);
 
   /**
    * Instantiates an operation that wraps an operation on a pattern instance and may perform different
    * kinds of refresh on a diagram to reflect the effect of the wrapped operation.
    * @return a non-null AbstractGraphicalWrappingInstanceOperation (must be a concrete GraphicalWrappingInstanceOperation)
    */
-  public AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>, DiagramType, DiagramElementType> 
+  public AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>, DiagramElementType> 
   instantiateGraphicalWrappingInstanceOperation(IModelOperation<List<IPatternInstance>> operations_p,
-      DiagramType diagram_p, RefreshRequestKind refreshRequest_p, boolean signatureDifferentiator);
+      Object diagram_p, RefreshRequestKind refreshRequest_p, boolean signatureDifferentiator);
   
   /**
    * Instantiates an operation that wraps an operation on a pattern instance and may perform different
    * kinds of refresh on a diagram to reflect the effect of the wrapped operation.
    * @return a non-null AbstractGraphicalWrappingInstanceOperation (must be a concrete GraphicalWrappingInstanceOperation)
    */
-  AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, DiagramType, DiagramElementType> 
+  AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, DiagramElementType> 
   instantiateGraphicalWrappingInstanceOperation(
       InstanceOperation operation_p, IPatternInstance instance_p,
-      DiagramType diagram_p, RefreshRequestKind refreshRequest_p);
+      Object diagram_p, RefreshRequestKind refreshRequest_p);
 
   
   /**
    * Instantiates an operation for highlighting diagram elements based on specific criteria on semantic elements.
    * @return a non-null AbstractFilteredGraphicalUpdateOperation (must be a concrete HighlightOperation)
    */
-  AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
+  AbstractFilteredGraphicalUpdateOperation<DiagramElementType> 
   instantiateHighlightOperation(
-      DiagramType diagram_p, Collection<? extends IPatternInstance> instances_p,
+      Object diagram_p, Collection<? extends IPatternInstance> instances_p,
       RGB color_p, int borderSize_p, boolean coverEdges_p,
       boolean coverNodes_p, boolean coverPorts_p);
 
@@ -95,7 +95,7 @@ public interface IPatternOperationFactory<DiagramElementType, DiagramType> {
    * Instantiates an operation that is responsible of representing a given set of semantic elements in a given diagram.
    * @return a non-null AbstractFilteredGraphicalUpdateOperation (must be a concrete LayoutReuseOperation)
    */
-  AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType>
+  AbstractFilteredGraphicalUpdateOperation<DiagramElementType>
   instantiateLayoutReuseOperation(
       Collection<DiagramElementType> diagramElements_p,  
       IPatternInstance instance_p, 
@@ -109,9 +109,9 @@ public interface IPatternOperationFactory<DiagramElementType, DiagramType> {
    * Instantiates an operation that is responsible of representing a given set of semantic elements in a given diagram.
    * @return a non-null AbstractFilteredGraphicalUpdateOperation (must be a concrete LayoutReuseOperation)
    */
-  AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType>
+  AbstractFilteredGraphicalUpdateOperation<DiagramElementType>
   instantiateLayoutReuseOperation(
-      DiagramType diagram_p,  
+      Object diagram_p,  
       IPatternInstance instance_p, 
       Map<DiagramElementType, Point> initialElementsLocationsMap_p,
       Map<DiagramElementType, Object> elementsContainersMap_p,
@@ -123,9 +123,9 @@ public interface IPatternOperationFactory<DiagramElementType, DiagramType> {
    * Instantiates an operation for restoring diagram elements based on specific criteria on semantic elements.
    * @return a non-null AbstractFilteredGraphicalUpdateOperation (must be a concrete RestoreOperation)
    */
-  AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
+  AbstractFilteredGraphicalUpdateOperation<DiagramElementType> 
   instantiateRestoreOperation(
-      DiagramType diagram_p, Collection<? extends IPatternInstance> instances_p);
+      Object diagram_p, Collection<? extends IPatternInstance> instances_p);
 
   /**
    * Instantiates an operation that is responsible for updating a pattern and an instance.

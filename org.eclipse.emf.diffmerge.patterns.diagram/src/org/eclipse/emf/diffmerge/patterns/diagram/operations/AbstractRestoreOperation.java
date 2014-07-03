@@ -19,8 +19,8 @@ import org.eclipse.emf.diffmerge.patterns.diagram.Messages;
  *
  * @param <DiagramType>
  */
-public abstract class AbstractRestoreOperation<DiagramType> 
-extends AbstractGraphicalUpdateOperation<DiagramType>{
+public abstract class AbstractRestoreOperation 
+extends AbstractGraphicalUpdateOperation{
 
   /** The name of the operation */
   private static final String NAME = Messages.RestoreOperation_Name;

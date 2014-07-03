@@ -22,7 +22,7 @@ import org.eclipse.sirius.diagram.description.AbstractNodeMapping;
  * and semantic elements and their representation for a given modeling tool.
  * @author Skander TURKI
  */
-public interface ISiriusSemanticMapping extends ISemanticMapping<DContainer, AbstractNodeMapping, DDiagram, DSemanticDecorator>{
+public interface ISiriusSemanticMapping extends ISemanticMapping<AbstractNodeMapping>{
 
   //Nothing: Specifies generic types
 }

@@ -93,7 +93,7 @@ import org.eclipse.ui.PlatformUI;
  * A wizard page for presenting a pattern.
  * @author O. CONSTANT
  */
-public abstract class AbstractPatternPresentationPage<DiagramElementType, DiagramType, T extends ITemplatePatternBasedSpecification>
+public abstract class AbstractPatternPresentationPage<DiagramElementType, T extends ITemplatePatternBasedSpecification>
 extends AbstractPatternPage<T> {
 
   /** An enumeration for specifying how a pattern is determined */
@@ -123,8 +123,8 @@ extends AbstractPatternPage<T> {
 
 
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType> 
-    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType>)
+  private IPatternDialogAndWizardFactory<DiagramElementType> 
+    _factory = (IPatternDialogAndWizardFactory<DiagramElementType>)
       PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
@@ -924,7 +924,7 @@ extends AbstractPatternPage<T> {
           final int VECTOR = 50;
           Point location = getShell().getLocation();
           Point newLocation = new Point(location.x + VECTOR, location.y + VECTOR);
-          AbstractTemplateUsageWizard<DiagramElementType, DiagramType>
+          AbstractTemplateUsageWizard<DiagramElementType>
             wizard = instantiateTemplateUsageWizard((AbstractModifiableTemplatePatternSpecification)getData());
           //new AbstractTemplateUsageWizard((AbstractModifiableTemplatePatternSpecification)getData());
           PatternWizardDialog dialog = new PatternWizardDialog(
@@ -947,7 +947,7 @@ extends AbstractPatternPage<T> {
     return result;
   }
 
-  protected AbstractTemplateUsageWizard<DiagramElementType, DiagramType>
+  protected AbstractTemplateUsageWizard<DiagramElementType>
   instantiateTemplateUsageWizard(AbstractModifiableTemplatePatternSpecification data_p){
     if(_factory != null){
       return _factory.instantiateTemplateUsageWizard(data_p);

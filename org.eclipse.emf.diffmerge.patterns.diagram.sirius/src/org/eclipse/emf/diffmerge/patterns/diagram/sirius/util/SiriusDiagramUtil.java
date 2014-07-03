@@ -12,6 +12,7 @@ package org.eclipse.emf.diffmerge.patterns.diagram.sirius.util;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -47,15 +48,18 @@ import org.eclipse.swt.widgets.Display;
  * @author Olivier Constant
  * @author Skander TURKI
  */
-public class SiriusDiagramUtil extends AbstractDiagramUtil<DDiagramElement, DDiagram>{
+public class SiriusDiagramUtil extends AbstractDiagramUtil<DDiagramElement>{
 
   /**
    * 
    * @see org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil#getDiagramElements(java.lang.Object)
    */
   @Override
-  public List<DDiagramElement> getDiagramElements(DDiagram diagram_p) {
-    return diagram_p.getDiagramElements();
+  public List<DDiagramElement> getDiagramElements(Object diagram_p) {
+    if(diagram_p instanceof DDiagram){
+      return ((DDiagram)diagram_p).getDiagramElements();
+    }
+    return Collections.emptyList();
   }
 
   /**
@@ -106,7 +110,7 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil<DDiagramElement, DDia
     Collection<EObject> result = new FOrderedSet<EObject>();
     EObject viewpointElement = SiriusLayersUtil.getViewpointElement(selected_p);
     if (viewpointElement instanceof DSemanticDecorator) {
-      ISemanticMapping<?, ?, ?, ?> mapping = PatternCoreDiagramPlugin.getDefault().getSemanticMapping();
+      ISemanticMapping<?> mapping = PatternCoreDiagramPlugin.getDefault().getSemanticMapping();
       if(mapping instanceof ISiriusSemanticMapping){
         result.addAll(((ISiriusSemanticMapping)mapping).getSemanticSelection(
             (DSemanticDecorator)viewpointElement));

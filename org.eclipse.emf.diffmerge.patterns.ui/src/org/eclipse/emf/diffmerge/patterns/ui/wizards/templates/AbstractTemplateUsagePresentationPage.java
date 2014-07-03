@@ -25,8 +25,8 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.Templa
  * A wizard page for using a template.
  * @author O. CONSTANT
  */
-public abstract class AbstractTemplateUsagePresentationPage<DiagramElementType, DiagramType>
-extends AbstractPatternPresentationPage<DiagramElementType, DiagramType, TemplateUsageSpecification> {
+public abstract class AbstractTemplateUsagePresentationPage<DiagramElementType>
+extends AbstractPatternPresentationPage<DiagramElementType, TemplateUsageSpecification> {
   
   /**
    * Constructor

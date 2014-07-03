@@ -46,7 +46,7 @@ import org.eclipse.sirius.diagram.description.NodeMapping;
  * @author Skander TURKI
  */
 @SuppressWarnings("restriction")
-public class SiriusDisplayOperation extends AbstractDisplayOperation<DDiagram>{
+public class SiriusDisplayOperation extends AbstractDisplayOperation{
 
   /** The non-null behaviour for pinning graphical elements */
   private final PinHelper _pinHelper;
@@ -58,7 +58,7 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation<DDiagram>{
    * @param refresh_p
    */
   public SiriusDisplayOperation(
-      Collection<? extends EObject> semanticElements_p, DDiagram diagram_p,
+      Collection<? extends EObject> semanticElements_p, Object diagram_p,
       boolean refresh_p) {
     super(semanticElements_p, diagram_p, refresh_p);
     _pinHelper = new PinHelper();
@@ -70,43 +70,47 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation<DDiagram>{
    * @see org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractDisplayOperation#updateDiagram(java.lang.Object)
    */
   @Override
-  protected Collection<Object> updateDiagram(DDiagram diagram_p) {
-    // Initialization: find existing nodes
-    List<EObject> rootsAndContainers = new FOrderedSet<EObject>();
-    rootsAndContainers.addAll(get_semanticRoots());
-    ISiriusSemanticMapping sMapping = null;
-    ISemanticMapping<?, ?, ?, ?> mapping =
-        PatternCoreDiagramPlugin.getDefault().getSemanticMapping();
-    if(mapping instanceof ISiriusSemanticMapping){
-      sMapping = (ISiriusSemanticMapping)mapping;
+  protected Collection<Object> updateDiagram(Object objectDiagram_p) {
+    if(objectDiagram_p instanceof DDiagram){
+      DDiagram diagram_p = (DDiagram)objectDiagram_p;
+      // Initialization: find existing nodes
+      List<EObject> rootsAndContainers = new FOrderedSet<EObject>();
+      rootsAndContainers.addAll(get_semanticRoots());
+      ISiriusSemanticMapping sMapping = null;
+      ISemanticMapping<?> mapping =
+          PatternCoreDiagramPlugin.getDefault().getSemanticMapping();
+      if(mapping instanceof ISiriusSemanticMapping){
+        sMapping = (ISiriusSemanticMapping)mapping;
+      }
+      for (EObject root : get_semanticRoots()) {
+        Collection<EObject> candidates =
+            sMapping.getSemanticCandidatesForGraphicalStorage(root, diagram_p);
+        rootsAndContainers.addAll(candidates);
+      }
+      EMap<EObject, DSemanticDecorator> rootsToNodes =
+          getExistingDecorators(rootsAndContainers, (DDiagram)get_diagram());
+      Collection<EObject> remainingElements =
+          ModelsUtil.getAllContents(get_semanticRoots(), false, null);
+      remainingElements.removeAll(rootsToNodes.keySet());
+      // Ignore semantic elements which are visible in the diagram
+      Collection<EObject> remainingElementsCopy =
+          new FOrderedSet<EObject>(remainingElements);
+      for (EObject remainingElement : remainingElementsCopy) {
+        if (!getNodesInDiagram(remainingElement, diagram_p).isEmpty())
+          remainingElements.remove(remainingElement);
+      }
+      // Phase 1: use existing nodes
+      LinkedList<DContainer> containers = new LinkedList<DContainer>(
+          filter(rootsToNodes.values(), DContainer.class));
+      Collection<Object> createdNodes =
+          new FOrderedSet<Object>();
+      showAllInContainers(containers, remainingElements, createdNodes);
+      // Phase 2: start from diagram if relevant
+      if (!rootsToNodes.values().contains(get_diagram()))
+        showAllInContainer(diagram_p, remainingElements, createdNodes);
+      return Collections.unmodifiableCollection(createdNodes); 
     }
-    for (EObject root : get_semanticRoots()) {
-      Collection<EObject> candidates =
-          sMapping.getSemanticCandidatesForGraphicalStorage(root, diagram_p);
-      rootsAndContainers.addAll(candidates);
-    }
-    EMap<EObject, DSemanticDecorator> rootsToNodes =
-        getExistingDecorators(rootsAndContainers, get_diagram());
-    Collection<EObject> remainingElements =
-        ModelsUtil.getAllContents(get_semanticRoots(), false, null);
-    remainingElements.removeAll(rootsToNodes.keySet());
-    // Ignore semantic elements which are visible in the diagram
-    Collection<EObject> remainingElementsCopy =
-        new FOrderedSet<EObject>(remainingElements);
-    for (EObject remainingElement : remainingElementsCopy) {
-      if (!getNodesInDiagram(remainingElement, diagram_p).isEmpty())
-        remainingElements.remove(remainingElement);
-    }
-    // Phase 1: use existing nodes
-    LinkedList<DContainer> containers = new LinkedList<DContainer>(
-        filter(rootsToNodes.values(), DContainer.class));
-    Collection<Object> createdNodes =
-        new FOrderedSet<Object>();
-    showAllInContainers(containers, remainingElements, createdNodes);
-    // Phase 2: start from diagram if relevant
-    if (!rootsToNodes.values().contains(get_diagram()))
-      showAllInContainer(diagram_p, remainingElements, createdNodes);
-    return Collections.unmodifiableCollection(createdNodes);
+   return Collections.emptyList();
   }
 
 
@@ -117,7 +121,7 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation<DDiagram>{
    */
   @Override
   protected void refreshDiagram() {
-    SiriusUtil.refreshDiagram(get_diagram()); // For displaying arcs
+    SiriusUtil.refreshDiagram((DDiagram)get_diagram()); // For displaying arcs
   }
   
   /**
@@ -195,7 +199,7 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation<DDiagram>{
       EObject semanticTarget_p, DContainer graphicalContainer_p) {
     AbstractDNode result = null;
     DDiagram diagram = SiriusUtil.getDiagram(graphicalContainer_p);
-    ISemanticMapping<?, ?, ?, ?> mapping = PatternCoreDiagramPlugin.getDefault().getSemanticMapping();
+    ISemanticMapping<?> mapping = PatternCoreDiagramPlugin.getDefault().getSemanticMapping();
     EObject target = null;
     if(mapping instanceof ISiriusSemanticMapping){
       target = ((ISiriusSemanticMapping)mapping).getSemanticStorage(

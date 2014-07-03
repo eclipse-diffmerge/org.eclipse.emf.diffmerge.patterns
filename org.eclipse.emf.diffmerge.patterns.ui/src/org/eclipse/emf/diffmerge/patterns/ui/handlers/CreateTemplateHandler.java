@@ -24,7 +24,7 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Mohamed Sidati
  * @author Skander TURKI
  */
-public class CreateTemplateHandler<DiagramElementType, DiagramType> extends AbstractWorkbenchSelectionHandler {
+public class CreateTemplateHandler<DiagramElementType> extends AbstractWorkbenchSelectionHandler {
 
   /**
    * @see AbstractWorkbenchSelectionHandler#handleSelection(ISelection, IWorkbenchPart, ExecutionEvent)
@@ -37,7 +37,7 @@ public class CreateTemplateHandler<DiagramElementType, DiagramType> extends Abst
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractCreateTemplateAction<DiagramElementType, DiagramType> action = instantiateCreateTemplateAction();
+          AbstractCreateTemplateAction<DiagramElementType> action = instantiateCreateTemplateAction();
           if(action != null){
             action.setActivePart(null, part);
             action.selectionChanged(null, selection_p);
@@ -52,11 +52,11 @@ public class CreateTemplateHandler<DiagramElementType, DiagramType> extends Abst
   
   
   @SuppressWarnings("unchecked")
-  protected AbstractCreateTemplateAction<DiagramElementType, DiagramType> instantiateCreateTemplateAction(){
+  protected AbstractCreateTemplateAction<DiagramElementType> instantiateCreateTemplateAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
-        return (AbstractCreateTemplateAction<DiagramElementType, DiagramType>)factory.instantiateCreateTemplateAction();
+        return (AbstractCreateTemplateAction<DiagramElementType>)factory.instantiateCreateTemplateAction();
       } 
     }
     catch(Exception e){

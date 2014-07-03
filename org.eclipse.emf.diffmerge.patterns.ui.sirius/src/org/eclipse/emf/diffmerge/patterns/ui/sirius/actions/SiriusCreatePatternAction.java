@@ -24,7 +24,7 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  * @author Skander TURKI
  */
 public class SiriusCreatePatternAction 
-extends AbstractCreatePatternAction<DDiagramElement, DDiagram>{
+extends AbstractCreatePatternAction<DDiagramElement>{
 
 //Only specifies generic types
   

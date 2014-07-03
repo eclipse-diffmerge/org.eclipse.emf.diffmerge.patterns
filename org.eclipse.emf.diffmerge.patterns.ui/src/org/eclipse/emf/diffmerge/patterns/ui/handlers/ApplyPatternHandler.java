@@ -23,7 +23,7 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Mohamed Sidati
  * @author Skander TURKI
  */
-public class ApplyPatternHandler<DiagramElementType, DiagramType> 
+public class ApplyPatternHandler<DiagramElementType> 
 extends AbstractWorkbenchSelectionHandler {
 
 
@@ -40,7 +40,7 @@ extends AbstractWorkbenchSelectionHandler {
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractApplyPatternAction<DiagramElementType,DiagramType>
+          AbstractApplyPatternAction<DiagramElementType>
             action = instantiateApplyPatternAction();
           if(action != null){
             action.setActivePart(null, part);
@@ -57,12 +57,12 @@ extends AbstractWorkbenchSelectionHandler {
    * Instantiates an apply pattern action accordingly with the current environment
    */
   @SuppressWarnings("unchecked")
-  protected AbstractApplyPatternAction<DiagramElementType, DiagramType>
+  protected AbstractApplyPatternAction<DiagramElementType>
   instantiateApplyPatternAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
-        return (AbstractApplyPatternAction<DiagramElementType, DiagramType>)
+        return (AbstractApplyPatternAction<DiagramElementType>)
             factory.instantiateApplyPatternAction();
       } 
     }

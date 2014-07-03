@@ -31,13 +31,13 @@ import org.eclipse.swt.widgets.Shell;
  * @author Skander TURKI
  */
 public class SiriusHighlightAllPatternsInstancesPanelDialog 
-extends HighlightAllPatternsInstancesPanelDialog<DDiagram, DDiagramElement>{
+extends HighlightAllPatternsInstancesPanelDialog<DDiagramElement>{
 
   /**
    * Constructor
    */
   public SiriusHighlightAllPatternsInstancesPanelDialog(
-      Set<IPatternInstance> instances_p, DDiagram diagram_p,
+      Set<IPatternInstance> instances_p, Object diagram_p,
       Shell parentShell_p, String dialogTitle_p, String dialogMessage_p) {
     super(instances_p, diagram_p, parentShell_p, dialogTitle_p, dialogMessage_p);
   }

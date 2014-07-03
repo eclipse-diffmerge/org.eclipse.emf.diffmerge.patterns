@@ -21,7 +21,7 @@ import org.eclipse.sirius.diagram.DDiagramElement;
  * @author Skander TURKI
  */
 public class SiriusShowInInstanceExplorerViewAction 
-  extends AbstractShowInInstanceExplorerViewAction<DDiagramElement, DDiagram, SiriusInstanceExplorerView>{
+  extends AbstractShowInInstanceExplorerViewAction<DDiagramElement, SiriusInstanceExplorerView>{
 
   /**
    * 

@@ -27,13 +27,13 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  * @author Skander TURKI
  */
 public class SiriusPatternApplicationWizard 
-extends AbstractPatternApplicationWizard<DDiagramElement, DDiagram>{
+extends AbstractPatternApplicationWizard<DDiagramElement>{
 
 
   /**
    * Constructor
    */
-  public SiriusPatternApplicationWizard(List<? extends Object> sources_p, DDiagram diagram_p) {
+  public SiriusPatternApplicationWizard(List<? extends Object> sources_p, Object diagram_p) {
     super(sources_p, diagram_p);
   }
 

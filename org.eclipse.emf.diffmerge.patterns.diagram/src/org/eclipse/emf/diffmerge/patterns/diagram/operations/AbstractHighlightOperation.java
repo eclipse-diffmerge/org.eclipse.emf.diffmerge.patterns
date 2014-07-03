@@ -22,7 +22,7 @@ import org.eclipse.emf.diffmerge.patterns.diagram.Messages;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class AbstractHighlightOperation<DiagramType> extends AbstractGraphicalUpdateOperation<DiagramType>{
+public abstract class AbstractHighlightOperation extends AbstractGraphicalUpdateOperation{
 
   /** The name of the operation */
   private static final String NAME = Messages.HighlightOperation_Name;
@@ -52,7 +52,7 @@ public abstract class AbstractHighlightOperation<DiagramType> extends AbstractGr
    * @param coverNodes_p whether nodes must be highlighted
    * @param coverPorts_p whether ports must be highlighted
    */
-  public AbstractHighlightOperation(DiagramType diagram_p, IPatternInstance instance_p, RGB color_p, int borderSize_p, boolean coverEdges_p, boolean coverNodes_p,
+  public AbstractHighlightOperation(Object diagram_p, IPatternInstance instance_p, RGB color_p, int borderSize_p, boolean coverEdges_p, boolean coverNodes_p,
       boolean coverPorts_p) {
     this(diagram_p, Collections.singleton(instance_p), color_p, borderSize_p, coverEdges_p, coverNodes_p, coverPorts_p);
   }
@@ -68,7 +68,7 @@ public abstract class AbstractHighlightOperation<DiagramType> extends AbstractGr
    * @param coverPorts_p whether ports must be highlighted
    */
   @SuppressWarnings("boxing")
-  public AbstractHighlightOperation(DiagramType diagram_p, Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, boolean coverEdges_p,
+  public AbstractHighlightOperation(Object diagram_p, Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, boolean coverEdges_p,
       boolean coverNodes_p, boolean coverPorts_p) {
     _color = color_p;
     _coverEdges = coverEdges_p;

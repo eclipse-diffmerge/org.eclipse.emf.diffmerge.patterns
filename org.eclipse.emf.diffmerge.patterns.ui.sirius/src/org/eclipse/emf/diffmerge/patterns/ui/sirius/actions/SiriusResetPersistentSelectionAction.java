@@ -20,6 +20,6 @@ import org.eclipse.sirius.diagram.DDiagramElement;
  * @author Skander TURKI
  */
 public class SiriusResetPersistentSelectionAction 
-extends AbstractResetPersistentSelectionAction<DDiagramElement, DDiagram>{
+extends AbstractResetPersistentSelectionAction<DDiagramElement>{
 //Only specifies template types
 }

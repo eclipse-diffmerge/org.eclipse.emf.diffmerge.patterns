@@ -28,39 +28,39 @@ import org.eclipse.emf.diffmerge.patterns.ui.wizards.update.AbstractPatternUpdat
  * and allows the user to select one and perform actions on it.
  * @author Skander TURKI
  */
-public abstract class AbstractPatternPageFactory<DiagramElementType, DiagramType>
+public abstract class AbstractPatternPageFactory<DiagramElementType>
  {
   
-  public abstract AbstractTemplateUsagePresentationPage<DiagramElementType, DiagramType> 
+  public abstract AbstractTemplateUsagePresentationPage<DiagramElementType> 
   instantiateTemplateUsagePresentationPage(
       TemplateUsageSpecification data_p);
    
 
-  public abstract AbstractTemplateCreationPresentationPage<DiagramElementType, DiagramType> 
+  public abstract AbstractTemplateCreationPresentationPage<DiagramElementType> 
   instantiateTemplateCreationPresentationPage(
       TemplatePatternCreationSpecification data_p);
 
-  public abstract AbstractPatternUpdatePresentationPage<DiagramElementType, DiagramType> 
+  public abstract AbstractPatternUpdatePresentationPage<DiagramElementType> 
   instantiatePatternUpdatePresentationPage(
       AbstractModifiableTemplatePatternSpecification data_p);
   
-  public abstract AbstractPatternCreationPresentationPage<DiagramElementType, DiagramType> 
+  public abstract AbstractPatternCreationPresentationPage<DiagramElementType> 
   instantiatePatternCreationPresentationPage(
       TemplatePatternCreationSpecification data_p);
 
   
-  public abstract AbstractPatternBrowsingPresentationPage<DiagramElementType, DiagramType> 
+  public abstract AbstractPatternBrowsingPresentationPage<DiagramElementType> 
   instantiatePatternBrowsingPresentationPage(
       TemplatePatternBrowsingSpecification data_p);
 
 
-  public abstract AbstractPatternApplicationPresentationPage<DiagramElementType, DiagramType> 
+  public abstract AbstractPatternApplicationPresentationPage<DiagramElementType> 
   instantiatePatternApplicationPresentationPage(
       TemplatePatternApplicationSpecification data_p);
   
   
-  public abstract AbstractPatternApplicationAssociationPage<DiagramType> 
+  public abstract AbstractPatternApplicationAssociationPage 
   instantiatePatternApplicationAssociationPage(
-      TemplatePatternApplicationSpecification data_p, DiagramType diagram_p);
+      TemplatePatternApplicationSpecification data_p, Object diagram_p);
   
 }

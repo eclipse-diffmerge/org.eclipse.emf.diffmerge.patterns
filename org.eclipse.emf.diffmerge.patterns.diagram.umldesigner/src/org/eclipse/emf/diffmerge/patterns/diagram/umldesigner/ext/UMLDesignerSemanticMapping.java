@@ -42,17 +42,20 @@ public class UMLDesignerSemanticMapping extends DefaultSemanticMapping{
    * @see org.eclipse.emf.diffmerge.patterns.diagram.sirius.extensions.DefaultSemanticMapping#getSemanticStorage(fr.obeo.dsl.viewpoint.DSemanticDecorator)
    */
   @Override
-  public EObject getSemanticStorage(DSemanticDecorator decorator_p) {
+  public EObject getSemanticStorage(Object decorator_p) {
     // Semantic element by default
-    EObject result = super.getSemanticStorage(decorator_p);
+    if(decorator_p instanceof DSemanticDecorator){
+      EObject result = super.getSemanticStorage(decorator_p);
 
-    if (decorator_p instanceof DSemanticDiagram) {
-      DSemanticDiagram diagram = (DSemanticDiagram)decorator_p;
-      if (diagramTargetIsExplicitlyRepresented(diagram)) { 
-        result = result.eContainer();
+      if (decorator_p instanceof DSemanticDiagram) {
+        DSemanticDiagram diagram = (DSemanticDiagram)decorator_p;
+        if (diagramTargetIsExplicitlyRepresented(diagram)) { 
+          result = result.eContainer();
+        }
       }
+      return result; 
     }
-    return result;
+    return null;
   }
 
   /**
@@ -79,11 +82,9 @@ public class UMLDesignerSemanticMapping extends DefaultSemanticMapping{
    * @see org.eclipse.emf.diffmerge.patterns.diagram.sirius.extensions.DefaultSemanticMapping#getSemanticCandidatesForGraphicalStorage(org.eclipse.emf.ecore.EObject, org.eclipse.sirius.diagram.DDiagram)
    */
   @Override
-  public Collection<EObject> getSemanticCandidatesForGraphicalStorage(
-      EObject element_p, DDiagram diagram_p) {
+  public Collection<EObject> getSemanticCandidatesForGraphicalStorage(EObject element_p, Object diagram_p) {
     Collection<EObject> result =
         super.getSemanticCandidatesForGraphicalStorage(element_p, diagram_p);
-
     return result;
   }
 
@@ -92,7 +93,7 @@ public class UMLDesignerSemanticMapping extends DefaultSemanticMapping{
    * @see org.eclipse.emf.diffmerge.patterns.diagram.sirius.extensions.DefaultSemanticMapping#getSemanticSelection(org.eclipse.sirius.viewpoint.DSemanticDecorator)
    */
   @Override
-  public Collection<EObject> getSemanticSelection(DSemanticDecorator decorator_p) {
+  public Collection<EObject> getSemanticSelection(Object decorator_p) {
     Collection<EObject> result = new FOrderedSet<EObject>();
     result.addAll(super.getSemanticSelection(decorator_p));
     return result;
@@ -103,7 +104,7 @@ public class UMLDesignerSemanticMapping extends DefaultSemanticMapping{
    */
   @Override
   public boolean conformsToMapping(EObject semanticElt_p, AbstractNodeMapping mapping_p,
-      boolean considerPrecondition_p, boolean considerCandidates_p, DContainer containerView_p) {
+      boolean considerPrecondition_p, boolean considerCandidates_p, Object containerView_p) {
     if(semanticElt_p instanceof Association && mapping_p instanceof ContainerMappingSpec)
       return false;
     return SiriusUtil.conformsToMapping(

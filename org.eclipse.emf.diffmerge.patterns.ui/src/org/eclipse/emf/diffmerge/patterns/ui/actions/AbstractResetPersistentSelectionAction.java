@@ -24,8 +24,8 @@ import org.eclipse.ui.services.ISourceProviderService;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractResetPersistentSelectionAction<DiagramElementType, DiagramType> 
-  extends AbstractModelBasedAction<DiagramElementType, DiagramType> {
+public abstract class AbstractResetPersistentSelectionAction<DiagramElementType> 
+  extends AbstractModelBasedAction<DiagramElementType> {
 
 	/**
 	 * Constructor

@@ -19,12 +19,10 @@ import org.eclipse.emf.ecore.EObject;
  * A semantic mapping provides information about the relationship between diagrammatic
  * and semantic elements and their representation for a given modeling tool.
  * @author Olivier Constant
- * @param <ContainerType> Refers to the type of the graphical container of the mapping of the involved semantic elements
+ * @author Skander Turki
  * @param <MappingType> the type of the mapping to test again the involved semantic element
- * @param <DiagramType> The type of the diagram involved
- * @param <SemanticDecoratorType> The common super-type of the graphical nodes involved
  */
-public interface ISemanticMapping<ContainerType, MappingType, DiagramType, SemanticDecoratorType> {
+public interface ISemanticMapping<MappingType> {
   
   /**
    * Return whether the given element conforms to the given mapping's requirements.
@@ -41,7 +39,7 @@ public interface ISemanticMapping<ContainerType, MappingType, DiagramType, Seman
    */
   boolean conformsToMapping(EObject semanticElt_p, MappingType mapping_p,
       boolean considerPrecondition_p, boolean considerCandidates_p,
-      ContainerType containerView_p);
+      Object containerView_p);
     
  
   /**
@@ -50,7 +48,7 @@ public interface ISemanticMapping<ContainerType, MappingType, DiagramType, Seman
    * @param decorator_p a non-null semantic decorator
    * @return a non-null, non-empty, unmodifiable set
    */
-  Collection<EObject> getSemanticSelection(SemanticDecoratorType decorator_p);
+  Collection<EObject> getSemanticSelection(Object decorator_p);
   
   /**
    * Return the set of semantic elements whose representation might be a
@@ -60,7 +58,7 @@ public interface ISemanticMapping<ContainerType, MappingType, DiagramType, Seman
    * @return a non-null, potentially empty collection
    */
   Collection<EObject> getSemanticCandidatesForGraphicalStorage(
-      EObject element_p, DiagramType diagram_p);
+      EObject element_p, Object diagram_p);
   
   /**
    * Return the semantic element represented by the given semantic decorator when
@@ -71,7 +69,7 @@ public interface ISemanticMapping<ContainerType, MappingType, DiagramType, Seman
    * @param decorator_p a non-null semantic decorator
    * @return a non-null semantic element
    */
-  EObject getSemanticStorage(SemanticDecoratorType decorator_p);
+  EObject getSemanticStorage(Object decorator_p);
   
 
   
