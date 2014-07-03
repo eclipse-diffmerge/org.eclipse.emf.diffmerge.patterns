@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @author Olivier Constant
  * @author Skander Turki
  */
-public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider<Object>{
+public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider{
 
   /** List of all contributing rule providers */
   private List<ISemanticRuleProvider> _semanticRuleProviders;

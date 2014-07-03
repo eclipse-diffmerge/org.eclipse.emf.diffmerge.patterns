@@ -43,7 +43,7 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.NamingUtil;
  * @author Olivier Constant
  * @author S. TURKI
  */
-public abstract class ModellerSemanticRuleProvider<DiagramType> implements ISemanticRuleProvider<DiagramType> {
+public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvider {
 
 
   /**

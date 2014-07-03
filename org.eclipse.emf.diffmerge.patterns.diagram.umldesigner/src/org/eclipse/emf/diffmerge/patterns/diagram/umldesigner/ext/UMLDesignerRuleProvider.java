@@ -72,7 +72,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * A provider of business-specific UML Designer logics for consistently manipulating models.
  * @author Skander TURKI
  */
-public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider<DDiagram>{
+public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider{
 
   /** Saves storage by prompt locations when "Apply for all Similar Elements" is selected */
   Map<EClass, IReferenceLocation> _perTypeLocations;
@@ -716,7 +716,7 @@ public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider<DDiagr
   /**
    * Says if the given diagram is of a type that is automatically redrawn. 
    */
-  public boolean isAutomaticallyUpdatedDiagram(DDiagram diagram_p) {
+  public boolean isAutomaticallyUpdatedDiagram(Object diagram_p) {
     if(diagram_p instanceof SequenceDDiagram)
       return true;
     return false;

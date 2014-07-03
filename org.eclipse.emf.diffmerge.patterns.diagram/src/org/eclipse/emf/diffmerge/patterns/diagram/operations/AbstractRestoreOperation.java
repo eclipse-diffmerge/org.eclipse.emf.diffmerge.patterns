@@ -16,8 +16,6 @@ import org.eclipse.emf.diffmerge.patterns.diagram.Messages;
  * An abstract operation for restoring diagram elements based on specific criteria on semantic elements.
  * @author O. CONSTANT
  * @author S. TURKI
- *
- * @param <DiagramType>
  */
 public abstract class AbstractRestoreOperation 
 extends AbstractGraphicalUpdateOperation{
