@@ -28,13 +28,13 @@ import org.eclipse.jface.window.Window;
  * @author Skander TURKI
  */
 public abstract class AbstractCreateTemplateAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
-extends AbstractPersistentSelectionAction<DiagramElementType, DiagramType, GraphicalPartType> {
+SemanticRepresentationType, GraphicalNodeType>
+extends AbstractPersistentSelectionAction<DiagramElementType, DiagramType> {
 
   /** Dialog and Wizard factory */
   private IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-      GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+  SemanticRepresentationType, GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+      SemanticRepresentationType, GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
   /**
@@ -62,12 +62,12 @@ extends AbstractPersistentSelectionAction<DiagramElementType, DiagramType, Graph
   }
 
   protected AbstractTemplateCreationWizard<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
   instantiateTemplateCreationWizard(List<Object> selection_p){
     AbstractGenericTypeUtil genericTypeUtil = CorePatternsPlugin.getDefault().getGenericTypeUtil();
     if(genericTypeUtil != null && _factory != null){
       return _factory.instantiateTemplateCreationWizard(selection_p, 
-          (List<? extends GraphicalPartType>) getFilteredSelection(genericTypeUtil.getGraphicalPartTypeClass()));
+          (List<Object>) getFilteredSelection(genericTypeUtil.getGraphicalPartTypeClass()));
     }
     return null;
   }

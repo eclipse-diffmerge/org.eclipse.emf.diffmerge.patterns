@@ -30,8 +30,8 @@ import org.eclipse.jface.window.Window;
  * @author Skander TURKI
  */
 public abstract class AbstractApplyPatternAction<ColorType, DiagramElementType, 
-DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
-extends AbstractModelBasedAction<DiagramElementType, DiagramType, GraphicalPartType> {
+DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
+extends AbstractModelBasedAction<DiagramElementType, DiagramType> {
   
 	/**
 	 * Constructor
@@ -62,12 +62,12 @@ extends AbstractModelBasedAction<DiagramElementType, DiagramType, GraphicalPartT
 	 * @return a non-null AbstractPatternApplicationWizard
 	 */
 	protected AbstractPatternApplicationWizard<ColorType, DiagramElementType, 
-	DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+	DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
 	instantiatePatternApplicationWizard(List<Object> selection_p){
-	  AbstractDiagramUtil<DiagramElementType, DiagramType, GraphicalPartType> diagramUtil = (AbstractDiagramUtil<DiagramElementType, DiagramType, GraphicalPartType>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
+	  AbstractDiagramUtil<DiagramElementType, DiagramType> diagramUtil = (AbstractDiagramUtil<DiagramElementType, DiagramType>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
 	  IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-	  GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-	      GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+	  SemanticRepresentationType, GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+	      SemanticRepresentationType, GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 	  if(diagramUtil != null && _factory != null){
       return _factory.instantiatePatternApplicationWizard(selection_p, diagramUtil.getDiagramFromSelection(getSelection()));
     }

@@ -41,7 +41,7 @@ import org.eclipse.ui.PlatformUI;
  * All pages must be of type AbstractPatternPage.
  * @author O. CONSTANT
  */
-public abstract class AbstractPatternWizard<T extends ITemplatePatternBasedSpecification, GraphicalPartType>
+public abstract class AbstractPatternWizard<T extends ITemplatePatternBasedSpecification>
 extends Wizard {
   
   /** The specification being constructed by this wizard */
@@ -54,7 +54,7 @@ extends Wizard {
   private boolean _isDisposed;
   
   /** A non-null, potentially empty, unmodifiable list of GEF elements */
-  private final List<? extends GraphicalPartType> _graphicalContext;
+  private final List<Object> _graphicalContext;
   
   /** A potentially null image for the pattern */
   private Image _image;
@@ -77,7 +77,7 @@ extends Wizard {
 	 * @param data_p a non-null initial specification
 	 */
 	public AbstractPatternWizard(T data_p) {
-	  this(data_p, Collections.<GraphicalPartType>emptyList(), true);
+	  this(data_p, Collections.emptyList(), true);
 	  _modifiedRepositoryRegistry = false;
 	}
 	
@@ -88,7 +88,7 @@ extends Wizard {
    * @param generatePatternImage_p whether pattern images must be automatically computed
    */
   public AbstractPatternWizard(T data_p,
-      List<? extends GraphicalPartType> graphicalContext_p,
+      List<Object> graphicalContext_p,
       boolean generatePatternImage_p) {
     super();
     _data = data_p;
@@ -222,7 +222,7 @@ extends Wizard {
 	 * Return the GEF elements which define the graphical context of the wizard, if any
 	 * @return a non-null, potentially empty, unmodifiable list
 	 */
-	protected List<GraphicalPartType> getGraphicalContext() {
+	protected List<Object> getGraphicalContext() {
 	  return Collections.unmodifiableList(_graphicalContext);
 	}
 	
@@ -367,7 +367,7 @@ extends Wizard {
    * @param updatePattern_p
    * @return
    */
-  protected abstract Job instantiatePatternImageBuilderJob(AbstractPatternWizard<T, GraphicalPartType> wizard_p,  List<? extends GraphicalPartType> context_p, boolean updatePattern_p);
+  protected abstract Job instantiatePatternImageBuilderJob(AbstractPatternWizard<T> wizard_p,  List<Object> context_p, boolean updatePattern_p);
   
   /**
    * Instantiates a Job
@@ -376,7 +376,7 @@ extends Wizard {
    * @param updatePattern_p
    * @return
    */
-  protected abstract Job instantiatePatternImageBuilderJob(AbstractPatternWizard<T, GraphicalPartType> wizard_p,  String imageSpecification_p, boolean updatePattern_p);
+  protected abstract Job instantiatePatternImageBuilderJob(AbstractPatternWizard<T> wizard_p,  String imageSpecification_p, boolean updatePattern_p);
 
  
 }

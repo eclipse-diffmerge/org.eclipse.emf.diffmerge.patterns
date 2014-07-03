@@ -38,8 +38,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @author Skander TURKI
  */
 public abstract class AbstractPatternUpdateWizard<ColorType, DiagramElementType, 
-DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
-extends AbstractPatternWizard<TemplatePatternUpdateSpecification, GraphicalPartType> {
+DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
+extends AbstractPatternWizard<TemplatePatternUpdateSpecification> {
 
   /**
    * Constructor
@@ -48,7 +48,7 @@ extends AbstractPatternWizard<TemplatePatternUpdateSpecification, GraphicalPartT
    * @param graphicalContext_p a non-null, potentially empty list of GEF elements
    */
   public AbstractPatternUpdateWizard(IPatternInstance instance_p, EObject referenceElement_p,
-      List<? extends GraphicalPartType> graphicalContext_p, List<EStructuralFeature> featuresToIgnore_p) {
+      List<Object> graphicalContext_p, List<EStructuralFeature> featuresToIgnore_p) {
     super(new TemplatePatternUpdateSpecification(
         instance_p, referenceElement_p, featuresToIgnore_p), graphicalContext_p, true);
   }
@@ -80,9 +80,9 @@ extends AbstractPatternWizard<TemplatePatternUpdateSpecification, GraphicalPartT
   protected boolean doPerformFinish() {
     boolean result = false;
 
-    IPatternOperationFactory<?, ?, ?, ?, ?, ?> factory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<?, ?, ?, ?, ?> factory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
-      AbstractPatternWithLayoutOperation<?, ?> operation = factory.instantiateUpdatePatternInCatalogOperation(getData(), (List)getGraphicalContext());
+      AbstractPatternWithLayoutOperation<?> operation = factory.instantiateUpdatePatternInCatalogOperation(getData(), (List)getGraphicalContext());
       Object returned = CorePatternsPlugin.getDefault().getModelEnvironment().execute(
           operation);
       result = returned != null;
@@ -111,10 +111,10 @@ extends AbstractPatternWizard<TemplatePatternUpdateSpecification, GraphicalPartT
    */
   @SuppressWarnings("unchecked")
   @Override
-  protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternUpdateSpecification, GraphicalPartType> wizard_p,  
-      List<? extends GraphicalPartType> context_p, boolean updatePattern_p){
-    IPatternJobFactory<GraphicalPartType> factory = 
-        (IPatternJobFactory<GraphicalPartType>) PatternsUIPlugin.getDefault().getJobFactory();
+  protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternUpdateSpecification> wizard_p,  
+      List<Object> context_p, boolean updatePattern_p){
+    IPatternJobFactory factory = 
+        (IPatternJobFactory) PatternsUIPlugin.getDefault().getJobFactory();
     if(factory != null){
       return factory.instantiatePatternImageBuilderJob(wizard_p, context_p, updatePattern_p);
     }
@@ -127,10 +127,10 @@ extends AbstractPatternWizard<TemplatePatternUpdateSpecification, GraphicalPartT
    */
   @SuppressWarnings("unchecked")
   @Override
-  protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternUpdateSpecification, GraphicalPartType> wizard_p,  
+  protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternUpdateSpecification> wizard_p,  
       String imageSpecification_p, boolean updatePattern_p){
-    IPatternJobFactory<GraphicalPartType> factory = 
-        (IPatternJobFactory<GraphicalPartType>) PatternsUIPlugin.getDefault().getJobFactory();
+    IPatternJobFactory factory = 
+        (IPatternJobFactory) PatternsUIPlugin.getDefault().getJobFactory();
     if(factory != null){
       return factory.instantiatePatternImageBuilderJob(wizard_p, imageSpecification_p, updatePattern_p);
     }

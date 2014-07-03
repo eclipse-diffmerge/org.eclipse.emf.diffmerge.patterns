@@ -34,15 +34,15 @@ import org.eclipse.swt.graphics.RGB;
  * The design environment (unique in the platform) must provide his own factory
  * @author Skander TURKI
  */
-public interface IPatternOperationFactory<GraphicalPartType, GraphicalNodeType, DiagramElementType, DiagramType, DiagramContainer, SemanticRepresentationType> {
+public interface IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, DiagramContainer, SemanticRepresentationType> {
 
 
   /**
    * Instantiates an operation that is responsible for creating a pattern and an instance.
    * @return a non-null AbstractPatternWithLayoutOperation  (must be a concrete CreatePatternAndInstanceOperation)
    */
-  AbstractPatternWithLayoutOperation<?, GraphicalPartType> instantiateCreatePatternAndInstanceOperation(
-      TemplatePatternCreationSpecification data_p, List<GraphicalPartType> modelContext_p, Object patternSideContext_p);
+  AbstractPatternWithLayoutOperation<?> instantiateCreatePatternAndInstanceOperation(
+      TemplatePatternCreationSpecification data_p, List<Object> modelContext_p, Object patternSideContext_p);
 
   /**
    * Instantiates an operation that is responsible of representing a given set of semantic elements in a given diagram.
@@ -131,8 +131,8 @@ public interface IPatternOperationFactory<GraphicalPartType, GraphicalNodeType, 
    * Instantiates an operation that is responsible for updating a pattern and an instance.
    * @return a non-null AbstractPatternWithLayoutOperation (must be a concrete UpdatePatternInCatalogOperation)
    */
-  AbstractPatternWithLayoutOperation<?, GraphicalPartType> 
+  AbstractPatternWithLayoutOperation<?> 
   instantiateUpdatePatternInCatalogOperation(
-      TemplatePatternUpdateSpecification data_p, List<GraphicalPartType> context_p);
+      TemplatePatternUpdateSpecification data_p, List<Object> context_p);
 
 }

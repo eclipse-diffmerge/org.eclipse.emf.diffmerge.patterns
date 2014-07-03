@@ -33,7 +33,7 @@ import org.eclipse.swt.widgets.Shell;
  * @author Skander TURKI
  */
 public class SiriusHighlightAllPatternsInstancesAction 
-extends AbstractHighlightAllPatternsInstancesAction<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, 
+extends AbstractHighlightAllPatternsInstancesAction<RGBValues, DDiagramElement, DDiagram, DContainer, 
 DSemanticDecorator, AbstractDNode>{
 
   /**
@@ -50,7 +50,7 @@ DSemanticDecorator, AbstractDNode>{
    */
   @Override
   protected DDiagram getDiagramFromSelection(IStructuredSelection selection_p) {
-    AbstractDiagramUtil<DDiagramElement, DDiagram, IGraphicalEditPart> diagramUtil = (AbstractDiagramUtil<DDiagramElement, DDiagram, IGraphicalEditPart>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
+    AbstractDiagramUtil<DDiagramElement, DDiagram> diagramUtil = (AbstractDiagramUtil<DDiagramElement, DDiagram>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     if(diagramUtil != null){
       return diagramUtil.getDiagramFromSelection(selection_p);
     }

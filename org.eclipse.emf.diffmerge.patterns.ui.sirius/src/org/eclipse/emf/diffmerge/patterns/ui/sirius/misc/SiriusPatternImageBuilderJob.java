@@ -30,22 +30,22 @@ import org.eclipse.sirius.diagram.DDiagramElement;
  * @author Skander TURKI
  */
 public class SiriusPatternImageBuilderJob<T extends ITemplatePatternBasedSpecification> 
-extends AbstractPatternImageBuilderJob<IGraphicalEditPart>{
+extends AbstractPatternImageBuilderJob{
 
-  public SiriusPatternImageBuilderJob(AbstractPatternWizard<T, IGraphicalEditPart> wizard_p,
+  public SiriusPatternImageBuilderJob(AbstractPatternWizard<T> wizard_p,
       String imageSpecification_p, boolean updatePattern_p) {
     super(wizard_p, imageSpecification_p, updatePattern_p);
   }
 
-  public SiriusPatternImageBuilderJob(AbstractPatternWizard<T, IGraphicalEditPart> wizard_p,
-      List<? extends IGraphicalEditPart> graphicalContext_p, boolean updatePattern_p) {
+  public SiriusPatternImageBuilderJob(AbstractPatternWizard<T> wizard_p,
+      List<Object> graphicalContext_p, boolean updatePattern_p) {
     super(wizard_p, graphicalContext_p, updatePattern_p);
   }
 
   @Override
-  protected String exportToSVG(List<? extends IGraphicalEditPart> graphicalContext_p) {
-    AbstractDiagramUtil<DDiagramElement, DDiagram, IGraphicalEditPart> diagramUtil = 
-        (AbstractDiagramUtil<DDiagramElement, DDiagram, IGraphicalEditPart>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
+  protected String exportToSVG(List<Object> graphicalContext_p) {
+    AbstractDiagramUtil<DDiagramElement, DDiagram> diagramUtil = 
+        (AbstractDiagramUtil<DDiagramElement, DDiagram>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     if(diagramUtil != null){
       return diagramUtil.exportToSVG(graphicalContext_p);
     }

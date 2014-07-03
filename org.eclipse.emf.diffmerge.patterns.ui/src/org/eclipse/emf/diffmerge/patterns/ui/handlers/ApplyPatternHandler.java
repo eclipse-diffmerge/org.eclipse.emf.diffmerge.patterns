@@ -24,7 +24,7 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Skander TURKI
  */
 public class ApplyPatternHandler<ColorType, DiagramElementType, 
-DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> 
+DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType> 
 extends AbstractWorkbenchSelectionHandler {
 
 
@@ -42,7 +42,7 @@ extends AbstractWorkbenchSelectionHandler {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
           AbstractApplyPatternAction<ColorType, DiagramElementType, 
-          DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+          DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
           action = instantiateApplyPatternAction();
           if(action != null){
             action.setActivePart(null, part);
@@ -60,13 +60,13 @@ extends AbstractWorkbenchSelectionHandler {
    */
   @SuppressWarnings("unchecked")
   protected AbstractApplyPatternAction<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
   instantiateApplyPatternAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
         return (AbstractApplyPatternAction<ColorType, DiagramElementType, 
-            DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>)
+            DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>)
             factory.instantiateApplyPatternAction();
       } 
     }

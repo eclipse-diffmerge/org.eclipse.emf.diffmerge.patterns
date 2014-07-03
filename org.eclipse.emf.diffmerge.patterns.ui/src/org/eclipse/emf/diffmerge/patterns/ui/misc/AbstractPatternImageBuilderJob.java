@@ -29,17 +29,17 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Templat
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class AbstractPatternImageBuilderJob<GraphicalPartType> extends Job  {
+public abstract class AbstractPatternImageBuilderJob extends Job  {
 
 
     /** The name of the job */
     private static final String NAME = Messages.AbstractPatternWizard_ComputationJobName;
     /** A non-null wizard */
-    private final AbstractPatternWizard<?, GraphicalPartType> _wizard;
+    private final AbstractPatternWizard<?> _wizard;
     /** The non-null pattern the image is built for */
     private final TemplatePattern _pattern;
     /** A potentially null, unmodifiable list of GEF elements */
-    private final List<? extends GraphicalPartType> _graphicalContext;
+    private final List<Object> _graphicalContext;
     /** A potentially null image specification */
     private String _imageSpecifiation;
     /** Whether the pattern must be updated with the new image in the end */
@@ -50,8 +50,8 @@ public abstract class AbstractPatternImageBuilderJob<GraphicalPartType> extends 
      * @param graphicalContext_p a potentially null list of contextual GEF elements
      * @param updatePattern_p whether the pattern must be updated with the new image
      */
-    public AbstractPatternImageBuilderJob(AbstractPatternWizard<?, GraphicalPartType> wizard_p,
-        List<? extends GraphicalPartType> graphicalContext_p, boolean updatePattern_p) {
+    public AbstractPatternImageBuilderJob(AbstractPatternWizard<?> wizard_p,
+        List<Object> graphicalContext_p, boolean updatePattern_p) {
       super(NAME);
       _wizard = wizard_p;
       _graphicalContext = Collections.unmodifiableList(graphicalContext_p);
@@ -65,7 +65,7 @@ public abstract class AbstractPatternImageBuilderJob<GraphicalPartType> extends 
      * @param imageSpecification_p a potentially null image specification
      * @param updatePattern_p whether the pattern must be updated with the new image
      */
-    public AbstractPatternImageBuilderJob(AbstractPatternWizard<?, GraphicalPartType> wizard_p,
+    public AbstractPatternImageBuilderJob(AbstractPatternWizard<?> wizard_p,
         String imageSpecification_p, boolean updatePattern_p) {
       super(NAME);
       _wizard = wizard_p;
@@ -95,6 +95,6 @@ public abstract class AbstractPatternImageBuilderJob<GraphicalPartType> extends 
      * @param _graphicalContext2
      * @return
      */
-    protected abstract String exportToSVG(List<? extends GraphicalPartType> graphicalContext_p) ;
+    protected abstract String exportToSVG(List<Object> graphicalContext_p) ;
   
 }

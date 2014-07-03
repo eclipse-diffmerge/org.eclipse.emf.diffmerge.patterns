@@ -27,10 +27,10 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  * @author Skander TURKI
  */
 public class SiriusTemplateCreationWizard 
-extends AbstractTemplateCreationWizard<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, DSemanticDecorator, AbstractDNode>{
+extends AbstractTemplateCreationWizard<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode>{
 
   public SiriusTemplateCreationWizard(List<? extends Object> sources_p,
-      List<? extends IGraphicalEditPart> graphicalContext_p) {
+      List<Object> graphicalContext_p) {
     super(sources_p, graphicalContext_p);
   }
 

@@ -31,8 +31,8 @@ import org.eclipse.emf.diffmerge.patterns.ui.wizards.CompositeWizardPage;
  * @author Skander TURKI
  */
 public abstract class AbstractPatternBrowsingWizard<ColorType, DiagramElementType, 
-DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> extends
-AbstractPatternWizard<TemplatePatternBrowsingSpecification, GraphicalPartType> {
+DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType> extends
+AbstractPatternWizard<TemplatePatternBrowsingSpecification> {
 
   /**
    * Constructor
@@ -63,9 +63,9 @@ AbstractPatternWizard<TemplatePatternBrowsingSpecification, GraphicalPartType> {
   }
 
   protected AbstractPatternBrowsingPresentationPage<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> 
+  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType> 
   instantiatePatternBrowsingPresentationPage(TemplatePatternBrowsingSpecification data_p){
-    AbstractPatternPageFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+    AbstractPatternPageFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
     factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiatePatternBrowsingPresentationPage(data_p);
@@ -83,10 +83,10 @@ AbstractPatternWizard<TemplatePatternBrowsingSpecification, GraphicalPartType> {
 
   @SuppressWarnings("unchecked")
   @Override
-  protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternBrowsingSpecification, GraphicalPartType> wizard_p,  
-      List<? extends GraphicalPartType> context_p, boolean updatePattern_p){
-    IPatternJobFactory<GraphicalPartType> factory = 
-        (IPatternJobFactory<GraphicalPartType>) PatternsUIPlugin.getDefault().getJobFactory();
+  protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternBrowsingSpecification> wizard_p,  
+      List<Object> context_p, boolean updatePattern_p){
+    IPatternJobFactory factory = 
+        (IPatternJobFactory) PatternsUIPlugin.getDefault().getJobFactory();
     if(factory != null){
       return factory.instantiatePatternImageBuilderJob(wizard_p, context_p, updatePattern_p);
     }
@@ -95,10 +95,10 @@ AbstractPatternWizard<TemplatePatternBrowsingSpecification, GraphicalPartType> {
 
   @SuppressWarnings("unchecked")
   @Override
-  protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternBrowsingSpecification, GraphicalPartType> wizard_p,  
+  protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternBrowsingSpecification> wizard_p,  
       String imageSpecification_p, boolean updatePattern_p){
-    IPatternJobFactory<GraphicalPartType> factory = 
-        (IPatternJobFactory<GraphicalPartType>) PatternsUIPlugin.getDefault().getJobFactory();
+    IPatternJobFactory factory = 
+        (IPatternJobFactory) PatternsUIPlugin.getDefault().getJobFactory();
     if(factory != null){
       return factory.instantiatePatternImageBuilderJob(wizard_p, imageSpecification_p, updatePattern_p);
     }

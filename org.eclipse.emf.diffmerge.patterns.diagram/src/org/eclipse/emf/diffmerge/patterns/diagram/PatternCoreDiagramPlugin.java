@@ -28,7 +28,7 @@ public class PatternCoreDiagramPlugin implements BundleActivator {
   public static final String PLUGIN_ID = "org.eclipse.emf.diffmerge.patterns.diagram"; //$NON-NLS-1$
 	
   /** The current diagram utility class (may not be null) */
-  private AbstractDiagramUtil<?, ?, ?> _diagramUtil;
+  private AbstractDiagramUtil<?, ?> _diagramUtil;
 
   /** IDs related to the diagram utility extension point */
   private static final String DIAGRAM_UTIL_EXTENSION_POINT =
@@ -47,7 +47,7 @@ public class PatternCoreDiagramPlugin implements BundleActivator {
   
 
   /** The current Operation Factory (may not be null) */
-  private IPatternOperationFactory<?, ?, ?, ?, ?, ?> _patternOperationFactory;
+  private IPatternOperationFactory<?, ?, ?, ?, ?> _patternOperationFactory;
 
   /** IDs related to the Operation Factory extension point */
   private static final String OPERATION_FACTORY_EXTENSION_POINT =
@@ -95,10 +95,10 @@ public class PatternCoreDiagramPlugin implements BundleActivator {
    * Return the diagram utility class registered in the platform
    * @return a non-null AbstractDiagramUtil
    */
-  public AbstractDiagramUtil<?, ?, ?> getDiagramUtilityClass() {
+  public AbstractDiagramUtil<?, ?> getDiagramUtilityClass() {
     if(_diagramUtil == null){
-      SingletonContributionDiscoverer<AbstractDiagramUtil<?, ?, ?>> d = 
-          new SingletonContributionDiscoverer<AbstractDiagramUtil<?, ?, ?>>(AbstractDiagramUtil.class,
+      SingletonContributionDiscoverer<AbstractDiagramUtil<?, ?>> d = 
+          new SingletonContributionDiscoverer<AbstractDiagramUtil<?, ?>>(AbstractDiagramUtil.class,
               DIAGRAM_UTIL_EXTENSION_POINT, DIAGRAM_UTIL_POINT_PROPERTY); 
       _diagramUtil = d.getContributedSingleton();
     }
@@ -124,10 +124,10 @@ public class PatternCoreDiagramPlugin implements BundleActivator {
    * Return the Operation Factory registered in the platform
    * @return a non-null IPatternOperationFactory
    */
-  public IPatternOperationFactory<?, ?, ?, ?, ?, ?> getOperationFactory() {
+  public IPatternOperationFactory<?, ?, ?, ?, ?> getOperationFactory() {
     if(_patternOperationFactory == null){
-      SingletonContributionDiscoverer<IPatternOperationFactory<?, ?, ?, ?, ?, ?>> d = 
-          new SingletonContributionDiscoverer<IPatternOperationFactory<?, ?, ?, ?, ?, ?>>(IPatternOperationFactory.class,
+      SingletonContributionDiscoverer<IPatternOperationFactory<?, ?, ?, ?, ?>> d = 
+          new SingletonContributionDiscoverer<IPatternOperationFactory<?, ?, ?, ?, ?>>(IPatternOperationFactory.class,
               OPERATION_FACTORY_EXTENSION_POINT, OPERATION_FACTORY_POINT_PROPERTY); 
       _patternOperationFactory = d.getContributedSingleton();
     }

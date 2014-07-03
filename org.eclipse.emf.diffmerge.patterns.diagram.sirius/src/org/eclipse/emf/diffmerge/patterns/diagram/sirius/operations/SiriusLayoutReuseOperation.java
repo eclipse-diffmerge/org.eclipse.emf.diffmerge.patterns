@@ -65,7 +65,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
   private InnerLayoutReuseOperation _innerLayoutReuseOperation;
 
   /** A diagramUtility class */
-  protected AbstractDiagramUtil<DDiagramElement, DDiagram, IGraphicalEditPart> _diagramUtil;
+  protected AbstractDiagramUtil<DDiagramElement, DDiagram> _diagramUtil;
 
   /** The roots diagram elements */
   protected Collection<DDiagramElement> _roots;
@@ -85,7 +85,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
     _innerGraphicalOperation = new InnerLayoutReuseOperation(instance_p, updateLayout_p, updateStyle_p);
     _innerLayoutReuseOperation = (InnerLayoutReuseOperation) _innerGraphicalOperation;
     _diagramUtil = 
-        (AbstractDiagramUtil<DDiagramElement, DDiagram, IGraphicalEditPart>) 
+        (AbstractDiagramUtil<DDiagramElement, DDiagram>) 
         PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     setVector(vx_p, vy_p);
   }
@@ -107,7 +107,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
     _innerGraphicalOperation = new InnerLayoutReuseOperation(instance_p, updateLayout_p, updateStyle_p);
     _innerLayoutReuseOperation = (InnerLayoutReuseOperation) _innerGraphicalOperation;
     _diagramUtil = 
-        (AbstractDiagramUtil<DDiagramElement, DDiagram, IGraphicalEditPart>) 
+        (AbstractDiagramUtil<DDiagramElement, DDiagram>) 
         PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     setVector(vx_p, vy_p);
   }

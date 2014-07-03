@@ -47,7 +47,7 @@ import org.eclipse.swt.widgets.Display;
  * @author Olivier Constant
  * @author Skander TURKI
  */
-public class SiriusDiagramUtil extends AbstractDiagramUtil<DDiagramElement, DDiagram, IGraphicalEditPart>{
+public class SiriusDiagramUtil extends AbstractDiagramUtil<DDiagramElement, DDiagram>{
 
   /**
    * 
@@ -142,38 +142,42 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil<DDiagramElement, DDia
    * @return a potentially null string
    */
   @Override
-  public String exportToSVG(final List<? extends IGraphicalEditPart> gefElements_p) {
+  public String exportToSVG(final List<Object> gefElements_p) {
     String result = null;
     if (!gefElements_p.isEmpty()) {
-      DiagramEditPart diagramEditPart = getDiagramEditPart(gefElements_p.get(0));
-      final DiagramSVGGenerator gen = new DiagramSVGGenerator(diagramEditPart);
-      if (gefElements_p.contains(diagramEditPart)) {
-        Display.getDefault().syncExec(new Runnable() {
-          /**
-           * @see java.lang.Runnable#run()
-           */
-          public void run() {
-            gen.createSWTImageDescriptorForDiagram();
-          }
-        });
-      } else {
-        Display.getDefault().syncExec(new Runnable() {
-          /**
-           * @see java.lang.Runnable#run()
-           */
-          public void run() {
-            gen.createSWTImageDescriptorForParts(gefElements_p);
-          }
-        });
+      Object obj = gefElements_p.get(0);
+      if(obj instanceof IGraphicalEditPart){
+        DiagramEditPart diagramEditPart = getDiagramEditPart((IGraphicalEditPart)obj);
+        final DiagramSVGGenerator gen = new DiagramSVGGenerator(diagramEditPart);
+        if (gefElements_p.contains(diagramEditPart)) {
+          Display.getDefault().syncExec(new Runnable() {
+            /**
+             * @see java.lang.Runnable#run()
+             */
+            public void run() {
+              gen.createSWTImageDescriptorForDiagram();
+            }
+          });
+        } else {
+          Display.getDefault().syncExec(new Runnable() {
+            /**
+             * @see java.lang.Runnable#run()
+             */
+            public void run() {
+              gen.createSWTImageDescriptorForParts(gefElements_p);
+            }
+          });
+        }
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        try {
+          gen.stream(outStream);
+          outStream.close();
+          result = outStream.toString("UTF-8"); //$NON-NLS-1$
+        } catch (Exception e) {
+          // Failure: return null
+        }
       }
-      ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-      try {
-        gen.stream(outStream);
-        outStream.close();
-        result = outStream.toString("UTF-8"); //$NON-NLS-1$
-      } catch (Exception e) {
-        // Failure: return null
-      }
+
     }
     return result;
   }

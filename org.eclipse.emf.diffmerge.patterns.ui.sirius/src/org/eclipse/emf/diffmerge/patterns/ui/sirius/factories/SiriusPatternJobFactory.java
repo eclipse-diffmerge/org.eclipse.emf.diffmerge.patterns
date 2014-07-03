@@ -29,18 +29,18 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.ITempl
  * TemplatePatternUpdateSpecification
  * TemplateUsageSpecification
  */
-public class SiriusPatternJobFactory implements IPatternJobFactory<IGraphicalEditPart>{
+public class SiriusPatternJobFactory implements IPatternJobFactory{
 
   public <TemplateSpecificationType extends ITemplatePatternBasedSpecification> Job 
   instantiatePatternImageBuilderJob(
-      AbstractPatternWizard<TemplateSpecificationType, IGraphicalEditPart> wizard_p,
-      List<? extends IGraphicalEditPart> context_p, boolean updatePattern_p) {
+      AbstractPatternWizard<TemplateSpecificationType> wizard_p,
+      List<Object> context_p, boolean updatePattern_p) {
     return new SiriusPatternImageBuilderJob<TemplateSpecificationType>(wizard_p, context_p, updatePattern_p);
   }
 
   public <TemplateSpecificationType extends ITemplatePatternBasedSpecification> Job 
   instantiatePatternImageBuilderJob(
-      AbstractPatternWizard<TemplateSpecificationType, IGraphicalEditPart> wizard_p,
+      AbstractPatternWizard<TemplateSpecificationType> wizard_p,
       String imageSpecification_p, boolean updatePattern_p) {
     return new SiriusPatternImageBuilderJob<TemplateSpecificationType>(wizard_p, imageSpecification_p, updatePattern_p);
   }  

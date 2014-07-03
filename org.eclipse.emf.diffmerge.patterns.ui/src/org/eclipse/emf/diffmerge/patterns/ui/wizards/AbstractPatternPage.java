@@ -150,8 +150,8 @@ extends WizardPage {
    */
   @Override
   @SuppressWarnings("unchecked")
-  public AbstractPatternWizard<T, ?> getWizard() {
-    return (AbstractPatternWizard<T, ?>)super.getWizard();
+  public AbstractPatternWizard<T> getWizard() {
+    return (AbstractPatternWizard<T>)super.getWizard();
   }
   
   /**

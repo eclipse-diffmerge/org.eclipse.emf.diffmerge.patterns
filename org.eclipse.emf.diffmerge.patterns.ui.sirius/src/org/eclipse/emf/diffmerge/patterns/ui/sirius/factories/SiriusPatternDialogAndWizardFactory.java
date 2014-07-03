@@ -54,7 +54,7 @@ import org.eclipse.swt.widgets.Shell;
  *
  */
 public class SiriusPatternDialogAndWizardFactory 
-implements IPatternDialogAndWizardFactory<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, 
+implements IPatternDialogAndWizardFactory<RGBValues, DDiagramElement, DDiagram, DContainer, 
 DSemanticDecorator, AbstractDNode>{
 
   /**
@@ -70,10 +70,9 @@ DSemanticDecorator, AbstractDNode>{
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiateInstancePanelDialog(java.util.List, org.eclipse.emf.ecore.EObject, java.lang.Object, java.util.List, org.eclipse.swt.widgets.Shell)
    */
-  public InstancePanelDialog<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, 
-  DSemanticDecorator, AbstractDNode> 
+  public InstancePanelDialog<RGBValues, DDiagramElement, DDiagram, DContainer,DSemanticDecorator, AbstractDNode> 
   instantiateInstancePanelDialog(List<IPatternInstance> instances_p, EObject referenceElement_p, 
-      DDiagram diagram_p, List<? extends IGraphicalEditPart> graphicalContext_p, Shell shell_p) {
+      DDiagram diagram_p, List<Object> graphicalContext_p, Shell shell_p) {
     return new SiriusInstancePanelDialog(shell_p, referenceElement_p, instances_p, 
         diagram_p, graphicalContext_p);
   }
@@ -81,7 +80,7 @@ DSemanticDecorator, AbstractDNode>{
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternBrowsingWizard(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern)
    */
-  public AbstractPatternBrowsingWizard<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, DSemanticDecorator, AbstractDNode>
+  public AbstractPatternBrowsingWizard<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode>
   instantiatePatternBrowsingWizard(
       EObject context_p, TemplatePattern pattern_p) {
     return new SiriusPatternBrowsingWizard(context_p, pattern_p) ;
@@ -90,7 +89,7 @@ DSemanticDecorator, AbstractDNode>{
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternBrowsingWizard(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository)
    */
-  public AbstractPatternBrowsingWizard<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, DSemanticDecorator, AbstractDNode>
+  public AbstractPatternBrowsingWizard<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode>
   instantiatePatternBrowsingWizard(
       EObject context_p, IPatternRepository repository_p) {
     return new SiriusPatternBrowsingWizard(context_p, repository_p) ;
@@ -99,7 +98,7 @@ DSemanticDecorator, AbstractDNode>{
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternBrowsingWizard(java.lang.Object, org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository)
    */
-  public AbstractPatternBrowsingWizard<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, DSemanticDecorator, AbstractDNode>
+  public AbstractPatternBrowsingWizard<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode>
   instantiatePatternBrowsingWizard(
       Object context_p, IPatternRepository repository_p) {
     return new SiriusPatternBrowsingWizard(context_p, repository_p);
@@ -108,16 +107,16 @@ DSemanticDecorator, AbstractDNode>{
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiateTemplateCreationWizard(java.util.List, java.util.List)
    */
-  public AbstractTemplateCreationWizard<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, DSemanticDecorator, AbstractDNode>
+  public AbstractTemplateCreationWizard<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode>
   instantiateTemplateCreationWizard(
-      List<Object> selection_p, List<? extends IGraphicalEditPart> graphicalContext_p) {
+      List<Object> selection_p, List<Object> graphicalContext_p) {
     return new SiriusTemplateCreationWizard(selection_p, graphicalContext_p);
   }
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternBrowsingWizard(org.eclipse.emf.ecore.resource.ResourceSet, org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository)
    */
-  public AbstractPatternBrowsingWizard<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, DSemanticDecorator, AbstractDNode>
+  public AbstractPatternBrowsingWizard<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode>
   instantiatePatternBrowsingWizard(
       ResourceSet rset_p, IPatternRepository repository_p) {
     return new SiriusPatternBrowsingWizard(rset_p, repository_p);
@@ -126,10 +125,10 @@ DSemanticDecorator, AbstractDNode>{
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternUpdateWizard(org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance, org.eclipse.emf.ecore.EObject, java.util.List, java.util.List)
    */
-  public AbstractPatternUpdateWizard<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, DSemanticDecorator, AbstractDNode>
+  public AbstractPatternUpdateWizard<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode>
   instantiatePatternUpdateWizard(
       IPatternInstance instance_p, EObject referenceElement_p,
-      List<? extends IGraphicalEditPart> graphicalContext_p,
+      List<Object> graphicalContext_p,
       List<EStructuralFeature> featuresToIgnore_p) {
     return new SiriusPatternUpdateWizard(instance_p, referenceElement_p, graphicalContext_p, featuresToIgnore_p);
   }
@@ -139,14 +138,14 @@ DSemanticDecorator, AbstractDNode>{
    */
   public PatternWizardDialog 
   instantiatePatternWizardDialog(Shell shell_p, AbstractPatternCreationWizard<RGBValues, DDiagramElement, DDiagram, DContainer, 
-      IGraphicalEditPart, DSemanticDecorator, AbstractDNode> _wizard) {
+      DSemanticDecorator, AbstractDNode> _wizard) {
     return new PatternWizardDialog(shell_p, _wizard);
   }
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiateTemplateUsageWizard(org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.AbstractModifiableTemplatePatternSpecification)
    */
-  public AbstractTemplateUsageWizard<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, DSemanticDecorator, AbstractDNode>
+  public AbstractTemplateUsageWizard<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode>
   instantiateTemplateUsageWizard(
       AbstractModifiableTemplatePatternSpecification data_p) {
     return new SiriusTemplateUsageWizard(data_p);
@@ -155,10 +154,10 @@ DSemanticDecorator, AbstractDNode>{
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternCreationWizard(java.util.List, java.util.List, org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternCreationSpecification)
    */
-  public AbstractPatternCreationWizard<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, DSemanticDecorator, AbstractDNode> 
+  public AbstractPatternCreationWizard<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode> 
   instantiatePatternCreationWizard(
       List<Object> selection_p,
-      List<? extends IGraphicalEditPart> graphicalContext_p, 
+      List<Object> graphicalContext_p, 
       TemplatePatternCreationSpecification patternCreationSpecification_p,
       boolean createNextBackButtons_p) {
     return new SiriusPatternCreationWizard(selection_p, graphicalContext_p, 
@@ -169,7 +168,7 @@ DSemanticDecorator, AbstractDNode>{
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternApplicationWizard(java.util.List, java.lang.Object)
    */
   public AbstractPatternApplicationWizard<RGBValues, DDiagramElement, DDiagram, 
-  DContainer, IGraphicalEditPart, DSemanticDecorator, AbstractDNode> 
+  DContainer, DSemanticDecorator, AbstractDNode> 
   instantiatePatternApplicationWizard(
       List<Object> selection_p, DDiagram diagram_p) {
     return new SiriusPatternApplicationWizard(selection_p, diagram_p);

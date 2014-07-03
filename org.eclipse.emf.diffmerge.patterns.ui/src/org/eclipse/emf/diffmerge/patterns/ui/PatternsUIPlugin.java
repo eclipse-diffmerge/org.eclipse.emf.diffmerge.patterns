@@ -53,7 +53,7 @@ public class PatternsUIPlugin extends AbstractUIPlugin {
 
 
   /** The current Operation Factory (may not be null) */
-  private AbstractPatternActionFactory<?, ?, ?, ?, ? ,? ,?, ?> _patternActionFactory;
+  private AbstractPatternActionFactory<?, ?, ?, ? ,? ,?, ?> _patternActionFactory;
 
   /** IDs related to the Operation Factory extension point */
   private static final String ACTION_FACTORY_EXTENSION_POINT =
@@ -62,7 +62,7 @@ public class PatternsUIPlugin extends AbstractUIPlugin {
 
   
   /** The current Job Factory (may not be null) */
-  private IPatternJobFactory<?> _patternJobFactory;
+  private IPatternJobFactory _patternJobFactory;
 
   /** IDs related to the Job Factory extension point */
   private static final String JOB_FACTORY_EXTENSION_POINT =
@@ -80,7 +80,7 @@ public class PatternsUIPlugin extends AbstractUIPlugin {
   
 
   /** The current Dialog and Wizard Factory (may not be null) */
-  private IPatternDialogAndWizardFactory<?, ?, ?, ? ,? ,?, ?> _patternDialogAndWizardFactory;
+  private IPatternDialogAndWizardFactory<?, ?, ? ,? ,?, ?> _patternDialogAndWizardFactory;
 
   /** IDs related to the DialogAndWizard Factory extension point */
   private static final String DIALOG_AND_WIZARD_FACTORY_EXTENSION_POINT =
@@ -227,10 +227,10 @@ public class PatternsUIPlugin extends AbstractUIPlugin {
    * Return the action Factory registered in the platform
    * @return a non-null AbstractPatternActionFactory
    */
-  public AbstractPatternActionFactory<?, ?, ?, ? ,? ,?, ?, ?> getActionFactory() {
+  public AbstractPatternActionFactory<?, ?, ? ,? ,?, ?, ?> getActionFactory() {
     if(_patternActionFactory == null){
-      SingletonContributionDiscoverer<AbstractPatternActionFactory<?, ?, ?, ?, ? ,? ,?, ?>> d = 
-          new SingletonContributionDiscoverer<AbstractPatternActionFactory<?, ?, ?, ?, ? ,? ,?, ?>>(AbstractPatternActionFactory.class,
+      SingletonContributionDiscoverer<AbstractPatternActionFactory<?, ?, ?, ? ,? ,?, ?>> d = 
+          new SingletonContributionDiscoverer<AbstractPatternActionFactory<?, ?, ?, ? ,? ,?, ?>>(AbstractPatternActionFactory.class,
               ACTION_FACTORY_EXTENSION_POINT, ACTION_FACTORY_POINT_PROPERTY); 
       _patternActionFactory = d.getContributedSingleton();
     }
@@ -241,10 +241,10 @@ public class PatternsUIPlugin extends AbstractUIPlugin {
    * Return the dialog and wizard Factory registered in the platform
    * @return a non-null IPatternDialogAndWizardFactory
    */
-  public IPatternJobFactory<?> getJobFactory() {
+  public IPatternJobFactory getJobFactory() {
     if(_patternJobFactory == null){
-      SingletonContributionDiscoverer<IPatternJobFactory<?>> d = 
-          new SingletonContributionDiscoverer<IPatternJobFactory<?>>(IPatternJobFactory.class,
+      SingletonContributionDiscoverer<IPatternJobFactory> d = 
+          new SingletonContributionDiscoverer<IPatternJobFactory>(IPatternJobFactory.class,
               JOB_FACTORY_EXTENSION_POINT, JOB_FACTORY_POINT_PROPERTY); 
       _patternJobFactory = d.getContributedSingleton();
     }
@@ -255,10 +255,10 @@ public class PatternsUIPlugin extends AbstractUIPlugin {
    * Return the dialog and wizard Factory registered in the platform
    * @return a non-null IPatternDialogAndWizardFactory
    */
-  public IPatternDialogAndWizardFactory<?, ?, ?, ?, ?, ?, ?> getDialogAndWizardFactory() {
+  public IPatternDialogAndWizardFactory<?, ?, ?, ?, ?, ?> getDialogAndWizardFactory() {
     if(_patternDialogAndWizardFactory == null){
-      SingletonContributionDiscoverer<IPatternDialogAndWizardFactory<?, ?, ?, ?, ?, ?, ?>> d = 
-          new SingletonContributionDiscoverer<IPatternDialogAndWizardFactory<?, ?, ?, ?, ?, ?, ?>>(IPatternDialogAndWizardFactory.class,
+      SingletonContributionDiscoverer<IPatternDialogAndWizardFactory<?, ?, ?, ?, ?, ?>> d = 
+          new SingletonContributionDiscoverer<IPatternDialogAndWizardFactory<?, ?, ?, ?, ?, ?>>(IPatternDialogAndWizardFactory.class,
               DIALOG_AND_WIZARD_FACTORY_EXTENSION_POINT, DIALOG_AND_WIZARD_FACTORY_POINT_PROPERTY); 
       _patternDialogAndWizardFactory = d.getContributedSingleton();
     }

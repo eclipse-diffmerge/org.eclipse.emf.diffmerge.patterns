@@ -49,14 +49,14 @@ import org.eclipse.swt.graphics.RGB;
  * @author Skander TURKI
  *
  */
-public class SiriusPatternOperationFactory implements IPatternOperationFactory<IGraphicalEditPart, AbstractDNode, DDiagramElement, DDiagram, DContainer, DSemanticDecorator>{
+public class SiriusPatternOperationFactory implements IPatternOperationFactory<AbstractDNode, DDiagramElement, DDiagram, DContainer, DSemanticDecorator>{
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory#instantiateCreatePatternAndInstanceOperation(org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternCreationSpecification, java.util.List)
    */
-  public AbstractPatternWithLayoutOperation<?, IGraphicalEditPart> instantiateCreatePatternAndInstanceOperation(
+  public AbstractPatternWithLayoutOperation<?> instantiateCreatePatternAndInstanceOperation(
       TemplatePatternCreationSpecification data_p,
-      List<IGraphicalEditPart> modelContext_p, Object patternContext_p) {
+      List<Object> modelContext_p, Object patternContext_p) {
     return new SiriusCreatePatternAndInstanceOperation(data_p, modelContext_p, patternContext_p);
   }
 
@@ -154,10 +154,10 @@ public class SiriusPatternOperationFactory implements IPatternOperationFactory<I
   /**
    * @see org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory#instantiateUpdatePatternInCatalogOperation(org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternUpdateSpecification, java.util.List)
    */
-  public AbstractPatternWithLayoutOperation<?, IGraphicalEditPart> 
+  public AbstractPatternWithLayoutOperation<?> 
   instantiateUpdatePatternInCatalogOperation(
       TemplatePatternUpdateSpecification data_p,
-      List<IGraphicalEditPart> context_p) {
+      List<Object> context_p) {
     return new SiriusUpdatePatternInCatalogOperation(data_p, context_p, data_p.getOriginalPattern());
   }
 

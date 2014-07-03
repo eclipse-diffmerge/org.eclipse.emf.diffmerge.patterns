@@ -54,7 +54,7 @@ public class CreatePatternHandler extends AbstractWorkbenchSelectionHandler  {
    * @return
    */
   protected AbstractCreatePatternAction instantiateCreatePatternAction(){
-    AbstractPatternActionFactory<?, ?, ?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+    AbstractPatternActionFactory<?, ?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
     if(factory != null){
       return factory.instantiateCreatePatternAction();
     }

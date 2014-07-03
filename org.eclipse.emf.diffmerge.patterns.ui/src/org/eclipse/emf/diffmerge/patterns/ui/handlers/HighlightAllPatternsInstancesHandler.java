@@ -39,7 +39,7 @@ GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> extends Abstra
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
           AbstractHighlightAllPatternsInstancesAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-          GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> action = instantiateHighlightAllPatternsInstancesAction();
+          SemanticRepresentationType, GraphicalNodeType> action = instantiateHighlightAllPatternsInstancesAction();
           if(action != null){
             action.setActivePart(null, part);
             action.selectionChanged(null, selection_p);
@@ -57,12 +57,12 @@ GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> extends Abstra
    */
   @SuppressWarnings("unchecked")
   protected AbstractHighlightAllPatternsInstancesAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> instantiateHighlightAllPatternsInstancesAction(){
+  SemanticRepresentationType, GraphicalNodeType> instantiateHighlightAllPatternsInstancesAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
         return (AbstractHighlightAllPatternsInstancesAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-            GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>)factory.instantiateHighlightAllPatternsInstancesAction();
+            SemanticRepresentationType, GraphicalNodeType>)factory.instantiateHighlightAllPatternsInstancesAction();
       } 
     }
     catch(Exception e){

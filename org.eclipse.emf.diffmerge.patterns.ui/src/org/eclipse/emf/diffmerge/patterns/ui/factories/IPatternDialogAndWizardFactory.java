@@ -39,69 +39,69 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Templat
  *
  */
 public interface IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> {
+SemanticRepresentationType, GraphicalNodeType> {
 
 
 
-  HighlightAllPatternsInstancesPanelDialog<ColorType, SemanticRepresentationType, DiagramType, DiagramElementType, GraphicalPartType, GraphicalContainerType> 
+  HighlightAllPatternsInstancesPanelDialog<ColorType, SemanticRepresentationType, DiagramType, DiagramElementType, GraphicalContainerType> 
   instantiateHighlightAllPatternsInstancesPanelDialog(
       Set<IPatternInstance> instances_p, List<Object> selection_p, DiagramType diagram_p, Shell shell_p, String dialogTitle_p, String dialogMessage_p);
 
   InstancePanelDialog<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> 
+  SemanticRepresentationType, GraphicalNodeType> 
   instantiateInstancePanelDialog(List<IPatternInstance> instances_p, EObject referenceElement_p, 
-      DiagramType diagram_p, List<? extends GraphicalPartType> graphicalContext_p, Shell shell_p);
+      DiagramType diagram_p, List<Object> graphicalContext_p, Shell shell_p);
 
   AbstractPatternApplicationWizard<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+  SemanticRepresentationType, GraphicalNodeType>
   instantiatePatternApplicationWizard(List<Object> selection_p, DiagramType diagram_p);
 
 
   AbstractPatternBrowsingWizard<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
   instantiatePatternBrowsingWizard(
       EObject context_p, TemplatePattern pattern_p);
 
   AbstractPatternBrowsingWizard<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
   instantiatePatternBrowsingWizard(
       EObject context_p, IPatternRepository repository_p);
 
   AbstractPatternBrowsingWizard<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
   instantiatePatternBrowsingWizard(
       Object context_p, IPatternRepository repository_p);
 
   AbstractPatternBrowsingWizard<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
   instantiatePatternBrowsingWizard(
       ResourceSet rset_p, IPatternRepository repository_p);
 
   AbstractTemplateCreationWizard<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
   instantiateTemplateCreationWizard(
-      List<Object> selection_p, List<? extends GraphicalPartType> graphicalContext_p);
+      List<Object> selection_p, List<Object> graphicalContext_p);
 
   AbstractPatternUpdateWizard<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
   instantiatePatternUpdateWizard(
       IPatternInstance instance_p, EObject referenceElement_p,
-      List<? extends GraphicalPartType> graphicalContext_p,
+      List<Object> graphicalContext_p,
       List<EStructuralFeature> featuresToIgnore_p);
 
   PatternWizardDialog instantiatePatternWizardDialog(Shell shell_p, 
       AbstractPatternCreationWizard<ColorType, DiagramElementType, 
-      DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> _wizard);
+      DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType> _wizard);
 
   AbstractPatternCreationWizard<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
   instantiatePatternCreationWizard(
-      List<Object> selection_p, List<? extends GraphicalPartType> graphicalContext_p,
+      List<Object> selection_p, List<Object> graphicalContext_p,
       TemplatePatternCreationSpecification patternCreationSpecification_p,
       boolean createNextBackButtons_p);
 
   AbstractTemplateUsageWizard<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
   instantiateTemplateUsageWizard(
       AbstractModifiableTemplatePatternSpecification data_p);
 

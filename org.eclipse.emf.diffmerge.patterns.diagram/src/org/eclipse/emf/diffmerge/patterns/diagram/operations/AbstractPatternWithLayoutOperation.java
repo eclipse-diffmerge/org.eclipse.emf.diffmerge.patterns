@@ -25,14 +25,14 @@ import org.eclipse.emf.ecore.EObject;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class AbstractPatternWithLayoutOperation<T, GaphicalPartType> 
+public abstract class AbstractPatternWithLayoutOperation<T> 
 extends AbstractModelOperation<T> {
 
   /** A non-null specification for the pattern operation */
   protected final AbstractModifiableTemplatePatternSpecification _data;
 
   /** A non-null, potentially empty, unmodifiable list of graphical elements */
-  protected final List<? extends GaphicalPartType> _graphicalContext;
+  protected final List<Object> _graphicalContext;
 
   /** Instance of inner class used to simulate multiple inheritance for leaf operations*/
   protected AbstractOperation<?> _innerPatternLayoutOperation;
@@ -52,7 +52,7 @@ extends AbstractModelOperation<T> {
    * @param patternSideContext_p a non-null Object
    */
   public AbstractPatternWithLayoutOperation(String name_p, AbstractModifiableTemplatePatternSpecification data_p,
-      List<? extends GaphicalPartType> graphicalContext_p, Object patternSideContext_p) {
+      List<Object> graphicalContext_p, Object patternSideContext_p) {
     super(name_p, null, true, false, true, patternSideContext_p, graphicalContext_p);
     _data = data_p;
     _graphicalContext = Collections.unmodifiableList(graphicalContext_p);

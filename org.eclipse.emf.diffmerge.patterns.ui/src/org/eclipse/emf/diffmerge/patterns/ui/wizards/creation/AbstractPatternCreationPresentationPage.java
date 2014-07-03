@@ -24,9 +24,9 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Templat
  * @author Skander TURKI
  */
 public abstract class AbstractPatternCreationPresentationPage<ColorType, DiagramElementType, DiagramType, 
-GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
 extends AbstractPatternPresentationPage<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalPartType, SemanticRepresentationType, GraphicalNodeType, TemplatePatternCreationSpecification> {
+SemanticRepresentationType, GraphicalNodeType, TemplatePatternCreationSpecification> {
 
   /**
    * Constructor

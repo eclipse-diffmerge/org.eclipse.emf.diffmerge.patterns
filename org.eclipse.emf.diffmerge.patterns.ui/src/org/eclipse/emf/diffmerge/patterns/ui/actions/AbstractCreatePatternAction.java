@@ -31,14 +31,14 @@ import org.eclipse.jface.window.Window;
  * @author Skander TURKI
  */
 public abstract class AbstractCreatePatternAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> 
-extends AbstractPersistentSelectionAction<DiagramElementType, DiagramType, GraphicalPartType> {
+SemanticRepresentationType, GraphicalNodeType> 
+extends AbstractPersistentSelectionAction<DiagramElementType, DiagramType> {
 
 
   /** Dialog and Wizard factory */
   private IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-      GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+  SemanticRepresentationType, GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+      SemanticRepresentationType, GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
 
@@ -79,9 +79,9 @@ extends AbstractPersistentSelectionAction<DiagramElementType, DiagramType, Graph
               PatternsUIPlugin.getDefault().getModelEnvironmentUI().getEnvironments());
 
       AbstractPatternCreationWizard<ColorType, DiagramElementType, 
-      DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> wizard 
+      DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType> wizard 
         = _factory.instantiatePatternCreationWizard(selection_p, 
-          (List<? extends GraphicalPartType>) getFilteredSelection(genericTypeUtil.getGraphicalPartTypeClass()),
+          (List<Object>) getFilteredSelection(genericTypeUtil.getGraphicalPartTypeClass()),
           patternCreationSpecification, false);
       return _factory.instantiatePatternWizardDialog(getShell(), wizard);
     }

@@ -34,13 +34,13 @@ import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
  * @author Skander TURKI
  */
 public abstract class AbstractManageInstanceAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
-extends AbstractModelBasedAction<DiagramElementType, DiagramType, GraphicalPartType> {
+SemanticRepresentationType, GraphicalNodeType>
+extends AbstractModelBasedAction<DiagramElementType, DiagramType> {
 
   /** Dialog and Wizard factory */
   private IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-      GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+  SemanticRepresentationType, GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+      SemanticRepresentationType, GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
   /**
@@ -69,7 +69,7 @@ extends AbstractModelBasedAction<DiagramElementType, DiagramType, GraphicalPartT
                 Messages.ManageInstanceAction_NotInInstance);
           } else {
             InstancePanelDialog<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-            GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> dialog = 
+            SemanticRepresentationType, GraphicalNodeType> dialog = 
                 instantiateInstancePanelDialog(instances, casted);
             if(dialog != null){
               dialog.open();
@@ -88,13 +88,13 @@ extends AbstractModelBasedAction<DiagramElementType, DiagramType, GraphicalPartT
    * Instantiates an instance panel dialog that is specific to the modeling environment
    */
   protected InstancePanelDialog<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+  SemanticRepresentationType, GraphicalNodeType>
   instantiateInstancePanelDialog(List<IPatternInstance> instances_p, EObject context_p){
-    AbstractDiagramUtil<DiagramElementType, DiagramType, GraphicalPartType> diagramUtil = (AbstractDiagramUtil<DiagramElementType, DiagramType, GraphicalPartType>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
+    AbstractDiagramUtil<DiagramElementType, DiagramType> diagramUtil = (AbstractDiagramUtil<DiagramElementType, DiagramType>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     AbstractGenericTypeUtil genericTypeUtil = CorePatternsPlugin.getDefault().getGenericTypeUtil();
     if(diagramUtil != null && genericTypeUtil != null){
       return _factory.instantiateInstancePanelDialog(instances_p, context_p, diagramUtil.getDiagramFromSelection(getSelection()), 
-          (List<? extends GraphicalPartType>)getFilteredSelection(genericTypeUtil.getGraphicalPartTypeClass()) , getShell());
+          (List<Object>)getFilteredSelection(genericTypeUtil.getGraphicalPartTypeClass()) , getShell());
     }
     return null;
   }

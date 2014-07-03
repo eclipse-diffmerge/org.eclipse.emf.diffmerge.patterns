@@ -32,7 +32,7 @@ import org.eclipse.swt.widgets.Shell;
  */
 public class SiriusHighlightAllPatternsInstancesPanelDialog 
 extends HighlightAllPatternsInstancesPanelDialog<RGBValues, DSemanticDecorator, DDiagram, 
-DDiagramElement, IGraphicalEditPart, DContainer>{
+DDiagramElement, DContainer>{
 
   /**
    * Constructor

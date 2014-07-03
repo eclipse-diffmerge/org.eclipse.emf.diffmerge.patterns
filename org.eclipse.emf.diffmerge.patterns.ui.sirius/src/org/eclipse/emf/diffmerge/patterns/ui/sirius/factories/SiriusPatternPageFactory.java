@@ -49,49 +49,49 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  */
 public class SiriusPatternPageFactory 
 extends AbstractPatternPageFactory<RGBValues, DDiagramElement, DDiagram, DContainer, 
-IGraphicalEditPart, DSemanticDecorator, AbstractDNode>{
+DSemanticDecorator, AbstractDNode>{
 
   @Override
-  public AbstractTemplateUsagePresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, 
-  DSemanticDecorator, AbstractDNode> instantiateTemplateUsagePresentationPage(
+  public AbstractTemplateUsagePresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode> 
+  instantiateTemplateUsagePresentationPage(
       TemplateUsageSpecification data_p) {
     return new SiriusTemplateUsagePresentationPage(data_p);
   }
    
 
   @Override
-  public AbstractTemplateCreationPresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, 
-  DSemanticDecorator, AbstractDNode> instantiateTemplateCreationPresentationPage(
+  public AbstractTemplateCreationPresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode> 
+  instantiateTemplateCreationPresentationPage(
       TemplatePatternCreationSpecification data_p) {
     return new SiriusTemplateCreationPresentationPage(data_p);
   }
 
   @Override
-  public AbstractPatternUpdatePresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, 
-  DSemanticDecorator, AbstractDNode> instantiatePatternUpdatePresentationPage(
+  public AbstractPatternUpdatePresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode> 
+  instantiatePatternUpdatePresentationPage(
       AbstractModifiableTemplatePatternSpecification data_p) {
     return new SiriusPatternUpdatePresentationPage((TemplatePatternUpdateSpecification) data_p);
   }
   
   @Override
-  public AbstractPatternCreationPresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, 
-  DSemanticDecorator, AbstractDNode> instantiatePatternCreationPresentationPage(
+  public AbstractPatternCreationPresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode> 
+  instantiatePatternCreationPresentationPage(
       TemplatePatternCreationSpecification data_p) {
     return new SiriusPatternCreationPresentationPage(data_p);
   }
 
   
   @Override
-  public AbstractPatternBrowsingPresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, 
-  DSemanticDecorator, AbstractDNode> instantiatePatternBrowsingPresentationPage(
+  public AbstractPatternBrowsingPresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode> 
+  instantiatePatternBrowsingPresentationPage(
       TemplatePatternBrowsingSpecification data_p) {
     return new SiriusPatternBrowsingPresentationPage(data_p);
   }
 
 
   @Override
-  public AbstractPatternApplicationPresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, 
-  DSemanticDecorator, AbstractDNode> instantiatePatternApplicationPresentationPage(
+  public AbstractPatternApplicationPresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode> 
+  instantiatePatternApplicationPresentationPage(
       TemplatePatternApplicationSpecification data_p) {
     return new SiriusPatternApplicationPresentationPage(data_p);
   }

@@ -44,7 +44,7 @@ extends SiriusAbstractPatternWithLayoutOperation<IPatternInstance> {
    */
   public SiriusCreatePatternAndInstanceOperation(
       TemplatePatternCreationSpecification creationData_p,
-      List<? extends IGraphicalEditPart> graphicalContext_p, Object patternContext_p) {
+      List<Object> graphicalContext_p, Object patternContext_p) {
     super(AbstractCreatePatternAndInstanceLayoutOperation.getName(), creationData_p, 
         graphicalContext_p, patternContext_p);
     _innerPatternLayoutOperation = new InnerCreatePatternAndInstanceOperation();
@@ -79,7 +79,7 @@ extends SiriusAbstractPatternWithLayoutOperation<IPatternInstance> {
    * @author Skander TURKI
    */
   protected class InnerCreatePatternAndInstanceOperation 
-  extends AbstractCreatePatternAndInstanceLayoutOperation<IGraphicalEditPart>{
+  extends AbstractCreatePatternAndInstanceLayoutOperation{
 
     /**
      * Constructor

@@ -22,7 +22,7 @@ import org.eclipse.sirius.diagram.DDiagramElement;
  */
 public class SiriusShowInInstanceExplorerViewAction 
   extends AbstractShowInInstanceExplorerViewAction<DDiagramElement, DDiagram, 
-    SiriusInstanceExplorerView, IGraphicalEditPart>{
+    SiriusInstanceExplorerView>{
 
   /**
    * 

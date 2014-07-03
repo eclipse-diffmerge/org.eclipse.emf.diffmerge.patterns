@@ -57,7 +57,7 @@ import org.eclipse.ui.PlatformUI;
  * @author Skander TURKI
  */
 public class SiriusInstanceExplorerView 
-extends AbstractInstanceExplorerView<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, 
+extends AbstractInstanceExplorerView<RGBValues, DDiagramElement, DDiagram, DContainer, 
 DSemanticDecorator, AbstractDNode> {
 
   /** The view ID */
@@ -65,7 +65,7 @@ DSemanticDecorator, AbstractDNode> {
       "org.eclipse.emf.diffmerge.patterns.ui.sirius.views.siriusinstanceexplorerview"; //$NON-NLS-1$
 
   /** The non-null, potentially empty, unmodifiable list of contextual GEF elements */
-  protected final List<IGraphicalEditPart> _graphicalContext;
+  protected final List<Object> _graphicalContext;
 
 
 
@@ -77,7 +77,7 @@ DSemanticDecorator, AbstractDNode> {
    */
   public SiriusInstanceExplorerView() {
     super();
-    _graphicalContext = new FOrderedSet<IGraphicalEditPart>();
+    _graphicalContext = new FOrderedSet<Object>();
     _monitoredSessions = new HashMap<Session, ClosingSessionListener>(1);
   }
 
@@ -208,7 +208,7 @@ DSemanticDecorator, AbstractDNode> {
     List<IPatternInstance> instances = getSelectionAsInstances();
     if (!instances.isEmpty()) {
       DDiagram diagram = getCurrentDiagram();
-      InstancePanelDialog<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, 
+      InstancePanelDialog<RGBValues, DDiagramElement, DDiagram, DContainer, 
       DSemanticDecorator, AbstractDNode> dialog = new SiriusInstancePanelDialog(
           getShell(), _referenceElement, instances, diagram, _graphicalContext);
       dialog.open();

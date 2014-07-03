@@ -39,7 +39,7 @@ GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> extends Abstra
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
           AbstractCreateTemplateAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-          GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> action = instantiateCreateTemplateAction();
+          SemanticRepresentationType, GraphicalNodeType> action = instantiateCreateTemplateAction();
           if(action != null){
             action.setActivePart(null, part);
             action.selectionChanged(null, selection_p);
@@ -55,12 +55,12 @@ GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> extends Abstra
   
   @SuppressWarnings("unchecked")
   protected AbstractCreateTemplateAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> instantiateCreateTemplateAction(){
+  SemanticRepresentationType, GraphicalNodeType> instantiateCreateTemplateAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
         return (AbstractCreateTemplateAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-            GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>)factory.instantiateCreateTemplateAction();
+            SemanticRepresentationType, GraphicalNodeType>)factory.instantiateCreateTemplateAction();
       } 
     }
     catch(Exception e){

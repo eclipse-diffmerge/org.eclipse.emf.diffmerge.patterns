@@ -24,7 +24,7 @@ import org.eclipse.swt.graphics.Point;
  * @param <DiagramElementType>
  * @param <DiagramType>
  */
-public abstract class AbstractDiagramUtil<DiagramElementType, DiagramType, GraphicalPartType> {
+public abstract class AbstractDiagramUtil<DiagramElementType, DiagramType> {
 
   /**
    * Returns a list of diagram elements in the given diagram
@@ -73,6 +73,6 @@ public abstract class AbstractDiagramUtil<DiagramElementType, DiagramType, Graph
    * @param gefElements_p a non-null, non-empty collection of edit parts which all belong to the same diagram
    * @return a potentially null string
    */
-  public abstract String exportToSVG(final List<? extends GraphicalPartType> gefElements_p);
+  public abstract String exportToSVG(final List<Object> gefElements_p);
   
 }

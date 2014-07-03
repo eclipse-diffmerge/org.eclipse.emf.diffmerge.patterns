@@ -44,7 +44,7 @@ extends SiriusAbstractPatternWithLayoutOperation<TemplatePattern>{
    */
   public SiriusUpdatePatternInCatalogOperation(
       TemplatePatternUpdateSpecification updateData_p,
-      List<? extends IGraphicalEditPart> graphicalContext_p, Object patternSideContext_p) {
+      List<Object> graphicalContext_p, Object patternSideContext_p) {
     super(AbstractUpdatePatternLayoutInCatalogOperation.getName(), updateData_p, graphicalContext_p,
         patternSideContext_p);
     _innerPatternLayoutOperation = new InnerUpdatePatternInCatalogOperation();

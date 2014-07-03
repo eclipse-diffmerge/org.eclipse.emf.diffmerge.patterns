@@ -68,11 +68,11 @@ import org.eclipse.ui.PlatformUI;
  * @author Skander TURKI
  */
 public abstract class SiriusAbstractPatternWithLayoutOperation<T> 
-extends AbstractPatternWithLayoutOperation<T, IGraphicalEditPart>{
+extends AbstractPatternWithLayoutOperation<T>{
 
   public SiriusAbstractPatternWithLayoutOperation(String name_p,
       AbstractModifiableTemplatePatternSpecification data_p,
-      List<? extends IGraphicalEditPart> graphicalContext_p, Object patternSideContext_p) {
+      List<Object> graphicalContext_p, Object patternSideContext_p) {
     super(name_p, data_p, graphicalContext_p, patternSideContext_p);
   }
 
@@ -85,13 +85,15 @@ extends AbstractPatternWithLayoutOperation<T, IGraphicalEditPart>{
     EMap<EObject, Layout> resultMap = new FHashMap<EObject, Layout>();
     //notIncludedSemanticElementsViews is used by the loop that computes layoutData for includedElementsViews not to compute twice the same data
     List<EObject> notIncludedSemanticElementsViews = new ArrayList<EObject>();
-    for (IGraphicalEditPart editPart : _graphicalContext) {
-      Object gefModel = editPart.getModel();
-      if (gefModel instanceof View) {
-        // GMF level
-        View view = (View)gefModel;
-        getViewLayoutData(view, resultMap);
-        notIncludedSemanticElementsViews.add(view);
+    for (Object obj : _graphicalContext) {
+      if(obj instanceof IGraphicalEditPart){
+        Object gefModel = ((IGraphicalEditPart)obj).getModel();
+        if (gefModel instanceof View) {
+          // GMF level
+          View view = (View)gefModel;
+          getViewLayoutData(view, resultMap);
+          notIncludedSemanticElementsViews.add(view);
+        }
       }
     }
     //Included elements layouts

@@ -32,7 +32,7 @@ import org.eclipse.swt.widgets.Shell;
  * @author Skander TURKI
  */
 public class SiriusInstancePanelDialog 
-extends InstancePanelDialog<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, 
+extends InstancePanelDialog<RGBValues, DDiagramElement, DDiagram, DContainer, 
 DSemanticDecorator, AbstractDNode>{
 
   /**
@@ -40,7 +40,7 @@ DSemanticDecorator, AbstractDNode>{
    */
   public SiriusInstancePanelDialog(Shell parentShell_p,
       EObject referenceElement_p, List<? extends IPatternInstance> instances_p,
-      DDiagram diagram_p, List<? extends IGraphicalEditPart> graphicalContext_p) {
+      DDiagram diagram_p, List<Object> graphicalContext_p) {
     super(parentShell_p, referenceElement_p, instances_p, diagram_p,
         graphicalContext_p);
   }

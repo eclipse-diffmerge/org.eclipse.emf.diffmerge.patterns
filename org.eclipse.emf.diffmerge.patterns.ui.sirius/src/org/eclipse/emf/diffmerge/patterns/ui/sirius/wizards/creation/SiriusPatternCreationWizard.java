@@ -29,10 +29,10 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  */
 public class SiriusPatternCreationWizard 
 extends AbstractPatternCreationWizard<RGBValues, DDiagramElement, DDiagram, 
-DContainer, IGraphicalEditPart, DSemanticDecorator, AbstractDNode>{
+DContainer, DSemanticDecorator, AbstractDNode>{
 
   public SiriusPatternCreationWizard(List<? extends Object> sources_p,
-      List<? extends IGraphicalEditPart> graphicalContext_p, 
+      List<Object> graphicalContext_p, 
       TemplatePatternCreationSpecification patternCreationSpecification_p,
       boolean createNextBackButtons_p) {
     super(sources_p, graphicalContext_p, patternCreationSpecification_p, createNextBackButtons_p);

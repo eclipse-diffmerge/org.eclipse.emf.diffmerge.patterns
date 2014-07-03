@@ -94,7 +94,7 @@ import org.eclipse.ui.PlatformUI;
  * @author O. CONSTANT
  */
 public abstract class AbstractPatternPresentationPage<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalPartType, SemanticRepresentationType, GraphicalNodeType, T extends ITemplatePatternBasedSpecification>
+SemanticRepresentationType, GraphicalNodeType, T extends ITemplatePatternBasedSpecification>
 extends AbstractPatternPage<T> {
 
   /** An enumeration for specifying how a pattern is determined */
@@ -125,8 +125,8 @@ extends AbstractPatternPage<T> {
 
   /** Dialog and Wizard factory */
   private IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-      GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+  SemanticRepresentationType, GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+      SemanticRepresentationType, GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
   /**
@@ -926,7 +926,7 @@ extends AbstractPatternPage<T> {
           Point location = getShell().getLocation();
           Point newLocation = new Point(location.x + VECTOR, location.y + VECTOR);
           AbstractTemplateUsageWizard<ColorType, DiagramElementType, 
-          DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+          DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
           wizard = instantiateTemplateUsageWizard((AbstractModifiableTemplatePatternSpecification)getData());
           //new AbstractTemplateUsageWizard((AbstractModifiableTemplatePatternSpecification)getData());
           PatternWizardDialog dialog = new PatternWizardDialog(
@@ -950,7 +950,7 @@ extends AbstractPatternPage<T> {
   }
 
   protected AbstractTemplateUsageWizard<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
   instantiateTemplateUsageWizard(AbstractModifiableTemplatePatternSpecification data_p){
     if(_factory != null){
       return _factory.instantiateTemplateUsageWizard(data_p);

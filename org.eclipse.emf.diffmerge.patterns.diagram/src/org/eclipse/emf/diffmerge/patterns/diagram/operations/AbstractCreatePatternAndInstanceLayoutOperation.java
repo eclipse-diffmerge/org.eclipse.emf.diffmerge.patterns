@@ -21,7 +21,7 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Templat
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractCreatePatternAndInstanceLayoutOperation<GraphicalPartType> 
+public abstract class AbstractCreatePatternAndInstanceLayoutOperation 
   extends AbstractOperation<IPatternInstance> {
 
   /** The name of the operation */

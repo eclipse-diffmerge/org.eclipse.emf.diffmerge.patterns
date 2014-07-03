@@ -34,7 +34,7 @@ public class PatternWizardDialog extends WizardDialog {
    * @param shell_p a non-null shell
    * @param selection_p the initial selection of elements to use as template elements
    */
-  public PatternWizardDialog(Shell shell_p, AbstractPatternWizard<?, ?> wizard_p) {
+  public PatternWizardDialog(Shell shell_p, AbstractPatternWizard<?> wizard_p) {
     this(shell_p, wizard_p, false, null);
   }
   
@@ -45,7 +45,7 @@ public class PatternWizardDialog extends WizardDialog {
    * @param hideCancel_p whether the Cancel button must be disabled
    * @param location_p an optional absolute position for the dialog
    */
-  public PatternWizardDialog(Shell shell_p, AbstractPatternWizard<?, ?> wizard_p,
+  public PatternWizardDialog(Shell shell_p, AbstractPatternWizard<?> wizard_p,
       boolean hideCancel_p, Point location_p) {
     super(shell_p, wizard_p);
     _disableCancel = hideCancel_p;
@@ -60,7 +60,7 @@ public class PatternWizardDialog extends WizardDialog {
    * Return whether the wizard completed successfully
    */
   public boolean isSuccessful() {
-    return ((AbstractPatternWizard<?, ?>)getWizard()).isSuccessful();
+    return ((AbstractPatternWizard<?>)getWizard()).isSuccessful();
   }
   
   /**

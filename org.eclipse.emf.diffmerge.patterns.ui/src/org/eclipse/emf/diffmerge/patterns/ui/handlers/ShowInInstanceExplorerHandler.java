@@ -39,7 +39,7 @@ D extends AbstractInstanceExplorerView
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractShowInInstanceExplorerViewAction<DiagramElementType, DiagramType, D, GraphicalPartType> action = 
+          AbstractShowInInstanceExplorerViewAction<DiagramElementType, DiagramType, D> action = 
               instantiateShowInInstanceExplorerViewAction();
           if(action != null){
             action.setActivePart(null, part);
@@ -57,11 +57,11 @@ D extends AbstractInstanceExplorerView
    * @return
    */
   @SuppressWarnings("unchecked")
-  protected AbstractShowInInstanceExplorerViewAction<DiagramElementType, DiagramType, D, GraphicalPartType> instantiateShowInInstanceExplorerViewAction(){
+  protected AbstractShowInInstanceExplorerViewAction<DiagramElementType, DiagramType, D> instantiateShowInInstanceExplorerViewAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
-        return (AbstractShowInInstanceExplorerViewAction<DiagramElementType, DiagramType, D, GraphicalPartType>)factory.instantiateShowInInstanceExplorerViewAction();
+        return (AbstractShowInInstanceExplorerViewAction<DiagramElementType, DiagramType, D>)factory.instantiateShowInInstanceExplorerViewAction();
       } 
     }
     catch(Exception e){

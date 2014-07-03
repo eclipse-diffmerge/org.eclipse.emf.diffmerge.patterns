@@ -30,7 +30,6 @@ import org.eclipse.emf.diffmerge.patterns.ui.sirius.actions.SiriusManageInstance
 import org.eclipse.emf.diffmerge.patterns.ui.sirius.actions.SiriusResetPersistentSelectionAction;
 import org.eclipse.emf.diffmerge.patterns.ui.sirius.actions.SiriusShowInInstanceExplorerViewAction;
 import org.eclipse.emf.diffmerge.patterns.ui.sirius.views.SiriusInstanceExplorerView;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.sirius.diagram.AbstractDNode;
 import org.eclipse.sirius.viewpoint.DContainer;
 import org.eclipse.sirius.diagram.DDiagram;
@@ -46,14 +45,14 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  *
  */
 public class SiriusPatternActionFactory extends AbstractPatternActionFactory<RGBValues, DDiagramElement, DDiagram, 
-DContainer, IGraphicalEditPart, AbstractDNode, SiriusInstanceExplorerView, DSemanticDecorator>{
+DContainer, AbstractDNode, SiriusInstanceExplorerView, DSemanticDecorator>{
 
 /**
  * 
  * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateApplyPatternAction()
  */
   @Override
-  public AbstractApplyPatternAction<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, DSemanticDecorator, AbstractDNode>
+  public AbstractApplyPatternAction<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode>
   instantiateApplyPatternAction() {
     return new SiriusApplyPatternAction();
   }
@@ -63,7 +62,7 @@ DContainer, IGraphicalEditPart, AbstractDNode, SiriusInstanceExplorerView, DSema
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateAbstractBrowseCatalogAction()
    */
   @Override
-  public AbstractBrowseCatalogAction<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, 
+  public AbstractBrowseCatalogAction<RGBValues, DDiagramElement, DDiagram, DContainer, 
   DSemanticDecorator, AbstractDNode> instantiateBrowseCatalogAction() {
     return new SiriusBrowseCatalogAction();
   }
@@ -73,7 +72,7 @@ DContainer, IGraphicalEditPart, AbstractDNode, SiriusInstanceExplorerView, DSema
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateCreatePatternAction()
    */
   @Override
-  public AbstractCreatePatternAction<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, 
+  public AbstractCreatePatternAction<RGBValues, DDiagramElement, DDiagram, DContainer, 
   DSemanticDecorator, AbstractDNode> instantiateCreatePatternAction() {
     return new SiriusCreatePatternAction();
   }
@@ -83,7 +82,7 @@ DContainer, IGraphicalEditPart, AbstractDNode, SiriusInstanceExplorerView, DSema
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateCreateTemplateAction()
    */
   @Override
-  public AbstractCreateTemplateAction<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, 
+  public AbstractCreateTemplateAction<RGBValues, DDiagramElement, DDiagram, DContainer, 
   DSemanticDecorator, AbstractDNode> instantiateCreateTemplateAction() {
     return new SiriusCreateTemplateAction();
   }
@@ -93,7 +92,7 @@ DContainer, IGraphicalEditPart, AbstractDNode, SiriusInstanceExplorerView, DSema
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateHighlightAllPatternsInstancesAction()
    */
   @Override
-  public AbstractHighlightAllPatternsInstancesAction<RGBValues, DDiagramElement, DDiagram, DContainer, IGraphicalEditPart, 
+  public AbstractHighlightAllPatternsInstancesAction<RGBValues, DDiagramElement, DDiagram, DContainer, 
   DSemanticDecorator, AbstractDNode> 
     instantiateHighlightAllPatternsInstancesAction() {
     return  new SiriusHighlightAllPatternsInstancesAction();
@@ -104,7 +103,8 @@ DContainer, IGraphicalEditPart, AbstractDNode, SiriusInstanceExplorerView, DSema
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateAddToPersistentSelectionAction()
    */
   @Override
-  public AbstractAddToPersistentSelectionAction<DDiagramElement, DDiagram, IGraphicalEditPart> instantiateAddToPersistentSelectionAction() {
+  public AbstractAddToPersistentSelectionAction<DDiagramElement, DDiagram> 
+  instantiateAddToPersistentSelectionAction() {
     return new SiriusAddToPersistentSelectionAction();
   }
   
@@ -113,7 +113,8 @@ DContainer, IGraphicalEditPart, AbstractDNode, SiriusInstanceExplorerView, DSema
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateManageInstanceAction()
    */
   @Override
-  public AbstractManageInstanceAction<RGBValues, DDiagramElement, IGraphicalEditPart, DContainer, DDiagram, DSemanticDecorator, AbstractDNode> instantiateManageInstanceAction() {
+  public AbstractManageInstanceAction<RGBValues, DDiagramElement, DContainer, DDiagram, DSemanticDecorator, AbstractDNode> 
+  instantiateManageInstanceAction() {
     return  new SiriusManageInstanceAction();
   }
   
@@ -122,7 +123,8 @@ DContainer, IGraphicalEditPart, AbstractDNode, SiriusInstanceExplorerView, DSema
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateResetPersistentSelectionAction()
    */
   @Override
-  public AbstractResetPersistentSelectionAction<DDiagramElement, DDiagram, IGraphicalEditPart>  instantiateResetPersistentSelectionAction() {
+  public AbstractResetPersistentSelectionAction<DDiagramElement, DDiagram>  
+  instantiateResetPersistentSelectionAction() {
     return new SiriusResetPersistentSelectionAction();
   }
   
@@ -132,7 +134,8 @@ DContainer, IGraphicalEditPart, AbstractDNode, SiriusInstanceExplorerView, DSema
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateShowInInstanceExplorerViewAction()
    */
   @Override
-  public AbstractShowInInstanceExplorerViewAction<DDiagramElement, DDiagram, SiriusInstanceExplorerView, IGraphicalEditPart> instantiateShowInInstanceExplorerViewAction() {
+  public AbstractShowInInstanceExplorerViewAction<DDiagramElement, DDiagram, SiriusInstanceExplorerView> 
+  instantiateShowInInstanceExplorerViewAction() {
     return  new SiriusShowInInstanceExplorerViewAction();
   }
 }

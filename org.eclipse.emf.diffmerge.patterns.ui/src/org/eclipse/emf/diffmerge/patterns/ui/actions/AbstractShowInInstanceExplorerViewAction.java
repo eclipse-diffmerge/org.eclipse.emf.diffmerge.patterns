@@ -25,8 +25,8 @@ import org.eclipse.ui.PartInitException;
  * @author Skander TURKI
  */
 public abstract class AbstractShowInInstanceExplorerViewAction<DiagramElementType, DiagramType, 
-  InstanceExplorerViewType extends AbstractInstanceExplorerView, GraphicalPartType> 
-  extends AbstractModelBasedAction<DiagramElementType, DiagramType, GraphicalPartType> {
+  InstanceExplorerViewType extends AbstractInstanceExplorerView> 
+  extends AbstractModelBasedAction<DiagramElementType, DiagramType> {
   
   /**
    * Constructor

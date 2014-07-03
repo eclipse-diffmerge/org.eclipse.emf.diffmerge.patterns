@@ -13,24 +13,23 @@ package org.eclipse.emf.diffmerge.patterns.ui.factories;
 import java.util.List;
 
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard;
-
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.ITemplatePatternBasedSpecification;
+import org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard;
 
 /**
  * A factory that will instantiate the proper jobs depending of the design environment
  * The design environment (unique in the platform) must provide his own factory
  * @author Skander TURKI
  */
-public interface IPatternJobFactory<GraphicalPartType> {
+public interface IPatternJobFactory {
 
   /**
    * Instantiates a job for computing the image of a pattern and notifying for completion
    */
   <TemplateSpecificationType 
   extends ITemplatePatternBasedSpecification> Job instantiatePatternImageBuilderJob(
-      AbstractPatternWizard<TemplateSpecificationType, GraphicalPartType> wizard_p,
-      List<? extends GraphicalPartType> context_p, boolean updatePattern_p);
+      AbstractPatternWizard<TemplateSpecificationType> wizard_p,
+      List<Object> context_p, boolean updatePattern_p);
 
 
   /**
@@ -38,7 +37,7 @@ public interface IPatternJobFactory<GraphicalPartType> {
    */
   <TemplateSpecificationType 
   extends ITemplatePatternBasedSpecification> Job instantiatePatternImageBuilderJob(
-      AbstractPatternWizard<TemplateSpecificationType, GraphicalPartType> wizard_p,
+      AbstractPatternWizard<TemplateSpecificationType> wizard_p,
       String imageSpecification_p, boolean updatePattern_p); 
 
 }

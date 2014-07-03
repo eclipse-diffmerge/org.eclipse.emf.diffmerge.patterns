@@ -36,8 +36,8 @@ import org.eclipse.emf.diffmerge.patterns.ui.wizards.CompositeWizardPage;
  * @author S. TURKI
  */
 public abstract class AbstractTemplateCreationWizard<ColorType, DiagramElementType, 
-DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
-extends AbstractPatternWizard<TemplatePatternCreationSpecification, GraphicalPartType> {
+DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
+extends AbstractPatternWizard<TemplatePatternCreationSpecification> {
 
   /**
    * Constructor
@@ -45,7 +45,7 @@ extends AbstractPatternWizard<TemplatePatternCreationSpecification, GraphicalPar
    * @param graphicalContext_p a non-null, potentially empty list of GEF elements
    */
   public AbstractTemplateCreationWizard(List<? extends Object> sources_p,
-      List<? extends GraphicalPartType> graphicalContext_p) {
+      List<Object> graphicalContext_p) {
     super(TemplatePatternsEnginePlugin.getDefault().newPatternCreationData(
         true, sources_p, PatternsUIPlugin.getDefault().getModelEnvironmentUI().getEnvironments()),
         graphicalContext_p, true);
@@ -78,9 +78,9 @@ extends AbstractPatternWizard<TemplatePatternCreationSpecification, GraphicalPar
    * Instantiates a TemplateCreationPresentationPage
    */
   protected AbstractTemplateCreationPresentationPage<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
   instantiateTemplateCreationPresentationPage(TemplatePatternCreationSpecification data_p){
-    AbstractPatternPageFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>
+    AbstractPatternPageFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
     factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiateTemplateCreationPresentationPage(data_p);
@@ -96,9 +96,9 @@ extends AbstractPatternWizard<TemplatePatternCreationSpecification, GraphicalPar
   protected boolean doPerformFinish() {
     boolean result = false;
 
-    IPatternOperationFactory<?, ?, ?, ?, ?, ?> factory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<?, ?, ?, ?, ?> factory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
-      AbstractPatternWithLayoutOperation<?, ?> operation = factory.instantiateCreatePatternAndInstanceOperation(getData(), (List)getGraphicalContext(), getData().getRepository());
+      AbstractPatternWithLayoutOperation<?> operation = factory.instantiateCreatePatternAndInstanceOperation(getData(), (List)getGraphicalContext(), getData().getRepository());
       Object returned = CorePatternsPlugin.getDefault().getModelEnvironment().execute(operation);
       result = returned != null;
     }
@@ -110,10 +110,10 @@ extends AbstractPatternWizard<TemplatePatternCreationSpecification, GraphicalPar
    */
   @SuppressWarnings("unchecked")
   @Override
-  protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternCreationSpecification, GraphicalPartType> wizard_p,  
-      List<? extends GraphicalPartType> context_p, boolean updatePattern_p){
-    IPatternJobFactory<GraphicalPartType> factory = 
-        (IPatternJobFactory<GraphicalPartType>) PatternsUIPlugin.getDefault().getJobFactory();
+  protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternCreationSpecification> wizard_p,  
+      List<Object> context_p, boolean updatePattern_p){
+    IPatternJobFactory factory = 
+        (IPatternJobFactory) PatternsUIPlugin.getDefault().getJobFactory();
     if(factory != null){
       return factory.instantiatePatternImageBuilderJob(wizard_p, context_p, updatePattern_p);
     }
@@ -125,10 +125,10 @@ extends AbstractPatternWizard<TemplatePatternCreationSpecification, GraphicalPar
    */
   @SuppressWarnings("unchecked")
   @Override
-  protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternCreationSpecification, GraphicalPartType> wizard_p,  
+  protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternCreationSpecification> wizard_p,  
       String imageSpecification_p, boolean updatePattern_p){
-    IPatternJobFactory<GraphicalPartType> factory = 
-        (IPatternJobFactory<GraphicalPartType>) PatternsUIPlugin.getDefault().getJobFactory();
+    IPatternJobFactory factory = 
+        (IPatternJobFactory) PatternsUIPlugin.getDefault().getJobFactory();
     if(factory != null){
       return factory.instantiatePatternImageBuilderJob(wizard_p, imageSpecification_p, updatePattern_p);
     }
