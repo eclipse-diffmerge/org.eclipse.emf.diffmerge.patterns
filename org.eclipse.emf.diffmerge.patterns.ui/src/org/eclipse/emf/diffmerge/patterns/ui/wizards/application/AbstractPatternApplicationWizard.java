@@ -49,8 +49,7 @@ import org.eclipse.swt.graphics.Point;
  * A wizard for applying an existing pattern.
  * @author O. CONSTANT
  */
-public abstract class AbstractPatternApplicationWizard<DiagramElementType, 
-DiagramType, GraphicalContainerType, GraphicalNodeType> 
+public abstract class AbstractPatternApplicationWizard<DiagramElementType, DiagramType, GraphicalContainerType> 
 extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
 
 
@@ -196,8 +195,8 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
       ,Object modelSideContext_p)
       {
     @SuppressWarnings("unchecked")
-    IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType> factory = 
-    (IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<DiagramElementType, DiagramType, GraphicalContainerType> factory = 
+    (IPatternOperationFactory<DiagramElementType, DiagramType, GraphicalContainerType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateLayoutReuseOperation(diagram_p, instance_p, initialElementsLocationsMap_p, elementsContainersMap_p, vx_p, vy_p, updateLayout_p, updateStyle_p, modelSideContext_p);
     }
@@ -207,11 +206,11 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
   /**
    * Instantiates a concrete AbstractGraphicalWrappingInstanceOperation
    */
-  protected  AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>, DiagramType, DiagramElementType, GraphicalNodeType> 
+  protected  AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>, DiagramType, DiagramElementType> 
   instantiateGraphicalWrappingInstanceOperation(IModelOperation<List<IPatternInstance>> operation_p, DiagramType diagram_p, RefreshRequestKind refreshRequest_p){
     @SuppressWarnings("unchecked")
-    IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType> factory =
-    (IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType>)  PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<DiagramElementType, DiagramType, GraphicalContainerType> factory =
+    (IPatternOperationFactory<DiagramElementType, DiagramType, GraphicalContainerType>)  PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateGraphicalWrappingInstanceOperation(operation_p, diagram_p, refreshRequest_p, true);
     }
@@ -222,9 +221,9 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
    * Instantiates a PatternApplicationPresentationPage
    */
   protected AbstractPatternApplicationPresentationPage<DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType>
   instantiatePatternApplicationPresentationPage(TemplatePatternApplicationSpecification data_p){
-    AbstractPatternPageFactory<DiagramElementType, DiagramType, GraphicalContainerType, GraphicalNodeType>
+    AbstractPatternPageFactory<DiagramElementType, DiagramType, GraphicalContainerType>
     factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiatePatternApplicationPresentationPage(data_p);
@@ -238,7 +237,7 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
    */
   protected AbstractPatternApplicationAssociationPage<DiagramType> 
   instantiatePatternApplicationAssociationPage(){
-    AbstractPatternPageFactory<DiagramElementType, DiagramType, GraphicalContainerType, GraphicalNodeType>
+    AbstractPatternPageFactory<DiagramElementType, DiagramType, GraphicalContainerType>
     factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiatePatternApplicationAssociationPage(getData(), _diagramToRefresh);

@@ -94,7 +94,7 @@ import org.eclipse.ui.PlatformUI;
  * @author O. CONSTANT
  */
 public abstract class AbstractPatternPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalNodeType, T extends ITemplatePatternBasedSpecification>
+T extends ITemplatePatternBasedSpecification>
 extends AbstractPatternPage<T> {
 
   /** An enumeration for specifying how a pattern is determined */
@@ -124,9 +124,9 @@ extends AbstractPatternPage<T> {
 
 
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-      GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType> 
+    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType>)
+      PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
   /**
@@ -925,9 +925,8 @@ extends AbstractPatternPage<T> {
           final int VECTOR = 50;
           Point location = getShell().getLocation();
           Point newLocation = new Point(location.x + VECTOR, location.y + VECTOR);
-          AbstractTemplateUsageWizard<DiagramElementType, 
-          DiagramType, GraphicalContainerType, GraphicalNodeType>
-          wizard = instantiateTemplateUsageWizard((AbstractModifiableTemplatePatternSpecification)getData());
+          AbstractTemplateUsageWizard<DiagramElementType, DiagramType, GraphicalContainerType>
+            wizard = instantiateTemplateUsageWizard((AbstractModifiableTemplatePatternSpecification)getData());
           //new AbstractTemplateUsageWizard((AbstractModifiableTemplatePatternSpecification)getData());
           PatternWizardDialog dialog = new PatternWizardDialog(
               getShell(), wizard, false, newLocation);
@@ -949,7 +948,7 @@ extends AbstractPatternPage<T> {
     return result;
   }
 
-  protected AbstractTemplateUsageWizard<DiagramElementType, DiagramType, GraphicalContainerType, GraphicalNodeType>
+  protected AbstractTemplateUsageWizard<DiagramElementType, DiagramType, GraphicalContainerType>
   instantiateTemplateUsageWizard(AbstractModifiableTemplatePatternSpecification data_p){
     if(_factory != null){
       return _factory.instantiateTemplateUsageWizard(data_p);

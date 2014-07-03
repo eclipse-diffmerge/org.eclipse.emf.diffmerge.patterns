@@ -24,7 +24,7 @@ import org.eclipse.sirius.diagram.DDiagramElement;
  * @author Skander TURKI
  */
 public class SiriusGraphicalWrappingInstanceOperation<F> 
-extends AbstractGraphicalWrappingInstanceOperation<F, DDiagram, DDiagramElement, AbstractDNode>{
+extends AbstractGraphicalWrappingInstanceOperation<F, DDiagram, DDiagramElement>{
 
   /**
    * Constructor

@@ -29,14 +29,13 @@ import org.eclipse.emf.diffmerge.patterns.ui.viewers.AbstractInstanceExplorerVie
  * @author Skander TURKI
  */
 public abstract class AbstractPatternActionFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalNodeType,
 InstanceExplorerViewType extends AbstractInstanceExplorerView> {
 
   /**
    * A static getter for the currently installed PatternActionFactory in the environment
    * @return a potentially-null IPatternAcitonFactory
    */
-  public static AbstractPatternActionFactory<?, ? ,? ,?, ?> getInstance(){
+  public static AbstractPatternActionFactory<? ,? ,?, ?> getInstance(){
     return PatternsUIPlugin.getDefault().getActionFactory();  
   }
 
@@ -44,8 +43,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView> {
    * Instantiates a new ApplyPatternAction
    * @return a non-null AbstractApplyPatternAction
    */
-  public abstract AbstractApplyPatternAction<DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalNodeType>
+  public abstract AbstractApplyPatternAction<DiagramElementType, DiagramType, GraphicalContainerType>
   instantiateApplyPatternAction();
 
 
@@ -53,8 +51,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView> {
    * Instantiates a new BrowseCatalogAction
    * @return a non-null AbstractBrowseCatalogAction
    */
-  public abstract AbstractBrowseCatalogAction<DiagramElementType, DiagramType, 
-  GraphicalContainerType, GraphicalNodeType>
+  public abstract AbstractBrowseCatalogAction<DiagramElementType, DiagramType, GraphicalContainerType>
   instantiateBrowseCatalogAction();
 
 
@@ -62,16 +59,15 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView> {
    * Instantiates a new CreatePatternAction
    * @return a non-null AbstractCreatePatternAction
    */
-  public abstract AbstractCreatePatternAction<DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType> instantiateCreatePatternAction();
+  public abstract AbstractCreatePatternAction<DiagramElementType, DiagramType, GraphicalContainerType> 
+  instantiateCreatePatternAction();
 
 
   /**
    * Instantiates a new CreateTemplateAction
    * @return a non-null AbstractCreateTemplateAction
    */
-  public abstract AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType> 
+  public abstract AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType> 
   instantiateCreateTemplateAction();
 
 
@@ -79,8 +75,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView> {
    * Instantiates a new HighlightAllPatternsInstancesAction
    * @return a non-null AbstractHighlightAllPatternsInstancesAction
    */
-  public abstract AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType>
+  public abstract AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType, GraphicalContainerType>
   instantiateHighlightAllPatternsInstancesAction();
 
 
@@ -95,8 +90,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView> {
    * Instantiates a new ManageInstanceAction
    * @return a non-null AbstractManageInstanceAction
    */
-  public abstract AbstractManageInstanceAction<DiagramElementType, GraphicalContainerType, 
-  DiagramType, GraphicalNodeType> 
+  public abstract AbstractManageInstanceAction<DiagramElementType, GraphicalContainerType, DiagramType> 
   instantiateManageInstanceAction();
 
 

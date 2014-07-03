@@ -21,10 +21,8 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.Abstra
  * A wizard page for creating a new pattern
  * @author O. CONSTANT
  */
-public abstract class AbstractPatternBrowsingPresentationPage<DiagramElementType, 
-DiagramType, GraphicalContainerType, GraphicalNodeType>
-extends AbstractPatternPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalNodeType,AbstractBijectiveTemplatePatternSpecification> {
+public abstract class AbstractPatternBrowsingPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType>
+extends AbstractPatternPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType,AbstractBijectiveTemplatePatternSpecification> {
   
   /**
    * Constructor

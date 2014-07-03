@@ -34,7 +34,7 @@ import org.eclipse.swt.graphics.RGB;
  * The design environment (unique in the platform) must provide his own factory
  * @author Skander TURKI
  */
-public interface IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, DiagramContainer> {
+public interface IPatternOperationFactory<DiagramElementType, DiagramType, DiagramContainer> {
 
 
   /**
@@ -48,7 +48,7 @@ public interface IPatternOperationFactory<GraphicalNodeType, DiagramElementType,
    * Instantiates an operation that is responsible of representing a given set of semantic elements in a given diagram.
    * @return a non-null AbstractDisplayOperation (must be a concrete DisplayOperation)
    */
-  AbstractDisplayOperation<GraphicalNodeType, DiagramType> instantiateDisplayOperation(Collection<? extends EObject> semanticElements_p,
+  AbstractDisplayOperation<DiagramType> instantiateDisplayOperation(Collection<? extends EObject> semanticElements_p,
       DiagramType diagram_p, boolean refresh_p);
 
   /**
@@ -56,7 +56,7 @@ public interface IPatternOperationFactory<GraphicalNodeType, DiagramElementType,
    * kinds of refresh on a diagram to reflect the effect of the wrapped operation.
    * @return a non-null AbstractGraphicalWrappingInstanceOperation (must be a concrete GraphicalWrappingInstanceOperation)
    */
-  AbstractGraphicalWrappingInstanceOperation<IPatternInstance, DiagramType, DiagramElementType, GraphicalNodeType> 
+  AbstractGraphicalWrappingInstanceOperation<IPatternInstance, DiagramType, DiagramElementType> 
   instantiateGraphicalWrappingInstanceOperation(
       IModelOperation<? extends IPatternInstance> operation_p,
       DiagramType diagram_p, RefreshRequestKind refreshRequest_p);
@@ -66,7 +66,7 @@ public interface IPatternOperationFactory<GraphicalNodeType, DiagramElementType,
    * kinds of refresh on a diagram to reflect the effect of the wrapped operation.
    * @return a non-null AbstractGraphicalWrappingInstanceOperation (must be a concrete GraphicalWrappingInstanceOperation)
    */
-  public AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>, DiagramType, DiagramElementType, GraphicalNodeType> 
+  public AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>, DiagramType, DiagramElementType> 
   instantiateGraphicalWrappingInstanceOperation(IModelOperation<List<IPatternInstance>> operations_p,
       DiagramType diagram_p, RefreshRequestKind refreshRequest_p, boolean signatureDifferentiator);
   
@@ -75,7 +75,7 @@ public interface IPatternOperationFactory<GraphicalNodeType, DiagramElementType,
    * kinds of refresh on a diagram to reflect the effect of the wrapped operation.
    * @return a non-null AbstractGraphicalWrappingInstanceOperation (must be a concrete GraphicalWrappingInstanceOperation)
    */
-  AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, DiagramType, DiagramElementType, GraphicalNodeType> 
+  AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, DiagramType, DiagramElementType> 
   instantiateGraphicalWrappingInstanceOperation(
       InstanceOperation operation_p, IPatternInstance instance_p,
       DiagramType diagram_p, RefreshRequestKind refreshRequest_p);

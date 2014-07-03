@@ -46,7 +46,7 @@ import org.eclipse.sirius.diagram.description.NodeMapping;
  * @author Skander TURKI
  */
 @SuppressWarnings("restriction")
-public class SiriusDisplayOperation extends AbstractDisplayOperation<AbstractDNode, DDiagram>{
+public class SiriusDisplayOperation extends AbstractDisplayOperation<DDiagram>{
 
   /** The non-null behaviour for pinning graphical elements */
   private final PinHelper _pinHelper;
@@ -70,7 +70,7 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation<AbstractDNo
    * @see org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractDisplayOperation#updateDiagram(java.lang.Object)
    */
   @Override
-  protected Collection<AbstractDNode> updateDiagram(DDiagram diagram_p) {
+  protected Collection<Object> updateDiagram(DDiagram diagram_p) {
     // Initialization: find existing nodes
     List<EObject> rootsAndContainers = new FOrderedSet<EObject>();
     rootsAndContainers.addAll(get_semanticRoots());
@@ -100,8 +100,8 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation<AbstractDNo
     // Phase 1: use existing nodes
     LinkedList<DContainer> containers = new LinkedList<DContainer>(
         filter(rootsToNodes.values(), DContainer.class));
-    Collection<AbstractDNode> createdNodes =
-        new FOrderedSet<AbstractDNode>();
+    Collection<Object> createdNodes =
+        new FOrderedSet<Object>();
     showAllInContainers(containers, remainingElements, createdNodes);
     // Phase 2: start from diagram if relevant
     if (!rootsToNodes.values().contains(get_diagram()))
@@ -128,7 +128,7 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation<AbstractDNo
    * @param createdNodes_p a non-null, modifiable set of nodes that have been created
    */
   private void showAllInContainer(DContainer container_p, Collection<EObject> remainingElements_p,
-      Collection<AbstractDNode> createdNodes_p) {
+      Collection<Object> createdNodes_p) {
     LinkedList<DContainer> containers = new LinkedList<DContainer>();
     containers.add(container_p);
     showAllInContainers(containers, remainingElements_p, createdNodes_p);
@@ -142,7 +142,7 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation<AbstractDNo
    * @param createdNodes_p a non-null, modifiable set of nodes that have been created
    */
   private void showAllInContainers(LinkedList<DContainer> containers_p,
-      Collection<EObject> remainingElements_p, Collection<AbstractDNode> createdNodes_p) {
+      Collection<EObject> remainingElements_p, Collection<Object> createdNodes_p) {
     while (!containers_p.isEmpty() && !remainingElements_p.isEmpty()) {
       DContainer nodeContainer = containers_p.poll();
       Collection<AbstractDNode> allCreated =

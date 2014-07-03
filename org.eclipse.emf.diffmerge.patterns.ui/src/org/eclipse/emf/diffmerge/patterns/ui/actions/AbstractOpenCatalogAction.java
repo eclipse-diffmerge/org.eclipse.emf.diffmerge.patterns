@@ -37,14 +37,13 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractOpenCatalogAction<DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalNodeType> 
+public abstract class AbstractOpenCatalogAction<DiagramElementType, DiagramType, GraphicalContainerType> 
 extends AbstractContextualAction<IFile> {
 
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-      GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType> 
+    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType>)
+      PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
   /**
@@ -101,8 +100,7 @@ extends AbstractContextualAction<IFile> {
    * @param repository_p a potentially null IPatternRepository
    * @return a potentially null PatternBrowsingWizard
    */
-  protected AbstractPatternBrowsingWizard<DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalNodeType>
+  protected AbstractPatternBrowsingWizard<DiagramElementType, DiagramType, GraphicalContainerType>
   instantiatePatternBrowsingWizard(ResourceSet rset_p, IPatternRepository repository_p){
     if(_factory != null){
       return _factory.instantiatePatternBrowsingWizard(rset_p, repository_p);

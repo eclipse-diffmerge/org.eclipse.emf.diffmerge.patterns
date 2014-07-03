@@ -30,7 +30,7 @@ import org.eclipse.jface.window.Window;
  * @author Skander TURKI
  */
 public abstract class AbstractApplyPatternAction<DiagramElementType, 
-DiagramType, GraphicalContainerType, GraphicalNodeType>
+DiagramType, GraphicalContainerType>
 extends AbstractModelBasedAction<DiagramElementType, DiagramType> {
   
 	/**
@@ -62,12 +62,11 @@ extends AbstractModelBasedAction<DiagramElementType, DiagramType> {
 	 * @return a non-null AbstractPatternApplicationWizard
 	 */
 	protected AbstractPatternApplicationWizard<DiagramElementType, 
-	DiagramType, GraphicalContainerType, GraphicalNodeType>
+	DiagramType, GraphicalContainerType>
 	instantiatePatternApplicationWizard(List<Object> selection_p){
 	  AbstractDiagramUtil<DiagramElementType, DiagramType> diagramUtil = (AbstractDiagramUtil<DiagramElementType, DiagramType>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
-	  IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-	  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-	      GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+	  IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType> _factory = 
+	      (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 	  if(diagramUtil != null && _factory != null){
       return _factory.instantiatePatternApplicationWizard(selection_p, diagramUtil.getDiagramFromSelection(getSelection()));
     }

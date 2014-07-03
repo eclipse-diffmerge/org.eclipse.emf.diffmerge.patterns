@@ -30,15 +30,14 @@ import org.eclipse.jface.window.Window;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractCreatePatternAction<DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalNodeType> 
+public abstract class AbstractCreatePatternAction<DiagramElementType, DiagramType, GraphicalContainerType> 
 extends AbstractPersistentSelectionAction<DiagramElementType, DiagramType> {
 
 
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-      GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType> 
+    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType>)
+      PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
 
@@ -78,11 +77,10 @@ extends AbstractPersistentSelectionAction<DiagramElementType, DiagramType> {
           TemplatePatternsEnginePlugin.getDefault().newPatternCreationData(false, selection_p, 
               PatternsUIPlugin.getDefault().getModelEnvironmentUI().getEnvironments());
 
-      AbstractPatternCreationWizard<DiagramElementType, 
-      DiagramType, GraphicalContainerType, GraphicalNodeType> wizard 
-        = _factory.instantiatePatternCreationWizard(selection_p, 
-          (List<Object>) getFilteredSelection(genericTypeUtil.getGraphicalPartTypeClass()),
-          patternCreationSpecification, false);
+      AbstractPatternCreationWizard<DiagramElementType, DiagramType, GraphicalContainerType> wizard 
+          = _factory.instantiatePatternCreationWizard(selection_p, 
+              (List<Object>) getFilteredSelection(genericTypeUtil.getGraphicalPartTypeClass()),
+                patternCreationSpecification, false);
       return _factory.instantiatePatternWizardDialog(getShell(), wizard);
     }
     return null;

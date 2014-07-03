@@ -26,7 +26,7 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  * @author Skander TURKI
  */
 public class SiriusPatternUpdatePresentationPage 
-extends AbstractPatternUpdatePresentationPage<DDiagramElement, DDiagram, DContainer, AbstractDNode>{
+extends AbstractPatternUpdatePresentationPage<DDiagramElement, DDiagram, DContainer>{
 
   /**
    * Constructor

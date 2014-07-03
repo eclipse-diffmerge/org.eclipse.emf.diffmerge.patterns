@@ -277,8 +277,8 @@ extends AbstractHighlightAllPatternsInstancesPanelDialog {
   protected AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
   instantiateRestoreOperation(DiagramType diagram_p, Collection<? extends IPatternInstance>  instances_p)
   {
-    IPatternOperationFactory<?, DiagramElementType, DiagramType, GraphicalContainerType> factory = 
-        (IPatternOperationFactory<?, DiagramElementType, DiagramType, GraphicalContainerType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<DiagramElementType, DiagramType, GraphicalContainerType> factory = 
+        (IPatternOperationFactory<DiagramElementType, DiagramType, GraphicalContainerType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateRestoreOperation(diagram_p, instances_p);
     }
@@ -293,8 +293,8 @@ extends AbstractHighlightAllPatternsInstancesPanelDialog {
   instantiateLayoutReuseOperation(DiagramType diagram_p, IPatternInstance instance_p, Map<DiagramElementType, Point> initialElementsLocationsMap_p,
       Map<DiagramElementType, GraphicalContainerType> elementsContainersMap_p, boolean updateLayout_p, boolean updateStyle_p)
       {
-    IPatternOperationFactory<?, DiagramElementType, DiagramType, GraphicalContainerType> factory = 
-        (IPatternOperationFactory<?, DiagramElementType, DiagramType, GraphicalContainerType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<DiagramElementType, DiagramType, GraphicalContainerType> factory = 
+        (IPatternOperationFactory<DiagramElementType, DiagramType, GraphicalContainerType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateLayoutReuseOperation(diagram_p, instance_p, initialElementsLocationsMap_p, elementsContainersMap_p, 0, 0, updateLayout_p, updateStyle_p, _diagram);
     }
@@ -308,8 +308,8 @@ extends AbstractHighlightAllPatternsInstancesPanelDialog {
   instantiateHighlightOperation(DiagramType diagram_p, Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, boolean coverEdges_p,
       boolean coverNodes_p, boolean coverPorts_p)
       {
-    IPatternOperationFactory<?, DiagramElementType, DiagramType, GraphicalContainerType> factory = 
-        (IPatternOperationFactory<?, DiagramElementType, DiagramType, GraphicalContainerType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<DiagramElementType, DiagramType, GraphicalContainerType> factory = 
+        (IPatternOperationFactory<DiagramElementType, DiagramType, GraphicalContainerType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateHighlightOperation(diagram_p, instances_p, color_p, borderSize_p, coverEdges_p,  coverNodes_p, coverPorts_p);
     }

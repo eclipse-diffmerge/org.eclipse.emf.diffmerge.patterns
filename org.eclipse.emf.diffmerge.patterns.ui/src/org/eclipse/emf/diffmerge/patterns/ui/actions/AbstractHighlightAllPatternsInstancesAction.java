@@ -31,16 +31,15 @@ import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
  * @author S. TURKI
  * @author Skander TURKI
  */
-public abstract class AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalNodeType> 
+public abstract class AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType, GraphicalContainerType> 
 extends AbstractModelBasedAction<DiagramElementType, DiagramType> {
 
   protected DiagramType _diagram;
   
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-      GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType> 
+    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType>)
+        PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
   
   /**
    * Runs the action by opening the dialog box that is used to highlight all patterns instances in the current diagram {@inheritDoc}

@@ -33,8 +33,7 @@ import org.eclipse.swt.widgets.Shell;
  * @author Skander TURKI
  */
 public class SiriusHighlightAllPatternsInstancesAction 
-extends AbstractHighlightAllPatternsInstancesAction<DDiagramElement, DDiagram, DContainer, 
-AbstractDNode>{
+extends AbstractHighlightAllPatternsInstancesAction<DDiagramElement, DDiagram, DContainer>{
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.actions.AbstractHighlightAllPatternsInstancesAction#getPresentInstances(java.lang.Object, org.eclipse.emf.ecore.EObject, org.eclipse.swt.widgets.Shell)

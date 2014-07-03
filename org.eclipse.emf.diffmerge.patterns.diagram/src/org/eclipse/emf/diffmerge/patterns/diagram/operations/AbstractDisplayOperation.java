@@ -26,8 +26,8 @@ import org.eclipse.emf.ecore.EObject;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class AbstractDisplayOperation<GraphicalNodeType, DiagramType> 
-extends AbstractModelOperation<Collection<GraphicalNodeType>> {
+public abstract class AbstractDisplayOperation<DiagramType> 
+extends AbstractModelOperation<Collection<Object>> {
 
   /** The non-null set of roots of the elements to display */
   private final Collection<EObject> _semanticRoots;
@@ -40,7 +40,7 @@ extends AbstractModelOperation<Collection<GraphicalNodeType>> {
   private final boolean _refresh;
 
   /** The non-null set of graphical nodes created */
-  private final Collection<GraphicalNodeType> _output;
+  private final Collection<Object> _output;
 
   /**
    * Constructor
@@ -56,7 +56,7 @@ extends AbstractModelOperation<Collection<GraphicalNodeType>> {
     _semanticRoots.addAll(ModelsUtil.getRoots(semanticElements_p));
     _diagram = diagram_p;
     _refresh = refresh_p;
-    _output = new FOrderedSet<GraphicalNodeType>();
+    _output = new FOrderedSet<Object>();
   }
 
   /**
@@ -84,7 +84,7 @@ extends AbstractModelOperation<Collection<GraphicalNodeType>> {
    * @see org.eclipse.emf.diffmerge.patterns.core.operations.AbstractModelOperation#run()
    */
   @Override
-  protected Collection<GraphicalNodeType> run() {
+  protected Collection<Object> run() {
     _output.addAll(updateDiagram(_diagram));
     if (_refresh)
       refreshDiagram();
@@ -96,7 +96,7 @@ extends AbstractModelOperation<Collection<GraphicalNodeType>> {
    * @param diagram_p a non-null diagram
    * @return a non-null, potentially empty, unmodifiable set of the nodes created
    */
-  protected abstract Collection<GraphicalNodeType> updateDiagram(DiagramType diagram_p);
+  protected abstract Collection<Object> updateDiagram(DiagramType diagram_p);
 
   /**
    * Getter

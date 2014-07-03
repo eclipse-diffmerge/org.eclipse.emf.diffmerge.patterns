@@ -57,8 +57,7 @@ import org.eclipse.ui.PlatformUI;
  * @author Skander TURKI
  */
 public class SiriusInstanceExplorerView 
-extends AbstractInstanceExplorerView<DDiagramElement, DDiagram, DContainer, 
-AbstractDNode> {
+extends AbstractInstanceExplorerView<DDiagramElement, DDiagram, DContainer> {
 
   /** The view ID */
   public static String ID =
@@ -208,8 +207,7 @@ AbstractDNode> {
     List<IPatternInstance> instances = getSelectionAsInstances();
     if (!instances.isEmpty()) {
       DDiagram diagram = getCurrentDiagram();
-      InstancePanelDialog<DDiagramElement, DDiagram, DContainer, 
-        AbstractDNode> dialog = new SiriusInstancePanelDialog(
+      InstancePanelDialog<DDiagramElement, DDiagram, DContainer> dialog = new SiriusInstancePanelDialog(
           getShell(), _referenceElement, instances, diagram, _graphicalContext);
       dialog.open();
     }

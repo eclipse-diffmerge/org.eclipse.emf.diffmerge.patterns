@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.EObject;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class AbstractGraphicalWrappingInstanceOperation<F, DiagramType, DiagramElementType, GraphicalNodeType>
+public abstract class AbstractGraphicalWrappingInstanceOperation<F, DiagramType, DiagramElementType>
 extends AbstractGraphicalWrappingOperation<F, F, DiagramType> {
 
   /** Kinds of graphical refresh to perform */
@@ -126,12 +126,12 @@ extends AbstractGraphicalWrappingOperation<F, F, DiagramType> {
         refreshDiagram();
         break;
       case INSTANCE:
-        IPatternOperationFactory<GraphicalNodeType ,? ,DiagramType, ?> factory = 
-        (IPatternOperationFactory<GraphicalNodeType ,? ,DiagramType, ?>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+        IPatternOperationFactory<? ,DiagramType, ?> factory = 
+        (IPatternOperationFactory<? ,DiagramType, ?>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
         if(factory != null){
           for (IPatternInstance instance : _instances) {
             roots = TemplatePatternsUtil.getApplicationRoots(instance);
-            AbstractDisplayOperation<GraphicalNodeType, DiagramType> displayOperation = factory.instantiateDisplayOperation(roots, getDiagram(), true);
+            AbstractDisplayOperation<DiagramType> displayOperation = factory.instantiateDisplayOperation(roots, getDiagram(), true);
             _createdDiagramElements.addAll((Collection<? extends DiagramElementType>) call(displayOperation));
           }
         }

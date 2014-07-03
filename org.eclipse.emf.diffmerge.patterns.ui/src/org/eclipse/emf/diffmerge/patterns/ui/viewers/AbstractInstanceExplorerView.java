@@ -90,8 +90,7 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Templat
  * A View for exploring pattern instances.
  * @author O. CONSTANT
  */
-public abstract class AbstractInstanceExplorerView<DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalNodeType> 
+public abstract class AbstractInstanceExplorerView<DiagramElementType, DiagramType, GraphicalContainerType>
 extends ViewPart{
   
   /** The viewer for the central tree */
@@ -117,9 +116,9 @@ extends ViewPart{
 
 
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-      GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType> 
+    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType>)
+      PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
  
   
   
@@ -301,8 +300,7 @@ extends ViewPart{
   protected void browsePattern(TemplatePattern pattern_p) {
     IPatternInstance first = _instanceList.isEmpty()? null: _instanceList.get(0);
     EObject context = first instanceof EObject? (EObject)first: null;
-    AbstractPatternBrowsingWizard<DiagramElementType, DiagramType, 
-    GraphicalContainerType, GraphicalNodeType> wizard =
+    AbstractPatternBrowsingWizard<DiagramElementType, DiagramType, GraphicalContainerType> wizard =
         instantiatePatternBrowsingWizard(context, pattern_p);
       //new AbstractPatternBrowsingWizard(context, pattern_p);
     PatternWizardDialog dialog = new PatternWizardDialog(
@@ -319,8 +317,7 @@ extends ViewPart{
   protected void browseRepository(IPatternRepository repository_p) {
     IPatternInstance first = _instanceList.isEmpty()? null: _instanceList.get(0);
     EObject context = first instanceof EObject? (EObject)first: null;
-    AbstractPatternBrowsingWizard<DiagramElementType, 
-    DiagramType, GraphicalContainerType, GraphicalNodeType> wizard =
+    AbstractPatternBrowsingWizard<DiagramElementType, DiagramType, GraphicalContainerType> wizard =
         instantiatePatternBrowsingWizard(context, repository_p);
     //  new AbstractPatternBrowsingWizard(context, repository_p);
     PatternWizardDialog dialog = new PatternWizardDialog(
@@ -331,8 +328,7 @@ extends ViewPart{
   }
   
   
-  protected AbstractPatternBrowsingWizard<DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalNodeType>
+  protected AbstractPatternBrowsingWizard<DiagramElementType, DiagramType, GraphicalContainerType>
  instantiatePatternBrowsingWizard(EObject context_p, TemplatePattern pattern_p){
     if(_factory != null){
       return _factory.instantiatePatternBrowsingWizard(context_p, pattern_p);
@@ -340,8 +336,7 @@ extends ViewPart{
     return null;
   }
   
-  protected AbstractPatternBrowsingWizard<DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalNodeType>
+  protected AbstractPatternBrowsingWizard<DiagramElementType, DiagramType, GraphicalContainerType>
  instantiatePatternBrowsingWizard(EObject context_p, IPatternRepository repository_p){
     if(_factory != null){
       return _factory.instantiatePatternBrowsingWizard(context_p, repository_p);

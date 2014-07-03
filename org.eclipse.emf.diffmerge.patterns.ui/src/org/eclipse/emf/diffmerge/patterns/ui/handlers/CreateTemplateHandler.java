@@ -25,7 +25,7 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Skander TURKI
  */
 public class CreateTemplateHandler<DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> extends AbstractWorkbenchSelectionHandler {
+GraphicalPartType, SemanticRepresentationType> extends AbstractWorkbenchSelectionHandler {
 
   /**
    * @see AbstractWorkbenchSelectionHandler#handleSelection(ISelection, IWorkbenchPart, ExecutionEvent)
@@ -38,8 +38,7 @@ GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> extends Abstra
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType, 
-            GraphicalNodeType> action = instantiateCreateTemplateAction();
+          AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType> action = instantiateCreateTemplateAction();
           if(action != null){
             action.setActivePart(null, part);
             action.selectionChanged(null, selection_p);
@@ -54,13 +53,11 @@ GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> extends Abstra
   
   
   @SuppressWarnings("unchecked")
-  protected AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType> instantiateCreateTemplateAction(){
+  protected AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType> instantiateCreateTemplateAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
-        return (AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType, 
-            GraphicalNodeType>)factory.instantiateCreateTemplateAction();
+        return (AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType>)factory.instantiateCreateTemplateAction();
       } 
     }
     catch(Exception e){

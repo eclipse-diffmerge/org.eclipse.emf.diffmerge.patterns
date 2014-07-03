@@ -33,14 +33,13 @@ import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractManageInstanceAction<DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalNodeType>
+public abstract class AbstractManageInstanceAction<DiagramElementType, DiagramType, GraphicalContainerType>
 extends AbstractModelBasedAction<DiagramElementType, DiagramType> {
 
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-      GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType> 
+    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType>)
+      PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
   /**
@@ -68,7 +67,7 @@ extends AbstractModelBasedAction<DiagramElementType, DiagramType> {
             MessageDialog.openInformation(getShell(), CorePatternsPlugin.getDefault().getLabel(),
                 Messages.ManageInstanceAction_NotInInstance);
           } else {
-            InstancePanelDialog<DiagramElementType, DiagramType, GraphicalContainerType, GraphicalNodeType> dialog 
+            InstancePanelDialog<DiagramElementType, DiagramType, GraphicalContainerType> dialog 
               = instantiateInstancePanelDialog(instances, casted);
             if(dialog != null){
               dialog.open();
@@ -86,8 +85,7 @@ extends AbstractModelBasedAction<DiagramElementType, DiagramType> {
   /**
    * Instantiates an instance panel dialog that is specific to the modeling environment
    */
-  protected InstancePanelDialog<DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType>
+  protected InstancePanelDialog<DiagramElementType, DiagramType, GraphicalContainerType>
   instantiateInstancePanelDialog(List<IPatternInstance> instances_p, EObject context_p){
     AbstractDiagramUtil<DiagramElementType, DiagramType> diagramUtil = (AbstractDiagramUtil<DiagramElementType, DiagramType>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     AbstractGenericTypeUtil genericTypeUtil = CorePatternsPlugin.getDefault().getGenericTypeUtil();

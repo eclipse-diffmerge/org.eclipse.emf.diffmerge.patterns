@@ -27,14 +27,13 @@ import org.eclipse.jface.window.Window;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalNodeType>
+public abstract class AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType>
 extends AbstractPersistentSelectionAction<DiagramElementType, DiagramType> {
 
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
-      GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType> 
+    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType>)
+        PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
   /**
@@ -61,8 +60,7 @@ extends AbstractPersistentSelectionAction<DiagramElementType, DiagramType> {
     }
   }
 
-  protected AbstractTemplateCreationWizard<DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalNodeType>
+  protected AbstractTemplateCreationWizard<DiagramElementType, DiagramType, GraphicalContainerType>
   instantiateTemplateCreationWizard(List<Object> selection_p){
     AbstractGenericTypeUtil genericTypeUtil = CorePatternsPlugin.getDefault().getGenericTypeUtil();
     if(genericTypeUtil != null && _factory != null){

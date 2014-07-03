@@ -34,8 +34,7 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.Templa
  * A wizard for applying a template in the creation/update process of a pattern.
  * @author O. CONSTANT
  */
-public abstract class AbstractTemplateUsageWizard<DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalNodeType>
+public abstract class AbstractTemplateUsageWizard<DiagramElementType, DiagramType, GraphicalContainerType>
 extends
 AbstractPatternWizard<TemplateUsageSpecification> {
 
@@ -87,10 +86,9 @@ AbstractPatternWizard<TemplateUsageSpecification> {
    * @param data_p
    * @return
    */
-  protected AbstractTemplateUsagePresentationPage<DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType>
+  protected AbstractTemplateUsagePresentationPage<DiagramElementType, DiagramType, GraphicalContainerType>
   instantiateTemplateUsagePresentationPage(TemplateUsageSpecification data_p){
-    AbstractPatternPageFactory<DiagramElementType, DiagramType, GraphicalContainerType, GraphicalNodeType>
+    AbstractPatternPageFactory<DiagramElementType, DiagramType, GraphicalContainerType>
     factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiateTemplateUsagePresentationPage(data_p);

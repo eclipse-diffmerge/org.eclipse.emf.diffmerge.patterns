@@ -23,10 +23,8 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Templat
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractPatternCreationPresentationPage<DiagramElementType, DiagramType, 
-GraphicalContainerType, GraphicalNodeType>
-extends AbstractPatternPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalNodeType, TemplatePatternCreationSpecification> {
+public abstract class AbstractPatternCreationPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType>
+extends AbstractPatternPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType, TemplatePatternCreationSpecification> {
 
   /**
    * Constructor

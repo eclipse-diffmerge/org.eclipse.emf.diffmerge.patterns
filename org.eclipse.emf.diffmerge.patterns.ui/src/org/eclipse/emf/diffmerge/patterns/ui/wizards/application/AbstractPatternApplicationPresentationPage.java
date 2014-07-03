@@ -20,10 +20,8 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.Templa
  * A wizard page for creating a new pattern
  * @author O. CONSTANT
  */
-public abstract class AbstractPatternApplicationPresentationPage<DiagramElementType, 
-DiagramType, GraphicalContainerType, GraphicalNodeType>
-extends AbstractPatternPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalNodeType, TemplatePatternApplicationSpecification> {
+public abstract class AbstractPatternApplicationPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType>
+extends AbstractPatternPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType, TemplatePatternApplicationSpecification> {
 
   
   
