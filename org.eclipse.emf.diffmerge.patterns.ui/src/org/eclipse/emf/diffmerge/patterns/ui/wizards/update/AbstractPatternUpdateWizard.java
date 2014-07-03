@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractPatternUpdateWizard<ColorType, DiagramElementType, 
+public abstract class AbstractPatternUpdateWizard<DiagramElementType, 
 DiagramType, GraphicalContainerType, GraphicalNodeType>
 extends AbstractPatternWizard<TemplatePatternUpdateSpecification> {
 

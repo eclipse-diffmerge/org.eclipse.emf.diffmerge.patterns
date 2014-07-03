@@ -35,7 +35,7 @@ import org.eclipse.emf.diffmerge.patterns.ui.wizards.CompositeWizardPage;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class AbstractTemplateCreationWizard<ColorType, DiagramElementType, 
+public abstract class AbstractTemplateCreationWizard<DiagramElementType, 
 DiagramType, GraphicalContainerType, GraphicalNodeType>
 extends AbstractPatternWizard<TemplatePatternCreationSpecification> {
 
@@ -77,10 +77,10 @@ extends AbstractPatternWizard<TemplatePatternCreationSpecification> {
   /**
    * Instantiates a TemplateCreationPresentationPage
    */
-  protected AbstractTemplateCreationPresentationPage<ColorType, DiagramElementType, 
+  protected AbstractTemplateCreationPresentationPage<DiagramElementType, 
   DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiateTemplateCreationPresentationPage(TemplatePatternCreationSpecification data_p){
-    AbstractPatternPageFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, GraphicalNodeType>
+    AbstractPatternPageFactory<DiagramElementType, DiagramType, GraphicalContainerType, GraphicalNodeType>
     factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiateTemplateCreationPresentationPage(data_p);

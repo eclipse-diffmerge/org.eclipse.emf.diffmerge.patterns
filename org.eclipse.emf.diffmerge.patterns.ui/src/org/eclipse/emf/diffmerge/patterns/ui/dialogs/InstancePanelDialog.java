@@ -96,7 +96,7 @@ import org.eclipse.ui.PlatformUI;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class InstancePanelDialog<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+public abstract class InstancePanelDialog<DiagramElementType, DiagramType, GraphicalContainerType, 
 GraphicalNodeType> extends InstanceChoiceDialog {
 
 
@@ -149,8 +149,8 @@ GraphicalNodeType> extends InstanceChoiceDialog {
   protected HashMap<Button, EStructuralFeature> _structuralFeaturesCheckBoxesMap;
 
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
+  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
       GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
@@ -195,8 +195,7 @@ GraphicalNodeType> extends InstanceChoiceDialog {
    * @param featuresToIgnore_p a potentially null empty, non null list
    * @return a potentially null Pattern Update Wizard
    */
-  protected AbstractPatternUpdateWizard<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalNodeType>
+  protected AbstractPatternUpdateWizard<DiagramElementType,DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiatePatternUpdateWizard(IPatternInstance instance_p,
       EObject referenceElement_p, List<Object> graphicalContext_p, List<EStructuralFeature> featuresToIgnore_p){
     if(_factory != null){
@@ -288,7 +287,7 @@ GraphicalNodeType> extends InstanceChoiceDialog {
   public boolean close() {
     boolean result = super.close();
     if (globalPatternStateChanged()) {
-      AbstractInstanceExplorerView<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+      AbstractInstanceExplorerView<DiagramElementType, DiagramType, GraphicalContainerType, 
       GraphicalNodeType> view = getInstanceExplorerView();
       if (view != null) {
         view.refreshCurrent();
@@ -1052,7 +1051,7 @@ GraphicalNodeType> extends InstanceChoiceDialog {
       @SuppressWarnings("unchecked")
       @Override
       public void widgetSelected(SelectionEvent e_p) {
-        AbstractInstanceExplorerView<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+        AbstractInstanceExplorerView<DiagramElementType, DiagramType, GraphicalContainerType, 
         GraphicalNodeType> view = null;
         try {
           view = (AbstractInstanceExplorerView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(getInstanceExplorerViewID());
@@ -1756,12 +1755,12 @@ GraphicalNodeType> extends InstanceChoiceDialog {
    * @return a potentially null instance explorer view
    */
   @SuppressWarnings("unchecked")
-  protected AbstractInstanceExplorerView<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  protected AbstractInstanceExplorerView<DiagramElementType, DiagramType, GraphicalContainerType, 
   GraphicalNodeType> getInstanceExplorerView() {
-    AbstractInstanceExplorerView<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+    AbstractInstanceExplorerView<DiagramElementType, DiagramType, GraphicalContainerType, 
     GraphicalNodeType> result = null;
     try {
-      result = (AbstractInstanceExplorerView<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+      result = (AbstractInstanceExplorerView<DiagramElementType, DiagramType, GraphicalContainerType, 
           GraphicalNodeType>) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView(getInstanceExplorerViewID());
     } catch (Exception e) {
       // Nothing

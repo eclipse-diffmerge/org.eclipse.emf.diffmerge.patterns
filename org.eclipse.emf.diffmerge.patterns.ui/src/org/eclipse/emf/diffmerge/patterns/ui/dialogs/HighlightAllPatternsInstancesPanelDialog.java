@@ -60,14 +60,14 @@ import org.eclipse.swt.widgets.Table;
  * @author S. TURKI
  * @author O. CONSTANT
  */
-public abstract class HighlightAllPatternsInstancesPanelDialog<ColorType, DiagramType, DiagramElementType, GraphicalContainerType> 
+public abstract class HighlightAllPatternsInstancesPanelDialog<DiagramType, DiagramElementType, GraphicalContainerType> 
 extends AbstractHighlightAllPatternsInstancesPanelDialog {
 
   /** The diagram from which the dialog has been called */
   DiagramType _diagram;
 
   /** Color to use for the highlight */
-  ColorType _color;
+  Object _color;
 
   /** Whether nodes should be highlighted or not */
   boolean _highlightNodes;
@@ -103,12 +103,12 @@ extends AbstractHighlightAllPatternsInstancesPanelDialog {
     _reuseStyleAtUpdate = true;
   }
 
-  protected abstract ColorType instantiateColorObject(int R, int G,int B);
-  protected abstract ColorType convertSWTRGBToColor(RGB swtColor_p);
-  protected abstract RGB convertColorToSWTRGB(ColorType color_p);
-  protected abstract int colorRed(ColorType color_p);
-  protected abstract int colorGreen(ColorType color_p);
-  protected abstract int colorBlue(ColorType color_p);
+  protected abstract Object instantiateColorObject(int R, int G,int B);
+  protected abstract Object convertSWTRGBToColor(RGB swtColor_p);
+  protected abstract RGB convertColorToSWTRGB(Object color_p);
+  protected abstract int colorRed(Object color_p);
+  protected abstract int colorGreen(Object color_p);
+  protected abstract int colorBlue(Object color_p);
 
   /**
    * {@inheritDoc}

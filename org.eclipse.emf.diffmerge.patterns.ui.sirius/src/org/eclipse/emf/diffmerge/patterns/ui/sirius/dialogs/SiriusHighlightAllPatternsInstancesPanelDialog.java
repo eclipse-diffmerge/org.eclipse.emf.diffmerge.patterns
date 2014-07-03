@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.Shell;
  * @author Skander TURKI
  */
 public class SiriusHighlightAllPatternsInstancesPanelDialog 
-extends HighlightAllPatternsInstancesPanelDialog<RGBValues, DDiagram, DDiagramElement, DContainer>{
+extends HighlightAllPatternsInstancesPanelDialog<DDiagram, DDiagramElement, DContainer>{
 
   /**
    * Constructor
@@ -62,32 +62,40 @@ extends HighlightAllPatternsInstancesPanelDialog<RGBValues, DDiagram, DDiagramEl
    * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.HighlightAllPatternsInstancesPanelDialog#convertColorToSWTRGB(java.lang.Object)
    */
   @Override
-  protected RGB convertColorToSWTRGB(RGBValues color_p) {
-    return ColorUtil.convertRGBValuesToRGB(color_p);
+  protected RGB convertColorToSWTRGB(Object color_p) {
+    if(color_p instanceof RGBValues)
+      return ColorUtil.convertRGBValuesToRGB((RGBValues)color_p);
+    return null;
   }
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.HighlightAllPatternsInstancesPanelDialog#colorRed(java.lang.Object)
    */
   @Override
-  protected int colorRed(RGBValues color_p) {
-    return color_p.getRed();
+  protected int colorRed(Object color_p) {
+    if(color_p instanceof RGBValues)
+      return ((RGBValues)color_p).getRed();
+    return 0;
   }
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.HighlightAllPatternsInstancesPanelDialog#colorGreen(java.lang.Object)
    */
   @Override
-  protected int colorGreen(RGBValues color_p) {
-    return color_p.getGreen();
+  protected int colorGreen(Object color_p) {
+    if(color_p instanceof RGBValues)
+      return ((RGBValues)color_p).getGreen();
+    return 0;
   }
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.HighlightAllPatternsInstancesPanelDialog#colorBlue(java.lang.Object)
    */
   @Override
-  protected int colorBlue(RGBValues color_p) {
-    return color_p.getBlue();
+  protected int colorBlue(Object color_p) {
+    if(color_p instanceof RGBValues)
+      return ((RGBValues)color_p).getBlue();
+    return 0;
   }
 
 

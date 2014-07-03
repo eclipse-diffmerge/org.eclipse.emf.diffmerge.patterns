@@ -49,7 +49,7 @@ import org.eclipse.swt.graphics.Point;
  * A wizard for applying an existing pattern.
  * @author O. CONSTANT
  */
-public abstract class AbstractPatternApplicationWizard<ColorType, DiagramElementType, 
+public abstract class AbstractPatternApplicationWizard<DiagramElementType, 
 DiagramType, GraphicalContainerType, GraphicalNodeType> 
 extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
 
@@ -221,10 +221,10 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
   /**
    * Instantiates a PatternApplicationPresentationPage
    */
-  protected AbstractPatternApplicationPresentationPage<ColorType, DiagramElementType, 
+  protected AbstractPatternApplicationPresentationPage<DiagramElementType, 
   DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiatePatternApplicationPresentationPage(TemplatePatternApplicationSpecification data_p){
-    AbstractPatternPageFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, GraphicalNodeType>
+    AbstractPatternPageFactory<DiagramElementType, DiagramType, GraphicalContainerType, GraphicalNodeType>
     factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiatePatternApplicationPresentationPage(data_p);
@@ -238,7 +238,7 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
    */
   protected AbstractPatternApplicationAssociationPage<DiagramType> 
   instantiatePatternApplicationAssociationPage(){
-    AbstractPatternPageFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, GraphicalNodeType>
+    AbstractPatternPageFactory<DiagramElementType, DiagramType, GraphicalContainerType, GraphicalNodeType>
     factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiatePatternApplicationAssociationPage(getData(), _diagramToRefresh);

@@ -30,7 +30,7 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  * @author Skander TURKI
  */
 public class SiriusPatternUpdateWizard 
-extends AbstractPatternUpdateWizard<RGBValues, DDiagramElement, DDiagram, DContainer, AbstractDNode>{
+extends AbstractPatternUpdateWizard<DDiagramElement, DDiagram, DContainer, AbstractDNode>{
 
   public SiriusPatternUpdateWizard(IPatternInstance instance_p,
       EObject referenceElement_p,

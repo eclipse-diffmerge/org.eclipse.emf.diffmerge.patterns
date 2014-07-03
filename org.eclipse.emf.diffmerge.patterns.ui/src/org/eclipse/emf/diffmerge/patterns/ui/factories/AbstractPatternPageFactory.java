@@ -28,34 +28,34 @@ import org.eclipse.emf.diffmerge.patterns.ui.wizards.update.AbstractPatternUpdat
  * and allows the user to select one and perform actions on it.
  * @author Skander TURKI
  */
-public abstract class AbstractPatternPageFactory<ColorType, DiagramElementType, 
+public abstract class AbstractPatternPageFactory<DiagramElementType, 
 DiagramType, GraphicalContainerType, GraphicalNodeType>
  {
   
-  public abstract AbstractTemplateUsagePresentationPage<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  public abstract AbstractTemplateUsagePresentationPage<DiagramElementType, DiagramType, GraphicalContainerType, 
   GraphicalNodeType> instantiateTemplateUsagePresentationPage(
       TemplateUsageSpecification data_p);
    
 
-  public abstract AbstractTemplateCreationPresentationPage<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  public abstract AbstractTemplateCreationPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType, 
   GraphicalNodeType> instantiateTemplateCreationPresentationPage(
       TemplatePatternCreationSpecification data_p);
 
-  public abstract AbstractPatternUpdatePresentationPage<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  public abstract AbstractPatternUpdatePresentationPage<DiagramElementType, DiagramType, GraphicalContainerType, 
   GraphicalNodeType> instantiatePatternUpdatePresentationPage(
       AbstractModifiableTemplatePatternSpecification data_p);
   
-  public abstract AbstractPatternCreationPresentationPage<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  public abstract AbstractPatternCreationPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType, 
   GraphicalNodeType> instantiatePatternCreationPresentationPage(
       TemplatePatternCreationSpecification data_p);
 
   
-  public abstract AbstractPatternBrowsingPresentationPage<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  public abstract AbstractPatternBrowsingPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType, 
   GraphicalNodeType> instantiatePatternBrowsingPresentationPage(
       TemplatePatternBrowsingSpecification data_p);
 
 
-  public abstract AbstractPatternApplicationPresentationPage<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  public abstract AbstractPatternApplicationPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType, 
   GraphicalNodeType> instantiatePatternApplicationPresentationPage(
       TemplatePatternApplicationSpecification data_p);
   

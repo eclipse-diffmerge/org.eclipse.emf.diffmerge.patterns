@@ -30,14 +30,14 @@ import org.eclipse.jface.window.Window;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractCreatePatternAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+public abstract class AbstractCreatePatternAction<DiagramElementType, DiagramType, GraphicalContainerType, 
 GraphicalNodeType> 
 extends AbstractPersistentSelectionAction<DiagramElementType, DiagramType> {
 
 
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
+  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
       GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
@@ -78,7 +78,7 @@ extends AbstractPersistentSelectionAction<DiagramElementType, DiagramType> {
           TemplatePatternsEnginePlugin.getDefault().newPatternCreationData(false, selection_p, 
               PatternsUIPlugin.getDefault().getModelEnvironmentUI().getEnvironments());
 
-      AbstractPatternCreationWizard<ColorType, DiagramElementType, 
+      AbstractPatternCreationWizard<DiagramElementType, 
       DiagramType, GraphicalContainerType, GraphicalNodeType> wizard 
         = _factory.instantiatePatternCreationWizard(selection_p, 
           (List<Object>) getFilteredSelection(genericTypeUtil.getGraphicalPartTypeClass()),

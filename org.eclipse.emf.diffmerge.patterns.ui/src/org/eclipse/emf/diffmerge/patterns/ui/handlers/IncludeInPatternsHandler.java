@@ -57,7 +57,7 @@ public class IncludeInPatternsHandler extends AbstractWorkbenchSelectionHandler 
 @SuppressWarnings("cast")
 protected AbstractAddToPersistentSelectionAction instantiateAddToPersistentSelectionAction() {
   try{
-    AbstractPatternActionFactory<?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+    AbstractPatternActionFactory<?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
     if(factory != null){
       return (AbstractAddToPersistentSelectionAction)factory.instantiateAddToPersistentSelectionAction();
     } 

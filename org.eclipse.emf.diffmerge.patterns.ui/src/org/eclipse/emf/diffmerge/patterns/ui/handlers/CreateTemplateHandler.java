@@ -24,7 +24,7 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Mohamed Sidati
  * @author Skander TURKI
  */
-public class CreateTemplateHandler<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+public class CreateTemplateHandler<DiagramElementType, DiagramType, GraphicalContainerType, 
 GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> extends AbstractWorkbenchSelectionHandler {
 
   /**
@@ -38,7 +38,7 @@ GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> extends Abstra
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractCreateTemplateAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+          AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType, 
             GraphicalNodeType> action = instantiateCreateTemplateAction();
           if(action != null){
             action.setActivePart(null, part);
@@ -54,12 +54,12 @@ GraphicalPartType, SemanticRepresentationType, GraphicalNodeType> extends Abstra
   
   
   @SuppressWarnings("unchecked")
-  protected AbstractCreateTemplateAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  protected AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType, 
   GraphicalNodeType> instantiateCreateTemplateAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
-        return (AbstractCreateTemplateAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+        return (AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType, 
             GraphicalNodeType>)factory.instantiateCreateTemplateAction();
       } 
     }

@@ -24,7 +24,7 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Mohamed Sidati
  * @author Skander TURKI
  */
-public class HighlightAllPatternsInstancesHandler<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+public class HighlightAllPatternsInstancesHandler<DiagramElementType, DiagramType, GraphicalContainerType, 
 GraphicalPartType, GraphicalNodeType> extends AbstractWorkbenchSelectionHandler {
 
   /**
@@ -38,7 +38,7 @@ GraphicalPartType, GraphicalNodeType> extends AbstractWorkbenchSelectionHandler 
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractHighlightAllPatternsInstancesAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+          AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType, GraphicalContainerType, 
             GraphicalNodeType> action = instantiateHighlightAllPatternsInstancesAction();
           if(action != null){
             action.setActivePart(null, part);
@@ -56,12 +56,12 @@ GraphicalPartType, GraphicalNodeType> extends AbstractWorkbenchSelectionHandler 
    * @return
    */
   @SuppressWarnings("unchecked")
-  protected AbstractHighlightAllPatternsInstancesAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  protected AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType, GraphicalContainerType, 
     GraphicalNodeType> instantiateHighlightAllPatternsInstancesAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
-        return (AbstractHighlightAllPatternsInstancesAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+        return (AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType, GraphicalContainerType, 
             GraphicalNodeType>)factory.instantiateHighlightAllPatternsInstancesAction();
       } 
     }

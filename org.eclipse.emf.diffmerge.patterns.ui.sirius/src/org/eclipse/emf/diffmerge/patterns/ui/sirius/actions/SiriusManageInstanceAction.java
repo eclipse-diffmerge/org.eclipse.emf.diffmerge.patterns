@@ -23,7 +23,8 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  * A Sirius-specific action which opens the dialog for managing pattern instances.
  * @author Skander TURKI
  */
-public class SiriusManageInstanceAction extends AbstractManageInstanceAction<RGBValues, DDiagramElement, DContainer, DDiagram, AbstractDNode>{
+public class SiriusManageInstanceAction 
+extends AbstractManageInstanceAction<DDiagramElement, DContainer, DDiagram, AbstractDNode>{
 
   // Only specifies generic types for Sirius
 

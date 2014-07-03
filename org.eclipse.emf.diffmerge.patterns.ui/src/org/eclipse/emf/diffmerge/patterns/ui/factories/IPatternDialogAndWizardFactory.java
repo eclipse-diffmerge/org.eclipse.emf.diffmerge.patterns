@@ -38,51 +38,51 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Templat
  * @author Skander TURKI
  *
  */
-public interface IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+public interface IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
 GraphicalNodeType> {
 
 
 
-  HighlightAllPatternsInstancesPanelDialog<ColorType, DiagramType, DiagramElementType, GraphicalContainerType> 
+  HighlightAllPatternsInstancesPanelDialog<DiagramType, DiagramElementType, GraphicalContainerType> 
   instantiateHighlightAllPatternsInstancesPanelDialog(
       Set<IPatternInstance> instances_p, List<Object> selection_p, DiagramType diagram_p, Shell shell_p, String dialogTitle_p, String dialogMessage_p);
 
-  InstancePanelDialog<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  InstancePanelDialog<DiagramElementType, DiagramType, GraphicalContainerType, 
   GraphicalNodeType> 
   instantiateInstancePanelDialog(List<IPatternInstance> instances_p, EObject referenceElement_p, 
       DiagramType diagram_p, List<Object> graphicalContext_p, Shell shell_p);
 
-  AbstractPatternApplicationWizard<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  AbstractPatternApplicationWizard<DiagramElementType, DiagramType, GraphicalContainerType, 
   GraphicalNodeType>
   instantiatePatternApplicationWizard(List<Object> selection_p, DiagramType diagram_p);
 
 
-  AbstractPatternBrowsingWizard<ColorType, DiagramElementType, 
+  AbstractPatternBrowsingWizard<DiagramElementType, 
   DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiatePatternBrowsingWizard(
       EObject context_p, TemplatePattern pattern_p);
 
-  AbstractPatternBrowsingWizard<ColorType, DiagramElementType, 
+  AbstractPatternBrowsingWizard<DiagramElementType, 
   DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiatePatternBrowsingWizard(
       EObject context_p, IPatternRepository repository_p);
 
-  AbstractPatternBrowsingWizard<ColorType, DiagramElementType, 
+  AbstractPatternBrowsingWizard<DiagramElementType, 
   DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiatePatternBrowsingWizard(
       Object context_p, IPatternRepository repository_p);
 
-  AbstractPatternBrowsingWizard<ColorType, DiagramElementType, 
+  AbstractPatternBrowsingWizard<DiagramElementType, 
   DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiatePatternBrowsingWizard(
       ResourceSet rset_p, IPatternRepository repository_p);
 
-  AbstractTemplateCreationWizard<ColorType, DiagramElementType, 
+  AbstractTemplateCreationWizard<DiagramElementType, 
   DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiateTemplateCreationWizard(
       List<Object> selection_p, List<Object> graphicalContext_p);
 
-  AbstractPatternUpdateWizard<ColorType, DiagramElementType, 
+  AbstractPatternUpdateWizard<DiagramElementType, 
   DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiatePatternUpdateWizard(
       IPatternInstance instance_p, EObject referenceElement_p,
@@ -90,17 +90,17 @@ GraphicalNodeType> {
       List<EStructuralFeature> featuresToIgnore_p);
 
   PatternWizardDialog instantiatePatternWizardDialog(Shell shell_p, 
-      AbstractPatternCreationWizard<ColorType, DiagramElementType, 
+      AbstractPatternCreationWizard<DiagramElementType, 
       DiagramType, GraphicalContainerType, GraphicalNodeType> _wizard);
 
-  AbstractPatternCreationWizard<ColorType, DiagramElementType, 
+  AbstractPatternCreationWizard<DiagramElementType, 
   DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiatePatternCreationWizard(
       List<Object> selection_p, List<Object> graphicalContext_p,
       TemplatePatternCreationSpecification patternCreationSpecification_p,
       boolean createNextBackButtons_p);
 
-  AbstractTemplateUsageWizard<ColorType, DiagramElementType, 
+  AbstractTemplateUsageWizard<DiagramElementType, 
   DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiateTemplateUsageWizard(
       AbstractModifiableTemplatePatternSpecification data_p);

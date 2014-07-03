@@ -33,7 +33,7 @@ import org.eclipse.swt.widgets.Shell;
  * @author Skander TURKI
  */
 public class SiriusHighlightAllPatternsInstancesAction 
-extends AbstractHighlightAllPatternsInstancesAction<RGBValues, DDiagramElement, DDiagram, DContainer, 
+extends AbstractHighlightAllPatternsInstancesAction<DDiagramElement, DDiagram, DContainer, 
 AbstractDNode>{
 
   /**

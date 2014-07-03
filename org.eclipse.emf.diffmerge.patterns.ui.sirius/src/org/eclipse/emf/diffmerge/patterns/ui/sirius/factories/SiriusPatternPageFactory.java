@@ -48,10 +48,10 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  * @author Skander TURKI
  */
 public class SiriusPatternPageFactory 
-extends AbstractPatternPageFactory<RGBValues, DDiagramElement, DDiagram, DContainer, AbstractDNode>{
+extends AbstractPatternPageFactory<DDiagramElement, DDiagram, DContainer, AbstractDNode>{
 
   @Override
-  public AbstractTemplateUsagePresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, AbstractDNode> 
+  public AbstractTemplateUsagePresentationPage<DDiagramElement, DDiagram, DContainer, AbstractDNode> 
   instantiateTemplateUsagePresentationPage(
       TemplateUsageSpecification data_p) {
     return new SiriusTemplateUsagePresentationPage(data_p);
@@ -59,21 +59,21 @@ extends AbstractPatternPageFactory<RGBValues, DDiagramElement, DDiagram, DContai
    
 
   @Override
-  public AbstractTemplateCreationPresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, AbstractDNode> 
+  public AbstractTemplateCreationPresentationPage<DDiagramElement, DDiagram, DContainer, AbstractDNode> 
   instantiateTemplateCreationPresentationPage(
       TemplatePatternCreationSpecification data_p) {
     return new SiriusTemplateCreationPresentationPage(data_p);
   }
 
   @Override
-  public AbstractPatternUpdatePresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, AbstractDNode> 
+  public AbstractPatternUpdatePresentationPage<DDiagramElement, DDiagram, DContainer, AbstractDNode> 
   instantiatePatternUpdatePresentationPage(
       AbstractModifiableTemplatePatternSpecification data_p) {
     return new SiriusPatternUpdatePresentationPage((TemplatePatternUpdateSpecification) data_p);
   }
   
   @Override
-  public AbstractPatternCreationPresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, AbstractDNode> 
+  public AbstractPatternCreationPresentationPage<DDiagramElement, DDiagram, DContainer, AbstractDNode> 
   instantiatePatternCreationPresentationPage(
       TemplatePatternCreationSpecification data_p) {
     return new SiriusPatternCreationPresentationPage(data_p);
@@ -81,7 +81,7 @@ extends AbstractPatternPageFactory<RGBValues, DDiagramElement, DDiagram, DContai
 
   
   @Override
-  public AbstractPatternBrowsingPresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, AbstractDNode> 
+  public AbstractPatternBrowsingPresentationPage<DDiagramElement, DDiagram, DContainer, AbstractDNode> 
   instantiatePatternBrowsingPresentationPage(
       TemplatePatternBrowsingSpecification data_p) {
     return new SiriusPatternBrowsingPresentationPage(data_p);
@@ -89,7 +89,7 @@ extends AbstractPatternPageFactory<RGBValues, DDiagramElement, DDiagram, DContai
 
 
   @Override
-  public AbstractPatternApplicationPresentationPage<RGBValues, DDiagramElement, DDiagram, DContainer, AbstractDNode> 
+  public AbstractPatternApplicationPresentationPage<DDiagramElement, DDiagram, DContainer, AbstractDNode> 
   instantiatePatternApplicationPresentationPage(
       TemplatePatternApplicationSpecification data_p) {
     return new SiriusPatternApplicationPresentationPage(data_p);

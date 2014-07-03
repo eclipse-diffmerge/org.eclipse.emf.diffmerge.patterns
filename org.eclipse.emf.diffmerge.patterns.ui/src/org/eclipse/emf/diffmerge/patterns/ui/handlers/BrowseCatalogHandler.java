@@ -24,7 +24,7 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Mohamed Sidati
  * @author Skander TURKI
  */
-public class BrowseCatalogHandler<ColorType, DiagramElementType, DiagramType, 
+public class BrowseCatalogHandler<DiagramElementType, DiagramType, 
 GraphicalContainerType, GraphicalPartType, GraphicalNodeType>  
 extends AbstractWorkbenchSelectionHandler {
 
@@ -39,7 +39,7 @@ extends AbstractWorkbenchSelectionHandler {
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractBrowseCatalogAction<ColorType, DiagramElementType, DiagramType, 
+          AbstractBrowseCatalogAction<DiagramElementType, DiagramType, 
           GraphicalContainerType, GraphicalNodeType>  action = instantiateBrowseCatalogAction();
           if(action != null){
             action.setActivePart(null, part);
@@ -57,12 +57,12 @@ extends AbstractWorkbenchSelectionHandler {
    * @return
    */
   @SuppressWarnings("unchecked")
-  protected AbstractBrowseCatalogAction<ColorType, DiagramElementType, DiagramType, 
+  protected AbstractBrowseCatalogAction<DiagramElementType, DiagramType, 
   GraphicalContainerType, GraphicalNodeType>  instantiateBrowseCatalogAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
-        return (AbstractBrowseCatalogAction<ColorType, DiagramElementType, DiagramType, 
+        return (AbstractBrowseCatalogAction<DiagramElementType, DiagramType, 
             GraphicalContainerType, GraphicalNodeType> )factory.instantiateBrowseCatalogAction();
       }
     }

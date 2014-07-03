@@ -28,7 +28,7 @@ import org.eclipse.emf.diffmerge.patterns.ui.viewers.AbstractInstanceExplorerVie
  * The design environment (unique in the platform) must provide his own factory
  * @author Skander TURKI
  */
-public abstract class AbstractPatternActionFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+public abstract class AbstractPatternActionFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
 GraphicalNodeType,
 InstanceExplorerViewType extends AbstractInstanceExplorerView> {
 
@@ -36,7 +36,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView> {
    * A static getter for the currently installed PatternActionFactory in the environment
    * @return a potentially-null IPatternAcitonFactory
    */
-  public static AbstractPatternActionFactory<?, ?, ? ,? ,?, ?> getInstance(){
+  public static AbstractPatternActionFactory<?, ? ,? ,?, ?> getInstance(){
     return PatternsUIPlugin.getDefault().getActionFactory();  
   }
 
@@ -44,7 +44,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView> {
    * Instantiates a new ApplyPatternAction
    * @return a non-null AbstractApplyPatternAction
    */
-  public abstract AbstractApplyPatternAction<ColorType, DiagramElementType, 
+  public abstract AbstractApplyPatternAction<DiagramElementType, 
   DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiateApplyPatternAction();
 
@@ -53,7 +53,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView> {
    * Instantiates a new BrowseCatalogAction
    * @return a non-null AbstractBrowseCatalogAction
    */
-  public abstract AbstractBrowseCatalogAction<ColorType, DiagramElementType, DiagramType, 
+  public abstract AbstractBrowseCatalogAction<DiagramElementType, DiagramType, 
   GraphicalContainerType, GraphicalNodeType>
   instantiateBrowseCatalogAction();
 
@@ -62,7 +62,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView> {
    * Instantiates a new CreatePatternAction
    * @return a non-null AbstractCreatePatternAction
    */
-  public abstract AbstractCreatePatternAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  public abstract AbstractCreatePatternAction<DiagramElementType, DiagramType, GraphicalContainerType, 
   GraphicalNodeType> instantiateCreatePatternAction();
 
 
@@ -70,7 +70,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView> {
    * Instantiates a new CreateTemplateAction
    * @return a non-null AbstractCreateTemplateAction
    */
-  public abstract AbstractCreateTemplateAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  public abstract AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType, 
   GraphicalNodeType> 
   instantiateCreateTemplateAction();
 
@@ -79,7 +79,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView> {
    * Instantiates a new HighlightAllPatternsInstancesAction
    * @return a non-null AbstractHighlightAllPatternsInstancesAction
    */
-  public abstract AbstractHighlightAllPatternsInstancesAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  public abstract AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType, GraphicalContainerType, 
   GraphicalNodeType>
   instantiateHighlightAllPatternsInstancesAction();
 
@@ -95,7 +95,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView> {
    * Instantiates a new ManageInstanceAction
    * @return a non-null AbstractManageInstanceAction
    */
-  public abstract AbstractManageInstanceAction<ColorType, DiagramElementType, GraphicalContainerType, 
+  public abstract AbstractManageInstanceAction<DiagramElementType, GraphicalContainerType, 
   DiagramType, GraphicalNodeType> 
   instantiateManageInstanceAction();
 

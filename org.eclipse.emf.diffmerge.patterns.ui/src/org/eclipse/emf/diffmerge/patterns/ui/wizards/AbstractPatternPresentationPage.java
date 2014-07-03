@@ -93,7 +93,7 @@ import org.eclipse.ui.PlatformUI;
  * A wizard page for presenting a pattern.
  * @author O. CONSTANT
  */
-public abstract class AbstractPatternPresentationPage<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+public abstract class AbstractPatternPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType, 
 GraphicalNodeType, T extends ITemplatePatternBasedSpecification>
 extends AbstractPatternPage<T> {
 
@@ -124,8 +124,8 @@ extends AbstractPatternPage<T> {
 
 
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
+  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
       GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
@@ -925,7 +925,7 @@ extends AbstractPatternPage<T> {
           final int VECTOR = 50;
           Point location = getShell().getLocation();
           Point newLocation = new Point(location.x + VECTOR, location.y + VECTOR);
-          AbstractTemplateUsageWizard<ColorType, DiagramElementType, 
+          AbstractTemplateUsageWizard<DiagramElementType, 
           DiagramType, GraphicalContainerType, GraphicalNodeType>
           wizard = instantiateTemplateUsageWizard((AbstractModifiableTemplatePatternSpecification)getData());
           //new AbstractTemplateUsageWizard((AbstractModifiableTemplatePatternSpecification)getData());
@@ -949,8 +949,7 @@ extends AbstractPatternPage<T> {
     return result;
   }
 
-  protected AbstractTemplateUsageWizard<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, GraphicalNodeType>
+  protected AbstractTemplateUsageWizard<DiagramElementType, DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiateTemplateUsageWizard(AbstractModifiableTemplatePatternSpecification data_p){
     if(_factory != null){
       return _factory.instantiateTemplateUsageWizard(data_p);

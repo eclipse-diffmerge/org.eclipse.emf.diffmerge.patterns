@@ -35,13 +35,13 @@ import org.eclipse.jface.viewers.IStructuredSelection;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractBrowseCatalogAction<ColorType, DiagramElementType, DiagramType, 
+public abstract class AbstractBrowseCatalogAction<DiagramElementType, DiagramType, 
 GraphicalContainerType, GraphicalNodeType> 
 extends AbstractModelBasedAction<DiagramElementType, DiagramType> {
 
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
+  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType, 
       GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
@@ -95,7 +95,7 @@ extends AbstractModelBasedAction<DiagramElementType, DiagramType> {
    * @param repository_p a potentially null IPatternRepository
    * @return a potentially null AbstractPatternBrowsingWizard
    */
-  protected AbstractPatternBrowsingWizard<ColorType, DiagramElementType, 
+  protected AbstractPatternBrowsingWizard<DiagramElementType, 
   DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiatePatternBrowsingWizard(Object context_p, IPatternRepository repository_p){
     if(_factory != null){
