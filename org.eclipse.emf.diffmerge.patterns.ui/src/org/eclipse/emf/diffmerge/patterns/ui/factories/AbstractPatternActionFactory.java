@@ -30,13 +30,13 @@ import org.eclipse.emf.diffmerge.patterns.ui.viewers.AbstractInstanceExplorerVie
  */
 public abstract class AbstractPatternActionFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
 GraphicalNodeType,
-InstanceExplorerViewType extends AbstractInstanceExplorerView, SemanticRepresentationType> {
+InstanceExplorerViewType extends AbstractInstanceExplorerView> {
 
   /**
    * A static getter for the currently installed PatternActionFactory in the environment
    * @return a potentially-null IPatternAcitonFactory
    */
-  public static AbstractPatternActionFactory<?, ?, ?, ? ,? ,?, ?> getInstance(){
+  public static AbstractPatternActionFactory<?, ?, ? ,? ,?, ?> getInstance(){
     return PatternsUIPlugin.getDefault().getActionFactory();  
   }
 
@@ -45,7 +45,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView, SemanticRepresent
    * @return a non-null AbstractApplyPatternAction
    */
   public abstract AbstractApplyPatternAction<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiateApplyPatternAction();
 
 
@@ -54,7 +54,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView, SemanticRepresent
    * @return a non-null AbstractBrowseCatalogAction
    */
   public abstract AbstractBrowseCatalogAction<ColorType, DiagramElementType, DiagramType, 
-  GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
+  GraphicalContainerType, GraphicalNodeType>
   instantiateBrowseCatalogAction();
 
 
@@ -63,7 +63,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView, SemanticRepresent
    * @return a non-null AbstractCreatePatternAction
    */
   public abstract AbstractCreatePatternAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  SemanticRepresentationType, GraphicalNodeType> instantiateCreatePatternAction();
+  GraphicalNodeType> instantiateCreatePatternAction();
 
 
   /**
@@ -71,7 +71,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView, SemanticRepresent
    * @return a non-null AbstractCreateTemplateAction
    */
   public abstract AbstractCreateTemplateAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  SemanticRepresentationType, GraphicalNodeType> 
+  GraphicalNodeType> 
   instantiateCreateTemplateAction();
 
 
@@ -80,7 +80,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView, SemanticRepresent
    * @return a non-null AbstractHighlightAllPatternsInstancesAction
    */
   public abstract AbstractHighlightAllPatternsInstancesAction<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  SemanticRepresentationType, GraphicalNodeType>
+  GraphicalNodeType>
   instantiateHighlightAllPatternsInstancesAction();
 
 
@@ -96,7 +96,7 @@ InstanceExplorerViewType extends AbstractInstanceExplorerView, SemanticRepresent
    * @return a non-null AbstractManageInstanceAction
    */
   public abstract AbstractManageInstanceAction<ColorType, DiagramElementType, GraphicalContainerType, 
-  DiagramType, SemanticRepresentationType, GraphicalNodeType> 
+  DiagramType, GraphicalNodeType> 
   instantiateManageInstanceAction();
 
 

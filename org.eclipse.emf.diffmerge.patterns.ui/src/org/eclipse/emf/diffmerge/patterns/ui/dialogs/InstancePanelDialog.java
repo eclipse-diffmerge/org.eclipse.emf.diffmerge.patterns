@@ -97,7 +97,7 @@ import org.eclipse.ui.PlatformUI;
  * @author S. TURKI
  */
 public abstract class InstancePanelDialog<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-SemanticRepresentationType, GraphicalNodeType> extends InstanceChoiceDialog {
+GraphicalNodeType> extends InstanceChoiceDialog {
 
 
   /** The width of push buttons */
@@ -150,8 +150,8 @@ SemanticRepresentationType, GraphicalNodeType> extends InstanceChoiceDialog {
 
   /** Dialog and Wizard factory */
   private IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  SemanticRepresentationType, GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-      SemanticRepresentationType, GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+  GraphicalNodeType> _factory = (IPatternDialogAndWizardFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
+      GraphicalNodeType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
   /**
@@ -196,7 +196,7 @@ SemanticRepresentationType, GraphicalNodeType> extends InstanceChoiceDialog {
    * @return a potentially null Pattern Update Wizard
    */
   protected AbstractPatternUpdateWizard<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiatePatternUpdateWizard(IPatternInstance instance_p,
       EObject referenceElement_p, List<Object> graphicalContext_p, List<EStructuralFeature> featuresToIgnore_p){
     if(_factory != null){
@@ -212,8 +212,8 @@ SemanticRepresentationType, GraphicalNodeType> extends InstanceChoiceDialog {
   protected AbstractGraphicalWrappingInstanceOperation<IPatternInstance, DiagramType, DiagramElementType,GraphicalNodeType> 
   instantiateGraphicalWrappingInstanceOperation(IModelOperation<? extends IPatternInstance> operation_p, DiagramType diagram_p,
       org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind refreshRequest_p){
-    IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType> factory = 
-        (IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType> factory = 
+        (IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateGraphicalWrappingInstanceOperation(operation_p, diagram_p, refreshRequest_p);
     }
@@ -226,8 +226,8 @@ SemanticRepresentationType, GraphicalNodeType> extends InstanceChoiceDialog {
   protected AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, DiagramType, DiagramElementType,GraphicalNodeType> 
   instantiateGraphicalWrappingInstanceOperation(InstanceOperation operation_p, IPatternInstance instance_p, DiagramType diagram_p, 
       org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind refreshRequest_p){
-    IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType> factory = 
-        (IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType> factory = 
+        (IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateGraphicalWrappingInstanceOperation(operation_p, instance_p, diagram_p, refreshRequest_p);
     }
@@ -238,12 +238,12 @@ SemanticRepresentationType, GraphicalNodeType> extends InstanceChoiceDialog {
   /**
    * Instantiates an operation for highlighting diagram elements based on specific criteria on semantic elements.
    */
-  protected AbstractFilteredGraphicalUpdateOperation<SemanticRepresentationType, DiagramType, DiagramElementType> 
+  protected AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
   instantiateHighlightOperation(DiagramType diagram_p, Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, boolean coverEdges_p,
       boolean coverNodes_p, boolean coverPorts_p)
       {
-    IPatternOperationFactory<?, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType> factory = 
-        (IPatternOperationFactory<?, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<?, DiagramElementType, DiagramType, GraphicalContainerType> factory = 
+        (IPatternOperationFactory<?, DiagramElementType, DiagramType, GraphicalContainerType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateHighlightOperation(diagram_p, instances_p, color_p, borderSize_p, coverEdges_p,  coverNodes_p, coverPorts_p);
     }
@@ -253,12 +253,12 @@ SemanticRepresentationType, GraphicalNodeType> extends InstanceChoiceDialog {
   /**
    * Instantiates an operation
    */
-  protected AbstractFilteredGraphicalUpdateOperation<SemanticRepresentationType, DiagramType, DiagramElementType> 
+  protected AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
   instantiateLayoutReuseOperation(DiagramType diagram_p, IPatternInstance instance_p, Map<DiagramElementType, Point> initialElementsLocationsMap_p,
       Map<DiagramElementType, GraphicalContainerType> elementsContainersMap_p, boolean updateLayout_p, boolean updateStyle_p)
       {
-    IPatternOperationFactory<?, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType> factory = 
-        (IPatternOperationFactory<?, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<?, DiagramElementType, DiagramType, GraphicalContainerType> factory = 
+        (IPatternOperationFactory<?, DiagramElementType, DiagramType, GraphicalContainerType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateLayoutReuseOperation(diagram_p, instance_p, initialElementsLocationsMap_p, elementsContainersMap_p, 0, 0, updateLayout_p, updateStyle_p, _diagram);
     }
@@ -271,10 +271,10 @@ SemanticRepresentationType, GraphicalNodeType> extends InstanceChoiceDialog {
    * @param instances_p
    * @return
    */
-  protected AbstractFilteredGraphicalUpdateOperation<SemanticRepresentationType, DiagramType, DiagramElementType> 
+  protected AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
   instantiateRestoreOperation(DiagramType diagram_p, Collection<? extends IPatternInstance>  instances_p){
-    IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType> factory = 
-        (IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType> factory = 
+        (IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateRestoreOperation(diagram_p, instances_p);
     }
@@ -289,7 +289,7 @@ SemanticRepresentationType, GraphicalNodeType> extends InstanceChoiceDialog {
     boolean result = super.close();
     if (globalPatternStateChanged()) {
       AbstractInstanceExplorerView<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-      SemanticRepresentationType, GraphicalNodeType> view = getInstanceExplorerView();
+      GraphicalNodeType> view = getInstanceExplorerView();
       if (view != null) {
         view.refreshCurrent();
       }
@@ -919,7 +919,7 @@ SemanticRepresentationType, GraphicalNodeType> extends InstanceChoiceDialog {
       @Override
       public void widgetSelected(SelectionEvent event_p) {
         List<IPatternInstance> instances = getSelectedInstances();
-        List<AbstractFilteredGraphicalUpdateOperation<SemanticRepresentationType, DiagramType, DiagramElementType>> operations = new ArrayList<AbstractFilteredGraphicalUpdateOperation<SemanticRepresentationType, DiagramType, DiagramElementType>>(instances.size());
+        List<AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType>> operations = new ArrayList<AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType>>(instances.size());
         for (IPatternInstance instance : instances) {
           operations.add(instantiateLayoutReuseOperation(_diagram, instance, new Hashtable<DiagramElementType, Point>(), new Hashtable<DiagramElementType, GraphicalContainerType>(),
               _reuseLayoutAtUpdate, false));
@@ -1053,7 +1053,7 @@ SemanticRepresentationType, GraphicalNodeType> extends InstanceChoiceDialog {
       @Override
       public void widgetSelected(SelectionEvent e_p) {
         AbstractInstanceExplorerView<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-        SemanticRepresentationType, GraphicalNodeType> view = null;
+        GraphicalNodeType> view = null;
         try {
           view = (AbstractInstanceExplorerView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(getInstanceExplorerViewID());
         } catch (Exception e) {
@@ -1246,7 +1246,7 @@ SemanticRepresentationType, GraphicalNodeType> extends InstanceChoiceDialog {
         CorePatternsPlugin.getDefault().getModelEnvironment().execute(instantiateRestoreOperation(_diagram, getSelectedInstances()));
         if (_reuseStyleAtUpdate) {
           List<IPatternInstance> instances = getSelectedInstances();
-          List<AbstractFilteredGraphicalUpdateOperation<SemanticRepresentationType, DiagramType, DiagramElementType>> operations = new ArrayList<AbstractFilteredGraphicalUpdateOperation<SemanticRepresentationType, DiagramType, DiagramElementType>>(instances.size());
+          List<AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType>> operations = new ArrayList<AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType>>(instances.size());
           for (IPatternInstance instance : instances) {
             operations.add(instantiateLayoutReuseOperation(_diagram, instance, new Hashtable<DiagramElementType, Point>(), new Hashtable<DiagramElementType, GraphicalContainerType>(),
                 false, _reuseStyleAtUpdate));
@@ -1757,12 +1757,12 @@ SemanticRepresentationType, GraphicalNodeType> extends InstanceChoiceDialog {
    */
   @SuppressWarnings("unchecked")
   protected AbstractInstanceExplorerView<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  SemanticRepresentationType, GraphicalNodeType> getInstanceExplorerView() {
+  GraphicalNodeType> getInstanceExplorerView() {
     AbstractInstanceExplorerView<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-    SemanticRepresentationType, GraphicalNodeType> result = null;
+    GraphicalNodeType> result = null;
     try {
       result = (AbstractInstanceExplorerView<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-          SemanticRepresentationType, GraphicalNodeType>) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView(getInstanceExplorerViewID());
+          GraphicalNodeType>) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView(getInstanceExplorerViewID());
     } catch (Exception e) {
       // Nothing
     }
@@ -1927,8 +1927,8 @@ SemanticRepresentationType, GraphicalNodeType> extends InstanceChoiceDialog {
    */
   @SuppressWarnings("unchecked")
   protected void reuseAppearenceOnAdditions(Collection<? extends IModelOperation<?>> executedOperations_p, boolean reuseLayout_p, boolean reuseStyle_p) {
-    List<AbstractFilteredGraphicalUpdateOperation<?, ?, ?>> newOperations = new ArrayList<AbstractFilteredGraphicalUpdateOperation<?, ?, ?>>();
-    IPatternOperationFactory<?, DiagramElementType, ?, GraphicalContainerType, ?> factory = (IPatternOperationFactory<?, DiagramElementType, ?, GraphicalContainerType, ?>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    List<AbstractFilteredGraphicalUpdateOperation<?, ?>> newOperations = new ArrayList<AbstractFilteredGraphicalUpdateOperation<?, ?>>();
+    IPatternOperationFactory<?, DiagramElementType, ?, GraphicalContainerType> factory = (IPatternOperationFactory<?, DiagramElementType, ?, GraphicalContainerType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       for (IModelOperation<?> executedOperation : executedOperations_p) {
         if (executedOperation instanceof AbstractGraphicalWrappingInstanceOperation) {
@@ -1936,7 +1936,7 @@ SemanticRepresentationType, GraphicalNodeType> extends InstanceChoiceDialog {
           IPatternInstance instance = executedViewpointOperation.getInstance();
           Collection<DiagramElementType> diagramElements = executedViewpointOperation.getNewDiagramElements();
           if ((instance != null) && !diagramElements.isEmpty()) {
-            AbstractFilteredGraphicalUpdateOperation<?, ?, DiagramElementType> newOperation = 
+            AbstractFilteredGraphicalUpdateOperation<?, DiagramElementType> newOperation = 
                 factory.instantiateLayoutReuseOperation(diagramElements, instance, null, null, 0, 0, reuseLayout_p, reuseStyle_p, _diagram);
             newOperations.add(newOperation);
           }

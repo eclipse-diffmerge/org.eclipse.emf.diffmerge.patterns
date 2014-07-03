@@ -17,14 +17,13 @@ package org.eclipse.emf.diffmerge.patterns.diagram.operations;
  * @author S. TURKI
  *
  * @param <DiagramType>
- * @param <SemanticRepresentationType>
  */
-public abstract class AbstractGraphicalUpdateOperation<DiagramType, SemanticRepresentationType> {
+public abstract class AbstractGraphicalUpdateOperation<DiagramType> {
 
   /**
    * Update the given representation
-   * @param decorator_p a non-null SemanticRepresentationType
+   * @param decorator_p a non-null Object
    */
-  public abstract void update(SemanticRepresentationType decorator_p, boolean isMerged);
+  public abstract void update(Object decorator_p, boolean isMerged);
   
 }

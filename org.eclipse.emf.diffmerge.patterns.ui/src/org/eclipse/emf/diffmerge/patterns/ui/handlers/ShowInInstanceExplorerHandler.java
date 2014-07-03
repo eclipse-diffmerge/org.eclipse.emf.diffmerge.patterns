@@ -59,7 +59,7 @@ D extends AbstractInstanceExplorerView
   @SuppressWarnings("unchecked")
   protected AbstractShowInInstanceExplorerViewAction<DiagramElementType, DiagramType, D> instantiateShowInInstanceExplorerViewAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
         return (AbstractShowInInstanceExplorerViewAction<DiagramElementType, DiagramType, D>)factory.instantiateShowInInstanceExplorerViewAction();
       } 

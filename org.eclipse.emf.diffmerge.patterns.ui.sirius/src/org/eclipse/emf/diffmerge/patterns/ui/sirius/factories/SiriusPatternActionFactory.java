@@ -45,14 +45,14 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  *
  */
 public class SiriusPatternActionFactory extends AbstractPatternActionFactory<RGBValues, DDiagramElement, DDiagram, 
-DContainer, AbstractDNode, SiriusInstanceExplorerView, DSemanticDecorator>{
+DContainer, AbstractDNode, SiriusInstanceExplorerView>{
 
 /**
  * 
  * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateApplyPatternAction()
  */
   @Override
-  public AbstractApplyPatternAction<RGBValues, DDiagramElement, DDiagram, DContainer, DSemanticDecorator, AbstractDNode>
+  public AbstractApplyPatternAction<RGBValues, DDiagramElement, DDiagram, DContainer, AbstractDNode>
   instantiateApplyPatternAction() {
     return new SiriusApplyPatternAction();
   }
@@ -62,8 +62,8 @@ DContainer, AbstractDNode, SiriusInstanceExplorerView, DSemanticDecorator>{
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateAbstractBrowseCatalogAction()
    */
   @Override
-  public AbstractBrowseCatalogAction<RGBValues, DDiagramElement, DDiagram, DContainer, 
-  DSemanticDecorator, AbstractDNode> instantiateBrowseCatalogAction() {
+  public AbstractBrowseCatalogAction<RGBValues, DDiagramElement, DDiagram, DContainer, AbstractDNode> 
+  instantiateBrowseCatalogAction() {
     return new SiriusBrowseCatalogAction();
   }
   
@@ -72,8 +72,8 @@ DContainer, AbstractDNode, SiriusInstanceExplorerView, DSemanticDecorator>{
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateCreatePatternAction()
    */
   @Override
-  public AbstractCreatePatternAction<RGBValues, DDiagramElement, DDiagram, DContainer, 
-  DSemanticDecorator, AbstractDNode> instantiateCreatePatternAction() {
+  public AbstractCreatePatternAction<RGBValues, DDiagramElement, DDiagram, DContainer, AbstractDNode> 
+  instantiateCreatePatternAction() {
     return new SiriusCreatePatternAction();
   }
   
@@ -82,8 +82,8 @@ DContainer, AbstractDNode, SiriusInstanceExplorerView, DSemanticDecorator>{
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateCreateTemplateAction()
    */
   @Override
-  public AbstractCreateTemplateAction<RGBValues, DDiagramElement, DDiagram, DContainer, 
-  DSemanticDecorator, AbstractDNode> instantiateCreateTemplateAction() {
+  public AbstractCreateTemplateAction<RGBValues, DDiagramElement, DDiagram, DContainer, AbstractDNode> 
+  instantiateCreateTemplateAction() {
     return new SiriusCreateTemplateAction();
   }
   
@@ -92,8 +92,7 @@ DContainer, AbstractDNode, SiriusInstanceExplorerView, DSemanticDecorator>{
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateHighlightAllPatternsInstancesAction()
    */
   @Override
-  public AbstractHighlightAllPatternsInstancesAction<RGBValues, DDiagramElement, DDiagram, DContainer, 
-  DSemanticDecorator, AbstractDNode> 
+  public AbstractHighlightAllPatternsInstancesAction<RGBValues, DDiagramElement, DDiagram, DContainer, AbstractDNode> 
     instantiateHighlightAllPatternsInstancesAction() {
     return  new SiriusHighlightAllPatternsInstancesAction();
   }
@@ -113,7 +112,7 @@ DContainer, AbstractDNode, SiriusInstanceExplorerView, DSemanticDecorator>{
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateManageInstanceAction()
    */
   @Override
-  public AbstractManageInstanceAction<RGBValues, DDiagramElement, DContainer, DDiagram, DSemanticDecorator, AbstractDNode> 
+  public AbstractManageInstanceAction<RGBValues, DDiagramElement, DContainer, DDiagram, AbstractDNode> 
   instantiateManageInstanceAction() {
     return  new SiriusManageInstanceAction();
   }

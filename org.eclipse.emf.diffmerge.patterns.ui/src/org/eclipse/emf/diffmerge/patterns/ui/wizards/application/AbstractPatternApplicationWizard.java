@@ -50,7 +50,7 @@ import org.eclipse.swt.graphics.Point;
  * @author O. CONSTANT
  */
 public abstract class AbstractPatternApplicationWizard<ColorType, DiagramElementType, 
-DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType> 
+DiagramType, GraphicalContainerType, GraphicalNodeType> 
 extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
 
 
@@ -142,14 +142,14 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
           final int xOffset = MULTI_INSTANCE_OFFSET, yOffset = MULTI_INSTANCE_OFFSET;
           int currentVx = 0, currentVy = 0;
           for (IPatternInstance instance : instances) {
-            AbstractFilteredGraphicalUpdateOperation<SemanticRepresentationType, DiagramType, DiagramElementType> layoutOperation = instantiateLayoutReuseOperation(_diagramToRefresh, instance, elementsLocationsMap,
+            AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> layoutOperation = instantiateLayoutReuseOperation(_diagramToRefresh, instance, elementsLocationsMap,
                 elementsContainersMap, currentVx, currentVy, true, true, getData().getScopeElement());
             layoutOperations.add(layoutOperation);
             currentVx += xOffset;
             currentVy += yOffset;
           }
-          execute(new CompoundModelOperation<Collection<SemanticRepresentationType>>(
-              layoutOperations.get(0).getName(), (List<? extends IModelOperation<? extends Collection<SemanticRepresentationType>>>) layoutOperations
+          execute(new CompoundModelOperation<Collection<Object>>(
+              layoutOperations.get(0).getName(), (List<? extends IModelOperation<? extends Collection<Object>>>) layoutOperations
               , null, layoutOperations.get(0).getTargetContext(), layoutOperations.get(0).getSourceContext()));
         }
       }
@@ -189,15 +189,15 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
   /**
    * Instantiates an operation that is responsible of representing a given set of semantic elements in a given diagram.
    */
-  protected AbstractFilteredGraphicalUpdateOperation<SemanticRepresentationType, DiagramType, DiagramElementType> 
+  protected AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
   instantiateLayoutReuseOperation(DiagramType diagram_p, IPatternInstance instance_p, Map<DiagramElementType, Point> initialElementsLocationsMap_p,
       Map<DiagramElementType, GraphicalContainerType> elementsContainersMap_p, 
       int vx_p, int vy_p, boolean updateLayout_p, boolean updateStyle_p
       ,Object modelSideContext_p)
       {
     @SuppressWarnings("unchecked")
-    IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType> factory = 
-    (IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType> factory = 
+    (IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateLayoutReuseOperation(diagram_p, instance_p, initialElementsLocationsMap_p, elementsContainersMap_p, vx_p, vy_p, updateLayout_p, updateStyle_p, modelSideContext_p);
     }
@@ -210,8 +210,8 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
   protected  AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>, DiagramType, DiagramElementType, GraphicalNodeType> 
   instantiateGraphicalWrappingInstanceOperation(IModelOperation<List<IPatternInstance>> operation_p, DiagramType diagram_p, RefreshRequestKind refreshRequest_p){
     @SuppressWarnings("unchecked")
-    IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType> factory =
-    (IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType>)  PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType> factory =
+    (IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, GraphicalContainerType>)  PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateGraphicalWrappingInstanceOperation(operation_p, diagram_p, refreshRequest_p, true);
     }
@@ -222,9 +222,9 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
    * Instantiates a PatternApplicationPresentationPage
    */
   protected AbstractPatternApplicationPresentationPage<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiatePatternApplicationPresentationPage(TemplatePatternApplicationSpecification data_p){
-    AbstractPatternPageFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
+    AbstractPatternPageFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, GraphicalNodeType>
     factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiatePatternApplicationPresentationPage(data_p);
@@ -238,7 +238,7 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
    */
   protected AbstractPatternApplicationAssociationPage<DiagramType> 
   instantiatePatternApplicationAssociationPage(){
-    AbstractPatternPageFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
+    AbstractPatternPageFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, GraphicalNodeType>
     factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiatePatternApplicationAssociationPage(getData(), _diagramToRefresh);

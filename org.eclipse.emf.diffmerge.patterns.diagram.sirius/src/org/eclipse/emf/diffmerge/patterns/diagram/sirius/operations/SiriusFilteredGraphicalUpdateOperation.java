@@ -31,7 +31,7 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
  * @author Skander TURKI
  */
 public abstract class SiriusFilteredGraphicalUpdateOperation 
-extends AbstractFilteredGraphicalUpdateOperation<DSemanticDecorator, DDiagram, DDiagramElement>{
+extends AbstractFilteredGraphicalUpdateOperation<DDiagram, DDiagramElement>{
 
   /**
    * Constructor
@@ -70,8 +70,8 @@ extends AbstractFilteredGraphicalUpdateOperation<DSemanticDecorator, DDiagram, D
    * @see org.eclipse.emf.diffmerge.patterns.core.operations.AbstractModelOperation#run()
    */
   @Override
-  public Collection<DSemanticDecorator> run() {
-    Collection<DSemanticDecorator> result = new FOrderedSet<DSemanticDecorator>();
+  public Collection<Object> run() {
+    Collection<Object> result = new FOrderedSet<Object>();
     boolean updated = false;
     // Diagram elements
     Collection<? extends DDiagramElement> toUpdate = _diagramElements != null ? getAllDiagramElements(_diagramElements) : _diagram.getDiagramElements();
@@ -99,16 +99,19 @@ extends AbstractFilteredGraphicalUpdateOperation<DSemanticDecorator, DDiagram, D
    * @see org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractFilteredGraphicalUpdateOperation#mustBeUpdated(java.lang.Object)
    */
   @Override
-  protected boolean mustBeUpdated(DSemanticDecorator decorator_p) {
-    boolean result = true;
-    if (getFilter() != null) {
-      result = false;
-      EObject semanticElement = decorator_p.getTarget();
-      if (semanticElement != null) {
-        result = getFilter().accepts(semanticElement);
+  protected boolean mustBeUpdated(Object decorator_p) {
+    if(decorator_p instanceof DSemanticDecorator){
+      boolean result = true;
+      if (getFilter() != null) {
+        result = false;
+        EObject semanticElement = ((DSemanticDecorator)decorator_p).getTarget();
+        if (semanticElement != null) {
+          result = getFilter().accepts(semanticElement);
+        }
       }
+      return result;
     }
-    return result;
+    return false;
   }
 
   /**

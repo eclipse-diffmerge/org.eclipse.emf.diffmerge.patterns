@@ -21,8 +21,8 @@ import org.eclipse.emf.diffmerge.util.ModelsUtil;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class AbstractFilteredGraphicalUpdateOperation<SemanticRepresentationType, DiagramType, DiagramElementType> 
-extends AbstractModelOperation<Collection<SemanticRepresentationType>> {
+public abstract class AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
+extends AbstractModelOperation<Collection<Object>> {
 
   /**
    * The [non-null iff _diagramElements is null] diagram in which update must occur
@@ -41,7 +41,7 @@ extends AbstractModelOperation<Collection<SemanticRepresentationType>> {
 
 
   /** Instance of inner class used to simulate multiple inheritance for leaf operations*/
-  protected AbstractGraphicalUpdateOperation<DiagramType, SemanticRepresentationType> _innerGraphicalOperation;
+  protected AbstractGraphicalUpdateOperation<DiagramType> _innerGraphicalOperation;
 
   /**
    * Constructor
@@ -76,7 +76,7 @@ extends AbstractModelOperation<Collection<SemanticRepresentationType>> {
    * @param decorator_p a non-null semantic decorator
    * @return whether the decorator was actually updated
    */
-  protected final boolean checkUpdate(SemanticRepresentationType decorator_p, boolean isMerged) {
+  protected final boolean checkUpdate(Object decorator_p, boolean isMerged) {
     boolean result = false;
     if (mustBeUpdated(decorator_p)) {
       update(decorator_p, isMerged);
@@ -105,14 +105,14 @@ extends AbstractModelOperation<Collection<SemanticRepresentationType>> {
    * Return whether the given decorator must be updated
    * @param decorator_p a non-null semantic decorator
    */
-  protected abstract boolean mustBeUpdated(SemanticRepresentationType decorator_p);
+  protected abstract boolean mustBeUpdated(Object decorator_p);
 
 
   /**
    * Update the given decorator
    * @param decorator_p a non-null semantic decorator
    */
-  protected abstract void update(SemanticRepresentationType decorator_p, boolean isMerged);
+  protected abstract void update(Object decorator_p, boolean isMerged);
 
 
   /**

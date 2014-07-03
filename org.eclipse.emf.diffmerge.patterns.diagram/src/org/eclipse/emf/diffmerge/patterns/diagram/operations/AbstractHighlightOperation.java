@@ -22,7 +22,7 @@ import org.eclipse.emf.diffmerge.patterns.diagram.Messages;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class AbstractHighlightOperation<DiagramType, SemanticRepresentationType> extends AbstractGraphicalUpdateOperation<DiagramType, SemanticRepresentationType>{
+public abstract class AbstractHighlightOperation<DiagramType> extends AbstractGraphicalUpdateOperation<DiagramType>{
 
   /** The name of the operation */
   private static final String NAME = Messages.HighlightOperation_Name;

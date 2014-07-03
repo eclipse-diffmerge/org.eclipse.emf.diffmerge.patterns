@@ -24,9 +24,9 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Templat
  * @author O. CONSTANT
  */
 public abstract class AbstractPatternUpdatePresentationPage<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-SemanticRepresentationType, GraphicalNodeType>
+GraphicalNodeType>
 extends AbstractPatternPresentationPage<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-SemanticRepresentationType, GraphicalNodeType, TemplatePatternUpdateSpecification> {
+GraphicalNodeType, TemplatePatternUpdateSpecification> {
 
   /**
    * Constructor

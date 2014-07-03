@@ -80,7 +80,7 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
    * @see org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractFilteredGraphicalUpdateOperation#update(fr.obeo.dsl.viewpoint.DSemanticDecorator)
    */
   @Override
-  protected void update(DSemanticDecorator decorator_p, boolean isMerged) {
+  protected void update(Object decorator_p, boolean isMerged) {
     _innerGraphicalOperation.update(decorator_p, isMerged);
   }
 
@@ -90,7 +90,7 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
    * @author Skander TURKI
    *
    */
-  protected class InnerHighlightOperation extends AbstractHighlightOperation<DDiagram, DSemanticDecorator>{
+  protected class InnerHighlightOperation extends AbstractHighlightOperation<DDiagram>{
 
     /** Casted innerGraphicalOperation */
     private InnerHighlightOperation _innerHighlightOperation;
@@ -113,24 +113,27 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
 
     @SuppressWarnings("synthetic-access")
     @Override
-    public void update(DSemanticDecorator decorator_p, boolean isMerged) {
-      _innerHighlightOperation = (InnerHighlightOperation) _innerGraphicalOperation;
-      if ((decorator_p instanceof DEdge) && _innerHighlightOperation.is_coverEdges()) {
-        updateEdge((DEdge) decorator_p);
-      } else if (decorator_p instanceof DNode) {
-        DNode node = (DNode) decorator_p;
-        if (SiriusUtil.isBorderedNode(node)) {
-          if (_innerHighlightOperation.is_coverPorts()) {
+    public void update(Object decorator_p, boolean isMerged) {
+      if(decorator_p instanceof DSemanticDecorator){
+        _innerHighlightOperation = (InnerHighlightOperation) _innerGraphicalOperation;
+        if ((decorator_p instanceof DEdge) && _innerHighlightOperation.is_coverEdges()) {
+          updateEdge((DEdge) decorator_p);
+        } else if (decorator_p instanceof DNode) {
+          DNode node = (DNode) decorator_p;
+          if (SiriusUtil.isBorderedNode(node)) {
+            if (_innerHighlightOperation.is_coverPorts()) {
+              updateNode(node);
+            }
+          } else if (_innerHighlightOperation.is_coverNodes()) {
             updateNode(node);
           }
-        } else if (_innerHighlightOperation.is_coverNodes()) {
-          updateNode(node);
-        }
-      } else if ((decorator_p instanceof DNodeContainer) && _innerHighlightOperation.is_coverNodes()) {
-        updateContainer((DNodeContainer) decorator_p);
-      } else if ((decorator_p instanceof DNodeList) && _innerHighlightOperation.is_coverNodes()) {
-        updateList((DNodeList) decorator_p);
-      }  
+        } else if ((decorator_p instanceof DNodeContainer) && _innerHighlightOperation.is_coverNodes()) {
+          updateContainer((DNodeContainer) decorator_p);
+        } else if ((decorator_p instanceof DNodeList) && _innerHighlightOperation.is_coverNodes()) {
+          updateList((DNodeList) decorator_p);
+        }  
+      }
+
     }
 
     /**

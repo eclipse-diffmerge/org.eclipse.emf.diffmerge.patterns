@@ -34,7 +34,7 @@ import org.eclipse.swt.graphics.RGB;
  * The design environment (unique in the platform) must provide his own factory
  * @author Skander TURKI
  */
-public interface IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, DiagramContainer, SemanticRepresentationType> {
+public interface IPatternOperationFactory<GraphicalNodeType, DiagramElementType, DiagramType, DiagramContainer> {
 
 
   /**
@@ -85,7 +85,7 @@ public interface IPatternOperationFactory<GraphicalNodeType, DiagramElementType,
    * Instantiates an operation for highlighting diagram elements based on specific criteria on semantic elements.
    * @return a non-null AbstractFilteredGraphicalUpdateOperation (must be a concrete HighlightOperation)
    */
-  AbstractFilteredGraphicalUpdateOperation<SemanticRepresentationType, DiagramType, DiagramElementType> 
+  AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
   instantiateHighlightOperation(
       DiagramType diagram_p, Collection<? extends IPatternInstance> instances_p,
       RGB color_p, int borderSize_p, boolean coverEdges_p,
@@ -95,7 +95,7 @@ public interface IPatternOperationFactory<GraphicalNodeType, DiagramElementType,
    * Instantiates an operation that is responsible of representing a given set of semantic elements in a given diagram.
    * @return a non-null AbstractFilteredGraphicalUpdateOperation (must be a concrete LayoutReuseOperation)
    */
-  AbstractFilteredGraphicalUpdateOperation<SemanticRepresentationType, DiagramType, DiagramElementType>
+  AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType>
   instantiateLayoutReuseOperation(
       Collection<DiagramElementType> diagramElements_p,  
       IPatternInstance instance_p, 
@@ -109,7 +109,7 @@ public interface IPatternOperationFactory<GraphicalNodeType, DiagramElementType,
    * Instantiates an operation that is responsible of representing a given set of semantic elements in a given diagram.
    * @return a non-null AbstractFilteredGraphicalUpdateOperation (must be a concrete LayoutReuseOperation)
    */
-  AbstractFilteredGraphicalUpdateOperation<SemanticRepresentationType, DiagramType, DiagramElementType>
+  AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType>
   instantiateLayoutReuseOperation(
       DiagramType diagram_p,  
       IPatternInstance instance_p, 
@@ -123,7 +123,7 @@ public interface IPatternOperationFactory<GraphicalNodeType, DiagramElementType,
    * Instantiates an operation for restoring diagram elements based on specific criteria on semantic elements.
    * @return a non-null AbstractFilteredGraphicalUpdateOperation (must be a concrete RestoreOperation)
    */
-  AbstractFilteredGraphicalUpdateOperation<SemanticRepresentationType, DiagramType, DiagramElementType> 
+  AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
   instantiateRestoreOperation(
       DiagramType diagram_p, Collection<? extends IPatternInstance> instances_p);
 

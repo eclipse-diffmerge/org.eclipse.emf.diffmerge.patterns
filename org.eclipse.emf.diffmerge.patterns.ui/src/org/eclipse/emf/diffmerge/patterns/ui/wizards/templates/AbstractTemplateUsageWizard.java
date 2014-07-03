@@ -35,7 +35,7 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.Templa
  * @author O. CONSTANT
  */
 public abstract class AbstractTemplateUsageWizard<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-SemanticRepresentationType, GraphicalNodeType>
+GraphicalNodeType>
 extends
 AbstractPatternWizard<TemplateUsageSpecification> {
 
@@ -88,9 +88,9 @@ AbstractPatternWizard<TemplateUsageSpecification> {
    * @return
    */
   protected AbstractTemplateUsagePresentationPage<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-  SemanticRepresentationType, GraphicalNodeType>
+  GraphicalNodeType>
   instantiateTemplateUsagePresentationPage(TemplateUsageSpecification data_p){
-    AbstractPatternPageFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
+    AbstractPatternPageFactory<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, GraphicalNodeType>
     factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiateTemplateUsagePresentationPage(data_p);

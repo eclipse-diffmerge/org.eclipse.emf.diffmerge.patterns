@@ -124,7 +124,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
    * @see org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractFilteredGraphicalUpdateOperation#update(fr.obeo.dsl.viewpoint.DSemanticDecorator)
    */
   @Override
-  protected void update(DSemanticDecorator decorator_p, boolean isMerged) {
+  protected void update(Object decorator_p, boolean isMerged) {
     _innerLayoutReuseOperation.update(decorator_p, isMerged); 
   }
 
@@ -147,8 +147,8 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
    * @see org.eclipse.emf.diffmerge.patterns.core.operations.AbstractModelOperation#run()
    */
   @Override
-  public Collection<DSemanticDecorator> run() {  
-    Collection<DSemanticDecorator> result = new FOrderedSet<DSemanticDecorator>();
+  public Collection<Object> run() {  
+    Collection<Object> result = new FOrderedSet<Object>();
     boolean updated = false;
     // Get diagram elements that should be updated
     Collection<DDiagramElement> toUpdate = getDiagramElementsToUpdate();    
@@ -352,7 +352,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
    * @author Skander TURKI
    *
    */
-  protected class InnerLayoutReuseOperation extends AbstractLayoutReuseOperation<DDiagram, DSemanticDecorator>{
+  protected class InnerLayoutReuseOperation extends AbstractLayoutReuseOperation<DDiagram>{
 
     /**
      * Constructor
@@ -378,68 +378,72 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
      * @see org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalUpdateOperation#update(java.lang.Object, boolean)
      */
     @Override
-    public void update(DSemanticDecorator decorator_p, boolean isMerged) {
-      // Apply the update
-      if ((get_instance().getPattern() instanceof TemplatePattern) && (get_instance().getPatternData() instanceof TemplatePatternData)) {
-        TemplatePattern pattern = (TemplatePattern) get_instance().getPattern();
-        if (!pattern.getLayoutData().isEmpty()) {
-          TemplatePatternData data = (TemplatePatternData) get_instance().getPatternData();
-          EObject semanticElement = SiriusLayersUtil.downViewpointToSemantic(decorator_p);
-          if (semanticElement != null) {
-            EObject templateElement = data.getCounterpart(semanticElement, false);
-            Layout layout = pattern.getLayoutData().get(templateElement);
-            if (layout instanceof NodeLayout) {
-              NodeLayout nodeLayout = (NodeLayout) layout;
-              List<View> views = SiriusLayersUtil.upViewpointToGmf(decorator_p);
-              if (!views.isEmpty() && (views.get(0) instanceof Node)) {
-                Node node = (Node) views.get(0);
-                LayoutConstraint constraint = node.getLayoutConstraint();
-                if (is_updateStyle()) {
-                  // Apply font style
-                  if (nodeLayout.getFontStyle() != null) {
-                    LayoutUtil.applyAbstractDNodePatternFontStyle(nodeLayout.getFontStyle(), node);
-                  }
-
-                  // Apply node style
-                  if (nodeLayout.getOwnedStyle() != null) {
-                    LayoutUtil.applyNodePatternStyleToDNode(nodeLayout.getOwnedStyle(), node);
-                  }
-                }
-                if (is_updateLayout()) {
-                  if (constraint instanceof Bounds) {
-                    Bounds bounds = (Bounds) constraint;
-                    LayoutUtil.nodeLayoutToBounds(nodeLayout, bounds);
-                    if (_roots.contains(decorator_p)) {
-                      LayoutUtil.applyVector(bounds, get_vectorX(), get_vectorY());
-                    }else{
-                      LayoutUtil.applyVector(bounds, 0, 0);
+    public void update(Object object_p, boolean isMerged) {
+      if(object_p instanceof DSemanticDecorator){
+        DSemanticDecorator decorator = (DSemanticDecorator)object_p;
+        // Apply the update
+        if ((get_instance().getPattern() instanceof TemplatePattern) && (get_instance().getPatternData() instanceof TemplatePatternData)) {
+          TemplatePattern pattern = (TemplatePattern) get_instance().getPattern();
+          if (!pattern.getLayoutData().isEmpty()) {
+            TemplatePatternData data = (TemplatePatternData) get_instance().getPatternData();
+            EObject semanticElement = SiriusLayersUtil.downViewpointToSemantic(decorator);
+            if (semanticElement != null) {
+              EObject templateElement = data.getCounterpart(semanticElement, false);
+              Layout layout = pattern.getLayoutData().get(templateElement);
+              if (layout instanceof NodeLayout) {
+                NodeLayout nodeLayout = (NodeLayout) layout;
+                List<View> views = SiriusLayersUtil.upViewpointToGmf(decorator);
+                if (!views.isEmpty() && (views.get(0) instanceof Node)) {
+                  Node node = (Node) views.get(0);
+                  LayoutConstraint constraint = node.getLayoutConstraint();
+                  if (is_updateStyle()) {
+                    // Apply font style
+                    if (nodeLayout.getFontStyle() != null) {
+                      LayoutUtil.applyAbstractDNodePatternFontStyle(nodeLayout.getFontStyle(), node);
                     }
-                    if (decorator_p instanceof DDiagramElement) {
-                      _pinHelper.markAsPinned((DDiagramElement) decorator_p);
+
+                    // Apply node style
+                    if (nodeLayout.getOwnedStyle() != null) {
+                      LayoutUtil.applyNodePatternStyleToDNode(nodeLayout.getOwnedStyle(), node);
                     }
                   }
+                  if (is_updateLayout()) {
+                    if (constraint instanceof Bounds) {
+                      Bounds bounds = (Bounds) constraint;
+                      LayoutUtil.nodeLayoutToBounds(nodeLayout, bounds);
+                      if (_roots.contains(decorator)) {
+                        LayoutUtil.applyVector(bounds, get_vectorX(), get_vectorY());
+                      }else{
+                        LayoutUtil.applyVector(bounds, 0, 0);
+                      }
+                      if (decorator instanceof DDiagramElement) {
+                        _pinHelper.markAsPinned((DDiagramElement) decorator);
+                      }
+                    }
+                  }
                 }
-              }
-            } else if (layout instanceof EdgeLayout) {
-              EdgeLayout edgeLayout = (EdgeLayout) layout;
-              List<View> views = SiriusLayersUtil.upViewpointToGmf(decorator_p);
-              if (!views.isEmpty() && (views.get(0) instanceof Edge)) {
-                Edge edge = (Edge) views.get(0);
-                // Apply Layout to Edge
-                LayoutUtil.applyEdgeLayout(edge, edgeLayout);
-                // Apply edge style
-                if (is_updateStyle()) {
-                  LayoutUtil.applyEdgeStyle(edge, edgeLayout);
-                }
+              } else if (layout instanceof EdgeLayout) {
+                EdgeLayout edgeLayout = (EdgeLayout) layout;
+                List<View> views = SiriusLayersUtil.upViewpointToGmf(decorator);
+                if (!views.isEmpty() && (views.get(0) instanceof Edge)) {
+                  Edge edge = (Edge) views.get(0);
+                  // Apply Layout to Edge
+                  LayoutUtil.applyEdgeLayout(edge, edgeLayout);
+                  // Apply edge style
+                  if (is_updateStyle()) {
+                    LayoutUtil.applyEdgeStyle(edge, edgeLayout);
+                  }
 
-                if (decorator_p instanceof DDiagramElement) {
-                  _pinHelper.markAsPinned((DDiagramElement) decorator_p);
+                  if (decorator instanceof DDiagramElement) {
+                    _pinHelper.markAsPinned((DDiagramElement) decorator);
+                  }
                 }
               }
             }
           }
         }
       }
+  
     }
   }
 

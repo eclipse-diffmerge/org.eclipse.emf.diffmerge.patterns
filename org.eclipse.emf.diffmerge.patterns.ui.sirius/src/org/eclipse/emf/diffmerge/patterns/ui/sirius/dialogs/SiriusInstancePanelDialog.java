@@ -32,8 +32,7 @@ import org.eclipse.swt.widgets.Shell;
  * @author Skander TURKI
  */
 public class SiriusInstancePanelDialog 
-extends InstancePanelDialog<RGBValues, DDiagramElement, DDiagram, DContainer, 
-DSemanticDecorator, AbstractDNode>{
+extends InstancePanelDialog<RGBValues, DDiagramElement, DDiagram, DContainer,AbstractDNode>{
 
   /**
    * Constructor

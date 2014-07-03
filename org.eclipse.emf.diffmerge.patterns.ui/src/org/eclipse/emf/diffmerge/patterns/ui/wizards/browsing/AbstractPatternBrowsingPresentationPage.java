@@ -22,9 +22,9 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.Abstra
  * @author O. CONSTANT
  */
 public abstract class AbstractPatternBrowsingPresentationPage<ColorType, DiagramElementType, 
-DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
+DiagramType, GraphicalContainerType, GraphicalNodeType>
 extends AbstractPatternPresentationPage<ColorType, DiagramElementType, DiagramType, GraphicalContainerType, 
-SemanticRepresentationType, GraphicalNodeType,AbstractBijectiveTemplatePatternSpecification> {
+GraphicalNodeType,AbstractBijectiveTemplatePatternSpecification> {
   
   /**
    * Constructor

@@ -41,9 +41,8 @@ extends AbstractWorkbenchSelectionHandler {
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractApplyPatternAction<ColorType, DiagramElementType, 
-          DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
-          action = instantiateApplyPatternAction();
+          AbstractApplyPatternAction<ColorType, DiagramElementType,DiagramType, GraphicalContainerType, GraphicalNodeType>
+            action = instantiateApplyPatternAction();
           if(action != null){
             action.setActivePart(null, part);
             action.selectionChanged(null, selection_p);
@@ -60,13 +59,13 @@ extends AbstractWorkbenchSelectionHandler {
    */
   @SuppressWarnings("unchecked")
   protected AbstractApplyPatternAction<ColorType, DiagramElementType, 
-  DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>
+  DiagramType, GraphicalContainerType, GraphicalNodeType>
   instantiateApplyPatternAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
         return (AbstractApplyPatternAction<ColorType, DiagramElementType, 
-            DiagramType, GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>)
+            DiagramType, GraphicalContainerType, GraphicalNodeType>)
             factory.instantiateApplyPatternAction();
       } 
     }

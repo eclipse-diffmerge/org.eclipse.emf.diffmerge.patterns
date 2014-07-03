@@ -25,7 +25,7 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Skander TURKI
  */
 public class BrowseCatalogHandler<ColorType, DiagramElementType, DiagramType, 
-GraphicalContainerType, GraphicalPartType, SemanticRepresentationType, GraphicalNodeType>  
+GraphicalContainerType, GraphicalPartType, GraphicalNodeType>  
 extends AbstractWorkbenchSelectionHandler {
 
   /**
@@ -40,7 +40,7 @@ extends AbstractWorkbenchSelectionHandler {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
           AbstractBrowseCatalogAction<ColorType, DiagramElementType, DiagramType, 
-          GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>  action = instantiateBrowseCatalogAction();
+          GraphicalContainerType, GraphicalNodeType>  action = instantiateBrowseCatalogAction();
           if(action != null){
             action.setActivePart(null, part);
             action.selectionChanged(null, selection_p);
@@ -58,12 +58,12 @@ extends AbstractWorkbenchSelectionHandler {
    */
   @SuppressWarnings("unchecked")
   protected AbstractBrowseCatalogAction<ColorType, DiagramElementType, DiagramType, 
-  GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType>  instantiateBrowseCatalogAction(){
+  GraphicalContainerType, GraphicalNodeType>  instantiateBrowseCatalogAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?, ?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
         return (AbstractBrowseCatalogAction<ColorType, DiagramElementType, DiagramType, 
-            GraphicalContainerType, SemanticRepresentationType, GraphicalNodeType> )factory.instantiateBrowseCatalogAction();
+            GraphicalContainerType, GraphicalNodeType> )factory.instantiateBrowseCatalogAction();
       }
     }
     catch(Exception e){

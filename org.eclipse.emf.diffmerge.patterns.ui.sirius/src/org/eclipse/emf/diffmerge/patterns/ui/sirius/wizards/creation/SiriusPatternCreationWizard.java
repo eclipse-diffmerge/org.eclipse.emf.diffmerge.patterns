@@ -29,7 +29,7 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  */
 public class SiriusPatternCreationWizard 
 extends AbstractPatternCreationWizard<RGBValues, DDiagramElement, DDiagram, 
-DContainer, DSemanticDecorator, AbstractDNode>{
+DContainer, AbstractDNode>{
 
   public SiriusPatternCreationWizard(List<? extends Object> sources_p,
       List<Object> graphicalContext_p, 

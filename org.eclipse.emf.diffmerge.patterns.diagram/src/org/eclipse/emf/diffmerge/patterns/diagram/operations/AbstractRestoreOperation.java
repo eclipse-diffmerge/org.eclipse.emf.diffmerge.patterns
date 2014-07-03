@@ -18,10 +18,9 @@ import org.eclipse.emf.diffmerge.patterns.diagram.Messages;
  * @author S. TURKI
  *
  * @param <DiagramType>
- * @param <SemanticRepresentationType>
  */
-public abstract class AbstractRestoreOperation<DiagramType, SemanticRepresentationType> 
-extends AbstractGraphicalUpdateOperation<DiagramType, SemanticRepresentationType>{
+public abstract class AbstractRestoreOperation<DiagramType> 
+extends AbstractGraphicalUpdateOperation<DiagramType>{
 
   /** The name of the operation */
   private static final String NAME = Messages.RestoreOperation_Name;

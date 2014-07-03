@@ -54,7 +54,7 @@ public class SiriusRestoreOperation extends SiriusFilteredGraphicalUpdateOperati
    * @see org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractFilteredGraphicalUpdateOperation#update(fr.obeo.dsl.viewpoint.DSemanticDecorator)
    */
   @Override
-  protected void update(DSemanticDecorator decorator_p, boolean isMerged) {
+  protected void update(Object decorator_p, boolean isMerged) {
     _innerGraphicalOperation.update(decorator_p, isMerged);
   }
 
@@ -62,48 +62,51 @@ public class SiriusRestoreOperation extends SiriusFilteredGraphicalUpdateOperati
    * Inner class, simulates multiple inheritance of SiriusRestoreOperation --> (AbstractRestoreOperation, SiriusFilteredGraphicalUpdateOperation)
    * @author Skander TURKI
    */
-  protected class InnerRestoreOperation extends AbstractRestoreOperation<DDiagram, DSemanticDecorator>{
+  protected class InnerRestoreOperation extends AbstractRestoreOperation<DDiagram>{
 
     /**
      * @see org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalUpdateOperation#update(java.lang.Object, boolean)
      */
     @SuppressWarnings({ "boxing" })
     @Override
-    public void update(DSemanticDecorator decorator_p, boolean isMerged) {
-      // SKANDER::BEGIN
-      if (decorator_p instanceof DEdge) {
-        DEdge edge = (DEdge) decorator_p;
-        Style style = edge.getStyle();
-        if (style instanceof EdgeStyle) {
-          EdgeStyle edgeStyle = (EdgeStyle) style;
-          if (edgeStyle.getCenterLabelStyle() != null) {
-            edgeStyle.getCenterLabelStyle().getCustomFeatures().clear();
+    public void update(Object object_p, boolean isMerged) {
+      if(object_p instanceof DSemanticDecorator){
+        DSemanticDecorator decorator_p = (DSemanticDecorator)object_p;
+        if (decorator_p instanceof DEdge) {
+          DEdge edge = (DEdge) decorator_p;
+          Style style = edge.getStyle();
+          if (style instanceof EdgeStyle) {
+            EdgeStyle edgeStyle = (EdgeStyle) style;
+            if (edgeStyle.getCenterLabelStyle() != null) {
+              edgeStyle.getCenterLabelStyle().getCustomFeatures().clear();
+            }
+            if (edgeStyle.getBeginLabelStyle() != null) {
+              edgeStyle.getBeginLabelStyle().getCustomFeatures().clear();
+            }
+            if (edgeStyle.getEndLabelStyle() != null) {
+              edgeStyle.getEndLabelStyle().getCustomFeatures().clear();
+            }
+            // not stable with a diagram refresh
+            edgeStyle.setSize(1);
+            edgeStyle.getCustomFeatures().remove(DiagramPackage.eINSTANCE.getEdgeStyle_Size().getName());
           }
-          if (edgeStyle.getBeginLabelStyle() != null) {
-            edgeStyle.getBeginLabelStyle().getCustomFeatures().clear();
+        }
+        if (decorator_p instanceof DStylizable) {
+          DStylizable stylizable = (DStylizable) decorator_p;
+          stylizable.getStyle().getCustomFeatures().remove(DiagramPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
+          stylizable.getStyle().getCustomFeatures().remove(DiagramPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName());
+          stylizable.getStyle().refresh();
+          if (stylizable.getStyle() instanceof BorderedStyle) {
+            BorderedStyle style = (BorderedStyle) stylizable.getStyle();
+            // not stable with a diagram refresh
+            style.setBorderSize(1);
+            style.setBorderSizeComputationExpression("0"); //$NON-NLS-1$
+            style.getCustomFeatures().remove(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSize().getName());
+            style.getCustomFeatures().remove(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName());
           }
-          if (edgeStyle.getEndLabelStyle() != null) {
-            edgeStyle.getEndLabelStyle().getCustomFeatures().clear();
-          }
-          // not stable with a diagram refresh
-          edgeStyle.setSize(1);
-          edgeStyle.getCustomFeatures().remove(DiagramPackage.eINSTANCE.getEdgeStyle_Size().getName());
         }
       }
-      if (decorator_p instanceof DStylizable) {
-        DStylizable stylizable = (DStylizable) decorator_p;
-        stylizable.getStyle().getCustomFeatures().remove(DiagramPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
-        stylizable.getStyle().getCustomFeatures().remove(DiagramPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName());
-        stylizable.getStyle().refresh();
-        if (stylizable.getStyle() instanceof BorderedStyle) {
-          BorderedStyle style = (BorderedStyle) stylizable.getStyle();
-          // not stable with a diagram refresh
-          style.setBorderSize(1);
-          style.setBorderSizeComputationExpression("0"); //$NON-NLS-1$
-          style.getCustomFeatures().remove(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSize().getName());
-          style.getCustomFeatures().remove(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName());
-        }
-      }
+
     }   
   }
 
