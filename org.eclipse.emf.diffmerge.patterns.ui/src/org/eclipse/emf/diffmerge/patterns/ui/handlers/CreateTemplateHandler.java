@@ -24,8 +24,7 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Mohamed Sidati
  * @author Skander TURKI
  */
-public class CreateTemplateHandler<DiagramElementType, DiagramType, GraphicalContainerType, 
-GraphicalPartType, SemanticRepresentationType> extends AbstractWorkbenchSelectionHandler {
+public class CreateTemplateHandler<DiagramElementType, DiagramType> extends AbstractWorkbenchSelectionHandler {
 
   /**
    * @see AbstractWorkbenchSelectionHandler#handleSelection(ISelection, IWorkbenchPart, ExecutionEvent)
@@ -38,7 +37,7 @@ GraphicalPartType, SemanticRepresentationType> extends AbstractWorkbenchSelectio
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType> action = instantiateCreateTemplateAction();
+          AbstractCreateTemplateAction<DiagramElementType, DiagramType> action = instantiateCreateTemplateAction();
           if(action != null){
             action.setActivePart(null, part);
             action.selectionChanged(null, selection_p);
@@ -53,11 +52,11 @@ GraphicalPartType, SemanticRepresentationType> extends AbstractWorkbenchSelectio
   
   
   @SuppressWarnings("unchecked")
-  protected AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType> instantiateCreateTemplateAction(){
+  protected AbstractCreateTemplateAction<DiagramElementType, DiagramType> instantiateCreateTemplateAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
-        return (AbstractCreateTemplateAction<DiagramElementType, DiagramType, GraphicalContainerType>)factory.instantiateCreateTemplateAction();
+        return (AbstractCreateTemplateAction<DiagramElementType, DiagramType>)factory.instantiateCreateTemplateAction();
       } 
     }
     catch(Exception e){

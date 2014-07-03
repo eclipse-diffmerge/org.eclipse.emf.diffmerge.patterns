@@ -37,12 +37,12 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractOpenCatalogAction<DiagramElementType, DiagramType, GraphicalContainerType> 
+public abstract class AbstractOpenCatalogAction<DiagramElementType, DiagramType> 
 extends AbstractContextualAction<IFile> {
 
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType> 
-    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType>)
+  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType> 
+    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType>)
       PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
@@ -100,7 +100,7 @@ extends AbstractContextualAction<IFile> {
    * @param repository_p a potentially null IPatternRepository
    * @return a potentially null PatternBrowsingWizard
    */
-  protected AbstractPatternBrowsingWizard<DiagramElementType, DiagramType, GraphicalContainerType>
+  protected AbstractPatternBrowsingWizard<DiagramElementType, DiagramType>
   instantiatePatternBrowsingWizard(ResourceSet rset_p, IPatternRepository repository_p){
     if(_factory != null){
       return _factory.instantiatePatternBrowsingWizard(rset_p, repository_p);

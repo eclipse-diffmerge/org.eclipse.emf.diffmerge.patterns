@@ -49,7 +49,7 @@ import org.eclipse.swt.graphics.RGB;
  * @author Skander TURKI
  *
  */
-public class SiriusPatternOperationFactory implements IPatternOperationFactory<DDiagramElement, DDiagram, DContainer>{
+public class SiriusPatternOperationFactory implements IPatternOperationFactory<DDiagramElement, DDiagram>{
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory#instantiateCreatePatternAndInstanceOperation(org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternCreationSpecification, java.util.List)
@@ -121,7 +121,7 @@ public class SiriusPatternOperationFactory implements IPatternOperationFactory<D
   instantiateLayoutReuseOperation(
       Collection<DDiagramElement> diagramElements_p, IPatternInstance instance_p,
       Map<DDiagramElement, Point> initialElementsLocationsMap_p,
-      Map<DDiagramElement, DContainer> elementsContainersMap_p,
+      Map<DDiagramElement, Object> elementsContainersMap_p,
       int vx_p, int vy_p,
       boolean updateLayout_p, boolean updateStyle_p,
       Object modelSideContext_p) {
@@ -135,7 +135,7 @@ public class SiriusPatternOperationFactory implements IPatternOperationFactory<D
   instantiateLayoutReuseOperation(
       DDiagram diagram_p, IPatternInstance instance_p,
       Map<DDiagramElement, Point> initialElementsLocationsMap_p,
-      Map<DDiagramElement, DContainer> elementsContainersMap_p,
+      Map<DDiagramElement, Object> elementsContainersMap_p,
       int vx_p, int vy_p,
       boolean updateLayout_p, boolean updateStyle_p,
       Object modelSideContext_p) {

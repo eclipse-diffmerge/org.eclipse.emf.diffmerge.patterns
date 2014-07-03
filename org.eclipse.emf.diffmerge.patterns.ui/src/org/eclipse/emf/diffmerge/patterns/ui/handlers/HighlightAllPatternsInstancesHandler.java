@@ -24,7 +24,7 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Mohamed Sidati
  * @author Skander TURKI
  */
-public class HighlightAllPatternsInstancesHandler<DiagramElementType, DiagramType, GraphicalContainerType, GraphicalPartType> 
+public class HighlightAllPatternsInstancesHandler<DiagramElementType, DiagramType> 
 extends AbstractWorkbenchSelectionHandler {
 
   /**
@@ -38,7 +38,7 @@ extends AbstractWorkbenchSelectionHandler {
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType, GraphicalContainerType> action = instantiateHighlightAllPatternsInstancesAction();
+          AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType> action = instantiateHighlightAllPatternsInstancesAction();
           if(action != null){
             action.setActivePart(null, part);
             action.selectionChanged(null, selection_p);
@@ -55,12 +55,12 @@ extends AbstractWorkbenchSelectionHandler {
    * @return
    */
   @SuppressWarnings("unchecked")
-  protected AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType, GraphicalContainerType> 
+  protected AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType> 
   instantiateHighlightAllPatternsInstancesAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
-        return (AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType, GraphicalContainerType>)factory.instantiateHighlightAllPatternsInstancesAction();
+        return (AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType>)factory.instantiateHighlightAllPatternsInstancesAction();
       } 
     }
     catch(Exception e){

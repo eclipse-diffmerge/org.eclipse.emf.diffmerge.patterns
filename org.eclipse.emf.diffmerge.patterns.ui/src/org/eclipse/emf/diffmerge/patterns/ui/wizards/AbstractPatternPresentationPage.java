@@ -93,8 +93,7 @@ import org.eclipse.ui.PlatformUI;
  * A wizard page for presenting a pattern.
  * @author O. CONSTANT
  */
-public abstract class AbstractPatternPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType, 
-T extends ITemplatePatternBasedSpecification>
+public abstract class AbstractPatternPresentationPage<DiagramElementType, DiagramType, T extends ITemplatePatternBasedSpecification>
 extends AbstractPatternPage<T> {
 
   /** An enumeration for specifying how a pattern is determined */
@@ -124,8 +123,8 @@ extends AbstractPatternPage<T> {
 
 
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType> 
-    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType>)
+  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType> 
+    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType>)
       PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
@@ -925,7 +924,7 @@ extends AbstractPatternPage<T> {
           final int VECTOR = 50;
           Point location = getShell().getLocation();
           Point newLocation = new Point(location.x + VECTOR, location.y + VECTOR);
-          AbstractTemplateUsageWizard<DiagramElementType, DiagramType, GraphicalContainerType>
+          AbstractTemplateUsageWizard<DiagramElementType, DiagramType>
             wizard = instantiateTemplateUsageWizard((AbstractModifiableTemplatePatternSpecification)getData());
           //new AbstractTemplateUsageWizard((AbstractModifiableTemplatePatternSpecification)getData());
           PatternWizardDialog dialog = new PatternWizardDialog(
@@ -948,7 +947,7 @@ extends AbstractPatternPage<T> {
     return result;
   }
 
-  protected AbstractTemplateUsageWizard<DiagramElementType, DiagramType, GraphicalContainerType>
+  protected AbstractTemplateUsageWizard<DiagramElementType, DiagramType>
   instantiateTemplateUsageWizard(AbstractModifiableTemplatePatternSpecification data_p){
     if(_factory != null){
       return _factory.instantiateTemplateUsageWizard(data_p);

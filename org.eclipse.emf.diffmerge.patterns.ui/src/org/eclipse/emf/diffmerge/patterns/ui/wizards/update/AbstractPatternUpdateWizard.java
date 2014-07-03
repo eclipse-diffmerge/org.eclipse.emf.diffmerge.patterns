@@ -37,8 +37,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractPatternUpdateWizard<DiagramElementType, 
-DiagramType, GraphicalContainerType>
+public abstract class AbstractPatternUpdateWizard<DiagramElementType, DiagramType>
 extends AbstractPatternWizard<TemplatePatternUpdateSpecification> {
 
   /**
@@ -80,7 +79,7 @@ extends AbstractPatternWizard<TemplatePatternUpdateSpecification> {
   protected boolean doPerformFinish() {
     boolean result = false;
 
-    IPatternOperationFactory<?, ?, ?> factory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<?, ?> factory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       AbstractPatternWithLayoutOperation<?> operation = factory.instantiateUpdatePatternInCatalogOperation(getData(), (List)getGraphicalContext());
       Object returned = CorePatternsPlugin.getDefault().getModelEnvironment().execute(

@@ -44,15 +44,14 @@ import org.eclipse.sirius.viewpoint.RGBValues;
  * @author Skander TURKI
  *
  */
-public class SiriusPatternActionFactory extends AbstractPatternActionFactory<DDiagramElement, DDiagram, 
-DContainer, SiriusInstanceExplorerView>{
+public class SiriusPatternActionFactory extends AbstractPatternActionFactory<DDiagramElement, DDiagram, SiriusInstanceExplorerView>{
 
 /**
  * 
  * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateApplyPatternAction()
  */
   @Override
-  public AbstractApplyPatternAction<DDiagramElement, DDiagram, DContainer>
+  public AbstractApplyPatternAction<DDiagramElement, DDiagram>
   instantiateApplyPatternAction() {
     return new SiriusApplyPatternAction();
   }
@@ -62,7 +61,7 @@ DContainer, SiriusInstanceExplorerView>{
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateAbstractBrowseCatalogAction()
    */
   @Override
-  public AbstractBrowseCatalogAction<DDiagramElement, DDiagram, DContainer> 
+  public AbstractBrowseCatalogAction<DDiagramElement, DDiagram> 
   instantiateBrowseCatalogAction() {
     return new SiriusBrowseCatalogAction();
   }
@@ -72,7 +71,7 @@ DContainer, SiriusInstanceExplorerView>{
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateCreatePatternAction()
    */
   @Override
-  public AbstractCreatePatternAction<DDiagramElement, DDiagram, DContainer> 
+  public AbstractCreatePatternAction<DDiagramElement, DDiagram> 
   instantiateCreatePatternAction() {
     return new SiriusCreatePatternAction();
   }
@@ -82,7 +81,7 @@ DContainer, SiriusInstanceExplorerView>{
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateCreateTemplateAction()
    */
   @Override
-  public AbstractCreateTemplateAction<DDiagramElement, DDiagram, DContainer> 
+  public AbstractCreateTemplateAction<DDiagramElement, DDiagram> 
   instantiateCreateTemplateAction() {
     return new SiriusCreateTemplateAction();
   }
@@ -92,7 +91,7 @@ DContainer, SiriusInstanceExplorerView>{
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateHighlightAllPatternsInstancesAction()
    */
   @Override
-  public AbstractHighlightAllPatternsInstancesAction<DDiagramElement, DDiagram, DContainer> 
+  public AbstractHighlightAllPatternsInstancesAction<DDiagramElement, DDiagram> 
     instantiateHighlightAllPatternsInstancesAction() {
     return  new SiriusHighlightAllPatternsInstancesAction();
   }
@@ -112,7 +111,7 @@ DContainer, SiriusInstanceExplorerView>{
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory#instantiateManageInstanceAction()
    */
   @Override
-  public AbstractManageInstanceAction<DDiagramElement, DContainer, DDiagram> 
+  public AbstractManageInstanceAction<DDiagramElement, DDiagram> 
   instantiateManageInstanceAction() {
     return  new SiriusManageInstanceAction();
   }

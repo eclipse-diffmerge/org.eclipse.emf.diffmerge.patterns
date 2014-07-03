@@ -126,8 +126,8 @@ extends AbstractGraphicalWrappingOperation<F, F, DiagramType> {
         refreshDiagram();
         break;
       case INSTANCE:
-        IPatternOperationFactory<? ,DiagramType, ?> factory = 
-        (IPatternOperationFactory<? ,DiagramType, ?>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+        IPatternOperationFactory<? ,DiagramType> factory = 
+        (IPatternOperationFactory<? ,DiagramType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
         if(factory != null){
           for (IPatternInstance instance : _instances) {
             roots = TemplatePatternsUtil.getApplicationRoots(instance);

@@ -34,7 +34,7 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.Templa
  * A wizard for applying a template in the creation/update process of a pattern.
  * @author O. CONSTANT
  */
-public abstract class AbstractTemplateUsageWizard<DiagramElementType, DiagramType, GraphicalContainerType>
+public abstract class AbstractTemplateUsageWizard<DiagramElementType, DiagramType>
 extends
 AbstractPatternWizard<TemplateUsageSpecification> {
 
@@ -54,7 +54,6 @@ AbstractPatternWizard<TemplateUsageSpecification> {
     if (showPatternContent()) {
       List<AbstractPatternPage<? extends AbstractBijectiveTemplatePatternSpecification>> subPages =
           new ArrayList<AbstractPatternPage<? extends AbstractBijectiveTemplatePatternSpecification>>();
-      //subPages.add(new AbstractTemplateUsagePresentationPage<GraphicalPartType>(getData()));
       subPages.add(instantiateTemplateUsagePresentationPage(getData()));
       subPages.add(new PatternBrowsingElementsPage(getData()));
       subPages.add(new TemplateCreationRolesPage(getData()) {
@@ -76,7 +75,6 @@ AbstractPatternWizard<TemplateUsageSpecification> {
       addPage(compositePage);
     } else {
       addPage(instantiateTemplateUsagePresentationPage(getData()));
-      //addPage(new AbstractTemplateUsagePresentationPage<GraphicalPartType>(getData()));
     }
     setWindowTitle(Messages.TemplateUsageWizard_Header);
   }
@@ -86,9 +84,9 @@ AbstractPatternWizard<TemplateUsageSpecification> {
    * @param data_p
    * @return
    */
-  protected AbstractTemplateUsagePresentationPage<DiagramElementType, DiagramType, GraphicalContainerType>
+  protected AbstractTemplateUsagePresentationPage<DiagramElementType, DiagramType>
   instantiateTemplateUsagePresentationPage(TemplateUsageSpecification data_p){
-    AbstractPatternPageFactory<DiagramElementType, DiagramType, GraphicalContainerType>
+    AbstractPatternPageFactory<DiagramElementType, DiagramType>
     factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiateTemplateUsagePresentationPage(data_p);

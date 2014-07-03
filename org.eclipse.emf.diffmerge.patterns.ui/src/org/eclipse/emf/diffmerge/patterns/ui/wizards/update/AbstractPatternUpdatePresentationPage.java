@@ -23,8 +23,8 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Templat
  * A wizard page for creating a new pattern
  * @author O. CONSTANT
  */
-public abstract class AbstractPatternUpdatePresentationPage<DiagramElementType, DiagramType, GraphicalContainerType>
-extends AbstractPatternPresentationPage<DiagramElementType, DiagramType, GraphicalContainerType, TemplatePatternUpdateSpecification> {
+public abstract class AbstractPatternUpdatePresentationPage<DiagramElementType, DiagramType>
+extends AbstractPatternPresentationPage<DiagramElementType, DiagramType, TemplatePatternUpdateSpecification> {
 
   /**
    * Constructor

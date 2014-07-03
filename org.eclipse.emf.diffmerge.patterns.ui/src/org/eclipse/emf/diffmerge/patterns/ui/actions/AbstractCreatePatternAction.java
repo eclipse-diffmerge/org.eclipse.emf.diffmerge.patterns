@@ -30,13 +30,13 @@ import org.eclipse.jface.window.Window;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractCreatePatternAction<DiagramElementType, DiagramType, GraphicalContainerType> 
+public abstract class AbstractCreatePatternAction<DiagramElementType, DiagramType> 
 extends AbstractPersistentSelectionAction<DiagramElementType, DiagramType> {
 
 
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType> 
-    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType>)
+  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType> 
+    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType>)
       PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
 
 
@@ -77,7 +77,7 @@ extends AbstractPersistentSelectionAction<DiagramElementType, DiagramType> {
           TemplatePatternsEnginePlugin.getDefault().newPatternCreationData(false, selection_p, 
               PatternsUIPlugin.getDefault().getModelEnvironmentUI().getEnvironments());
 
-      AbstractPatternCreationWizard<DiagramElementType, DiagramType, GraphicalContainerType> wizard 
+      AbstractPatternCreationWizard<DiagramElementType, DiagramType> wizard 
           = _factory.instantiatePatternCreationWizard(selection_p, 
               (List<Object>) getFilteredSelection(genericTypeUtil.getGraphicalPartTypeClass()),
                 patternCreationSpecification, false);

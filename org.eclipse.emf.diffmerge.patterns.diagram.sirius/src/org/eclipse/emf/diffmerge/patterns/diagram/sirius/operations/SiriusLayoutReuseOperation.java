@@ -59,7 +59,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
   private final Map<DDiagramElement, Point> _initialElementsLocationsMap;
 
   /** A non-null map of initial diagram elements containers */
-  private final Map<DDiagramElement, DContainer> _initialElementsContainersMap;
+  private final Map<DDiagramElement, Object> _initialElementsContainersMap;
 
   /** Casted innerGraphicalOperation */
   private InnerLayoutReuseOperation _innerLayoutReuseOperation;
@@ -76,7 +76,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
    * @param instance_p the non-null instance whose elements must be highlighted
    */
   public SiriusLayoutReuseOperation(DDiagram diagram_p, IPatternInstance instance_p, Map<DDiagramElement, Point> initialElementsLocationsMap_p,
-      Map<DDiagramElement, DContainer> elementsContainersMap_p, int vx_p, int vy_p, boolean updateLayout_p, boolean updateStyle_p, 
+      Map<DDiagramElement, Object> elementsContainersMap_p, int vx_p, int vy_p, boolean updateLayout_p, boolean updateStyle_p, 
       Object sourceContext_p) {
     super(AbstractLayoutReuseOperation.getName(), diagram_p, instance_p, true, sourceContext_p);
     _pinHelper = new PinHelper();
@@ -96,7 +96,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
    * @param instance_p the non-null instance whose elements must be highlighted
    */
   public SiriusLayoutReuseOperation(Collection<? extends DDiagramElement> diagramElements_p, IPatternInstance instance_p,
-      Map<DDiagramElement, Point> initialElementsLocationsMap_p, Map<DDiagramElement, DContainer> elementsContainersMap_p, 
+      Map<DDiagramElement, Point> initialElementsLocationsMap_p, Map<DDiagramElement, Object> elementsContainersMap_p, 
       int vx_p, int vy_p,
       boolean updateLayout_p, boolean updateStyle_p, 
       Object sourceContext_p) {

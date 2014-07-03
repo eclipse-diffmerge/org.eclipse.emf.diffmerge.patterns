@@ -49,7 +49,7 @@ import org.eclipse.swt.graphics.Point;
  * A wizard for applying an existing pattern.
  * @author O. CONSTANT
  */
-public abstract class AbstractPatternApplicationWizard<DiagramElementType, DiagramType, GraphicalContainerType> 
+public abstract class AbstractPatternApplicationWizard<DiagramElementType, DiagramType> 
 extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
 
 
@@ -86,7 +86,7 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
   @SuppressWarnings("unchecked")
   protected boolean doPerformFinish() {
     Map<DiagramElementType, Point> elementsLocationsMap = new Hashtable<DiagramElementType, Point>();
-    Map<DiagramElementType, GraphicalContainerType> elementsContainersMap = new Hashtable<DiagramElementType, GraphicalContainerType>();
+    Map<DiagramElementType, Object> elementsContainersMap = new Hashtable<DiagramElementType, Object>();
     AbstractDiagramUtil<DiagramElementType, DiagramType> diagramUtil = (AbstractDiagramUtil<DiagramElementType, DiagramType>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     AbstractGenericTypeUtil genericTypeUtil = CorePatternsPlugin.getDefault().getGenericTypeUtil();
     if(_diagramToRefresh != null && genericTypeUtil != null && diagramUtil != null){
@@ -98,7 +98,7 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
       for (DiagramElementType diagramElement : diagramUtil.getDiagramElements(_diagramToRefresh)) {
         EObject container = diagramUtil.getTechnicalContainerFor(diagramElement);
         if (genericTypeUtil.isInstanceOfGraphicalContainerType(container)) {
-          elementsContainersMap.put(diagramElement, (GraphicalContainerType) container);
+          elementsContainersMap.put(diagramElement, container);
         }
       }
     }
@@ -190,13 +190,13 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
    */
   protected AbstractFilteredGraphicalUpdateOperation<DiagramType, DiagramElementType> 
   instantiateLayoutReuseOperation(DiagramType diagram_p, IPatternInstance instance_p, Map<DiagramElementType, Point> initialElementsLocationsMap_p,
-      Map<DiagramElementType, GraphicalContainerType> elementsContainersMap_p, 
+      Map<DiagramElementType, Object> elementsContainersMap_p, 
       int vx_p, int vy_p, boolean updateLayout_p, boolean updateStyle_p
       ,Object modelSideContext_p)
       {
     @SuppressWarnings("unchecked")
-    IPatternOperationFactory<DiagramElementType, DiagramType, GraphicalContainerType> factory = 
-    (IPatternOperationFactory<DiagramElementType, DiagramType, GraphicalContainerType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<DiagramElementType, DiagramType> factory = 
+    (IPatternOperationFactory<DiagramElementType, DiagramType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateLayoutReuseOperation(diagram_p, instance_p, initialElementsLocationsMap_p, elementsContainersMap_p, vx_p, vy_p, updateLayout_p, updateStyle_p, modelSideContext_p);
     }
@@ -209,8 +209,8 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
   protected  AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>, DiagramType, DiagramElementType> 
   instantiateGraphicalWrappingInstanceOperation(IModelOperation<List<IPatternInstance>> operation_p, DiagramType diagram_p, RefreshRequestKind refreshRequest_p){
     @SuppressWarnings("unchecked")
-    IPatternOperationFactory<DiagramElementType, DiagramType, GraphicalContainerType> factory =
-    (IPatternOperationFactory<DiagramElementType, DiagramType, GraphicalContainerType>)  PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<DiagramElementType, DiagramType> factory =
+    (IPatternOperationFactory<DiagramElementType, DiagramType>)  PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateGraphicalWrappingInstanceOperation(operation_p, diagram_p, refreshRequest_p, true);
     }
@@ -220,11 +220,9 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
   /**
    * Instantiates a PatternApplicationPresentationPage
    */
-  protected AbstractPatternApplicationPresentationPage<DiagramElementType, 
-  DiagramType, GraphicalContainerType>
+  protected AbstractPatternApplicationPresentationPage<DiagramElementType, DiagramType>
   instantiatePatternApplicationPresentationPage(TemplatePatternApplicationSpecification data_p){
-    AbstractPatternPageFactory<DiagramElementType, DiagramType, GraphicalContainerType>
-    factory = PatternsUIPlugin.getDefault().getPageFactory();
+    AbstractPatternPageFactory<DiagramElementType, DiagramType> factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiatePatternApplicationPresentationPage(data_p);
     }
@@ -237,8 +235,7 @@ extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
    */
   protected AbstractPatternApplicationAssociationPage<DiagramType> 
   instantiatePatternApplicationAssociationPage(){
-    AbstractPatternPageFactory<DiagramElementType, DiagramType, GraphicalContainerType>
-    factory = PatternsUIPlugin.getDefault().getPageFactory();
+    AbstractPatternPageFactory<DiagramElementType, DiagramType> factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiatePatternApplicationAssociationPage(getData(), _diagramToRefresh);
     }

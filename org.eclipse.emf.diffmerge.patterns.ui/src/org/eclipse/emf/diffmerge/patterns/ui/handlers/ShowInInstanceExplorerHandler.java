@@ -24,9 +24,8 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Mohamed Sidati
  * @author Skander TURKI
  */
-public class ShowInInstanceExplorerHandler<DiagramElementType, DiagramType, 
-D extends AbstractInstanceExplorerView
-  , GraphicalPartType> extends AbstractWorkbenchSelectionHandler {
+public class ShowInInstanceExplorerHandler<DiagramElementType, DiagramType, D extends AbstractInstanceExplorerView> 
+extends AbstractWorkbenchSelectionHandler {
 
   /**
    * @see AbstractWorkbenchSelectionHandler#handleSelection(ISelection, IWorkbenchPart, ExecutionEvent)
@@ -59,7 +58,7 @@ D extends AbstractInstanceExplorerView
   @SuppressWarnings("unchecked")
   protected AbstractShowInInstanceExplorerViewAction<DiagramElementType, DiagramType, D> instantiateShowInInstanceExplorerViewAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
         return (AbstractShowInInstanceExplorerViewAction<DiagramElementType, DiagramType, D>)factory.instantiateShowInInstanceExplorerViewAction();
       } 

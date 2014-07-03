@@ -34,7 +34,7 @@ import org.eclipse.swt.graphics.RGB;
  * The design environment (unique in the platform) must provide his own factory
  * @author Skander TURKI
  */
-public interface IPatternOperationFactory<DiagramElementType, DiagramType, DiagramContainer> {
+public interface IPatternOperationFactory<DiagramElementType, DiagramType> {
 
 
   /**
@@ -100,7 +100,7 @@ public interface IPatternOperationFactory<DiagramElementType, DiagramType, Diagr
       Collection<DiagramElementType> diagramElements_p,  
       IPatternInstance instance_p, 
       Map<DiagramElementType, Point> initialElementsLocationsMap_p,
-      Map<DiagramElementType, DiagramContainer> elementsContainersMap_p, 
+      Map<DiagramElementType, Object> elementsContainersMap_p, 
       int vx_p, int vy_p,
       boolean updateLayout_p, boolean updateStyle_p,
       Object modelSideContext_p);
@@ -114,7 +114,7 @@ public interface IPatternOperationFactory<DiagramElementType, DiagramType, Diagr
       DiagramType diagram_p,  
       IPatternInstance instance_p, 
       Map<DiagramElementType, Point> initialElementsLocationsMap_p,
-      Map<DiagramElementType, DiagramContainer> elementsContainersMap_p,
+      Map<DiagramElementType, Object> elementsContainersMap_p,
       int vx_p, int vy_p,
       boolean updateLayout_p, boolean updateStyle_p,
       Object modelSideContext_p);

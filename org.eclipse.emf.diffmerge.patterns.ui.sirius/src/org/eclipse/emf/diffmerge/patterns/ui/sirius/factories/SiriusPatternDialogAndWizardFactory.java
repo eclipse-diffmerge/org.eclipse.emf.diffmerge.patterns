@@ -54,7 +54,7 @@ import org.eclipse.swt.widgets.Shell;
  *
  */
 public class SiriusPatternDialogAndWizardFactory 
-implements IPatternDialogAndWizardFactory<DDiagramElement, DDiagram, DContainer>{
+implements IPatternDialogAndWizardFactory<DDiagramElement, DDiagram>{
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiateHighlightAllPatternsInstancesPanelDialog(java.util.Set, java.util.List, java.lang.Object, org.eclipse.swt.widgets.Shell, java.lang.String, java.lang.String)
@@ -69,7 +69,7 @@ implements IPatternDialogAndWizardFactory<DDiagramElement, DDiagram, DContainer>
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiateInstancePanelDialog(java.util.List, org.eclipse.emf.ecore.EObject, java.lang.Object, java.util.List, org.eclipse.swt.widgets.Shell)
    */
-  public InstancePanelDialog<DDiagramElement, DDiagram, DContainer> 
+  public InstancePanelDialog<DDiagramElement, DDiagram> 
   instantiateInstancePanelDialog(List<IPatternInstance> instances_p, EObject referenceElement_p, 
       DDiagram diagram_p, List<Object> graphicalContext_p, Shell shell_p) {
     return new SiriusInstancePanelDialog(shell_p, referenceElement_p, instances_p, 
@@ -79,7 +79,7 @@ implements IPatternDialogAndWizardFactory<DDiagramElement, DDiagram, DContainer>
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternBrowsingWizard(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern)
    */
-  public AbstractPatternBrowsingWizard<DDiagramElement, DDiagram, DContainer>
+  public AbstractPatternBrowsingWizard<DDiagramElement, DDiagram>
   instantiatePatternBrowsingWizard(
       EObject context_p, TemplatePattern pattern_p) {
     return new SiriusPatternBrowsingWizard(context_p, pattern_p) ;
@@ -88,7 +88,7 @@ implements IPatternDialogAndWizardFactory<DDiagramElement, DDiagram, DContainer>
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternBrowsingWizard(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository)
    */
-  public AbstractPatternBrowsingWizard<DDiagramElement, DDiagram, DContainer>
+  public AbstractPatternBrowsingWizard<DDiagramElement, DDiagram>
   instantiatePatternBrowsingWizard(
       EObject context_p, IPatternRepository repository_p) {
     return new SiriusPatternBrowsingWizard(context_p, repository_p) ;
@@ -97,7 +97,7 @@ implements IPatternDialogAndWizardFactory<DDiagramElement, DDiagram, DContainer>
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternBrowsingWizard(java.lang.Object, org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository)
    */
-  public AbstractPatternBrowsingWizard<DDiagramElement, DDiagram, DContainer>
+  public AbstractPatternBrowsingWizard<DDiagramElement, DDiagram>
   instantiatePatternBrowsingWizard(
       Object context_p, IPatternRepository repository_p) {
     return new SiriusPatternBrowsingWizard(context_p, repository_p);
@@ -106,7 +106,7 @@ implements IPatternDialogAndWizardFactory<DDiagramElement, DDiagram, DContainer>
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiateTemplateCreationWizard(java.util.List, java.util.List)
    */
-  public AbstractTemplateCreationWizard<DDiagramElement, DDiagram, DContainer>
+  public AbstractTemplateCreationWizard<DDiagramElement, DDiagram>
   instantiateTemplateCreationWizard(
       List<Object> selection_p, List<Object> graphicalContext_p) {
     return new SiriusTemplateCreationWizard(selection_p, graphicalContext_p);
@@ -115,7 +115,7 @@ implements IPatternDialogAndWizardFactory<DDiagramElement, DDiagram, DContainer>
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternBrowsingWizard(org.eclipse.emf.ecore.resource.ResourceSet, org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository)
    */
-  public AbstractPatternBrowsingWizard<DDiagramElement, DDiagram, DContainer>
+  public AbstractPatternBrowsingWizard<DDiagramElement, DDiagram>
   instantiatePatternBrowsingWizard(
       ResourceSet rset_p, IPatternRepository repository_p) {
     return new SiriusPatternBrowsingWizard(rset_p, repository_p);
@@ -124,7 +124,7 @@ implements IPatternDialogAndWizardFactory<DDiagramElement, DDiagram, DContainer>
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternUpdateWizard(org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance, org.eclipse.emf.ecore.EObject, java.util.List, java.util.List)
    */
-  public AbstractPatternUpdateWizard<DDiagramElement, DDiagram, DContainer>
+  public AbstractPatternUpdateWizard<DDiagramElement, DDiagram>
   instantiatePatternUpdateWizard(
       IPatternInstance instance_p, EObject referenceElement_p,
       List<Object> graphicalContext_p,
@@ -136,14 +136,14 @@ implements IPatternDialogAndWizardFactory<DDiagramElement, DDiagram, DContainer>
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternWizardDialog(org.eclipse.swt.widgets.Shell, org.eclipse.emf.diffmerge.patterns.ui.wizards.creation.AbstractPatternCreationWizard)
    */
   public PatternWizardDialog 
-  instantiatePatternWizardDialog(Shell shell_p, AbstractPatternCreationWizard<DDiagramElement, DDiagram, DContainer> _wizard) {
+  instantiatePatternWizardDialog(Shell shell_p, AbstractPatternCreationWizard<DDiagramElement, DDiagram> _wizard) {
     return new PatternWizardDialog(shell_p, _wizard);
   }
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiateTemplateUsageWizard(org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.AbstractModifiableTemplatePatternSpecification)
    */
-  public AbstractTemplateUsageWizard<DDiagramElement, DDiagram, DContainer>
+  public AbstractTemplateUsageWizard<DDiagramElement, DDiagram>
   instantiateTemplateUsageWizard(
       AbstractModifiableTemplatePatternSpecification data_p) {
     return new SiriusTemplateUsageWizard(data_p);
@@ -152,7 +152,7 @@ implements IPatternDialogAndWizardFactory<DDiagramElement, DDiagram, DContainer>
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternCreationWizard(java.util.List, java.util.List, org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternCreationSpecification)
    */
-  public AbstractPatternCreationWizard<DDiagramElement, DDiagram, DContainer> 
+  public AbstractPatternCreationWizard<DDiagramElement, DDiagram> 
   instantiatePatternCreationWizard(
       List<Object> selection_p,
       List<Object> graphicalContext_p, 
@@ -165,7 +165,7 @@ implements IPatternDialogAndWizardFactory<DDiagramElement, DDiagram, DContainer>
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternApplicationWizard(java.util.List, java.lang.Object)
    */
-  public AbstractPatternApplicationWizard<DDiagramElement, DDiagram, DContainer> 
+  public AbstractPatternApplicationWizard<DDiagramElement, DDiagram> 
   instantiatePatternApplicationWizard(
       List<Object> selection_p, DDiagram diagram_p) {
     return new SiriusPatternApplicationWizard(selection_p, diagram_p);

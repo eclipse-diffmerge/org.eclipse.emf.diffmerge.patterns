@@ -31,14 +31,14 @@ import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
  * @author S. TURKI
  * @author Skander TURKI
  */
-public abstract class AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType, GraphicalContainerType> 
+public abstract class AbstractHighlightAllPatternsInstancesAction<DiagramElementType, DiagramType> 
 extends AbstractModelBasedAction<DiagramElementType, DiagramType> {
 
   protected DiagramType _diagram;
   
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType> 
-    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType, GraphicalContainerType>)
+  private IPatternDialogAndWizardFactory<DiagramElementType, DiagramType> 
+    _factory = (IPatternDialogAndWizardFactory<DiagramElementType, DiagramType>)
         PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
   
   /**

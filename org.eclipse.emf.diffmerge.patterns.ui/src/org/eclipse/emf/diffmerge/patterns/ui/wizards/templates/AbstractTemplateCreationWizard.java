@@ -35,8 +35,7 @@ import org.eclipse.emf.diffmerge.patterns.ui.wizards.CompositeWizardPage;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class AbstractTemplateCreationWizard<DiagramElementType, 
-DiagramType, GraphicalContainerType>
+public abstract class AbstractTemplateCreationWizard<DiagramElementType, DiagramType>
 extends AbstractPatternWizard<TemplatePatternCreationSpecification> {
 
   /**
@@ -77,10 +76,9 @@ extends AbstractPatternWizard<TemplatePatternCreationSpecification> {
   /**
    * Instantiates a TemplateCreationPresentationPage
    */
-  protected AbstractTemplateCreationPresentationPage<DiagramElementType, 
-  DiagramType, GraphicalContainerType>
+  protected AbstractTemplateCreationPresentationPage<DiagramElementType, DiagramType>
   instantiateTemplateCreationPresentationPage(TemplatePatternCreationSpecification data_p){
-    AbstractPatternPageFactory<DiagramElementType, DiagramType, GraphicalContainerType>
+    AbstractPatternPageFactory<DiagramElementType, DiagramType>
     factory = PatternsUIPlugin.getDefault().getPageFactory();
     if(factory != null){
       return factory.instantiateTemplateCreationPresentationPage(data_p);
@@ -96,7 +94,7 @@ extends AbstractPatternWizard<TemplatePatternCreationSpecification> {
   protected boolean doPerformFinish() {
     boolean result = false;
 
-    IPatternOperationFactory<?, ?, ?> factory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+    IPatternOperationFactory<?, ?> factory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       AbstractPatternWithLayoutOperation<?> operation = factory.instantiateCreatePatternAndInstanceOperation(getData(), (List)getGraphicalContext(), getData().getRepository());
       Object returned = CorePatternsPlugin.getDefault().getModelEnvironment().execute(operation);

@@ -24,7 +24,7 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Mohamed Sidati
  * @author Skander TURKI
  */
-public class BrowseCatalogHandler<DiagramElementType, DiagramType, GraphicalContainerType, GraphicalPartType>  
+public class BrowseCatalogHandler<DiagramElementType, DiagramType>  
 extends AbstractWorkbenchSelectionHandler {
 
   /**
@@ -38,7 +38,7 @@ extends AbstractWorkbenchSelectionHandler {
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractBrowseCatalogAction<DiagramElementType, DiagramType, GraphicalContainerType>  action = instantiateBrowseCatalogAction();
+          AbstractBrowseCatalogAction<DiagramElementType, DiagramType>  action = instantiateBrowseCatalogAction();
           if(action != null){
             action.setActivePart(null, part);
             action.selectionChanged(null, selection_p);
@@ -55,13 +55,11 @@ extends AbstractWorkbenchSelectionHandler {
    * @return
    */
   @SuppressWarnings("unchecked")
-  protected AbstractBrowseCatalogAction<DiagramElementType, DiagramType, 
-  GraphicalContainerType>  instantiateBrowseCatalogAction(){
+  protected AbstractBrowseCatalogAction<DiagramElementType, DiagramType>  instantiateBrowseCatalogAction(){
     try{
-      AbstractPatternActionFactory<?, ?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
+      AbstractPatternActionFactory<?, ?, ?> factory = AbstractPatternActionFactory.getInstance();
       if(factory != null){
-        return (AbstractBrowseCatalogAction<DiagramElementType, DiagramType, 
-            GraphicalContainerType> )factory.instantiateBrowseCatalogAction();
+        return (AbstractBrowseCatalogAction<DiagramElementType, DiagramType> )factory.instantiateBrowseCatalogAction();
       }
     }
     catch(Exception e){
