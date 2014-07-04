@@ -34,10 +34,14 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.DDiagramElement;
-import org.eclipse.sirius.viewpoint.DSemanticDecorator;
+import org.eclipse.sirius.diagram.DNodeContainer;
 import org.eclipse.sirius.diagram.EdgeArrows;
 import org.eclipse.sirius.diagram.EdgeRouting;
 import org.eclipse.sirius.diagram.LineStyle;
+import org.eclipse.sirius.diagram.description.DiagramDescription;
+import org.eclipse.sirius.diagram.description.DiagramElementMapping;
+import org.eclipse.sirius.diagram.description.Layer;
+import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 
@@ -48,14 +52,14 @@ import org.eclipse.swt.widgets.Display;
  * @author Olivier Constant
  * @author Skander TURKI
  */
-public class SiriusDiagramUtil extends AbstractDiagramUtil<DDiagramElement>{
+public class SiriusDiagramUtil extends AbstractDiagramUtil{
 
   /**
    * 
    * @see org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil#getDiagramElements(java.lang.Object)
    */
   @Override
-  public List<DDiagramElement> getDiagramElements(Object diagram_p) {
+  public List<?> getDiagramElements(Object diagram_p) {
     if(diagram_p instanceof DDiagram){
       return ((DDiagram)diagram_p).getDiagramElements();
     }
@@ -67,8 +71,11 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil<DDiagramElement>{
    * @see org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil#getSemanticElementsFor(java.lang.Object)
    */
   @Override
-  public List<EObject> getSemanticElementsFor(DDiagramElement diagramElement_p) {
-    return diagramElement_p.getSemanticElements();
+  public List<EObject> getSemanticElementsFor(Object diagramElement_p) {
+    if(diagramElement_p instanceof DDiagramElement){
+      return ((DDiagramElement)diagramElement_p).getSemanticElements();
+    }
+    return Collections.emptyList();
   }
 
   /**
@@ -77,11 +84,11 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil<DDiagramElement>{
    * @return
    */
   @Override
-  public Point getLocation(DDiagramElement diagramElement_p) {
+  public Point getLocation(Object diagramElement_p) {
     Point vector = new Point(0, 0);
     // Get position vector
-    if(diagramElement_p != null){
-      List<View> views = SiriusLayersUtil.upViewpointToGmf(diagramElement_p);
+    if(diagramElement_p instanceof DDiagramElement){
+      List<View> views = SiriusLayersUtil.upViewpointToGmf((DDiagramElement)diagramElement_p);
       if (!views.isEmpty() && (views.get(0) instanceof Node)) {
         Node node = (Node) views.get(0);
         LayoutConstraint constraint = node.getLayoutConstraint();
@@ -95,14 +102,19 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil<DDiagramElement>{
     return vector;
   }
 
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil#getTechnicalContainerFor(java.lang.Object)
+   */
   @Override
-  public EObject getTechnicalContainerFor(DDiagramElement diagramElement_p) {
-    return diagramElement_p.eContainer();
+  public EObject getTechnicalContainerFor(Object diagramElement_p) {
+    if(diagramElement_p instanceof DDiagramElement){
+      return ((DDiagramElement)diagramElement_p).eContainer();
+    }
+    return null;
   }
 
 
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil#toActualSelection(java.lang.Object)
    */
   @Override
@@ -112,8 +124,7 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil<DDiagramElement>{
     if (viewpointElement instanceof DSemanticDecorator) {
       ISemanticMapping<?> mapping = PatternCoreDiagramPlugin.getDefault().getSemanticMapping();
       if(mapping instanceof ISiriusSemanticMapping){
-        result.addAll(((ISiriusSemanticMapping)mapping).getSemanticSelection(
-            (DSemanticDecorator)viewpointElement));
+        result.addAll(((ISiriusSemanticMapping)mapping).getSemanticSelection(viewpointElement));
       }
     } else if (viewpointElement != null) {
       result.add(viewpointElement);
@@ -241,6 +252,59 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil<DDiagramElement>{
     public EdgeRouting selectedEdgeRouting = null;
     public EdgeArrows selectedTargetArrow = null;
     public EdgeArrows selectedSourceArrow = null;
+  }
+
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil#getSemanticRepresentationTypeTarget(java.lang.Object)
+   */
+  @Override
+  public EObject getSemanticRepresentationTypeTarget(Object semanticDecorator_p) {
+    if(semanticDecorator_p instanceof DSemanticDecorator){
+      return ((DSemanticDecorator)semanticDecorator_p).getTarget();
+    }
+    return null;
+  }
+
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil#getOwnedDiagramElements(java.lang.Object)
+   */
+  @Override
+  public Collection<?> getOwnedDiagramElements(Object semanticDecorator_p) {
+    if(semanticDecorator_p instanceof DNodeContainer){
+      return ((DNodeContainer)semanticDecorator_p).getOwnedDiagramElements();
+    }
+    return Collections.emptyList();
+  }
+
+
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil#isShowInstanceEnabled(java.lang.Object)
+   */
+  @Override
+  public boolean isShowInstanceEnabled(Object diagram_p) {
+    boolean result = diagram_p != null;
+    if(diagram_p instanceof DDiagram){
+      if (result) {
+        DDiagram diagram = (DDiagram)diagram_p;
+        DiagramDescription description = diagram.getDescription();
+        if (description != null) {
+          // Return false iff all available mappings are synchronized
+          Collection<DiagramElementMapping> allMappings = new FOrderedSet<DiagramElementMapping>();
+          for (Layer activeLayer : diagram.getActivatedLayers()) {
+            allMappings.addAll(activeLayer.getContainerMappings());
+            allMappings.addAll(activeLayer.getNodeMappings());
+            allMappings.addAll(activeLayer.getEdgeMappings());
+          }
+          Iterator<DiagramElementMapping> it = allMappings.iterator();
+          result = false;
+          while (!result && it.hasNext()) {
+            DiagramElementMapping current = it.next();
+            result = !current.isSynchronizationLock();
+          }
+        }
+      }
+    }
+    return result;
   }
 
 }

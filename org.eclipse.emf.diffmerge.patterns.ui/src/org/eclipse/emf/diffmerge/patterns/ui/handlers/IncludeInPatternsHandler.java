@@ -11,9 +11,7 @@
 package org.eclipse.emf.diffmerge.patterns.ui.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.emf.diffmerge.patterns.ui.actions.AbstractAddToPersistentSelectionAction;
-import org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.diffmerge.patterns.ui.actions.AddToPersistentSelectionAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
@@ -38,33 +36,14 @@ public class IncludeInPatternsHandler extends AbstractWorkbenchSelectionHandler 
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractAddToPersistentSelectionAction action = instantiateAddToPersistentSelectionAction();
-          if(action != null){
-            action.setActivePart(null, part);
-            action.selectionChanged(null, selection_p);
-            action.run(null);
-          }
+          AddToPersistentSelectionAction action =  new AddToPersistentSelectionAction();
+          action.setActivePart(null, part);
+          action.selectionChanged(null, selection_p);
+          action.run(null);
         }
       }
     }
     return null;
   }
 
-/**
- * Instantiate an AbstractAddToPersistentSelectionAction  
- * @return
- */
-@SuppressWarnings("cast")
-protected AbstractAddToPersistentSelectionAction instantiateAddToPersistentSelectionAction() {
-  try{
-    AbstractPatternActionFactory<?, ?> factory = AbstractPatternActionFactory.getInstance();
-    if(factory != null){
-      return (AbstractAddToPersistentSelectionAction)factory.instantiateAddToPersistentSelectionAction();
-    } 
-  }
-  catch(Exception e){
-    EcorePlugin.INSTANCE.log(e);
-  }
-  return null;
-}
 }

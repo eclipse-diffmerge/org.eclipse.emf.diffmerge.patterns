@@ -39,14 +39,12 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.ITempl
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplateUsageSpecification;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
 import org.eclipse.emf.diffmerge.patterns.ui.Messages;
-import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin;
 import org.eclipse.emf.diffmerge.patterns.ui.dialogs.TemplateUsageDialog;
-import org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory;
 import org.eclipse.emf.diffmerge.patterns.ui.providers.DiscriminatingLabelProvider;
 import org.eclipse.emf.diffmerge.patterns.ui.providers.NameBasedLabelProvider;
 import org.eclipse.emf.diffmerge.patterns.ui.util.UIUtil;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard.IPatternImageChangedListener;
-import org.eclipse.emf.diffmerge.patterns.ui.wizards.templates.AbstractTemplateUsageWizard;
+import org.eclipse.emf.diffmerge.patterns.ui.wizards.templates.TemplateUsageWizard;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -93,7 +91,7 @@ import org.eclipse.ui.PlatformUI;
  * A wizard page for presenting a pattern.
  * @author O. CONSTANT
  */
-public abstract class AbstractPatternPresentationPage<DiagramElementType, T extends ITemplatePatternBasedSpecification>
+public abstract class AbstractPatternPresentationPage<T extends ITemplatePatternBasedSpecification>
 extends AbstractPatternPage<T> {
 
   /** An enumeration for specifying how a pattern is determined */
@@ -120,13 +118,6 @@ extends AbstractPatternPage<T> {
 
   /** The widget representing the version, non-null after control creation phase */
   protected Text _versionWidget;
-
-
-  /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType> 
-    _factory = (IPatternDialogAndWizardFactory<DiagramElementType>)
-      PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
-
 
   /**
    * Constructor
@@ -924,8 +915,7 @@ extends AbstractPatternPage<T> {
           final int VECTOR = 50;
           Point location = getShell().getLocation();
           Point newLocation = new Point(location.x + VECTOR, location.y + VECTOR);
-          AbstractTemplateUsageWizard<DiagramElementType>
-            wizard = instantiateTemplateUsageWizard((AbstractModifiableTemplatePatternSpecification)getData());
+          TemplateUsageWizard wizard = new TemplateUsageWizard((AbstractModifiableTemplatePatternSpecification)getData());
           //new AbstractTemplateUsageWizard((AbstractModifiableTemplatePatternSpecification)getData());
           PatternWizardDialog dialog = new PatternWizardDialog(
               getShell(), wizard, false, newLocation);
@@ -945,14 +935,6 @@ extends AbstractPatternPage<T> {
       }
     });
     return result;
-  }
-
-  protected AbstractTemplateUsageWizard<DiagramElementType>
-  instantiateTemplateUsageWizard(AbstractModifiableTemplatePatternSpecification data_p){
-    if(_factory != null){
-      return _factory.instantiateTemplateUsageWizard(data_p);
-    }
-    return null;
   }
 
   /**

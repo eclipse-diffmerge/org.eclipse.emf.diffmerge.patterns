@@ -11,9 +11,7 @@
 package org.eclipse.emf.diffmerge.patterns.ui.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.emf.diffmerge.patterns.ui.actions.AbstractCreateTemplateAction;
-import org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.diffmerge.patterns.ui.actions.CreateTemplateAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
@@ -24,7 +22,7 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Mohamed Sidati
  * @author Skander TURKI
  */
-public class CreateTemplateHandler<DiagramElementType> extends AbstractWorkbenchSelectionHandler {
+public class CreateTemplateHandler extends AbstractWorkbenchSelectionHandler {
 
   /**
    * @see AbstractWorkbenchSelectionHandler#handleSelection(ISelection, IWorkbenchPart, ExecutionEvent)
@@ -37,32 +35,13 @@ public class CreateTemplateHandler<DiagramElementType> extends AbstractWorkbench
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractCreateTemplateAction<DiagramElementType> action = instantiateCreateTemplateAction();
-          if(action != null){
-            action.setActivePart(null, part);
-            action.selectionChanged(null, selection_p);
-            action.run(null);
-          }
+          CreateTemplateAction action = new CreateTemplateAction();
+          action.setActivePart(null, part);
+          action.selectionChanged(null, selection_p);
         }
       }
     }
     return null;
   }
 
-  
-  
-  @SuppressWarnings("unchecked")
-  protected AbstractCreateTemplateAction<DiagramElementType> instantiateCreateTemplateAction(){
-    try{
-      AbstractPatternActionFactory<?, ?> factory = AbstractPatternActionFactory.getInstance();
-      if(factory != null){
-        return (AbstractCreateTemplateAction<DiagramElementType>)factory.instantiateCreateTemplateAction();
-      } 
-    }
-    catch(Exception e){
-      EcorePlugin.INSTANCE.log(e);
-    }
-    return null;
-  }
-  
 }

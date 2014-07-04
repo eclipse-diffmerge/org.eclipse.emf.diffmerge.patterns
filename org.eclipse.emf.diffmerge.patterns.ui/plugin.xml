@@ -12,11 +12,9 @@
 
 <!-- Page Factory Extension point Declaration -->
 
-	<extension-point id="org.eclipse.emf.diffmerge.patterns.ui.pageFactory" name="pageFactory" schema="schema/PageFactory.exsd"/>
 
 <!-- Actions Factory Extension point Declaration -->
 
-	<extension-point id="org.eclipse.emf.diffmerge.patterns.ui.actionFactory" name="actionFactory" schema="schema/ActionFactory.exsd"/>
 
 <!-- Job Factory Extension point Declaration -->
 
@@ -28,7 +26,7 @@
  
  <!-- ISemanticUI Util Extension point Declaration -->
  
- 	<extension-point id="org.eclipse.emf.diffmerge.patterns.ui.uiExtender" name="UIExtender" schema="schema/UIExtender.exsd"/>
+ 	<extension-point id="org.eclipse.emf.diffmerge.patterns.ui.uiextender" name="UIExtender" schema="schema/UIExtender.exsd"/>
 
   
 </plugin>

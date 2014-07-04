@@ -11,9 +11,7 @@
 package org.eclipse.emf.diffmerge.patterns.ui.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.emf.diffmerge.patterns.ui.actions.AbstractHighlightAllPatternsInstancesAction;
-import org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.diffmerge.patterns.ui.actions.HighlightAllPatternsInstancesAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
@@ -24,8 +22,7 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Mohamed Sidati
  * @author Skander TURKI
  */
-public class HighlightAllPatternsInstancesHandler<DiagramElementType> 
-extends AbstractWorkbenchSelectionHandler {
+public class HighlightAllPatternsInstancesHandler extends AbstractWorkbenchSelectionHandler {
 
   /**
    * @see AbstractWorkbenchSelectionHandler#handleSelection(ISelection, IWorkbenchPart, ExecutionEvent)
@@ -38,33 +35,12 @@ extends AbstractWorkbenchSelectionHandler {
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractHighlightAllPatternsInstancesAction<DiagramElementType> action = instantiateHighlightAllPatternsInstancesAction();
-          if(action != null){
-            action.setActivePart(null, part);
-            action.selectionChanged(null, selection_p);
-            action.run(null);
-          }
+          HighlightAllPatternsInstancesAction action = new HighlightAllPatternsInstancesAction();
+          action.setActivePart(null, part);
+          action.selectionChanged(null, selection_p);
+          action.run(null);
         }
       }
-    }
-    return null;
-  }
-  
-  /**
-   * Instantiates a AbstractHighlightAllPatternsInstancesAction<D>
-   * @return
-   */
-  @SuppressWarnings("unchecked")
-  protected AbstractHighlightAllPatternsInstancesAction<DiagramElementType> 
-  instantiateHighlightAllPatternsInstancesAction(){
-    try{
-      AbstractPatternActionFactory<?, ?> factory = AbstractPatternActionFactory.getInstance();
-      if(factory != null){
-        return (AbstractHighlightAllPatternsInstancesAction<DiagramElementType>)factory.instantiateHighlightAllPatternsInstancesAction();
-      } 
-    }
-    catch(Exception e){
-      EcorePlugin.INSTANCE.log(e);
     }
     return null;
   }

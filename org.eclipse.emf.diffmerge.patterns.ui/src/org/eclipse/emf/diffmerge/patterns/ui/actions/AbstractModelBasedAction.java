@@ -24,8 +24,7 @@ import org.eclipse.jface.dialogs.MessageDialog;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractModelBasedAction<DiagramElementType> 
-extends AbstractContextualAction<EObject> {
+public abstract class AbstractModelBasedAction extends AbstractContextualAction<EObject> {
   
 	/**
 	 * Constructor
@@ -48,7 +47,7 @@ extends AbstractContextualAction<EObject> {
  */
   @Override
   protected Collection<?> toActualSelection(Object selected_p){
-    AbstractDiagramUtil<DiagramElementType> diagramUtil = (AbstractDiagramUtil<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
+    AbstractDiagramUtil diagramUtil = PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     return diagramUtil.toActualSelection(selected_p);
   }
     

@@ -18,7 +18,6 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.Abstra
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternBrowsingSpecification;
 import org.eclipse.emf.diffmerge.patterns.ui.Messages;
 import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin;
-import org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternPageFactory;
 import org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternJobFactory;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternPage;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard;
@@ -30,8 +29,7 @@ import org.eclipse.emf.diffmerge.patterns.ui.wizards.CompositeWizardPage;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class AbstractPatternBrowsingWizard<DiagramElementType> extends
-AbstractPatternWizard<TemplatePatternBrowsingSpecification> {
+public abstract class AbstractPatternBrowsingWizard extends AbstractPatternWizard<TemplatePatternBrowsingSpecification> {
 
   /**
    * Constructor
@@ -48,7 +46,7 @@ AbstractPatternWizard<TemplatePatternBrowsingSpecification> {
   public void doAddPages() {
     List<AbstractPatternPage<AbstractBijectiveTemplatePatternSpecification>> subPages =
         new ArrayList<AbstractPatternPage<AbstractBijectiveTemplatePatternSpecification>>();
-    subPages.add(instantiatePatternBrowsingPresentationPage(getData()));
+    subPages.add(new PatternBrowsingPresentationPage(getData()));
     subPages.add(new PatternBrowsingElementsPage(getData()));
     subPages.add(new PatternBrowsingRolesPage(getData()));
     CompositeWizardPage<AbstractBijectiveTemplatePatternSpecification> compositePage =
@@ -59,16 +57,6 @@ AbstractPatternWizard<TemplatePatternBrowsingSpecification> {
             getData(), false, subPages);
     addPage(compositePage);
     setWindowTitle(Messages.PatternBrowsingWizard_Header);
-  }
-
-  protected AbstractPatternBrowsingPresentationPage<DiagramElementType> 
-  instantiatePatternBrowsingPresentationPage(TemplatePatternBrowsingSpecification data_p){
-    AbstractPatternPageFactory<DiagramElementType>
-    factory = PatternsUIPlugin.getDefault().getPageFactory();
-    if(factory != null){
-      return factory.instantiatePatternBrowsingPresentationPage(data_p);
-    }
-    return null;
   }
 
   /**
@@ -83,8 +71,7 @@ AbstractPatternWizard<TemplatePatternBrowsingSpecification> {
   @Override
   protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternBrowsingSpecification> wizard_p,  
       List<Object> context_p, boolean updatePattern_p){
-    IPatternJobFactory factory = 
-        (IPatternJobFactory) PatternsUIPlugin.getDefault().getJobFactory();
+    IPatternJobFactory factory = PatternsUIPlugin.getDefault().getJobFactory();
     if(factory != null){
       return factory.instantiatePatternImageBuilderJob(wizard_p, context_p, updatePattern_p);
     }
@@ -95,8 +82,7 @@ AbstractPatternWizard<TemplatePatternBrowsingSpecification> {
   @Override
   protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternBrowsingSpecification> wizard_p,  
       String imageSpecification_p, boolean updatePattern_p){
-    IPatternJobFactory factory = 
-        (IPatternJobFactory) PatternsUIPlugin.getDefault().getJobFactory();
+    IPatternJobFactory factory = PatternsUIPlugin.getDefault().getJobFactory();
     if(factory != null){
       return factory.instantiatePatternImageBuilderJob(wizard_p, imageSpecification_p, updatePattern_p);
     }

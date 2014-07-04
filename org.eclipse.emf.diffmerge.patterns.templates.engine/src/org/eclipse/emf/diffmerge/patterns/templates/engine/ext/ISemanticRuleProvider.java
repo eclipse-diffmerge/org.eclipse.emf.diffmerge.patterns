@@ -237,7 +237,7 @@ public interface ISemanticRuleProvider {
   /**
    * Says if the given diagram is of a type that is automatically redrawn. 
    * When true is returned the layout reuse is not executed on the given diagram after pattern application.
-   * See {@link org.eclipse.emf.diffmerge.patterns.ui.wizards.application.AbstractPatternApplicationWizard#doPerformFinish}
+   * See {@link org.eclipse.emf.diffmerge.patterns.ui.wizards.application.PatternApplicationWizard#doPerformFinish}
    */
   public boolean isAutomaticallyUpdatedDiagram(Object diagram_p);
 }

@@ -29,7 +29,8 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Text;
-
+import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
+import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.ITemplatePatternBasedSpecification;
 
 
@@ -74,6 +75,8 @@ extends WizardPage {
   /** A non-null, potentially empty set of page validation listeners */
   private final Set<IPageValidatedListener> _validationListeners;
   
+  /** Utility class instance used to call diagram-related services from the graphical framework (Sirius for example) */
+  protected AbstractDiagramUtil _diagramUtil;
   
   /**
    * Constructor
@@ -86,6 +89,7 @@ extends WizardPage {
   protected AbstractPatternPage(String pageName_p, String pageTitle_p,
       String defaultMessage_p, T data_p, boolean isBlocking_p) {
     super(pageName_p, pageTitle_p, null);
+    _diagramUtil = PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     _data = data_p;
     _isBlocking = isBlocking_p;
     setPageComplete(!_isBlocking);

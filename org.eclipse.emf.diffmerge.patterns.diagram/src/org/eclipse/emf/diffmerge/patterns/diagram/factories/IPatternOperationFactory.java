@@ -34,8 +34,7 @@ import org.eclipse.swt.graphics.RGB;
  * The design environment (unique in the platform) must provide his own factory
  * @author Skander TURKI
  */
-public interface IPatternOperationFactory<DiagramElementType> {
-
+public interface IPatternOperationFactory {
 
   /**
    * Instantiates an operation that is responsible for creating a pattern and an instance.
@@ -56,8 +55,7 @@ public interface IPatternOperationFactory<DiagramElementType> {
    * kinds of refresh on a diagram to reflect the effect of the wrapped operation.
    * @return a non-null AbstractGraphicalWrappingInstanceOperation (must be a concrete GraphicalWrappingInstanceOperation)
    */
-  AbstractGraphicalWrappingInstanceOperation<IPatternInstance, DiagramElementType> 
-  instantiateGraphicalWrappingInstanceOperation(
+  AbstractGraphicalWrappingInstanceOperation<IPatternInstance> instantiateGraphicalWrappingInstanceOperation(
       IModelOperation<? extends IPatternInstance> operation_p,
       Object diagram_p, RefreshRequestKind refreshRequest_p);
 
@@ -66,7 +64,7 @@ public interface IPatternOperationFactory<DiagramElementType> {
    * kinds of refresh on a diagram to reflect the effect of the wrapped operation.
    * @return a non-null AbstractGraphicalWrappingInstanceOperation (must be a concrete GraphicalWrappingInstanceOperation)
    */
-  public AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>, DiagramElementType> 
+  public AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>> 
   instantiateGraphicalWrappingInstanceOperation(IModelOperation<List<IPatternInstance>> operations_p,
       Object diagram_p, RefreshRequestKind refreshRequest_p, boolean signatureDifferentiator);
   
@@ -75,8 +73,7 @@ public interface IPatternOperationFactory<DiagramElementType> {
    * kinds of refresh on a diagram to reflect the effect of the wrapped operation.
    * @return a non-null AbstractGraphicalWrappingInstanceOperation (must be a concrete GraphicalWrappingInstanceOperation)
    */
-  AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, DiagramElementType> 
-  instantiateGraphicalWrappingInstanceOperation(
+  AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus> instantiateGraphicalWrappingInstanceOperation(
       InstanceOperation operation_p, IPatternInstance instance_p,
       Object diagram_p, RefreshRequestKind refreshRequest_p);
 
@@ -85,54 +82,37 @@ public interface IPatternOperationFactory<DiagramElementType> {
    * Instantiates an operation for highlighting diagram elements based on specific criteria on semantic elements.
    * @return a non-null AbstractFilteredGraphicalUpdateOperation (must be a concrete HighlightOperation)
    */
-  AbstractFilteredGraphicalUpdateOperation<DiagramElementType> 
-  instantiateHighlightOperation(
-      Object diagram_p, Collection<? extends IPatternInstance> instances_p,
-      RGB color_p, int borderSize_p, boolean coverEdges_p,
-      boolean coverNodes_p, boolean coverPorts_p);
+  AbstractFilteredGraphicalUpdateOperation instantiateHighlightOperation(Object diagram_p, 
+      Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, 
+      boolean coverEdges_p, boolean coverNodes_p, boolean coverPorts_p);
 
   /**
    * Instantiates an operation that is responsible of representing a given set of semantic elements in a given diagram.
    * @return a non-null AbstractFilteredGraphicalUpdateOperation (must be a concrete LayoutReuseOperation)
    */
-  AbstractFilteredGraphicalUpdateOperation<DiagramElementType>
-  instantiateLayoutReuseOperation(
-      Collection<DiagramElementType> diagramElements_p,  
-      IPatternInstance instance_p, 
-      Map<DiagramElementType, Point> initialElementsLocationsMap_p,
-      Map<DiagramElementType, Object> elementsContainersMap_p, 
-      int vx_p, int vy_p,
-      boolean updateLayout_p, boolean updateStyle_p,
-      Object modelSideContext_p);
+  AbstractFilteredGraphicalUpdateOperation instantiateLayoutReuseOperation(Collection<Object> diagramElements_p,  
+      IPatternInstance instance_p, Map<Object, Point> initialElementsLocationsMap_p,
+      Map<Object, Object> elementsContainersMap_p, int vx_p, int vy_p,
+      boolean updateLayout_p, boolean updateStyle_p, Object modelSideContext_p);
 
   /**
    * Instantiates an operation that is responsible of representing a given set of semantic elements in a given diagram.
    * @return a non-null AbstractFilteredGraphicalUpdateOperation (must be a concrete LayoutReuseOperation)
    */
-  AbstractFilteredGraphicalUpdateOperation<DiagramElementType>
-  instantiateLayoutReuseOperation(
-      Object diagram_p,  
-      IPatternInstance instance_p, 
-      Map<DiagramElementType, Point> initialElementsLocationsMap_p,
-      Map<DiagramElementType, Object> elementsContainersMap_p,
-      int vx_p, int vy_p,
-      boolean updateLayout_p, boolean updateStyle_p,
-      Object modelSideContext_p);
+  AbstractFilteredGraphicalUpdateOperation instantiateLayoutReuseOperation(Object diagram_p, IPatternInstance instance_p, 
+      Map<Object, Point> initialElementsLocationsMap_p, Map<Object, Object> elementsContainersMap_p,
+      int vx_p, int vy_p, boolean updateLayout_p, boolean updateStyle_p, Object modelSideContext_p);
   
   /**
    * Instantiates an operation for restoring diagram elements based on specific criteria on semantic elements.
    * @return a non-null AbstractFilteredGraphicalUpdateOperation (must be a concrete RestoreOperation)
    */
-  AbstractFilteredGraphicalUpdateOperation<DiagramElementType> 
-  instantiateRestoreOperation(
-      Object diagram_p, Collection<? extends IPatternInstance> instances_p);
+  AbstractFilteredGraphicalUpdateOperation instantiateRestoreOperation(Object diagram_p, Collection<? extends IPatternInstance> instances_p);
 
   /**
    * Instantiates an operation that is responsible for updating a pattern and an instance.
    * @return a non-null AbstractPatternWithLayoutOperation (must be a concrete UpdatePatternInCatalogOperation)
    */
-  AbstractPatternWithLayoutOperation<?> 
-  instantiateUpdatePatternInCatalogOperation(
-      TemplatePatternUpdateSpecification data_p, List<Object> context_p);
+  AbstractPatternWithLayoutOperation<?> instantiateUpdatePatternInCatalogOperation(TemplatePatternUpdateSpecification data_p, List<Object> context_p);
 
 }

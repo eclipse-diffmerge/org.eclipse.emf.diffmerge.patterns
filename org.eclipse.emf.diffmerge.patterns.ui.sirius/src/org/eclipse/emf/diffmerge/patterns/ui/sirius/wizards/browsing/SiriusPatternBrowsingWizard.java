@@ -13,21 +13,13 @@ package org.eclipse.emf.diffmerge.patterns.ui.sirius.wizards.browsing;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.browsing.AbstractPatternBrowsingWizard;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.sirius.diagram.AbstractDNode;
-import org.eclipse.sirius.viewpoint.DContainer;
-import org.eclipse.sirius.diagram.DDiagram;
-import org.eclipse.sirius.diagram.DDiagramElement;
-import org.eclipse.sirius.viewpoint.DSemanticDecorator;
-import org.eclipse.sirius.viewpoint.RGBValues;
 
 /**
  * A Sirius-specific wizard for browsing pattern repositories.
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public class SiriusPatternBrowsingWizard 
-extends AbstractPatternBrowsingWizard<DDiagramElement>{
+public class SiriusPatternBrowsingWizard extends AbstractPatternBrowsingWizard{
   
   /**
    * Constructor

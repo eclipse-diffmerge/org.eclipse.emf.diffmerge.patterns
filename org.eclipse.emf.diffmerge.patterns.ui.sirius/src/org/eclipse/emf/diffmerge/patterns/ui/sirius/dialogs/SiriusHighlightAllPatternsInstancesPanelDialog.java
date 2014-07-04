@@ -15,11 +15,6 @@ import java.util.Set;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.ColorUtil;
 import org.eclipse.emf.diffmerge.patterns.ui.dialogs.HighlightAllPatternsInstancesPanelDialog;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.sirius.viewpoint.DContainer;
-import org.eclipse.sirius.diagram.DDiagram;
-import org.eclipse.sirius.diagram.DDiagramElement;
-import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.sirius.viewpoint.RGBValues;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Shell;
@@ -30,8 +25,7 @@ import org.eclipse.swt.widgets.Shell;
  * @author Olivier Constant
  * @author Skander TURKI
  */
-public class SiriusHighlightAllPatternsInstancesPanelDialog 
-extends HighlightAllPatternsInstancesPanelDialog<DDiagramElement>{
+public class SiriusHighlightAllPatternsInstancesPanelDialog extends HighlightAllPatternsInstancesPanelDialog{
 
   /**
    * Constructor

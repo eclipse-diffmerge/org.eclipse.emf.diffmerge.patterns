@@ -13,10 +13,9 @@ package org.eclipse.emf.diffmerge.patterns.ui;
 import java.io.IOException;
 
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.emf.diffmerge.patterns.core.SingletonContributionDiscoverer;
 import org.eclipse.emf.diffmerge.patterns.ui.environment.DefaultModelEnvironmentUI;
 import org.eclipse.emf.diffmerge.patterns.ui.environment.IModelEnvironmentUI;
-import org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory;
-import org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternPageFactory;
 import org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory;
 import org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternJobFactory;
 import org.eclipse.emf.diffmerge.patterns.ui.misc.PersistentSelection;
@@ -25,8 +24,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-
-import org.eclipse.emf.diffmerge.patterns.core.SingletonContributionDiscoverer;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -46,20 +43,6 @@ public class PatternsUIPlugin extends AbstractUIPlugin {
       "org.eclipse.emf.diffmerge.patterns.ui.modelenvironmentui"; //$NON-NLS-1$
   private static final String MODEL_ENVIRONMENT_UI_POINT_PROPERTY = "class"; //$NON-NLS-1$
 
-
- 
-
-
-
-
-  /** The current Operation Factory (may not be null) */
-  private AbstractPatternActionFactory<? ,?> _patternActionFactory;
-
-  /** IDs related to the Operation Factory extension point */
-  private static final String ACTION_FACTORY_EXTENSION_POINT =
-      "org.eclipse.emf.diffmerge.patterns.ui.actionFactory"; //$NON-NLS-1$
-  private static final String ACTION_FACTORY_POINT_PROPERTY = "class"; //$NON-NLS-1$
-
   
   /** The current Job Factory (may not be null) */
   private IPatternJobFactory _patternJobFactory;
@@ -69,18 +52,9 @@ public class PatternsUIPlugin extends AbstractUIPlugin {
       "org.eclipse.emf.diffmerge.patterns.ui.jobFactory"; //$NON-NLS-1$
   private static final String JOB_FACTORY_POINT_PROPERTY = "class"; //$NON-NLS-1$
 
-  
-  /** The current Page Factory (may not be null) */
-  private AbstractPatternPageFactory _patternPageFactory;
-
-  /** IDs related to the Page Factory extension point */
-  private static final String PAGE_FACTORY_EXTENSION_POINT =
-      "org.eclipse.emf.diffmerge.patterns.ui.pageFactory"; //$NON-NLS-1$
-  private static final String PAGE_FACTORY_POINT_PROPERTY = "class"; //$NON-NLS-1$
-  
 
   /** The current Dialog and Wizard Factory (may not be null) */
-  private IPatternDialogAndWizardFactory<?> _patternDialogAndWizardFactory;
+  private IPatternDialogAndWizardFactory _patternDialogAndWizardFactory;
 
   /** IDs related to the DialogAndWizard Factory extension point */
   private static final String DIALOG_AND_WIZARD_FACTORY_EXTENSION_POINT =
@@ -93,7 +67,7 @@ public class PatternsUIPlugin extends AbstractUIPlugin {
 
   /** IDs related to the UIExtender extension point */
   private static final String UI_EXTENDER_EXTENSION_POINT =
-      "org.eclipse.emf.diffmerge.patterns.ui.uiExtender"; //$NON-NLS-1$
+      "org.eclipse.emf.diffmerge.patterns.ui.uiextender"; //$NON-NLS-1$
   private static final String UI_EXTENDER_POINT_PROPERTY = "class"; //$NON-NLS-1$
   
   
@@ -219,24 +193,7 @@ public class PatternsUIPlugin extends AbstractUIPlugin {
     return _modelEnvironmentUI;
   }
 
-
-
-
-
-  /**
-   * Return the action Factory registered in the platform
-   * @return a non-null AbstractPatternActionFactory
-   */
-  public AbstractPatternActionFactory<? ,?> getActionFactory() {
-    if(_patternActionFactory == null){
-      SingletonContributionDiscoverer<AbstractPatternActionFactory<? ,?>> d = 
-          new SingletonContributionDiscoverer<AbstractPatternActionFactory<? ,?>>(AbstractPatternActionFactory.class,
-              ACTION_FACTORY_EXTENSION_POINT, ACTION_FACTORY_POINT_PROPERTY); 
-      _patternActionFactory = d.getContributedSingleton();
-    }
-    return _patternActionFactory;
-  }
-
+  
   /**
    * Return the dialog and wizard Factory registered in the platform
    * @return a non-null IPatternDialogAndWizardFactory
@@ -255,33 +212,19 @@ public class PatternsUIPlugin extends AbstractUIPlugin {
    * Return the dialog and wizard Factory registered in the platform
    * @return a non-null IPatternDialogAndWizardFactory
    */
-  public IPatternDialogAndWizardFactory<?> getDialogAndWizardFactory() {
+  public IPatternDialogAndWizardFactory getDialogAndWizardFactory() {
     if(_patternDialogAndWizardFactory == null){
-      SingletonContributionDiscoverer<IPatternDialogAndWizardFactory<?>> d = 
-          new SingletonContributionDiscoverer<IPatternDialogAndWizardFactory<?>>(IPatternDialogAndWizardFactory.class,
+      SingletonContributionDiscoverer<IPatternDialogAndWizardFactory> d = 
+          new SingletonContributionDiscoverer<IPatternDialogAndWizardFactory>(IPatternDialogAndWizardFactory.class,
               DIALOG_AND_WIZARD_FACTORY_EXTENSION_POINT, DIALOG_AND_WIZARD_FACTORY_POINT_PROPERTY); 
       _patternDialogAndWizardFactory = d.getContributedSingleton();
     }
     return _patternDialogAndWizardFactory;
   }
-
+ 
   /**
    * Return the Page Factory registered in the platform
-   * @return a non-null AbstractPatternPageFactory
-   */
-  public AbstractPatternPageFactory getPageFactory() {
-    if(_patternPageFactory == null){
-      SingletonContributionDiscoverer<AbstractPatternPageFactory> d = 
-          new SingletonContributionDiscoverer<AbstractPatternPageFactory>(AbstractPatternPageFactory.class,
-              PAGE_FACTORY_EXTENSION_POINT, PAGE_FACTORY_POINT_PROPERTY); 
-      _patternPageFactory = d.getContributedSingleton();
-    }
-    return _patternPageFactory;
-  }
-  
-  /**
-   * Return the Page Factory registered in the platform
-   * @return a non-null AbstractPatternPageFactory
+   * @return a non-null IUIExtender
    */
   public IUIExtender getSemanticUIUtil() {
     if(_uiExtender == null){

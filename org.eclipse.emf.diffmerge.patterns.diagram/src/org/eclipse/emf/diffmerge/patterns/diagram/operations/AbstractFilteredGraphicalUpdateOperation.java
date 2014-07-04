@@ -14,6 +14,8 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.diffmerge.patterns.core.operations.AbstractModelOperation;
+import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
+import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
 import org.eclipse.emf.diffmerge.util.ModelsUtil;
 
 /**
@@ -21,8 +23,7 @@ import org.eclipse.emf.diffmerge.util.ModelsUtil;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class AbstractFilteredGraphicalUpdateOperation<DiagramElementType> 
-extends AbstractModelOperation<Collection<Object>> {
+public abstract class AbstractFilteredGraphicalUpdateOperation extends AbstractModelOperation<Collection<Object>> {
 
   /**
    * The [non-null iff _diagramElements is null] diagram in which update must occur
@@ -32,16 +33,18 @@ extends AbstractModelOperation<Collection<Object>> {
   /**
    * The [non-null iff _diagram is null], potentially empty set of diagram elements to update
    */
-  protected final Collection<? extends DiagramElementType> _diagramElements;
+  protected final Collection<Object> _diagramElements;
 
   /**
    * The [non-null iff _diagramElements is null] filter for semantic elements whose representation must be updated
    */
   private final ModelsUtil.IElementFilter _filter;
 
-
   /** Instance of inner class used to simulate multiple inheritance for leaf operations*/
   protected AbstractGraphicalUpdateOperation _innerGraphicalOperation;
+  
+  /** Utility class instance used to call diagram-related services from the graphical framework (Sirius for example) */
+  protected AbstractDiagramUtil _diagramUtil;
 
   /**
    * Constructor
@@ -52,6 +55,7 @@ extends AbstractModelOperation<Collection<Object>> {
   protected AbstractFilteredGraphicalUpdateOperation(String name_p, Object diagram_p, 
       ModelsUtil.IElementFilter filter_p, boolean isDirtying_p, Object sourceContext_p) {
     super(name_p, null, isDirtying_p, false, true, diagram_p, sourceContext_p);
+    _diagramUtil = PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     _diagram = diagram_p;
     _filter = filter_p;
     _diagramElements = null;
@@ -63,9 +67,10 @@ extends AbstractModelOperation<Collection<Object>> {
    * @param diagramElements_p the non-null, potentially empty set of diagram elements to update
    */
   protected AbstractFilteredGraphicalUpdateOperation(String name_p, 
-      Collection<? extends DiagramElementType> diagramElements_p, 
+      Collection<Object> diagramElements_p, 
       boolean isDirtying_p, Object sourceContext_p) {
     super(name_p, null, isDirtying_p, false, true, diagramElements_p, sourceContext_p);
+    _diagramUtil = PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     _diagram = null;
     _filter = null;
     _diagramElements = diagramElements_p;
@@ -120,7 +125,7 @@ extends AbstractModelOperation<Collection<Object>> {
    * @param roots_p
    * @return
    */
-  protected abstract List<DiagramElementType> getAllDiagramElements(Collection<? extends DiagramElementType> roots_p);
+  protected abstract List<Object> getAllDiagramElements(Collection<Object> roots_p);
 
 
 }

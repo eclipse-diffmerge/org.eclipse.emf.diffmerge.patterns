@@ -19,11 +19,9 @@ import java.util.Map;
 
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.core.util.LocationsUtil;
-import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
 import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractLayoutReuseOperation;
 import org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.LayoutUtil;
 import org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.SiriusLayersUtil;
-import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.EdgeLayout;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Layout;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.NodeLayout;
@@ -31,17 +29,14 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Templat
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternData;
 import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.sirius.diagram.AbstractDNode;
-import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.DDiagramElement;
 import org.eclipse.sirius.diagram.ui.tools.api.layout.PinHelper;
-import org.eclipse.sirius.viewpoint.DContainer;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.swt.graphics.Point;
 
@@ -56,16 +51,13 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
   protected final PinHelper _pinHelper;
 
   /** A non-null map of initial locations of diagram elements */
-  private final Map<DDiagramElement, Point> _initialElementsLocationsMap;
+  private final Map<Object, Point> _initialElementsLocationsMap;
 
   /** A non-null map of initial diagram elements containers */
-  private final Map<DDiagramElement, Object> _initialElementsContainersMap;
+  private final Map<Object, Object> _initialElementsContainersMap;
 
   /** Casted innerGraphicalOperation */
   private InnerLayoutReuseOperation _innerLayoutReuseOperation;
-
-  /** A diagramUtility class */
-  protected AbstractDiagramUtil<DDiagramElement> _diagramUtil;
 
   /** The roots diagram elements */
   protected Collection<DDiagramElement> _roots;
@@ -75,8 +67,8 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
    * @param diagram_p the non-null diagram to update
    * @param instance_p the non-null instance whose elements must be highlighted
    */
-  public SiriusLayoutReuseOperation(Object diagram_p, IPatternInstance instance_p, Map<DDiagramElement, Point> initialElementsLocationsMap_p,
-      Map<DDiagramElement, Object> elementsContainersMap_p, int vx_p, int vy_p, boolean updateLayout_p, boolean updateStyle_p, 
+  public SiriusLayoutReuseOperation(Object diagram_p, IPatternInstance instance_p, Map<Object, Point> initialElementsLocationsMap_p,
+      Map<Object, Object> elementsContainersMap_p, int vx_p, int vy_p, boolean updateLayout_p, boolean updateStyle_p, 
       Object sourceContext_p) {
     super(AbstractLayoutReuseOperation.getName(), diagram_p, instance_p, true, sourceContext_p);
     _pinHelper = new PinHelper();
@@ -84,9 +76,6 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
     _initialElementsContainersMap = elementsContainersMap_p;
     _innerGraphicalOperation = new InnerLayoutReuseOperation(instance_p, updateLayout_p, updateStyle_p);
     _innerLayoutReuseOperation = (InnerLayoutReuseOperation) _innerGraphicalOperation;
-    _diagramUtil = 
-        (AbstractDiagramUtil<DDiagramElement>) 
-        PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     setVector(vx_p, vy_p);
   }
 
@@ -95,8 +84,8 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
    * @param diagramElements_p the non-null, potentially empty set of diagram elements to update
    * @param instance_p the non-null instance whose elements must be highlighted
    */
-  public SiriusLayoutReuseOperation(Collection<? extends DDiagramElement> diagramElements_p, IPatternInstance instance_p,
-      Map<DDiagramElement, Point> initialElementsLocationsMap_p, Map<DDiagramElement, Object> elementsContainersMap_p, 
+  public SiriusLayoutReuseOperation(Collection<Object> diagramElements_p, IPatternInstance instance_p,
+      Map<Object, Point> initialElementsLocationsMap_p, Map<Object, Object> elementsContainersMap_p, 
       int vx_p, int vy_p,
       boolean updateLayout_p, boolean updateStyle_p, 
       Object sourceContext_p) {
@@ -106,9 +95,6 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
     _initialElementsContainersMap = elementsContainersMap_p;
     _innerGraphicalOperation = new InnerLayoutReuseOperation(instance_p, updateLayout_p, updateStyle_p);
     _innerLayoutReuseOperation = (InnerLayoutReuseOperation) _innerGraphicalOperation;
-    _diagramUtil = 
-        (AbstractDiagramUtil<DDiagramElement>) 
-        PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     setVector(vx_p, vy_p);
   }
 
@@ -170,9 +156,9 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
     // Start the update
     // Diagram
     if (_diagram instanceof DSemanticDecorator) {
-      updated = checkUpdate((DSemanticDecorator) _diagram, false);
+      updated = checkUpdate(_diagram, false);
       if (updated) {
-        result.add((DSemanticDecorator) _diagram);
+        result.add(_diagram);
       }
     }
     // Diagram elements
@@ -335,13 +321,15 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
    */
   private Collection<DDiagramElement> getDiagramElementsToUpdate() {
     List<DDiagramElement> result = new ArrayList<DDiagramElement>();
-    List<DDiagramElement> initial = _diagramElements != null ? getAllDiagramElements(_diagramElements) : _diagramUtil.getDiagramElements(_diagram);
+    List<?> initial = _diagramElements != null ? getAllDiagramElements(_diagramElements) : _diagramUtil.getDiagramElements(_diagram);
     //filter list
-    Iterator<DDiagramElement> it = initial.iterator();
+    Iterator<?> it = initial.iterator();
     while(it.hasNext()){
-      DDiagramElement current = it.next();
-      if(LayoutUtil.isInstanceParticipant(current, _innerLayoutReuseOperation.get_instance().getElements())){
-        result.add(current);
+      Object current = it.next();
+      if(current instanceof DDiagramElement){ 
+        if(LayoutUtil.isInstanceParticipant((DDiagramElement)current, _innerLayoutReuseOperation.get_instance().getElements())){
+          result.add((DDiagramElement)current);
+        }
       }
     }
     return result;

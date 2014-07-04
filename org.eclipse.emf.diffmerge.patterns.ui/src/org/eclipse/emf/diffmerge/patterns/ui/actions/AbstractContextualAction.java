@@ -19,6 +19,11 @@ import java.util.List;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelOperation;
+import org.eclipse.emf.diffmerge.patterns.core.environment.AbstractGenericTypeUtil;
+import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
+import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
+import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin;
+import org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory;
 import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -49,13 +54,24 @@ public abstract class AbstractContextualAction<ObjectType> implements IObjectAct
 
   /** The part from which the action is called */
   private IWorkbenchPart _part;
+  
+  /** Utility class instance used to call type-related services from the graphical framework (Sirius for example) */
+  protected AbstractGenericTypeUtil _genericTypeUtil;
+  
+  /** Utility class instance used to call diagram-related services from the graphical framework (Sirius for example) */
+  protected AbstractDiagramUtil _diagramUtil;
 
+  /** Dialog and Wizard factory */
+  protected IPatternDialogAndWizardFactory _dialogAndWizardFactory;
 
   /**
    * Constructor
    * @param applicabilityClass_p the non-null class of the elements on which the action is applicable
    */
   protected AbstractContextualAction(Class<ObjectType> applicabilityClass_p) {
+    _genericTypeUtil = CorePatternsPlugin.getDefault().getGenericTypeUtil();
+    _diagramUtil = PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
+    _dialogAndWizardFactory = PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
     _applicabilityClass = applicabilityClass_p;
     _selection = null;
     _shell = null;

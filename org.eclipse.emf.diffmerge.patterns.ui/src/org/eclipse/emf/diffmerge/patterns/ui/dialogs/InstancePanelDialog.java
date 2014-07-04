@@ -33,8 +33,6 @@ import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.PatternRepositor
 import org.eclipse.emf.diffmerge.patterns.core.operations.InstanceOperation;
 import org.eclipse.emf.diffmerge.patterns.core.operations.InstanceOperation.InstanceOperationKind;
 import org.eclipse.emf.diffmerge.patterns.core.util.BasicModelUpdateSpecification;
-import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
-import org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory;
 import org.eclipse.emf.diffmerge.patterns.diagram.misc.HighlightingSpecification;
 import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractFilteredGraphicalUpdateOperation;
 import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation;
@@ -50,11 +48,11 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Templat
 import org.eclipse.emf.diffmerge.patterns.ui.Messages;
 import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin;
 import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin.ImageID;
-import org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory;
+import org.eclipse.emf.diffmerge.patterns.ui.util.IUIExtender;
 import org.eclipse.emf.diffmerge.patterns.ui.util.UIUtil;
 import org.eclipse.emf.diffmerge.patterns.ui.viewers.AbstractInstanceExplorerView;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.PatternWizardDialog;
-import org.eclipse.emf.diffmerge.patterns.ui.wizards.update.AbstractPatternUpdateWizard;
+import org.eclipse.emf.diffmerge.patterns.ui.wizards.update.PatternUpdateWizard;
 import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -96,9 +94,8 @@ import org.eclipse.ui.PlatformUI;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class InstancePanelDialog<DiagramElementType> extends InstanceChoiceDialog {
-
-
+public class InstancePanelDialog extends InstanceChoiceDialog {
+  
   /** The width of push buttons */
   private static final int BUTTON_WIDTH = 110;
 
@@ -147,10 +144,6 @@ public abstract class InstancePanelDialog<DiagramElementType> extends InstanceCh
   /** Map that links each check box to its corresponding EStructuralFeature */
   protected HashMap<Button, EStructuralFeature> _structuralFeaturesCheckBoxesMap;
 
-  /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType> _factory = (IPatternDialogAndWizardFactory<DiagramElementType>)PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
-
-
   /**
    * Constructor
    * @param parentShell_p the shell for this dialog
@@ -182,83 +175,45 @@ public abstract class InstancePanelDialog<DiagramElementType> extends InstanceCh
    * Return the ID of an instance explorer view 
    * @return a non null String
    */
-  protected abstract String getInstanceExplorerViewID();
-
-  /**
-   * Instantiates a Pattern Update Wizard
-   * @param instance_p a potentially null IPatternInstance
-   * @param referenceElement_p a potentially null EObject
-   * @param graphicalContext_p a potentially empty, non null list
-   * @param featuresToIgnore_p a potentially null empty, non null list
-   * @return a potentially null Pattern Update Wizard
-   */
-  protected AbstractPatternUpdateWizard<DiagramElementType>
-  instantiatePatternUpdateWizard(IPatternInstance instance_p,
-      EObject referenceElement_p, List<Object> graphicalContext_p, List<EStructuralFeature> featuresToIgnore_p){
-    if(_factory != null){
-      return _factory.instantiatePatternUpdateWizard(instance_p, referenceElement_p, graphicalContext_p, featuresToIgnore_p);
-    }
-    return null;
+  protected String getInstanceExplorerViewID() {
+    IUIExtender uiExtender = PatternsUIPlugin.getDefault().getSemanticUIUtil();
+    return uiExtender.getInstanceExplorerViewID();
   }
-
 
   /**
    * Instantiates an operation that wraps an operation on a pattern instance and may perform different
    */
-  protected AbstractGraphicalWrappingInstanceOperation<IPatternInstance, DiagramElementType> 
+  protected AbstractGraphicalWrappingInstanceOperation<IPatternInstance> 
   instantiateGraphicalWrappingInstanceOperation(IModelOperation<? extends IPatternInstance> operation_p, Object diagram_p,
       org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind refreshRequest_p){
-    IPatternOperationFactory<DiagramElementType> factory = 
-        (IPatternOperationFactory<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
-    if(factory != null){
-      return factory.instantiateGraphicalWrappingInstanceOperation(operation_p, diagram_p, refreshRequest_p);
-    }
-    return null;
+      return _operationFactory.instantiateGraphicalWrappingInstanceOperation(operation_p, diagram_p, refreshRequest_p);
   }
 
   /**
    * Instantiates an operation that wraps an operation on a pattern instance and may perform different
    */
-  protected AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, DiagramElementType> 
+  protected AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus> 
   instantiateGraphicalWrappingInstanceOperation(InstanceOperation operation_p, IPatternInstance instance_p, Object diagram_p, 
       org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind refreshRequest_p){
-    IPatternOperationFactory<DiagramElementType> factory = 
-        (IPatternOperationFactory<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
-    if(factory != null){
-      return factory.instantiateGraphicalWrappingInstanceOperation(operation_p, instance_p, diagram_p, refreshRequest_p);
-    }
-    return null;
+      return _operationFactory.instantiateGraphicalWrappingInstanceOperation(operation_p, instance_p, diagram_p, refreshRequest_p);
   }
-
 
   /**
    * Instantiates an operation for highlighting diagram elements based on specific criteria on semantic elements.
    */
-  protected AbstractFilteredGraphicalUpdateOperation<DiagramElementType> 
-  instantiateHighlightOperation(Object diagram_p, Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, boolean coverEdges_p,
-      boolean coverNodes_p, boolean coverPorts_p)
+  protected AbstractFilteredGraphicalUpdateOperation instantiateHighlightOperation(Object diagram_p, Collection<? extends IPatternInstance> instances_p, 
+      RGB color_p, int borderSize_p, boolean coverEdges_p, boolean coverNodes_p, boolean coverPorts_p)
       {
-    IPatternOperationFactory<DiagramElementType> factory = 
-        (IPatternOperationFactory<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
-    if(factory != null){
-      return factory.instantiateHighlightOperation(diagram_p, instances_p, color_p, borderSize_p, coverEdges_p,  coverNodes_p, coverPorts_p);
-    }
-    return null;
+      return _operationFactory.instantiateHighlightOperation(diagram_p, instances_p, color_p, borderSize_p, coverEdges_p,  coverNodes_p, coverPorts_p);
       }
 
   /**
    * Instantiates an operation
    */
-  protected AbstractFilteredGraphicalUpdateOperation<DiagramElementType> 
-  instantiateLayoutReuseOperation(Object diagram_p, IPatternInstance instance_p, Map<DiagramElementType, Point> initialElementsLocationsMap_p,
-      Map<DiagramElementType, Object> elementsContainersMap_p, boolean updateLayout_p, boolean updateStyle_p)
+  protected AbstractFilteredGraphicalUpdateOperation instantiateLayoutReuseOperation(Object diagram_p, IPatternInstance instance_p, Map<Object, Point> initialElementsLocationsMap_p,
+      Map<Object, Object> elementsContainersMap_p, boolean updateLayout_p, boolean updateStyle_p)
       {
-    IPatternOperationFactory<DiagramElementType> factory = 
-        (IPatternOperationFactory<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
-    if(factory != null){
-      return factory.instantiateLayoutReuseOperation(diagram_p, instance_p, initialElementsLocationsMap_p, elementsContainersMap_p, 0, 0, updateLayout_p, updateStyle_p, _diagram);
-    }
-    return null;
+        return _operationFactory.instantiateLayoutReuseOperation(diagram_p, instance_p, initialElementsLocationsMap_p, elementsContainersMap_p, 0, 0, updateLayout_p, updateStyle_p, _diagram);
       }
 
   /**
@@ -267,14 +222,8 @@ public abstract class InstancePanelDialog<DiagramElementType> extends InstanceCh
    * @param instances_p
    * @return
    */
-  protected AbstractFilteredGraphicalUpdateOperation<DiagramElementType> 
-  instantiateRestoreOperation(Object diagram_p, Collection<? extends IPatternInstance>  instances_p){
-    IPatternOperationFactory<DiagramElementType> factory = 
-        (IPatternOperationFactory<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
-    if(factory != null){
-      return factory.instantiateRestoreOperation(diagram_p, instances_p);
-    }
-    return null;
+  protected AbstractFilteredGraphicalUpdateOperation instantiateRestoreOperation(Object diagram_p, Collection<? extends IPatternInstance>  instances_p){
+      return _operationFactory.instantiateRestoreOperation(diagram_p, instances_p);
   }
 
   /**
@@ -284,7 +233,7 @@ public abstract class InstancePanelDialog<DiagramElementType> extends InstanceCh
   public boolean close() {
     boolean result = super.close();
     if (globalPatternStateChanged()) {
-      AbstractInstanceExplorerView<DiagramElementType> view = getInstanceExplorerView();
+      AbstractInstanceExplorerView view = getInstanceExplorerView();
       if (view != null) {
         view.refreshCurrent();
       }
@@ -914,9 +863,9 @@ public abstract class InstancePanelDialog<DiagramElementType> extends InstanceCh
       @Override
       public void widgetSelected(SelectionEvent event_p) {
         List<IPatternInstance> instances = getSelectedInstances();
-        List<AbstractFilteredGraphicalUpdateOperation<DiagramElementType>> operations = new ArrayList<AbstractFilteredGraphicalUpdateOperation<DiagramElementType>>(instances.size());
+        List<AbstractFilteredGraphicalUpdateOperation> operations = new ArrayList<AbstractFilteredGraphicalUpdateOperation>(instances.size());
         for (IPatternInstance instance : instances) {
-          operations.add(instantiateLayoutReuseOperation(_diagram, instance, new Hashtable<DiagramElementType, Point>(), new Hashtable<DiagramElementType, Object>(),
+          operations.add(instantiateLayoutReuseOperation(_diagram, instance, new Hashtable<Object, Point>(), new Hashtable<Object, Object>(),
               _reuseLayoutAtUpdate, false));
         }
         if(!operations.isEmpty()){
@@ -1047,7 +996,7 @@ public abstract class InstancePanelDialog<DiagramElementType> extends InstanceCh
       @SuppressWarnings("unchecked")
       @Override
       public void widgetSelected(SelectionEvent e_p) {
-        AbstractInstanceExplorerView<DiagramElementType> view = null;
+        AbstractInstanceExplorerView view = null;
         try {
           view = (AbstractInstanceExplorerView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(getInstanceExplorerViewID());
         } catch (Exception e) {
@@ -1092,7 +1041,7 @@ public abstract class InstancePanelDialog<DiagramElementType> extends InstanceCh
         IPatternInstance instance = getSelectedInstance();
         if (instance != null) {
           RenameTemplateInstanceOperation coreOperation = new RenameTemplateInstanceOperation(instance, _namingRule, _keepUserNames, _diagram);
-          AbstractGraphicalWrappingInstanceOperation<IPatternInstance, ?> wholeOperation =
+          AbstractGraphicalWrappingInstanceOperation<IPatternInstance> wholeOperation =
               instantiateGraphicalWrappingInstanceOperation(coreOperation, _diagram, RefreshRequestKind.DIAGRAM);
           executeOperation(wholeOperation);
         }
@@ -1240,9 +1189,9 @@ public abstract class InstancePanelDialog<DiagramElementType> extends InstanceCh
         CorePatternsPlugin.getDefault().getModelEnvironment().execute(instantiateRestoreOperation(_diagram, getSelectedInstances()));
         if (_reuseStyleAtUpdate) {
           List<IPatternInstance> instances = getSelectedInstances();
-          List<AbstractFilteredGraphicalUpdateOperation<DiagramElementType>> operations = new ArrayList<AbstractFilteredGraphicalUpdateOperation<DiagramElementType>>(instances.size());
+          List<AbstractFilteredGraphicalUpdateOperation> operations = new ArrayList<AbstractFilteredGraphicalUpdateOperation>(instances.size());
           for (IPatternInstance instance : instances) {
-            operations.add(instantiateLayoutReuseOperation(_diagram, instance, new Hashtable<DiagramElementType, Point>(), new Hashtable<DiagramElementType, Object>(),
+            operations.add(instantiateLayoutReuseOperation(_diagram, instance, new Hashtable<Object, Point>(), new Hashtable<Object, Object>(),
                 false, _reuseStyleAtUpdate));
           }
           if(!operations.isEmpty()){
@@ -1320,9 +1269,9 @@ public abstract class InstancePanelDialog<DiagramElementType> extends InstanceCh
        */
       @Override
       public void widgetSelected(SelectionEvent event_p) {
-        List<AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, ?>> subOperations = new FOrderedSet<AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, ?>>();
+        List<AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus>> subOperations = new FOrderedSet<AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus>>();
         for (IPatternInstance instance : getSelectedInstances()) {
-          AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus, ?> subOperation =
+          AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus> subOperation =
               instantiateGraphicalWrappingInstanceOperation(null, instance, _diagram, RefreshRequestKind.INSTANCE);
           subOperations.add(subOperation);
         }
@@ -1336,7 +1285,7 @@ public abstract class InstancePanelDialog<DiagramElementType> extends InstanceCh
             } 
           }
           int created = 0;
-          for (AbstractGraphicalWrappingInstanceOperation<?, ?> subOperation : subOperations) {
+          for (AbstractGraphicalWrappingInstanceOperation<?> subOperation : subOperations) {
             created += subOperation.getNewDiagramElements().size();
           }
           String status =
@@ -1750,10 +1699,10 @@ public abstract class InstancePanelDialog<DiagramElementType> extends InstanceCh
    * @return a potentially null instance explorer view
    */
   @SuppressWarnings("unchecked")
-  protected AbstractInstanceExplorerView<DiagramElementType> getInstanceExplorerView() {
-    AbstractInstanceExplorerView<DiagramElementType> result = null;
+  protected AbstractInstanceExplorerView getInstanceExplorerView() {
+    AbstractInstanceExplorerView result = null;
     try {
-      result = (AbstractInstanceExplorerView<DiagramElementType>) 
+      result = (AbstractInstanceExplorerView) 
           PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().findView(getInstanceExplorerViewID());
     } catch (Exception e) {
       // Nothing
@@ -1919,17 +1868,15 @@ public abstract class InstancePanelDialog<DiagramElementType> extends InstanceCh
    */
   @SuppressWarnings("unchecked")
   protected void reuseAppearenceOnAdditions(Collection<? extends IModelOperation<?>> executedOperations_p, boolean reuseLayout_p, boolean reuseStyle_p) {
-    List<AbstractFilteredGraphicalUpdateOperation<?>> newOperations = new ArrayList<AbstractFilteredGraphicalUpdateOperation<?>>();
-    IPatternOperationFactory<DiagramElementType> factory = (IPatternOperationFactory<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getOperationFactory();
-    if(factory != null){
-      for (IModelOperation<?> executedOperation : executedOperations_p) {
+    List<AbstractFilteredGraphicalUpdateOperation> newOperations = new ArrayList<AbstractFilteredGraphicalUpdateOperation>();
+    for (IModelOperation<?> executedOperation : executedOperations_p) {
         if (executedOperation instanceof AbstractGraphicalWrappingInstanceOperation) {
-          AbstractGraphicalWrappingInstanceOperation<?, DiagramElementType> executedViewpointOperation = (AbstractGraphicalWrappingInstanceOperation<?, DiagramElementType>) executedOperation;
+          AbstractGraphicalWrappingInstanceOperation<?> executedViewpointOperation = (AbstractGraphicalWrappingInstanceOperation<?>) executedOperation;
           IPatternInstance instance = executedViewpointOperation.getInstance();
-          Collection<DiagramElementType> diagramElements = executedViewpointOperation.getNewDiagramElements();
+          Collection<Object> diagramElements = executedViewpointOperation.getNewDiagramElements();
           if ((instance != null) && !diagramElements.isEmpty()) {
-            AbstractFilteredGraphicalUpdateOperation<DiagramElementType> newOperation = 
-                factory.instantiateLayoutReuseOperation(diagramElements, instance, null, null, 0, 0, reuseLayout_p, reuseStyle_p, _diagram);
+            AbstractFilteredGraphicalUpdateOperation newOperation = 
+                _operationFactory.instantiateLayoutReuseOperation(diagramElements, instance, null, null, 0, 0, reuseLayout_p, reuseStyle_p, _diagram);
             newOperations.add(newOperation);
           }
         }
@@ -1944,7 +1891,6 @@ public abstract class InstancePanelDialog<DiagramElementType> extends InstanceCh
           } 
         }
       }
-    }
   }
 
   /**
@@ -1952,7 +1898,7 @@ public abstract class InstancePanelDialog<DiagramElementType> extends InstanceCh
    * @param instance_p a non-null instance
    */
   protected void updatePattern(IPatternInstance instance_p) {
-    PatternWizardDialog dialog = new PatternWizardDialog(getShell(), instantiatePatternUpdateWizard(instance_p, _referenceElement, _graphicalContext, _selectedFeaturesToIgnore));
+    PatternWizardDialog dialog = new PatternWizardDialog(getShell(), new PatternUpdateWizard(instance_p, _referenceElement, _graphicalContext, _selectedFeaturesToIgnore));
     int answer = dialog.open();
     if (Window.OK == answer) {
       if (dialog.isSuccessful()) {

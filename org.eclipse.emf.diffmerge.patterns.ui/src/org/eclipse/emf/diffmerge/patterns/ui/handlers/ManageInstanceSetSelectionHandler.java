@@ -11,9 +11,7 @@
 package org.eclipse.emf.diffmerge.patterns.ui.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.emf.diffmerge.patterns.ui.actions.AbstractManageInstanceAction;
-import org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.diffmerge.patterns.ui.actions.ManageInstanceAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
@@ -38,34 +36,14 @@ public class ManageInstanceSetSelectionHandler extends AbstractWorkbenchSelectio
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractManageInstanceAction action = instantiateManageInstanceAction();
-          if(action != null){
-            action.setActivePart(null, part);
-            action.selectionChanged(null, selection_p);
-            action.run(null);
-          }
+          ManageInstanceAction action = new ManageInstanceAction();
+          action.setActivePart(null, part);
+          action.selectionChanged(null, selection_p);
+          action.run(null);
         }
       }
     }
     return null;
   }
 
-  /**
-   * Instantiates a AbstractManageInstanceAction
-   * @return
-   */
-  @SuppressWarnings("cast")
-  protected AbstractManageInstanceAction instantiateManageInstanceAction(){
-    try{
-      AbstractPatternActionFactory<?, ?> factory = AbstractPatternActionFactory.getInstance();
-      if(factory != null){
-        return (AbstractManageInstanceAction)factory.instantiateManageInstanceAction();
-      } 
-    }
-    catch(Exception e){
-      EcorePlugin.INSTANCE.log(e);
-    }
-    return null;
-  }
-  
 }

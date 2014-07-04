@@ -23,35 +23,35 @@ import org.eclipse.swt.graphics.Point;
  *
  * @param <DiagramElementType>
  */
-public abstract class AbstractDiagramUtil<DiagramElementType> {
+public abstract class AbstractDiagramUtil {
 
   /**
    * Returns a list of diagram elements in the given diagram
    * @param diagram_p
    * @return
    */
-  public abstract List<DiagramElementType> getDiagramElements(Object diagram_p);
+  public abstract List<?> getDiagramElements(Object diagram_p);
 
   /**
    * Returns a list of the semantic elements represented by the given diagram element
    * @param diagramElement_p
    * @return
    */
-  public abstract List<EObject> getSemanticElementsFor(DiagramElementType diagramElement_p);
+  public abstract List<EObject> getSemanticElementsFor(Object diagramElement_p);
 
   /**
    * Return the location of the given diagram element
    * @param diagramElement_p a potentially null DiagramElementType
    * @return a non-null Point, (0,0) by default
    */
-  public abstract Point getLocation(DiagramElementType diagramElement_p);
+  public abstract Point getLocation(Object diagramElement_p);
 
   /**
    * Return the technical container of the given diagram element in the diagram model
    * @param diagramElement_p a potentially null DiagramElementType
    * @return a non-null EObject
    */
-  public abstract EObject getTechnicalContainerFor(DiagramElementType diagramElement_p);
+  public abstract EObject getTechnicalContainerFor(Object diagramElement_p);
 
   /**
    * Return the objects represented by the given selected object when considered
@@ -73,5 +73,24 @@ public abstract class AbstractDiagramUtil<DiagramElementType> {
    * @return a potentially null string
    */
   public abstract String exportToSVG(final List<Object> gefElements_p);
+
+  /**
+   * Returns the target semantic object referenced by the given semantic decorator.
+   * @param semanticDecorator_p a non-null semantic decorator.
+   * @return a potentially null semantic EObject.
+   */
+  public abstract EObject getSemanticRepresentationTypeTarget(Object semanticDecorator_p);
+
   
+  /**
+   * Returns the owned diagram elements of a node container
+   * @param semanticDecorator_p a non-null node container
+   * @return a potentially empty collection
+   */
+  public abstract Collection<?> getOwnedDiagramElements(Object semanticDecorator_p);
+
+  /**
+   * Return whether the "show instance" option should be available for the given diagram
+   */
+  public abstract boolean isShowInstanceEnabled(Object diagram_p);
 }

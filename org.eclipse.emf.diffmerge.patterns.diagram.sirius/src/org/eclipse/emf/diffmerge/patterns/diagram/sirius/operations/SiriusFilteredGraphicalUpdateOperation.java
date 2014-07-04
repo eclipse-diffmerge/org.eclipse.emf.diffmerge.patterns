@@ -15,14 +15,11 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
-import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
 import org.eclipse.emf.diffmerge.patterns.diagram.misc.InstanceBasedFilter;
 import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractFilteredGraphicalUpdateOperation;
 import org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.SiriusUtil;
-import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
 import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.DDiagramElement;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 
@@ -32,8 +29,7 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
  * @author Olivier Constant
  * @author Skander TURKI
  */
-public abstract class SiriusFilteredGraphicalUpdateOperation 
-extends AbstractFilteredGraphicalUpdateOperation<DDiagramElement>{
+public abstract class SiriusFilteredGraphicalUpdateOperation extends AbstractFilteredGraphicalUpdateOperation{
 
   /**
    * Constructor
@@ -64,7 +60,7 @@ extends AbstractFilteredGraphicalUpdateOperation<DDiagramElement>{
    * @param diagramElements_p the non-null, potentially empty set of diagram elements to update
    */
   protected SiriusFilteredGraphicalUpdateOperation(String name_p, 
-      Collection<? extends DDiagramElement> diagramElements_p, boolean isDirtying_p, Object sourceContext_p) {
+      Collection<Object> diagramElements_p, boolean isDirtying_p, Object sourceContext_p) {
     super(name_p, diagramElements_p, isDirtying_p, sourceContext_p);
   }
 
@@ -76,24 +72,23 @@ extends AbstractFilteredGraphicalUpdateOperation<DDiagramElement>{
     Collection<Object> result = new FOrderedSet<Object>();
     boolean updated = false;
     // Diagram elements
-    AbstractDiagramUtil<DDiagramElement> diagramUtil = (AbstractDiagramUtil<DDiagramElement>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
-    Collection<? extends DDiagramElement> toUpdate = _diagramElements != null ? getAllDiagramElements(_diagramElements) : diagramUtil.getDiagramElements(_diagram);
-
-    
+    Collection<?> toUpdate = _diagramElements != null ? getAllDiagramElements(_diagramElements) : _diagramUtil.getDiagramElements(_diagram);
     
     // Start the update
     // Diagram
     if (_diagram instanceof DSemanticDecorator) {
-      updated = checkUpdate((DSemanticDecorator) _diagram, false);
+      updated = checkUpdate(_diagram, false);
       if (updated) {
-        result.add((DSemanticDecorator) _diagram);
+        result.add(_diagram);
       }
     }
     // Diagram elements
-    for (DDiagramElement diagramElement : toUpdate) {
-      updated = checkUpdate(diagramElement, false);
-      if (updated) {
-        result.add(diagramElement);
+    for (Object diagramElement : toUpdate) {
+      if(diagramElement instanceof DDiagramElement){
+        updated = checkUpdate(diagramElement, false);
+        if (updated) {
+          result.add(diagramElement);
+        } 
       }
     }
     return Collections.unmodifiableCollection(result);
@@ -124,8 +119,7 @@ extends AbstractFilteredGraphicalUpdateOperation<DDiagramElement>{
    * @see org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractFilteredGraphicalUpdateOperation#getAllDiagramElements(java.util.Collection)
    */
   @Override
-  protected List<DDiagramElement> getAllDiagramElements(
-      Collection<? extends DDiagramElement> roots_p) {
+  protected List<Object> getAllDiagramElements(Collection<Object> roots_p) {
     return SiriusUtil.getAllDiagramElements(roots_p);
   }
 

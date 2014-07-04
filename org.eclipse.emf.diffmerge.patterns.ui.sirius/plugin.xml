@@ -2,6 +2,14 @@
 <?eclipse version="3.4"?>
 <plugin>
 
+  <!-- UI Extender Extension -->
+
+ <extension
+             point="org.eclipse.emf.diffmerge.patterns.ui.uiextender">
+             <client
+                   class="org.eclipse.emf.diffmerge.patterns.ui.sirius.util.SiriusUIExtender">
+             </client>
+          </extension>
   
 <!-- Dialog and Wizard Factory Extension -->
 
@@ -12,30 +20,12 @@
              </client>
           </extension>
 
-<!-- Page Factory Extension -->
-
- <extension
-                point="org.eclipse.emf.diffmerge.patterns.ui.pageFactory">
-             <client
-                   class="org.eclipse.emf.diffmerge.patterns.ui.sirius.factories.SiriusPatternPageFactory">
-             </client>
-          </extension>
-
 <!-- Job Factory Extension -->
 
  <extension
                 point="org.eclipse.emf.diffmerge.patterns.ui.jobFactory">
              <client
                    class="org.eclipse.emf.diffmerge.patterns.ui.sirius.factories.SiriusPatternJobFactory">
-             </client>
-          </extension>
-
-<!-- Action Factory Extension -->
-
- <extension
-                point="org.eclipse.emf.diffmerge.patterns.ui.actionFactory">
-             <client
-                   class="org.eclipse.emf.diffmerge.patterns.ui.sirius.factories.SiriusPatternActionFactory">
              </client>
           </extension>
 
@@ -49,7 +39,7 @@
             nameFilter="*.patterns"
             objectClass="org.eclipse.core.resources.IFile">
          <action
-               class="org.eclipse.emf.diffmerge.patterns.ui.sirius.actions.SiriusBrowseCatalogAction"
+               class="org.eclipse.emf.diffmerge.patterns.ui.actions.BrowseCatalogAction"
                enablesFor="1"
                id="org.eclipse.emf.diffmerge.patterns.ui.sirius.catalogs.browse"
                label="Browse Catalogs"
@@ -63,7 +53,7 @@
                menubarPath="group.catalogs">
          </action>
          <action
-               class="org.eclipse.emf.diffmerge.patterns.ui.sirius.actions.SiriusOpenCatalogAction"
+               class="org.eclipse.emf.diffmerge.patterns.ui.actions.OpenCatalogAction"
                enablesFor="+"
                id="org.eclipse.emf.diffmerge.patterns.ui.catalogs.open"
                label="Open Catalog"

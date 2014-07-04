@@ -11,10 +11,8 @@
 package org.eclipse.emf.diffmerge.patterns.ui.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.emf.diffmerge.patterns.ui.actions.AbstractShowInInstanceExplorerViewAction;
-import org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory;
+import org.eclipse.emf.diffmerge.patterns.ui.actions.ShowInInstanceExplorerViewAction;
 import org.eclipse.emf.diffmerge.patterns.ui.viewers.AbstractInstanceExplorerView;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
@@ -38,36 +36,14 @@ extends AbstractWorkbenchSelectionHandler {
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractShowInInstanceExplorerViewAction<DiagramElementType, D> action = 
-              instantiateShowInInstanceExplorerViewAction();
-          if(action != null){
-            action.setActivePart(null, part);
-            action.selectionChanged(null, selection_p);
-            action.run(null);
-          }
+          ShowInInstanceExplorerViewAction action = new ShowInInstanceExplorerViewAction();
+          action.setActivePart(null, part);
+          action.selectionChanged(null, selection_p);
+          action.run(null);
         }
       }
     }
     return null;
   }
-
-  /**
-   * Instantiates an AbstractShowInInstanceExplorerViewAction
-   * @return
-   */
-  @SuppressWarnings("unchecked")
-  protected AbstractShowInInstanceExplorerViewAction<DiagramElementType, D> instantiateShowInInstanceExplorerViewAction(){
-    try{
-      AbstractPatternActionFactory<?, ?> factory = AbstractPatternActionFactory.getInstance();
-      if(factory != null){
-        return (AbstractShowInInstanceExplorerViewAction<DiagramElementType, D>)factory.instantiateShowInInstanceExplorerViewAction();
-      } 
-    }
-    catch(Exception e){
-      EcorePlugin.INSTANCE.log(e);
-    }
-    return null;
-  }
-
 
 }

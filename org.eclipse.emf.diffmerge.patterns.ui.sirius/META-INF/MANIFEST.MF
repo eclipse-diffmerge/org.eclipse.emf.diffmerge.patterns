@@ -20,13 +20,9 @@ Comment: fr.obeo.dsl.viewpoint.diagram.sequence
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.emf.diffmerge.patterns.ui.sirius,
- org.eclipse.emf.diffmerge.patterns.ui.sirius.actions,
  org.eclipse.emf.diffmerge.patterns.ui.sirius.dialogs,
  org.eclipse.emf.diffmerge.patterns.ui.sirius.factories,
  org.eclipse.emf.diffmerge.patterns.ui.sirius.misc,
  org.eclipse.emf.diffmerge.patterns.ui.sirius.util,
- org.eclipse.emf.diffmerge.patterns.ui.sirius.views,
- org.eclipse.emf.diffmerge.patterns.ui.sirius.wizards.application,
- org.eclipse.emf.diffmerge.patterns.ui.sirius.wizards.templates,
- org.eclipse.emf.diffmerge.patterns.ui.sirius.wizards.update
+ org.eclipse.emf.diffmerge.patterns.ui.sirius.views
 Bundle-Vendor: %providerName

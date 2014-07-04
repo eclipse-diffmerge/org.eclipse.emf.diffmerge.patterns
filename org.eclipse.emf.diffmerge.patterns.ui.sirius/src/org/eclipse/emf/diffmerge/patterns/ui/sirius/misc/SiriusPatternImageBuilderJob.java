@@ -17,12 +17,6 @@ import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.ITemplatePatternBasedSpecification;
 import org.eclipse.emf.diffmerge.patterns.ui.misc.AbstractPatternImageBuilderJob;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.sirius.diagram.DDiagram;
-import org.eclipse.sirius.diagram.DDiagramElement;
-
-
-
 
 /**
  * A job for computing the image of a pattern and notifying for completion
@@ -44,8 +38,7 @@ extends AbstractPatternImageBuilderJob{
 
   @Override
   protected String exportToSVG(List<Object> graphicalContext_p) {
-    AbstractDiagramUtil<DDiagramElement> diagramUtil = 
-        (AbstractDiagramUtil<DDiagramElement>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
+    AbstractDiagramUtil diagramUtil = PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     if(diagramUtil != null){
       return diagramUtil.exportToSVG(graphicalContext_p);
     }

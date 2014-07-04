@@ -36,8 +36,13 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
-
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
+import org.eclipse.emf.diffmerge.patterns.core.environment.AbstractGenericTypeUtil;
+import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
+import org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory;
+import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
+import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin;
+import org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory;
 
 
 /**
@@ -67,6 +72,18 @@ public abstract class AbstractTableChoiceDialog<T> extends MessageDialog {
 	
   /** The selection */
   private IStructuredSelection _selection;
+  
+  /** Utility class instance used to call type-related services from the graphical framework (Sirius for example) */
+  protected AbstractGenericTypeUtil _genericTypeUtil;
+  
+  /** Utility class instance used to call diagram-related services from the graphical framework (Sirius for example) */
+  protected AbstractDiagramUtil _diagramUtil;
+
+  /** Dialog and Wizard factory */
+  protected IPatternDialogAndWizardFactory _dialogAndWizardFactory;
+  
+  /** Operation factory */
+  protected IPatternOperationFactory _operationFactory;
 	
 	
 	/**
@@ -100,6 +117,10 @@ public abstract class AbstractTableChoiceDialog<T> extends MessageDialog {
       null, dialogMessage_p, iconKind_p, 
       canConfirm_p? new String[] {IDialogConstants.OK_LABEL, IDialogConstants.CANCEL_LABEL}:
         new String[] {IDialogConstants.CLOSE_LABEL}, 0);
+    _genericTypeUtil = CorePatternsPlugin.getDefault().getGenericTypeUtil();
+    _diagramUtil = PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
+    _dialogAndWizardFactory = PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+    _operationFactory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     _originalList = new ArrayList<T>(elements_p);
     _selectionKind = selectionKind_p;
     _selection = null;

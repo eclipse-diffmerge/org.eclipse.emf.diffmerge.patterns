@@ -30,5 +30,11 @@ public interface IUIExtender{
    */
   boolean createNavigationItems(Menu menu_p, ModelSubsetViewer viewer_p);
  
+
+  /**
+   * Returns the ID of the modeller's instance explorer view.
+   * @return
+   */
+  public String getInstanceExplorerViewID();
   
 }

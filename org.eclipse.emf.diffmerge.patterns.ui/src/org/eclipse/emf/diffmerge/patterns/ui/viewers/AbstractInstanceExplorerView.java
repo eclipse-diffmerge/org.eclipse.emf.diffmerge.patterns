@@ -18,6 +18,18 @@ import java.util.List;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
+import org.eclipse.emf.diffmerge.patterns.core.api.IPattern;
+import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
+import org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository;
+import org.eclipse.emf.diffmerge.patterns.core.api.IPatternSymbol;
+import org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport;
+import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
+import org.eclipse.emf.diffmerge.patterns.diagram.misc.UnresolvedElement;
+import org.eclipse.emf.diffmerge.patterns.diagram.misc.UnresolvedPattern;
+import org.eclipse.emf.diffmerge.patterns.diagram.misc.UnresolvedRepository;
+import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
+import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
 import org.eclipse.emf.diffmerge.patterns.ui.Messages;
 import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin;
 import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin.ImageID;
@@ -73,26 +85,13 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.forms.IFormColors;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
-import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
-import org.eclipse.emf.diffmerge.patterns.core.api.IPattern;
-import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
-import org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository;
-import org.eclipse.emf.diffmerge.patterns.core.api.IPatternSymbol;
-import org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport;
-import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
-import org.eclipse.emf.diffmerge.patterns.diagram.misc.UnresolvedElement;
-import org.eclipse.emf.diffmerge.patterns.diagram.misc.UnresolvedPattern;
-import org.eclipse.emf.diffmerge.patterns.diagram.misc.UnresolvedRepository;
-import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
-import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
 
 /**
  * A View for exploring pattern instances.
  * @author O. CONSTANT
  */
-public abstract class AbstractInstanceExplorerView<DiagramElementType>
-extends ViewPart{
-  
+public abstract class AbstractInstanceExplorerView extends ViewPart{
+
   /** The viewer for the central tree */
   protected TreeViewer _viewer;
 
@@ -114,25 +113,25 @@ extends ViewPart{
   /** An optional element for instance scope */
   protected EObject _contextElement;
 
-
   /** Dialog and Wizard factory */
-  private IPatternDialogAndWizardFactory<DiagramElementType> 
-    _factory = (IPatternDialogAndWizardFactory<DiagramElementType>)
-      PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
- 
-  
-  
+  protected IPatternDialogAndWizardFactory _dialogAndWizardFactory;
+
+  /** Utility class instance used to call diagram-related services from the graphical framework (Sirius for example) */
+  protected AbstractDiagramUtil _diagramUtil;
+
   /**
    * Constructor
    */
   public AbstractInstanceExplorerView(){
     super();
+    _dialogAndWizardFactory = PatternsUIPlugin.getDefault().getDialogAndWizardFactory();
+    _diagramUtil = PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     _instanceList = new FOrderedSet<IPatternInstance>();
     _initialSelection = new FOrderedSet<IPatternInstance>();
     _referenceElement = null;
     _contextElement = null;
   }
-  
+
   @Override
   public void createPartControl(Composite parent_p) {
     // Parent layout
@@ -167,7 +166,7 @@ extends ViewPart{
    * @param selection_p a potentially null selection
    */
   public abstract void setInput(ISelection selection_p);
-  
+
   /**
    * Create the actions available in the toolbar of the view
    */
@@ -238,7 +237,7 @@ extends ViewPart{
     createOpenBrowseMenuItem(menu_p);
     createManageInstancesMenuItem(menu_p);
   }
-  
+
   /**
    * Create and return the "open catalog" menu item
    * @param menu_p a non-null menu
@@ -261,7 +260,7 @@ extends ViewPart{
           if (selection.size() == 1) {
             Object selected = selection.get(0);
             enable = selected instanceof TemplatePattern ||
-              selected instanceof IPatternRepository;
+                selected instanceof IPatternRepository;
           }
           result.setEnabled(enable);
         }
@@ -292,7 +291,7 @@ extends ViewPart{
     });
     return result;
   }
-  
+
   /**
    * Browse the given pattern
    * @param pattern_p a potentially null pattern
@@ -300,16 +299,14 @@ extends ViewPart{
   protected void browsePattern(TemplatePattern pattern_p) {
     IPatternInstance first = _instanceList.isEmpty()? null: _instanceList.get(0);
     EObject context = first instanceof EObject? (EObject)first: null;
-    AbstractPatternBrowsingWizard<DiagramElementType> wizard =
-        instantiatePatternBrowsingWizard(context, pattern_p);
-      //new AbstractPatternBrowsingWizard(context, pattern_p);
+    AbstractPatternBrowsingWizard wizard = instantiatePatternBrowsingWizard(context, pattern_p);
     PatternWizardDialog dialog = new PatternWizardDialog(
         getShell(), wizard, true, null);
     dialog.open();
     if (wizard.repositoryRegistryChanged())
       refreshCurrent();
   }
-  
+
   /**
    * Browse the given repository
    * @param repository_p a potentially null repository
@@ -317,33 +314,23 @@ extends ViewPart{
   protected void browseRepository(IPatternRepository repository_p) {
     IPatternInstance first = _instanceList.isEmpty()? null: _instanceList.get(0);
     EObject context = first instanceof EObject? (EObject)first: null;
-    AbstractPatternBrowsingWizard<DiagramElementType> wizard =
-        instantiatePatternBrowsingWizard(context, repository_p);
-    //  new AbstractPatternBrowsingWizard(context, repository_p);
+    AbstractPatternBrowsingWizard wizard = instantiatePatternBrowsingWizard(context, repository_p);
     PatternWizardDialog dialog = new PatternWizardDialog(
         getShell(), wizard, true, null);
     dialog.open();
     if (wizard.repositoryRegistryChanged())
       refreshCurrent();
   }
-  
-  
-  protected AbstractPatternBrowsingWizard<DiagramElementType>
- instantiatePatternBrowsingWizard(EObject context_p, TemplatePattern pattern_p){
-    if(_factory != null){
-      return _factory.instantiatePatternBrowsingWizard(context_p, pattern_p);
-    }
-    return null;
+
+
+  protected AbstractPatternBrowsingWizard instantiatePatternBrowsingWizard(EObject context_p, TemplatePattern pattern_p){
+    return _dialogAndWizardFactory.instantiatePatternBrowsingWizard(context_p, pattern_p);
   }
-  
-  protected AbstractPatternBrowsingWizard<DiagramElementType>
- instantiatePatternBrowsingWizard(EObject context_p, IPatternRepository repository_p){
-    if(_factory != null){
-      return _factory.instantiatePatternBrowsingWizard(context_p, repository_p);
-    }
-    return null;
+
+  protected AbstractPatternBrowsingWizard instantiatePatternBrowsingWizard(EObject context_p, IPatternRepository repository_p){
+    return _dialogAndWizardFactory.instantiatePatternBrowsingWizard(context_p, repository_p);
   }
-  
+
   /**
    * Return whether the current selection contains an unresolved element
    */
@@ -355,7 +342,7 @@ extends ViewPart{
     }
     return false;
   }
-  
+
   /**
    * Resolve the repositories corresponding to the selection
    */
@@ -367,7 +354,7 @@ extends ViewPart{
         refreshCurrent();
     }
   }
-  
+
   /**
    * Interpret and return the current selection as instances
    * @return a non-null, potentially empty, unmodifiable list
@@ -397,7 +384,7 @@ extends ViewPart{
     }
     return Collections.unmodifiableList(result);
   }
-  
+
   /**
    * Return the label provider for the viewer
    * @return a non-null label provider
@@ -405,7 +392,7 @@ extends ViewPart{
   protected InstanceExplorerContentProvider getContentProvider() {
     return (InstanceExplorerContentProvider)_viewer.getContentProvider();
   }
-  
+
   /**
    * Create and return the "manage instances" menu item
    * @param menu_p a non-null menu
@@ -449,12 +436,12 @@ extends ViewPart{
     });
     return result;
   }
-  
+
   /**
    * Open the Manage Instance dialog on the selected instances
    */
   protected abstract void manageSelectedInstances();
-  
+
   /**
    * Setup mouse-based interactions on the given tree
    * @param tree_p a non-null tree
@@ -506,7 +493,7 @@ extends ViewPart{
   protected static Collection<IPatternInstance> getAllInstances(EObject context_p) {
     Collection<IPatternInstance> result;
     IPatternSupport support =
-      CorePatternsPlugin.getDefault().getPatternSupportFor(context_p);
+        CorePatternsPlugin.getDefault().getPatternSupportFor(context_p);
     if (support == null) {
       result = Collections.emptySet();
     } else {
@@ -514,9 +501,9 @@ extends ViewPart{
     }
     return result;
   }
-  
- 
-  
+
+
+
   /**
    * Return all the pattern instances to which the given element is related
    * @param context_p a non-null element
@@ -525,7 +512,7 @@ extends ViewPart{
   protected static Collection<IPatternInstance> getAllRelatedInstances(EObject context_p) {
     Collection<IPatternInstance> result;
     IPatternSupport support =
-      CorePatternsPlugin.getDefault().getPatternSupportFor(context_p);
+        CorePatternsPlugin.getDefault().getPatternSupportFor(context_p);
     if (support == null) {
       result = Collections.emptySet();
     } else {
@@ -581,7 +568,7 @@ extends ViewPart{
     _header.setTitle(newHeader, null);
   }
 
-  
+
   /**
    * The content provider for the graphical tree
    */
@@ -857,7 +844,7 @@ extends ViewPart{
     }
   }
 
-   
+
   /**
    * Return the main viewer of the view
    * @return a tree viewer which is not null after initialization
@@ -866,15 +853,14 @@ extends ViewPart{
     return _viewer;
   }
 
-  
+
   /**
    * 
    * @param selected_p
    * @return
    */
   protected Collection<?> toActualSelection(Object selected_p){
-    AbstractDiagramUtil<DiagramElementType> diagramUtil = (AbstractDiagramUtil<DiagramElementType>) PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
-    return diagramUtil.toActualSelection(selected_p);
+    return _diagramUtil.toActualSelection(selected_p);
   }
-  
+
 }

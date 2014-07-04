@@ -10,8 +10,7 @@
  ******************************************************************************/
 package org.eclipse.emf.diffmerge.patterns.ui.handlers;
 
-import org.eclipse.emf.diffmerge.patterns.ui.actions.AbstractCreatePatternAction;
-import org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory;
+import org.eclipse.emf.diffmerge.patterns.ui.actions.CreatePatternAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
@@ -24,10 +23,10 @@ import org.eclipse.ui.IWorkbenchWindow;
  */
 public class CreatePatternHandler extends AbstractWorkbenchSelectionHandler  {
 
-/**
- * 
- * @see org.eclipse.emf.diffmerge.patterns.ui.handlers.AbstractWorkbenchSelectionHandler#handleSelection(org.eclipse.jface.viewers.ISelection, org.eclipse.ui.IWorkbenchPart, org.eclipse.core.commands.ExecutionEvent)
- */
+  /**
+   * 
+   * @see org.eclipse.emf.diffmerge.patterns.ui.handlers.AbstractWorkbenchSelectionHandler#handleSelection(org.eclipse.jface.viewers.ISelection, org.eclipse.ui.IWorkbenchPart, org.eclipse.core.commands.ExecutionEvent)
+   */
   @Override
   protected Object handleSelection(ISelection selection_p,
       IWorkbenchPart activePart_p) {
@@ -37,28 +36,14 @@ public class CreatePatternHandler extends AbstractWorkbenchSelectionHandler  {
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractCreatePatternAction action = instantiateCreatePatternAction();
-          if(action != null){
-            action.setActivePart(null, part);
-            action.selectionChanged(null, selection_p);
-            action.run(null);
-          }
+          CreatePatternAction action = new CreatePatternAction();          
+          action.setActivePart(null, part);
+          action.selectionChanged(null, selection_p);
+          action.run(null);
         }
       }
     }
     return null;
   }
 
-  /**
-   * Instantiates a CreatePatternAction
-   * @return
-   */
-  protected AbstractCreatePatternAction instantiateCreatePatternAction(){
-    AbstractPatternActionFactory<?, ?> factory = AbstractPatternActionFactory.getInstance();
-    if(factory != null){
-      return factory.instantiateCreatePatternAction();
-    }
-    return null;
-  }
-  
 }

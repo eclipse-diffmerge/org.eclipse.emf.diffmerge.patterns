@@ -33,8 +33,7 @@ import org.eclipse.emf.ecore.EObject;
  * @author O. CONSTANT
  * @author S. TURKI
  */
-public abstract class AbstractGraphicalWrappingInstanceOperation<F, DiagramElementType>
-extends AbstractGraphicalWrappingOperation<F, F> {
+public abstract class AbstractGraphicalWrappingInstanceOperation<F> extends AbstractGraphicalWrappingOperation<F, F> {
 
   /** Kinds of graphical refresh to perform */
   public static enum RefreshRequestKind { NONE, DIAGRAM, INSTANCE }
@@ -46,7 +45,7 @@ extends AbstractGraphicalWrappingOperation<F, F> {
   private final RefreshRequestKind _refreshRequest;
 
   /** The non-null, potentially empty set of graphical elements created */
-  private final Collection<DiagramElementType> _createdDiagramElements;
+  private final Collection<Object> _createdDiagramElements;
 
 
   /**
@@ -74,7 +73,7 @@ extends AbstractGraphicalWrappingOperation<F, F> {
     if (instance_p != null)
       _instances.add(instance_p);
     _refreshRequest = refreshRequest_p;
-    _createdDiagramElements = new FOrderedSet<DiagramElementType>();
+    _createdDiagramElements = new FOrderedSet<Object>();
   }
 
   /**
@@ -89,7 +88,7 @@ extends AbstractGraphicalWrappingOperation<F, F> {
    * Return the set of diagram elements created
    * @return a non-null, potentially empty, unmodifiable collection
    */
-  public Collection<DiagramElementType> getNewDiagramElements() {
+  public Collection<Object> getNewDiagramElements() {
     return Collections.unmodifiableCollection(_createdDiagramElements);
   }
 
@@ -126,12 +125,12 @@ extends AbstractGraphicalWrappingOperation<F, F> {
         refreshDiagram();
         break;
       case INSTANCE:
-        IPatternOperationFactory<?> factory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
+        IPatternOperationFactory factory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
         if(factory != null){
           for (IPatternInstance instance : _instances) {
             roots = TemplatePatternsUtil.getApplicationRoots(instance);
             AbstractDisplayOperation displayOperation = factory.instantiateDisplayOperation(roots, getDiagram(), true);
-            _createdDiagramElements.addAll((Collection<? extends DiagramElementType>) call(displayOperation));
+            _createdDiagramElements.addAll(call(displayOperation));
           }
         }
         break;
@@ -161,7 +160,7 @@ extends AbstractGraphicalWrappingOperation<F, F> {
    * Return the created diagram elements
    * @return a non null collection of diagram elements
    */
-  protected Collection<DiagramElementType> getCreatedDiagramElements() {
+  protected Collection<Object> getCreatedDiagramElements() {
     return _createdDiagramElements;
   }
   

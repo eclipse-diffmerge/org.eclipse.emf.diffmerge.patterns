@@ -22,6 +22,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelOperation;
+import org.eclipse.emf.diffmerge.patterns.core.environment.AbstractGenericTypeUtil;
+import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
+import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.IModifiableTemplatePatternSpecification;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.ITemplatePatternBasedSpecification;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.ITemplatePatternSelection;
@@ -71,6 +74,11 @@ extends Wizard {
   /** Whether the usage of the wizard modified the repository registry */
   private boolean _modifiedRepositoryRegistry;
   
+  /** Utility class instance used to call type-related services from the graphical framework (Sirius for example) */
+  protected AbstractGenericTypeUtil _genericTypeUtil;
+  
+  /** Utility class instance used to call diagram-related services from the graphical framework (Sirius for example) */
+  protected AbstractDiagramUtil _diagramUtil;
   
 	/**
 	 * Constructor
@@ -91,6 +99,8 @@ extends Wizard {
       List<Object> graphicalContext_p,
       boolean generatePatternImage_p) {
     super();
+    _genericTypeUtil = CorePatternsPlugin.getDefault().getGenericTypeUtil();
+    _diagramUtil = PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
     _data = data_p;
     _isSuccessful = false;
     _isDisposed = false;

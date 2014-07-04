@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.emf.diffmerge.patterns.ui" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.emf.diffmerge.patterns.ui" id="org.eclipse.emf.diffmerge.patterns.ui.semanticMapping" name="SemanticMapping"/>
+         <meta.schema plugin="org.eclipse.emf.diffmerge.patterns.ui" id="uiextender" name="uiextender"/>
       </appinfo>
       <documentation>
          This extension point allows specializing the behavior of the Patterns UI plug-in for a specific modeling tool.

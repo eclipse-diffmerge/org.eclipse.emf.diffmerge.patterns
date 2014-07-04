@@ -24,7 +24,6 @@ import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.SiriusLayersUtil;
 import org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.SiriusUtil;
 import org.eclipse.emf.diffmerge.patterns.ui.dialogs.InstancePanelDialog;
-import org.eclipse.emf.diffmerge.patterns.ui.sirius.dialogs.SiriusInstancePanelDialog;
 import org.eclipse.emf.diffmerge.patterns.ui.viewers.AbstractInstanceExplorerView;
 import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
@@ -37,14 +36,9 @@ import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionListener;
 import org.eclipse.sirius.business.api.session.SessionManager;
-import org.eclipse.sirius.diagram.AbstractDNode;
 import org.eclipse.sirius.diagram.DDiagram;
-import org.eclipse.sirius.viewpoint.DContainer;
-import org.eclipse.sirius.diagram.DDiagramElement;
 import org.eclipse.sirius.diagram.ui.tools.api.editor.DDiagramEditor;
 import org.eclipse.sirius.viewpoint.DRepresentation;
-import org.eclipse.sirius.viewpoint.DSemanticDecorator;
-import org.eclipse.sirius.viewpoint.RGBValues;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
@@ -56,8 +50,7 @@ import org.eclipse.ui.PlatformUI;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public class SiriusInstanceExplorerView 
-extends AbstractInstanceExplorerView<DDiagramElement> {
+public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
 
   /** The view ID */
   public static String ID =
@@ -207,8 +200,7 @@ extends AbstractInstanceExplorerView<DDiagramElement> {
     List<IPatternInstance> instances = getSelectionAsInstances();
     if (!instances.isEmpty()) {
       DDiagram diagram = getCurrentDiagram();
-      InstancePanelDialog<DDiagramElement> dialog = new SiriusInstancePanelDialog(
-          getShell(), _referenceElement, instances, diagram, _graphicalContext);
+      InstancePanelDialog dialog = new InstancePanelDialog(getShell(), _referenceElement, instances, diagram, _graphicalContext);
       dialog.open();
     }
   }

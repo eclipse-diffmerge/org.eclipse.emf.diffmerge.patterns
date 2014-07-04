@@ -86,16 +86,14 @@ public final class SiriusUtil {
       if (null != accessor) {
         String domainClass = mapping_p.getDomainClass();
         result = accessor.eInstanceOf(semanticElt_p, domainClass);
-        EObject semanticOfGraphicalContainer =
-          (null == container)? null: SiriusLayersUtil.getSemanticElement(container);
+        EObject semanticOfGraphicalContainer = SiriusLayersUtil.getSemanticElement(container);
         // Check precondition
-        if (result && considerPrecondition_p && null != container) {
+        if (result && considerPrecondition_p) {
             result = mapping_p.checkPrecondition(semanticElt_p, semanticOfGraphicalContainer, container);
         }
         // Check semantic candidates
         if (result && considerCandidates_p) {
           List<EObject> candidates = null;
-          if (null != container) {
             if (mapping_p instanceof NodeMapping) {
               NodeMapping nm = (NodeMapping)mapping_p;
               candidates = nm.getNodesCandidates(semanticOfGraphicalContainer,
@@ -108,7 +106,6 @@ public final class SiriusUtil {
                   semanticOfGraphicalContainer, container);
 
             }
-          }
           result = null != candidates && candidates.contains(semanticElt_p);
         }
       }
@@ -170,11 +167,12 @@ public final class SiriusUtil {
    * @param roots_p a non-null, potentially empty set of diagram elements
    * @return a non-null, potentially empty set of diagram elements
    */
-  public static List<DDiagramElement> getAllDiagramElements(
-      Collection<? extends DDiagramElement> roots_p) {
-    List<DDiagramElement> result = new LinkedList<DDiagramElement>(roots_p);
-    for (DDiagramElement root : roots_p) {
-      getAllDiagramElementsRec(root, result);
+  public static List<Object> getAllDiagramElements(Collection<Object> roots_p) {
+    List<Object> result = new LinkedList<Object>(roots_p);
+    for (Object root : roots_p) {
+      if(root instanceof DDiagramElement){
+        getAllDiagramElementsRec((DDiagramElement)root, result);
+      }
     }
     return Collections.unmodifiableList(result);
   }
@@ -186,7 +184,7 @@ public final class SiriusUtil {
    * @param result_p a non-null, modifiable list
    */
   private static void getAllDiagramElementsRec(DDiagramElement root_p,
-      List<DDiagramElement> result_p) {
+      List<Object> result_p) {
     if (root_p instanceof AbstractDNode) {
       AbstractDNode aNode = (AbstractDNode)root_p;
       result_p.addAll(aNode.getOwnedBorderedNodes());

@@ -10,21 +10,18 @@
  ******************************************************************************/
 package org.eclipse.emf.diffmerge.patterns.ui.handlers;
 
-import org.eclipse.emf.diffmerge.patterns.ui.actions.AbstractApplyPatternAction;
-import org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.diffmerge.patterns.ui.actions.ApplyPatternAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 
 /**
- * A handler for the AbstractApplyPatternAction
+ * A handler for ApplyPatternAction
  * @author Mohamed Sidati
  * @author Skander TURKI
  */
-public class ApplyPatternHandler<DiagramElementType> 
-extends AbstractWorkbenchSelectionHandler {
+public class ApplyPatternHandler extends AbstractWorkbenchSelectionHandler {
 
 
   /**
@@ -40,34 +37,12 @@ extends AbstractWorkbenchSelectionHandler {
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractApplyPatternAction<DiagramElementType>
-            action = instantiateApplyPatternAction();
-          if(action != null){
-            action.setActivePart(null, part);
-            action.selectionChanged(null, selection_p);
-            action.run(null);
-          }
+          ApplyPatternAction action =  new ApplyPatternAction();
+          action.setActivePart(null, part);
+          action.selectionChanged(null, selection_p);
+          action.run(null);
         }
       }
-    }
-    return null;
-  }
-
-  /**
-   * Instantiates an apply pattern action accordingly with the current environment
-   */
-  @SuppressWarnings("unchecked")
-  protected AbstractApplyPatternAction<DiagramElementType>
-  instantiateApplyPatternAction(){
-    try{
-      AbstractPatternActionFactory<?, ?> factory = AbstractPatternActionFactory.getInstance();
-      if(factory != null){
-        return (AbstractApplyPatternAction<DiagramElementType>)
-            factory.instantiateApplyPatternAction();
-      } 
-    }
-    catch(Exception e){
-      EcorePlugin.INSTANCE.log(e);
     }
     return null;
   }

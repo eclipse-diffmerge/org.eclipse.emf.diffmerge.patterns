@@ -11,9 +11,7 @@
 package org.eclipse.emf.diffmerge.patterns.ui.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.emf.diffmerge.patterns.ui.actions.AbstractBrowseCatalogAction;
-import org.eclipse.emf.diffmerge.patterns.ui.factories.AbstractPatternActionFactory;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.diffmerge.patterns.ui.actions.BrowseCatalogAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
@@ -24,8 +22,7 @@ import org.eclipse.ui.IWorkbenchWindow;
  * @author Mohamed Sidati
  * @author Skander TURKI
  */
-public class BrowseCatalogHandler<DiagramElementType>  
-extends AbstractWorkbenchSelectionHandler {
+public class BrowseCatalogHandler extends AbstractWorkbenchSelectionHandler {
 
   /**
    * @see AbstractWorkbenchSelectionHandler#handleSelection(ISelection, IWorkbenchPart, ExecutionEvent)
@@ -38,34 +35,14 @@ extends AbstractWorkbenchSelectionHandler {
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          AbstractBrowseCatalogAction<DiagramElementType>  action = instantiateBrowseCatalogAction();
-          if(action != null){
-            action.setActivePart(null, part);
-            action.selectionChanged(null, selection_p);
-            action.run(null);
-          }
+          BrowseCatalogAction action = new BrowseCatalogAction();
+          action.setActivePart(null, part);
+          action.selectionChanged(null, selection_p);
+          action.run(null);
         }
       }
     }
     return null;
   }
 
-  /**
-   * Instantiates AbstractBrowseCatalogAction
-   * @return
-   */
-  @SuppressWarnings("unchecked")
-  protected AbstractBrowseCatalogAction<DiagramElementType>  instantiateBrowseCatalogAction(){
-    try{
-      AbstractPatternActionFactory<?, ?> factory = AbstractPatternActionFactory.getInstance();
-      if(factory != null){
-        return (AbstractBrowseCatalogAction<DiagramElementType> )factory.instantiateBrowseCatalogAction();
-      }
-    }
-    catch(Exception e){
-      EcorePlugin.INSTANCE.log(e);
-    }
-    return null;
-  }
-  
 }
