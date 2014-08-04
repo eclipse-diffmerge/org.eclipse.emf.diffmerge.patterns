@@ -75,16 +75,24 @@ public final class PatternsInstancesUIUtil {
     boolean notLoaded = pattern == null;
     String patternName;
     if (notLoaded) {
-      patternName = instance_p.getPatternVersion().getPatternSymbol().getName();
+      if(instance_p.getPatternVersion() != null)
+        patternName = instance_p.getPatternVersion().getPatternSymbol().getName();
+      else 
+        patternName = null;
     } else {
       patternName = DiscriminatingLabelProvider.getInstance().getText(pattern);
     }
-    builder.append(patternName);
-    builder.append("  (v"); //$NON-NLS-1$
-    builder.append(instance_p.getPatternVersion().getVersion());
-    builder.append(')');
-    String result = builder.toString();
-    if (notLoaded) {
+    if(patternName != null){
+      builder.append(patternName);
+      builder.append("  (v"); //$NON-NLS-1$
+      builder.append(instance_p.getPatternVersion().getVersion());
+      builder.append(')');
+    }
+    String result = null;
+    if (patternName == null)
+      result = "Pattern Not Found"; //$NON-NLS-1$
+    else if (notLoaded) {
+      result = builder.toString();
       result = UIUtil.markAsNotLoaded(result);
     }
     return result;
