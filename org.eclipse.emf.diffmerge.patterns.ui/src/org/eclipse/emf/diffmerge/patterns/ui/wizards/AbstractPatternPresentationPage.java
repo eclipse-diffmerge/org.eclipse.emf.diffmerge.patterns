@@ -1041,7 +1041,7 @@ extends AbstractPatternPage<T> {
     };
     boolean confirmed = confirmationDialog.open() == 0;
     if (confirmed) {
-      DeletePatternOperation operation = new DeletePatternOperation(pattern, instances, getData().getScopeElement());
+      DeletePatternOperation operation = new DeletePatternOperation(pattern, instances, pattern);
       List<IPatternInstance> deleted =
           CorePatternsPlugin.getDefault().getModelEnvironment().execute(operation);
       if (deleted == null) {
