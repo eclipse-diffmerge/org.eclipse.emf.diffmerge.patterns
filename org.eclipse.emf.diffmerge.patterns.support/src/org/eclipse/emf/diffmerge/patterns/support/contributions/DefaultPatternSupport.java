@@ -58,21 +58,21 @@ public abstract class DefaultPatternSupport implements IPatternSupport{
    */
   protected abstract CommonPatternInstanceSet getInstanceSet(
       Resource resource_p, boolean createIfAbsent_p);
-  
+
   /**
    * 
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport#isApplicableTo(org.eclipse.emf.ecore.EObject)
    */
   public boolean isApplicableTo(EObject element_p) {
     IModelEnvironment environment = new DefaultModelEnvironment();
-      return (element_p instanceof CommonPatternInstance ||
-          environment.isModelElement(element_p));
+    return (element_p instanceof CommonPatternInstance ||
+        environment.isModelElement(element_p));
   }
 
-/**
- * 
- * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport#isApplicableTo(org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication)
- */
+  /**
+   * 
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport#isApplicableTo(org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication)
+   */
   public boolean isApplicableTo(IPatternApplication application_p) {
     Collection<IAtomicLocation> locations = getAtomicLocations(application_p);
     for (IAtomicLocation location : locations) {
@@ -82,16 +82,19 @@ public abstract class DefaultPatternSupport implements IPatternSupport{
           return true;
       }
     }
+    if(application_p.getScopeElement() instanceof EObject)
+      if (isApplicableTo((EObject)application_p.getScopeElement()))
+        return true;
     return false;
   }
-  
+
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport#createInstance(org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication)
    */
   public CommonPatternInstance createInstance(IPatternApplication application_p) {
     CommonPatternInstance result =
-      CommonpatternsupportFactory.eINSTANCE.createCommonPatternInstance();
+        CommonpatternsupportFactory.eINSTANCE.createCommonPatternInstance();
     result.setFolded(true);
     IPattern pattern = application_p.getPattern();
     // Pattern version
@@ -123,7 +126,7 @@ public abstract class DefaultPatternSupport implements IPatternSupport{
     assert resource != null; // Otherwise pattern instance is ill-formed
     return getInstanceSet(resource, true);
   }
-  
+
   /**
    * Return the resource in which the instance set for the given context should be stored
    * @param context_p a non-null object (Resource or EObject)
@@ -137,7 +140,7 @@ public abstract class DefaultPatternSupport implements IPatternSupport{
       result = (Resource)context_p;
     return result;
   }
-  
+
   /**
    * Return the resource in which an instance encompassing the given element would
    * be stored
@@ -153,7 +156,7 @@ public abstract class DefaultPatternSupport implements IPatternSupport{
     }
     return result;
   }
-  
+
 
   /**
    * Store a fully built, well-formed pattern instance
@@ -170,8 +173,8 @@ public abstract class DefaultPatternSupport implements IPatternSupport{
     }
     return result;
   }
-  
-  
+
+
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport#getAllInstances(java.lang.Object)
    */
@@ -226,7 +229,7 @@ public abstract class DefaultPatternSupport implements IPatternSupport{
     }
     return Collections.unmodifiableList(result);
   }
-  
+
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport#hasRelatedInstances(org.eclipse.emf.ecore.EObject)
    */
@@ -261,7 +264,7 @@ public abstract class DefaultPatternSupport implements IPatternSupport{
       result = storeOwnInstance((CommonPatternInstance)instance_p, context_p);
     return result;
   }
-  
+
 
 
   /**
@@ -277,7 +280,7 @@ public abstract class DefaultPatternSupport implements IPatternSupport{
     }
     return Collections.unmodifiableCollection(result);
   }
-  
+
   /**
    * Set the given location for the given role to the given instance
    * @param role_p a non-null role
@@ -291,5 +294,5 @@ public abstract class DefaultPatternSupport implements IPatternSupport{
       instance_p.setLocation(role_p, mdeLocation);
     }
   }
-  
+
 }
