@@ -91,7 +91,7 @@ public final class PatternsInstancesUIUtil {
     String result = null;
     if (patternName == null)
       result = "Pattern Not Found"; //$NON-NLS-1$
-    else if (notLoaded) {
+    else {
       result = builder.toString();
       result = UIUtil.markAsNotLoaded(result);
     }
