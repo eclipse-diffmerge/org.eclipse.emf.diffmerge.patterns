@@ -14,7 +14,10 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.diffmerge,
  org.eclipse.emf.diffmerge.patterns.support.gen,
  org.eclipse.emf.diffmerge.patterns.core,
- org.eclipse.emf.ecore.xmi
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.emf.transaction,
+ org.eclipse.emf.diffmerge.ui,
+ org.eclipse.emf.ecore.edit
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 0.3.0.qualifier

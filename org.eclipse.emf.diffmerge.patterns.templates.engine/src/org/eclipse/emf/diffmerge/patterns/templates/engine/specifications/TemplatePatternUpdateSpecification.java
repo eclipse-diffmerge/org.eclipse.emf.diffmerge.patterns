@@ -13,6 +13,8 @@ package org.eclipse.emf.diffmerge.patterns.templates.engine.specifications;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.command.BasicCommandStack;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePatternApplicationComparison;
@@ -28,6 +30,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 
 
 /**
@@ -62,7 +65,8 @@ public class TemplatePatternUpdateSpecification extends AbstractModifiableTempla
     TemplatePattern copy = (TemplatePattern) copier.copy(originalPattern);
     copier.copyReferences();
     //Set a virtual Resource for the copy
-    Resource vres = new PatternVirtualResource(copier, originalPatternEditingDomain);
+    //Resource vres = new PatternVirtualResource(copier, originalPatternEditingDomain);
+    Resource vres = createVirtualResource(copier, originalPatternEditingDomain);
     vres.getContents().add(copy);
 
     setPattern(copy);
@@ -71,6 +75,17 @@ public class TemplatePatternUpdateSpecification extends AbstractModifiableTempla
     initializeComparison(instance_p, referenceElement_p);
   }
   
+  private Resource createVirtualResource(Copier copier_p,
+      EditingDomain originalPatternEditingDomain) {
+    AdapterFactoryEditingDomain ed = new AdapterFactoryEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE) , new BasicCommandStack());
+    String resourceURI = "platform:/resource/Patterns/Temp.virtualpattern"; //$NON-NLS-1$
+    //_comparisonResource = resourceSet.createResource(URI.createURI(resourceURI));
+    Resource vres = new PatternVirtualResource(copier_p, originalPatternEditingDomain);
+    vres.setURI(URI.createURI(resourceURI));
+    ed.getResourceSet().getResources().add(vres);
+    return vres;
+  }
+
   /**
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.AbstractModifiableTemplatePatternSpecification#getAllElements()
    */
@@ -221,7 +236,7 @@ public class TemplatePatternUpdateSpecification extends AbstractModifiableTempla
     copier.copyReferences();
     @SuppressWarnings("unchecked") TemplatePattern patternCopy = (TemplatePattern) result;
     //Set a virtual Resource for the copy
-    Resource vres = new PatternVirtualResource(copier, originalPatternEditingDomain);
+    Resource vres = createVirtualResource(copier, originalPatternEditingDomain);
     vres.getContents().add(patternCopy);
     _visualizationComparison =
       new TemplatePatternApplicationComparison(

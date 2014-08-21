@@ -47,7 +47,6 @@ public class EObjectLabelProviderHelper {
    */
   public static String getText(EObject object_p) {
     String label = ""; //$NON-NLS-1$
-
     IItemLabelProvider provider = getItemLabelProvider(object_p);
     if (null != provider) {
       label = provider.getText(object_p);

@@ -32,7 +32,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
  * @author O. CONSTANT
  * @author Skander TURKI
  */
-public abstract class OpenCatalogAction extends AbstractContextualAction<IFile> {
+public class OpenCatalogAction extends AbstractContextualAction<IFile> {
 
   /**
    * Constructor

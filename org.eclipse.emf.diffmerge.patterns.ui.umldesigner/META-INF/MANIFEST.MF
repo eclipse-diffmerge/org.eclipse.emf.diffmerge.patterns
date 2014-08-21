@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.diffmerge.patterns.ui.sirius,
  org.eclipse.osgi,
  org.eclipse.equinox.registry,
- org.eclipse.emf.diffmerge.patterns.core
+ org.eclipse.emf.diffmerge.patterns.core,
+ org.eclipse.emf.diffmerge.patterns.templates.engine
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName

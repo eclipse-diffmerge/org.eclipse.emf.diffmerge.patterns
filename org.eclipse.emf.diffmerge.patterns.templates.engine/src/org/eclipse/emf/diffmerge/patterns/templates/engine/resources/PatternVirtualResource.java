@@ -1,11 +1,11 @@
 package org.eclipse.emf.diffmerge.patterns.templates.engine.resources;
 
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
+import org.eclipse.emf.diffmerge.patterns.core.api.IPattern;
 import org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
@@ -22,10 +22,10 @@ public class PatternVirtualResource extends ResourceImpl{
 
   /** A map that holds the trace of copies to original objects */
   private Map<EObject, EObject> _copiedToOriginalMap;
-  
+
   /** Original elements' editing domain */
   EditingDomain _originalEditingDomain;
-  
+
   /**
    * Constructor
    * @param copiedToOriginalMap_p a non-null Map
@@ -33,16 +33,14 @@ public class PatternVirtualResource extends ResourceImpl{
   public PatternVirtualResource(Map<EObject, EObject> copiedToOriginalMap_p,  EditingDomain originalEditingDomain_p){
     _copiedToOriginalMap = copiedToOriginalMap_p;
     _originalEditingDomain = originalEditingDomain_p;
+    Iterator<EObject> it = copiedToOriginalMap_p.values().iterator();
+    while(it.hasNext()){
+      EObject cur = it.next();
+      if(cur instanceof IPattern)
+        getContents().add(cur);
+    }
   }
-  
-  /**
-   * Constructor
-   */
-  public PatternVirtualResource(EditingDomain originalEditingDomain_p){
-    _copiedToOriginalMap = new LinkedHashMap<EObject, EObject>();
-    _originalEditingDomain = originalEditingDomain_p;
-  }
-  
+
   /**
    * Returns the id of the original element of the given copy
    * @param eObject a non null EObject
@@ -59,7 +57,7 @@ public class PatternVirtualResource extends ResourceImpl{
     }
     return result;
   }
-  
+
   /**
    * Having the value object, we need to trace back to the key object in the given map.
    * @return
@@ -76,7 +74,7 @@ public class PatternVirtualResource extends ResourceImpl{
     }
     return result;
   }
-  
+
   /**
    * Adds a mapping to the member _copiedToOriginalMap if the keyObject parameter isn't already mapped.
    * @param keyObject a potentially null EObject
@@ -101,5 +99,27 @@ public class PatternVirtualResource extends ResourceImpl{
     }
     return result;
   }
-  
+
+  /**
+   * GFetter for the editing domain.
+   */
+  public EditingDomain getEditingDomain(){
+    return _originalEditingDomain;
+  }
+
+  //  /**
+  //   * Returns a text representing the given EObject.
+  //   * @param obj_p a potentially null EObject.
+  //   * @return a potentially-null String.
+  //   */
+  //  public String getText(EObject obj_p){
+  //    EObject original = getKeyForValue(_copiedToOriginalMap, obj_p);
+  //    if(_originalEditingDomain instanceof AdapterFactoryEditingDomain){
+  //      IItemLabelProvider provider = (IItemLabelProvider) ((AdapterFactoryEditingDomain)_originalEditingDomain).getAdapterFactory().adapt(original, IItemLabelProvider.class);
+  //      if(provider != null)
+  //        return provider.getText(original);
+  //    }
+  //    return ""; //$NON-NLS-1$
+  //  }
+
 }

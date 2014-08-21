@@ -37,6 +37,7 @@ import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.Commo
 import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonpatternsupportFactory;
 import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonpatternsupportPackage;
 import org.eclipse.emf.diffmerge.patterns.support.resources.DefaultPatternsXMIResource;
+import org.eclipse.emf.diffmerge.ui.EMFDiffMergeUIPlugin;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -71,6 +72,9 @@ public class UMLDesignerModelEnvironment implements IModelEnvironment{
     ResourceSet rset = new ResourceSetImpl();
     _patternCatalogCommonEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(rset);
     _patternCatalogCommonEditingDomain.setID(CATALOG_COMMON_EDITING_DOMAIN_ID);
+    if (_patternCatalogCommonEditingDomain instanceof AdapterFactoryEditingDomain)
+      ((AdapterFactoryEditingDomain) _patternCatalogCommonEditingDomain).setAdapterFactory(
+          EMFDiffMergeUIPlugin.getDefault().getAdapterFactoryLabelProvider().getAdapterFactory());
   }
 
   /**
