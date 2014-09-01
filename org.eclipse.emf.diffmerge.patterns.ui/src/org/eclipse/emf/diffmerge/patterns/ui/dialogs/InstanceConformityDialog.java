@@ -85,7 +85,7 @@ public class InstanceConformityDialog extends MessageDialog {
 
   /** The sash form that separates the differences viewer from the details */
   private SashForm _sash;
-  
+
   /** The reference element's editing domain */
   protected EditingDomain _editingDomain;
 
@@ -193,7 +193,6 @@ public class InstanceConformityDialog extends MessageDialog {
     _detailsViewer = new FeaturesViewer(parent_p);
     // feature viewer listener
     _detailsViewer.addSelectionChangedListener(new ISelectionChangedListener() {
-      @SuppressWarnings("null")
       public void selectionChanged(SelectionChangedEvent event_p) {
         _targetViewer.setInput(null);
         _referenceViewer.setInput(null);
@@ -229,7 +228,6 @@ public class InstanceConformityDialog extends MessageDialog {
   protected void createSynchronizationListener() {
     // Selection synchronization: Synthesis[user] -> Global
     _differencesViewer.getClientViewer().getTree().addSelectionListener(new SelectionAdapter() {
-      @SuppressWarnings("null")
       @Override
       public void widgetSelected(SelectionEvent event_p) {
         _detailsViewer.setInput(null);
@@ -255,7 +253,6 @@ public class InstanceConformityDialog extends MessageDialog {
       }
     });
   }
-
 
   /**
    * Return the non-null update specification containing data about the differences

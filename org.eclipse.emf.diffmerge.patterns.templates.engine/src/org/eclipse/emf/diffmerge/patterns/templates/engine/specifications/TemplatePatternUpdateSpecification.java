@@ -234,7 +234,7 @@ public class TemplatePatternUpdateSpecification extends AbstractModifiableTempla
     Copier copier = new Copier();
     EObject result = copier.copy(getPattern());
     copier.copyReferences();
-    @SuppressWarnings("unchecked") TemplatePattern patternCopy = (TemplatePattern) result;
+    TemplatePattern patternCopy = (TemplatePattern) result;
     //Set a virtual Resource for the copy
     Resource vres = createVirtualResource(copier, originalPatternEditingDomain);
     vres.getContents().add(patternCopy);

@@ -25,7 +25,6 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Layout;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 
 
 /**

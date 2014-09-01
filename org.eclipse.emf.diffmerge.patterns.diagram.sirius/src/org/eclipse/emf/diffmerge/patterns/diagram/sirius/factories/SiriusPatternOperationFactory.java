@@ -34,12 +34,6 @@ import org.eclipse.emf.diffmerge.patterns.diagram.sirius.operations.SiriusUpdate
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternCreationSpecification;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternUpdateSpecification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.sirius.diagram.AbstractDNode;
-import org.eclipse.sirius.viewpoint.DContainer;
-import org.eclipse.sirius.diagram.DDiagram;
-import org.eclipse.sirius.diagram.DDiagramElement;
-import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.RGB;
 

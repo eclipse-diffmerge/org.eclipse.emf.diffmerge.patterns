@@ -11,9 +11,6 @@
 package org.eclipse.emf.diffmerge.patterns.diagram.sirius.extensions;
 
 import org.eclipse.emf.diffmerge.patterns.diagram.extensions.ISemanticMapping;
-import org.eclipse.sirius.viewpoint.DContainer;
-import org.eclipse.sirius.diagram.DDiagram;
-import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.sirius.diagram.description.AbstractNodeMapping;
 
 

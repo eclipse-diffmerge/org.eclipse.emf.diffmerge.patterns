@@ -27,14 +27,14 @@ import org.eclipse.jface.window.Window;
  * @author Skander TURKI
  */
 public class CreatePatternAction extends AbstractPersistentSelectionAction {
-
+  
   /**
    * Constructor
    */
   public CreatePatternAction() {
     super();
   }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.actions.AbstractModelBasedAction#coreRun(java.util.List)
    */
@@ -52,7 +52,7 @@ public class CreatePatternAction extends AbstractPersistentSelectionAction {
       }
     }
   }
-
+  
   /**
    * Instantiates a PatternWizardDialog
    * @return
@@ -62,13 +62,13 @@ public class CreatePatternAction extends AbstractPersistentSelectionAction {
       TemplatePatternCreationSpecification patternCreationSpecification = 
           TemplatePatternsEnginePlugin.getDefault().newPatternCreationData(false, selection_p, 
               PatternsUIPlugin.getDefault().getModelEnvironmentUI().getEnvironments());
-
+      @SuppressWarnings("unchecked")
       PatternCreationWizard wizard = new PatternCreationWizard(selection_p, 
-              (List<Object>) getFilteredSelection(_genericTypeUtil.getGraphicalPartTypeClass()),
-                patternCreationSpecification, false);
+          (List<Object>) getFilteredSelection(_genericTypeUtil.getGraphicalPartTypeClass()),
+          patternCreationSpecification, false);
       return new PatternWizardDialog(getShell(), wizard);
     }
     return null;
   }
-
+  
 }

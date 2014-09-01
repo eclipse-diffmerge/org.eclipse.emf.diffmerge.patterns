@@ -33,6 +33,7 @@ public class ManageInstanceAction extends AbstractModelBasedAction {
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.actions.AbstractContextualAction#coreRun(java.util.List)
    */
+  @SuppressWarnings("unchecked")
   @Override
   protected void coreRun(List<Object> selection_p) {
     if (!selection_p.isEmpty()) {
@@ -61,10 +62,8 @@ public class ManageInstanceAction extends AbstractModelBasedAction {
             dialog.open();
           }
         }
-
       }
-
     }
   }
-
+  
 }

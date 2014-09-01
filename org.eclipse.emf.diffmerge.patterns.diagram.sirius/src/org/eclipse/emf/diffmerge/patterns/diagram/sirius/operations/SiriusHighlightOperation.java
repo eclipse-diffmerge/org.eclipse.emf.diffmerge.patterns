@@ -19,7 +19,6 @@ import org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.SiriusUtil;
 import org.eclipse.sirius.diagram.BeginLabelStyle;
 import org.eclipse.sirius.diagram.BorderedStyle;
 import org.eclipse.sirius.diagram.CenterLabelStyle;
-import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.DEdge;
 import org.eclipse.sirius.diagram.DNode;
 import org.eclipse.sirius.diagram.DNodeContainer;

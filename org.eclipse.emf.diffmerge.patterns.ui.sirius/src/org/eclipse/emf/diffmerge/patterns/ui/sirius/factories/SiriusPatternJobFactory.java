@@ -13,12 +13,10 @@ package org.eclipse.emf.diffmerge.patterns.ui.sirius.factories;
 import java.util.List;
 
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.ITemplatePatternBasedSpecification;
 import org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternJobFactory;
 import org.eclipse.emf.diffmerge.patterns.ui.sirius.misc.SiriusPatternImageBuilderJob;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-
-import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.ITemplatePatternBasedSpecification;
 
 /**
  * A Sirius-specific factory that will instantiate the proper jobs depending of the design environment

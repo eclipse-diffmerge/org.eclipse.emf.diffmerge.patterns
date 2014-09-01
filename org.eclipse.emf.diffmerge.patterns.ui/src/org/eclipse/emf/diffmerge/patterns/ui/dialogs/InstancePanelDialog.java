@@ -993,7 +993,6 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
       /**
        * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
        */
-      @SuppressWarnings("unchecked")
       @Override
       public void widgetSelected(SelectionEvent e_p) {
         AbstractInstanceExplorerView view = null;
@@ -1276,10 +1275,10 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
           subOperations.add(subOperation);
         }
         if (!subOperations.isEmpty()) {
-          if(!subOperations.isEmpty()){
+          if (!subOperations.isEmpty()){
             IModelEnvironment env = CorePatternsPlugin.getDefault().getModelEnvironment();
-            if(env != null){
-              for(AbstractGraphicalWrappingInstanceOperation current : subOperations){
+            if (env != null){
+              for (AbstractGraphicalWrappingInstanceOperation current : subOperations){
                 env.execute(current);
               }
             } 
@@ -1698,7 +1697,6 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
    * Return the instance explorer view if present in the current page
    * @return a potentially null instance explorer view
    */
-  @SuppressWarnings("unchecked")
   protected AbstractInstanceExplorerView getInstanceExplorerView() {
     AbstractInstanceExplorerView result = null;
     try {
@@ -1884,8 +1882,8 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
       if (!newOperations.isEmpty()) {
         if(!newOperations.isEmpty()){
           IModelEnvironment env = CorePatternsPlugin.getDefault().getModelEnvironment();
-          if(env != null){
-            for(IModelOperation current : newOperations){
+          if (env != null){
+            for (IModelOperation current : newOperations){
               env.execute(current);
             }
           } 

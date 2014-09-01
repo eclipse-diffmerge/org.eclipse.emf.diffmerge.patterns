@@ -36,9 +36,12 @@ public class CreateTemplateAction extends AbstractPersistentSelectionAction {
    * @see org.eclipse.emf.diffmerge.patterns.ui.actions.AbstractModelBasedAction#coreRun(java.util.List)
    */
   @Override
+  @SuppressWarnings("unchecked")
   protected void coreRun(List<Object> selection_p) {
     PatternWizardDialog dialog = new PatternWizardDialog(getShell(),
-        new TemplateCreationWizard(selection_p,(List<Object>) getFilteredSelection(_genericTypeUtil.getGraphicalPartTypeClass())));
+        new TemplateCreationWizard(
+            selection_p,
+            (List<Object>)getFilteredSelection(_genericTypeUtil.getGraphicalPartTypeClass())));
     int answer = dialog.open();
     if (Window.OK == answer) {
       if (dialog.isSuccessful()) {
@@ -48,6 +51,5 @@ public class CreateTemplateAction extends AbstractPersistentSelectionAction {
       }
     }
   }
-
-
+  
 }

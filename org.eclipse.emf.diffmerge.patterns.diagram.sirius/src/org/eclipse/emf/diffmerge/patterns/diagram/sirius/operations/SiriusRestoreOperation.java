@@ -16,7 +16,6 @@ import java.util.Collections;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractRestoreOperation;
 import org.eclipse.sirius.diagram.BorderedStyle;
-import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.DEdge;
 import org.eclipse.sirius.diagram.DiagramPackage;
 import org.eclipse.sirius.diagram.EdgeStyle;
