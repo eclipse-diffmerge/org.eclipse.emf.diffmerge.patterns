@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.diagram.sirius.operations;
 
 import java.util.Collection;
@@ -23,10 +27,11 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.sirius.viewpoint.DStylizable;
 import org.eclipse.sirius.viewpoint.Style;
 
+
 /**
  * An operation for restoring diagram elements based on specific criteria on semantic elements.
- * @author O. CONSTANT
- * @author S. TURKI
+ * @author Olivier Constant
+ * @author Skander Turki
  */
 public class SiriusRestoreOperation extends SiriusFilteredGraphicalUpdateOperation {
 
@@ -59,7 +64,7 @@ public class SiriusRestoreOperation extends SiriusFilteredGraphicalUpdateOperati
 
   /**
    * Inner class, simulates multiple inheritance of SiriusRestoreOperation --> (AbstractRestoreOperation, SiriusFilteredGraphicalUpdateOperation)
-   * @author Skander TURKI
+   * @author Skander Turki
    */
   protected class InnerRestoreOperation extends AbstractRestoreOperation{
 

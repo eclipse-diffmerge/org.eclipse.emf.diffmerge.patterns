@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.ui.viewers;
 
 import java.util.ArrayList;
@@ -67,8 +71,8 @@ import org.eclipse.swt.widgets.Shell;
 
 /**
  * A viewer for an arbitrary subset of a model structured as a tree
- * @author O. CONSTANT
- * @author Skander TURKI
+ * @author Olivier Constant
+ * @author Skander Turki
  */
 public class ModelSubsetViewer extends Viewer{
 
@@ -387,7 +391,6 @@ public class ModelSubsetViewer extends Viewer{
   /**
    * Return the depth for initial tree expansion
    */
-  @SuppressWarnings("unchecked")
   protected int getExpandDepth() {
     // Use AbstractTreeViewer.ALL_LEVELS for complete unfolding
     return _showParents? ModelsUtil.getDepth(
@@ -410,7 +413,6 @@ public class ModelSubsetViewer extends Viewer{
    * @param defaultColor_p the non-null default color
    * @return a potentially null color, where null stands for default
    */
-  @SuppressWarnings("unchecked")
   protected Color getForegroundColor(EObject element_p, Color defaultColor_p) {
     Collection<? extends EObject> roots = _vdata;
     if (!EcoreUtil.isAncestor(roots, element_p))

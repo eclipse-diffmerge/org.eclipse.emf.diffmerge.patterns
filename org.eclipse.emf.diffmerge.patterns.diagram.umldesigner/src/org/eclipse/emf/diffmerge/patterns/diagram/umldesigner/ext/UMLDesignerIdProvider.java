@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.diagram.umldesigner.ext;
 
 import java.util.Collection;
@@ -29,13 +33,12 @@ import org.eclipse.uml2.uml.resource.UMLResource;
 
 
 /**
- *
- * @author Skander TURKI
+ * An ID provider for UML Designer.
+ * @author Skander Turki
  */
 public class UMLDesignerIdProvider implements IIdProvider{
 
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#isMainModel()
    */
   public boolean isMainModel() {
@@ -43,7 +46,6 @@ public class UMLDesignerIdProvider implements IIdProvider{
   }
 
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#getNewIdFor(org.eclipse.emf.ecore.EObject)
    */
   public String getNewIdFor(EObject element_p) {
@@ -51,7 +53,6 @@ public class UMLDesignerIdProvider implements IIdProvider{
   }
 
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#getId(org.eclipse.emf.ecore.EObject)
    */
   public String getId(EObject element_p, EditingDomain editingDomain_p) {
@@ -89,7 +90,6 @@ public class UMLDesignerIdProvider implements IIdProvider{
   }
 
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#getById(java.lang.String, java.util.Collection)
    */
   public EObject getById(String id_p, Collection<? extends Resource> scope_p) {
@@ -104,7 +104,6 @@ public class UMLDesignerIdProvider implements IIdProvider{
   }
 
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#getByIdInContext(java.lang.String, java.lang.Object)
    */
   public EObject getByIdInContext(String id_p, Object context_p) {
@@ -113,7 +112,6 @@ public class UMLDesignerIdProvider implements IIdProvider{
   }
 
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#getByIdInResource(java.lang.String, org.eclipse.emf.ecore.EObject)
    */
   public EObject getByIdInResource(String id_p, EObject context_p) {
@@ -129,7 +127,6 @@ public class UMLDesignerIdProvider implements IIdProvider{
   }
 
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#isApplicableTo(org.eclipse.emf.ecore.EObject)
    */
   public boolean isApplicableTo(EObject element_p) {

@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.diagram.umldesigner.delete;
 
 import java.util.Collection;
@@ -17,21 +21,21 @@ import org.eclipse.emf.diffmerge.patterns.core.operations.DeleteOperation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
+
 /**
  * A delete command that is specific to UMLDesigner and to the implementation 
  * of patterns and pattern instances that is specified by the current UMLDesignerModelEnvironment.
- * @author Skander TURKI
- *
+ * @author Skander Turki
  */
 public class UMLDesignerDeleteCommand extends AbstractCommand{
-
+  
   /** The selection of elements to delete */
   private Collection<?> _selection;
   
   /** Editing domain */
   private EditingDomain _editingDomain;
   
-
+  
   /**
    * Constructor
    * @param editingDomain_p a potentially null editing domain
@@ -52,9 +56,8 @@ public class UMLDesignerDeleteCommand extends AbstractCommand{
     }catch(Exception ex){
       //Nothing
     }
-
   }
-
+  
   /**
    * @see org.eclipse.emf.common.command.Command#redo()
    */
@@ -62,5 +65,5 @@ public class UMLDesignerDeleteCommand extends AbstractCommand{
     // TODO Auto-generated method stub
     
   }
-
+  
 }

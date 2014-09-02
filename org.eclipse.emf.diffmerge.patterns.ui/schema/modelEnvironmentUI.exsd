@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.emf.diffmerge.patterns.ui" id="org.eclipse.emf.diffmerge.patterns.ui.modelenvironmentui" name="Model Environment UI"/>
       </appinfo>
       <documentation>
-         Modelers should contribute to this extension point to provide the &quot;Patterns&quot; framework with their specific UI services provider.
+         Modelers should contribute to this extension point to provide the Patterns framework with their specific UI service provider.
       </documentation>
    </annotation>
 
@@ -67,7 +67,7 @@
          <meta.section type="since"/>
       </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         0.4.0
       </documentation>
    </annotation>
 

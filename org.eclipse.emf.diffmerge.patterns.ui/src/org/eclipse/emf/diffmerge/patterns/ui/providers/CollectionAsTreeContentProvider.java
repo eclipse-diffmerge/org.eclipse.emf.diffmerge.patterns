@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.ui.providers;
 
 import java.util.Collection;
@@ -22,7 +26,7 @@ import org.eclipse.jface.viewers.Viewer;
 
 /**
  * Data content provider
- * @author Skander TURKI
+ * @author Skander Turki
  */
 public class CollectionAsTreeContentProvider implements ITreeContentProvider{
 
@@ -102,7 +106,7 @@ public class CollectionAsTreeContentProvider implements ITreeContentProvider{
       if (newInput_p instanceof Collection) {
         _viewer = (AbstractTreeViewer) viewer_p;
         HashSet<EObject> elements = new HashSet<EObject>();
-        Iterator it = ((Collection<?>)newInput_p).iterator();
+        Iterator<?> it = ((Collection<?>)newInput_p).iterator();
         while(it.hasNext()){
           Object obj = it.next();
           if(obj != null && obj instanceof EObject){
@@ -118,7 +122,7 @@ public class CollectionAsTreeContentProvider implements ITreeContentProvider{
       if (newInput_p instanceof Collection) {
         // handle Add element in the viewer.
         HashSet<EObject> elements = new HashSet<EObject>();
-        Iterator it = ((Collection<?>)newInput_p).iterator();
+        Iterator<?> it = ((Collection<?>)newInput_p).iterator();
         while(it.hasNext()){
           Object obj = it.next();
           if(obj != null && obj instanceof EObject){
@@ -131,7 +135,7 @@ public class CollectionAsTreeContentProvider implements ITreeContentProvider{
       } else if (oldInput_p instanceof Collection && newInput_p != null) {
         // Handle remove element in the viewer.
         HashSet<EObject> elements = new HashSet<EObject>(_dataInput);
-        Iterator it = ((Collection<?>)oldInput_p).iterator();
+        Iterator<?> it = ((Collection<?>)oldInput_p).iterator();
         while(it.hasNext()){
           Object obj = it.next();
           elements.remove(obj);

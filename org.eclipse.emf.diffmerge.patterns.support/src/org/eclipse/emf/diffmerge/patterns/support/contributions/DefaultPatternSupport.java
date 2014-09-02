@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.support.contributions;
 
 import static org.eclipse.emf.diffmerge.patterns.support.gen.CommonPatternSupportAdapter.COMMON_PATTERN_SUPPORT_ADAPTER;
@@ -41,11 +45,12 @@ import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.PatternSymbol;
 import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.PatternVersion;
 import org.eclipse.emf.diffmerge.patterns.core.util.LocationsUtil;
 
+
 /**
  * A default pattern support that provides a partial implementation of IPatternSupport.
  * Methods related to how the instance model is stored aren't implemented.
  * @author Olivier Constant
- * @author Skander TURKI
+ * @author Skander Turki
  */
 public abstract class DefaultPatternSupport implements IPatternSupport{
 

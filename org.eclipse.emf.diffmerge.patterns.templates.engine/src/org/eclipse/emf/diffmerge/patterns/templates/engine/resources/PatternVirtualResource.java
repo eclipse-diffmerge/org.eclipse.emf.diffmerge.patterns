@@ -1,3 +1,17 @@
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
+ * 
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.templates.engine.resources;
 
 import java.util.Iterator;
@@ -11,26 +25,29 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
+
 /**
- * A virtual resource to keep the trace of copied pattern objects to original ones. This solves the cases where some pattern objects
- * do not have technical ids, the eResource() of copies being null, we need to trace back to original objects to recover ids.
- * @author Olivier Constant
- * @author Skander TURKI
+ * A virtual resource to keep the trace of copied pattern objects to original ones.
+ * This solves the cases where some pattern objects do not have technical ids, the eResource()
+ * of copies being null, we need to trace back to original objects to recover ids.
+ * @author Skander Turki
  *
  */
 public class PatternVirtualResource extends ResourceImpl{
-
+  
   /** A map that holds the trace of copies to original objects */
   private Map<EObject, EObject> _copiedToOriginalMap;
-
+  
   /** Original elements' editing domain */
-  EditingDomain _originalEditingDomain;
-
+  private EditingDomain _originalEditingDomain;
+  
+  
   /**
    * Constructor
    * @param copiedToOriginalMap_p a non-null Map
    */
-  public PatternVirtualResource(Map<EObject, EObject> copiedToOriginalMap_p,  EditingDomain originalEditingDomain_p){
+  public PatternVirtualResource(Map<EObject, EObject> copiedToOriginalMap_p, 
+      EditingDomain originalEditingDomain_p){
     _copiedToOriginalMap = copiedToOriginalMap_p;
     _originalEditingDomain = originalEditingDomain_p;
     Iterator<EObject> it = copiedToOriginalMap_p.values().iterator();
@@ -40,14 +57,13 @@ public class PatternVirtualResource extends ResourceImpl{
         getContents().add(cur);
     }
   }
-
+  
   /**
    * Returns the id of the original element of the given copy
    * @param eObject a non null EObject
    * @return a potentially null String
    */
-  public String getID(EObject eObject)
-  {
+  public String getID(EObject eObject) {
     String result = null;
     IIdProvider idProvider = CorePatternsPlugin.getDefault().getIdProvider();
     if (_copiedToOriginalMap != null && idProvider != null)
@@ -57,7 +73,7 @@ public class PatternVirtualResource extends ResourceImpl{
     }
     return result;
   }
-
+  
   /**
    * Having the value object, we need to trace back to the key object in the given map.
    * @return
@@ -74,7 +90,7 @@ public class PatternVirtualResource extends ResourceImpl{
     }
     return result;
   }
-
+  
   /**
    * Adds a mapping to the member _copiedToOriginalMap if the keyObject parameter isn't already mapped.
    * @param keyObject a potentially null EObject
@@ -99,7 +115,7 @@ public class PatternVirtualResource extends ResourceImpl{
     }
     return result;
   }
-
+  
   /**
    * GFetter for the editing domain.
    */

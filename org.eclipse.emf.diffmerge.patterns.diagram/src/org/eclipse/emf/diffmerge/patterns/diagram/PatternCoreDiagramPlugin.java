@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.diagram;
 
 import org.eclipse.emf.diffmerge.patterns.diagram.extensions.ISemanticMapping;
@@ -17,22 +21,29 @@ import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.eclipse.emf.diffmerge.patterns.core.SingletonContributionDiscoverer;
 
+
+/**
+ * The activator class for this plug-in.
+ * @author Olivier Constant
+ * @author Skander Turki
+ */
 public class PatternCoreDiagramPlugin implements BundleActivator {
 
-  // The shared instance
+  /** The shared instance */
   private static PatternCoreDiagramPlugin plugin;
   
+  /** The bundle context */
 	private static BundleContext context;
-
-  // The plug-in ID
+	
+  /** The plug-in ID */
   public static final String PLUGIN_ID = "org.eclipse.emf.diffmerge.patterns.diagram"; //$NON-NLS-1$
 	
   /** The current diagram utility class (may not be null) */
   private AbstractDiagramUtil _diagramUtil;
-
+  
   /** IDs related to the diagram utility extension point */
   private static final String DIAGRAM_UTIL_EXTENSION_POINT =
-      "org.eclipse.emf.diffmerge.patterns.diagram.diagramUtil"; //$NON-NLS-1$
+      PLUGIN_ID + ".diagramUtil"; //$NON-NLS-1$
   private static final String DIAGRAM_UTIL_POINT_PROPERTY = "class"; //$NON-NLS-1$
 	
   
@@ -44,15 +55,14 @@ public class PatternCoreDiagramPlugin implements BundleActivator {
       "org.eclipse.emf.diffmerge.patterns.diagram.semanticMapping"; //$NON-NLS-1$
   private static final String SEMANTIC_MAPPING_EXTENSION_POINT_PROPERTY = "class"; //$NON-NLS-1$
   
-  
-
   /** The current Operation Factory (may not be null) */
   private IPatternOperationFactory _patternOperationFactory;
-
+  
   /** IDs related to the Operation Factory extension point */
   private static final String OPERATION_FACTORY_EXTENSION_POINT =
       "org.eclipse.emf.diffmerge.patterns.diagram.operationFactory"; //$NON-NLS-1$
   private static final String OPERATION_FACTORY_POINT_PROPERTY = "class"; //$NON-NLS-1$
+  
   
   /**
    * The constructor
@@ -61,36 +71,36 @@ public class PatternCoreDiagramPlugin implements BundleActivator {
     _semanticMapping = null;
   }
   
+  /**
+   * Return the bundle context
+   */
 	static BundleContext getContext() {
 		return context;
 	}
 	
   /**
    * Returns the shared instance
-   *
    * @return the shared instance
    */
   public static PatternCoreDiagramPlugin getDefault() {
     return plugin;
   }
-
-	/*
-	 * (non-Javadoc)
+  
+	/**
 	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
 	 */
 	public void start(BundleContext bundleContext) throws Exception {
 		PatternCoreDiagramPlugin.context = bundleContext;
     plugin = this;
 	}
-
-	/*
-	 * (non-Javadoc)
+	
+	/**
 	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext bundleContext) throws Exception {
 		PatternCoreDiagramPlugin.context = null;
 	}
-
+	
   /**
    * Return the diagram utility class registered in the platform
    * @return a non-null AbstractDiagramUtil
@@ -118,7 +128,6 @@ public class PatternCoreDiagramPlugin implements BundleActivator {
     }
     return _semanticMapping;
   }
-	
   
   /**
    * Return the Operation Factory registered in the platform

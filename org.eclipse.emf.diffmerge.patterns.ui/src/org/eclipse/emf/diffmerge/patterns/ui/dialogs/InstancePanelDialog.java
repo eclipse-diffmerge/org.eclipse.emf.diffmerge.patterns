@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.ui.dialogs;
 
 import java.util.ArrayList;
@@ -91,8 +95,8 @@ import org.eclipse.ui.PlatformUI;
 
 /**
  * A dialog that displays a list of pattern instances and allows the user to select one and perform actions on it.
- * @author O. CONSTANT
- * @author S. TURKI
+ * @author Olivier Constant
+ * @author Skander Turki
  */
 public class InstancePanelDialog extends InstanceChoiceDialog {
   
@@ -1278,7 +1282,7 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
           if (!subOperations.isEmpty()){
             IModelEnvironment env = CorePatternsPlugin.getDefault().getModelEnvironment();
             if (env != null){
-              for (AbstractGraphicalWrappingInstanceOperation current : subOperations){
+              for (AbstractGraphicalWrappingInstanceOperation<?> current : subOperations){
                 env.execute(current);
               }
             } 
@@ -1568,6 +1572,7 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
    * @param verbose_p whether abnormal result information must be notified to the user
    * @return a non-null, potentially empty, unmodifiable list
    */
+  @SuppressWarnings("unchecked")
   protected List<IEvaluationStatus> executeInstanceOperations(final List<? extends IPatternInstance> instances_p, final InstanceOperationKind operationKind_p,
       final RefreshRequestKind requestKind_p, boolean reuseLayout_p, boolean reuseStyle_p, boolean verbose_p, Object specification_p) {
     List<IEvaluationStatus> result = new ArrayList<IEvaluationStatus>();
@@ -1589,10 +1594,10 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
       if(!instanceOperations.isEmpty()){
         IModelEnvironment env = CorePatternsPlugin.getDefault().getModelEnvironment();
         if(env != null){
-          for(IModelOperation current : instanceOperations){
+          for(IModelOperation<?> current : instanceOperations){
             Object obj = env.execute(current);
             if(obj instanceof Collection){
-              result.addAll((Collection)obj);
+              result.addAll((Collection<IEvaluationStatus>)obj);
             }else if (obj instanceof IEvaluationStatus){
               result.add((IEvaluationStatus)obj);
             }
@@ -1864,7 +1869,6 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
    * Apply pattern layout on graphical elements created by the given operations
    * @param executedOperations_p a non-null, potentially empty set
    */
-  @SuppressWarnings("unchecked")
   protected void reuseAppearenceOnAdditions(Collection<? extends IModelOperation<?>> executedOperations_p, boolean reuseLayout_p, boolean reuseStyle_p) {
     List<AbstractFilteredGraphicalUpdateOperation> newOperations = new ArrayList<AbstractFilteredGraphicalUpdateOperation>();
     for (IModelOperation<?> executedOperation : executedOperations_p) {
@@ -1883,7 +1887,7 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
         if(!newOperations.isEmpty()){
           IModelEnvironment env = CorePatternsPlugin.getDefault().getModelEnvironment();
           if (env != null){
-            for (IModelOperation current : newOperations){
+            for (IModelOperation<?> current : newOperations){
               env.execute(current);
             }
           } 

@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.emf.diffmerge.patterns.diagram" id="org.eclipse.emf.diffmerge.patterns.diagram.diagramUtil" name="diagramUtil"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         This extension point must be contributed to from specific diagram technologies.
       </documentation>
    </annotation>
 
@@ -67,7 +67,7 @@
          <meta.section type="since"/>
       </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         0.4.0
       </documentation>
    </annotation>
 

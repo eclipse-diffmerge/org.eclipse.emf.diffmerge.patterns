@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.core;
 
 import java.util.ArrayList;
@@ -34,16 +38,16 @@ import org.osgi.framework.BundleContext;
 
 
 /**
- * The activator class for this plug-in
- * @author O. CONSTANT
- * @author S. TURKI
+ * The activator class for this plug-in.
+ * @author Olivier Constant
+ * @author Skander Turki
  */
 public class CorePatternsPlugin extends Plugin {
-
+  
   /** The shared instance */
   private static CorePatternsPlugin __plugin;
   
- 
+  
   /** The default delete operation provider */
   private static final IDeleteOperationProvider DEFAULT_DELETE_OPERATION_PROVIDER =
     new IDeleteOperationProvider() {
@@ -62,46 +66,47 @@ public class CorePatternsPlugin extends Plugin {
       return element_p.eResource() != null;
     }
   };
-
+  
   /** IDs related to the PatternSupport extension point */
   private static final String PATTERN_SUPPORT_EXTENSION_POINT =
     "org.eclipse.emf.diffmerge.patterns.core.patternSupport"; //$NON-NLS-1$
   private static final String PATTERN_SUPPORT_EXTENSION_POINT_PROPERTY = "class"; //$NON-NLS-1$
-
+  
   /** IDs related to the ModelEnvironment extension point */
   private static final String MODEL_ENVIRONMENT_EXTENSION_POINT =
     "org.eclipse.emf.diffmerge.patterns.core.modelEnvironment"; //$NON-NLS-1$
   private static final String MODEL_ENVIRONMENT_EXTENSION_POINT_PROPERTY = "class"; //$NON-NLS-1$
-
+  
   /** IDs related to the DeleteOperationProvider extension point */
   private static final String DELETE_PROVIDER_EXTENSION_POINT =
     "org.eclipse.emf.diffmerge.patterns.core.deleteOperationProvider"; //$NON-NLS-1$
   private static final String DELETE_PROVIDER_EXTENSION_POINT_PROPERTY = "class"; //$NON-NLS-1$
-
-
+  
+  
   /** The non-null registry of pattern repositories */
   private final RepositoryRegistry _repositoryRegistry;
-
+  
   /** The pattern supports registered via the dedicated extension point */
   private List<IPatternSupport> _cachedPatternSupports;
-
+  
   /** The current delete operation provider (may be null) */
   private IDeleteOperationProvider _deleteOperationProvider;
-
+  
   /** The current ID provider (may be null) */
   private IIdProvider _idProvider;
-
+  
   /** The current model environment (may be null) */
   private IModelEnvironment _modelEnvironment;
-
+  
   /** The current generic type checker utility class (may not be null) */
   private AbstractGenericTypeUtil _genericTypeUtil;
-
+  
   /** IDs related to the generic type checker utility extension point */
   private static final String GENERIC_TYPE_UTIL_EXTENSION_POINT =
       "org.eclipse.emf.diffmerge.patterns.core.genericTypeUtil"; //$NON-NLS-1$
   private static final String GENERIC_TYPE_UTIL_POINT_PROPERTY = "class"; //$NON-NLS-1$
-
+  
+  
   /**
    * Constructor
    */
@@ -110,14 +115,14 @@ public class CorePatternsPlugin extends Plugin {
     _idProvider = null;
     _repositoryRegistry = new RepositoryRegistry();
   }
-
+  
   /**
    * Return the shared instance of the activator
    */
   public static CorePatternsPlugin getDefault() {
     return __plugin;
   }
-
+  
   /**
    * Discover the delete operation provider which is registered through the dedicated
    * extension point, if any
@@ -138,7 +143,7 @@ public class CorePatternsPlugin extends Plugin {
     }
     return null;
   }
-
+  
   /**
    * Discover the model accessor which is registered through the dedicated
    * extension point, if any
@@ -167,11 +172,11 @@ public class CorePatternsPlugin extends Plugin {
     return null;
   }
 
-/**
- * Reduces the given list according to mutual overriding between IModelEnvironments.
- * @param environments_p
- * @return
- */
+  /**
+   * Reduce the given list according to mutual overriding between IModelEnvironments.
+   * @param environments_p a non-null, potentially empty list
+   * @return a non-null, potentially empty list
+   */
   protected Collection<IModelEnvironment> reduceByOverride(List<IModelEnvironment> environments_p) {
     List<IModelEnvironment> result = new ArrayList<IModelEnvironment>(environments_p);
     for (IModelEnvironment env : environments_p) {
@@ -210,7 +215,7 @@ public class CorePatternsPlugin extends Plugin {
 
     return Collections.unmodifiableList(result);
   }
-
+  
   /**
    * Return the delete operation registered in the platform
    * @return a non-null delete operation
@@ -222,7 +227,7 @@ public class CorePatternsPlugin extends Plugin {
       _deleteOperationProvider = DEFAULT_DELETE_OPERATION_PROVIDER;
     return _deleteOperationProvider;
   }
-
+  
   /**
    * Return the ID provider for identified elements in the pattern framework
    * @return a non-null ID provider
@@ -232,7 +237,7 @@ public class CorePatternsPlugin extends Plugin {
       _idProvider = new IdProviderDispatcher();
     return _idProvider;
   }
-
+  
   /**
    * Return a label for UIs which represents the set of pattern-related features 
    * @return a non-null string
@@ -240,7 +245,7 @@ public class CorePatternsPlugin extends Plugin {
   public String getLabel() {
     return Messages.PatternsCorePlugin_Label;
   }
-
+  
   /**
    * Return the model accessor which is registered in the platform
    * @return a non-null model accessor
@@ -250,7 +255,7 @@ public class CorePatternsPlugin extends Plugin {
       _modelEnvironment = discoverRegisteredModelEnvironment();
     return _modelEnvironment;
   }
-
+  
   /**
    * Return a pattern support which is applicable to the given element
    * @param element_p a non-null model element
@@ -263,7 +268,7 @@ public class CorePatternsPlugin extends Plugin {
     }
     return null;
   }
-
+  
   /**
    * Return a pattern support which is applicable to the given pattern application
    * @param application_p a non-null pattern application
@@ -276,14 +281,14 @@ public class CorePatternsPlugin extends Plugin {
     }
     return null;
   }
-
+  
   /**
    * Return the ID of this plug-in according to MANIFEST.MF
    */
   public String getPluginId() {
     return getBundle().getSymbolicName();
   }
-
+  
   /**
    * Return the pattern supports which are registered through the dedicated
    * extension point
@@ -294,7 +299,7 @@ public class CorePatternsPlugin extends Plugin {
       _cachedPatternSupports = discoverRegisteredPatternSupports();
     return _cachedPatternSupports;
   }
-
+  
   /**
    * Return the unique registry of pattern repositories
    * @return a non-null registry
@@ -302,7 +307,7 @@ public class CorePatternsPlugin extends Plugin {
   public RepositoryRegistry getRepositoryRegistry() {
     return _repositoryRegistry;
   }
-
+  
   /**
    * Set a new ID according to the ID provider that is registered in the platform
    * @param element_p a non-null element whose ID must be set
@@ -310,7 +315,7 @@ public class CorePatternsPlugin extends Plugin {
   public void setNewId(EObject element_p) {
     EcoreUtil.setID(element_p, getIdProvider().getNewIdFor(element_p));
   }
-
+  
   /**
    * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
    */
@@ -319,7 +324,7 @@ public class CorePatternsPlugin extends Plugin {
     super.start(context);
     __plugin = this;
   }
-
+  
   /**
    * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
    */
@@ -328,7 +333,7 @@ public class CorePatternsPlugin extends Plugin {
     __plugin = null;
     super.stop(context);
   }
-
+  
   /**
    * Return the genetic type utility class registered in the platform
    * @return a non-null AbstractGenericTypeUtil

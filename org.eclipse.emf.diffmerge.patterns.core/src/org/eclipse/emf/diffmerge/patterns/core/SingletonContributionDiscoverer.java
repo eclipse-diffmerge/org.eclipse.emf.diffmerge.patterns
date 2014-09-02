@@ -1,30 +1,33 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.core;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 
+
 /**
  * A class that will discover the contribution singleton object contributed through the given extension point,
  * under the given extension point property and having the expected given type.
- * @author O.Constant
- * @author Skander TURKI
+ * @author Skander Turki
  *
  * @param <SingletonContributionType>
  */
 public class SingletonContributionDiscoverer<SingletonContributionType>{
 
-  
   /** The current Contributed Singleton (may not null) */
   private SingletonContributionType _contributedSingleton;
   
@@ -33,7 +36,8 @@ public class SingletonContributionDiscoverer<SingletonContributionType>{
   private String SINGLETON_CONTRIBUTION_PROPERTY;
   
   /** The expected type of the contributed object */
-  Class<?> _type;
+  private Class<?> _type;
+  
   
   /**
    * Constructor
@@ -56,7 +60,6 @@ public class SingletonContributionDiscoverer<SingletonContributionType>{
       _contributedSingleton = discoverContributedSingleton();
     return _contributedSingleton;
   }
-
   
   /**
    * Discover the contributed singleton which is registered through the dedicated
@@ -79,6 +82,5 @@ public class SingletonContributionDiscoverer<SingletonContributionType>{
     }
     return null;
   }
-  
   
 }

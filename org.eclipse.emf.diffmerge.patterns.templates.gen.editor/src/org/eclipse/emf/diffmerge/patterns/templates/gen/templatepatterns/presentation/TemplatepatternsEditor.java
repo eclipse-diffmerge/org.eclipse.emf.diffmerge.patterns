@@ -1,4 +1,16 @@
 /**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
+ * 
+ * </copyright>
  */
 package org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.presentation;
 
@@ -405,13 +417,11 @@ public class TemplatepatternsEditor
         }
       }
 
-      @SuppressWarnings("hiding")
       @Override
       protected void setTarget(Resource target) {
         basicSetTarget(target);
       }
 
-      @SuppressWarnings("hiding")
       @Override
       protected void unsetTarget(Resource target) {
         basicUnsetTarget(target);
@@ -440,12 +450,9 @@ public class TemplatepatternsEditor
         try {
           class ResourceDeltaVisitor implements IResourceDeltaVisitor {
             protected ResourceSet resourceSet = editingDomain.getResourceSet();
-            @SuppressWarnings("hiding")
             protected Collection<Resource> changedResources = new ArrayList<Resource>();
-            @SuppressWarnings("hiding")
             protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
-            @SuppressWarnings("hiding")
             public boolean visit(IResourceDelta delta) {
               if (delta.getResource().getType() == IResource.FILE) {
                 if (delta.getKind() == IResourceDelta.REMOVED ||
@@ -779,7 +786,6 @@ public class TemplatepatternsEditor
      * <!-- end-user-doc -->
      * @generated
      */
-    @SuppressWarnings("hiding")
     public ReverseAdapterFactoryContentProvider(AdapterFactory adapterFactory) {
       super(adapterFactory);
     }

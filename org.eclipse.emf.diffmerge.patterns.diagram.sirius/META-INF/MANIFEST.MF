@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.diffmerge.patterns.diagram.sirius;singleton:=true
-Bundle-Version: 0.3.0.qualifier
+Bundle-Version: 0.4.0.qualifier
 Bundle-Activator: org.eclipse.emf.diffmerge.patterns.diagram.sirius.SiriusCorePlugin
 Require-Bundle: org.eclipse.emf.diffmerge,
  org.eclipse.gmf.runtime.diagram.ui,
@@ -19,7 +19,9 @@ Require-Bundle: org.eclipse.emf.diffmerge,
 Comment:  fr.obeo.dsl.viewpoint, fr.obeo.dsl.viewpoint.diagram, fr.obeo.mda.ecore.extender
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.emf.diffmerge.patterns.diagram.sirius.extensions,
+Export-Package: org.eclipse.emf.diffmerge.patterns.diagram.sirius,
+ org.eclipse.emf.diffmerge.patterns.diagram.sirius.extensions,
+ org.eclipse.emf.diffmerge.patterns.diagram.sirius.factories,
  org.eclipse.emf.diffmerge.patterns.diagram.sirius.operations,
  org.eclipse.emf.diffmerge.patterns.diagram.sirius.util
 Bundle-Vendor: %providerName

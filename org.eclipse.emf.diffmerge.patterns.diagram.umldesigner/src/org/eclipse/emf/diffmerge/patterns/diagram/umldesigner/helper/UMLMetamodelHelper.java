@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.diagram.umldesigner.helper;
 
 import java.util.Arrays;
@@ -25,23 +29,23 @@ import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
+
 /**
  * A utility class that provides services related to the structure of the UML meta-model in the context
- * of the patterns framework
+ * of the patterns framework.
  * @author Skander Turki
- *
  */
 @SuppressWarnings("nls")
 public class UMLMetamodelHelper {
-
+  
   /** The set of references that must not be considered for dependencies */
   public static final List<EReference> NON_DEPENDENCY_REFERENCES = Arrays.asList(
       UMLPackage.eINSTANCE.getClassifier_Generalization(),
       UMLPackage.eINSTANCE.getProperty_Class()
       );
-
+  
   public static final String UML_JAVA_PRIMITIVE_TYPES_RESOURCE_URI = "pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml";
-
+  
   /** The list of UML JAVA library primitive types names */
   private static final List<String> UML_JAVA_PRIMITIVE_TYPE_NAMES = Arrays.asList(
       "boolean", "byte", "char", "double", "float", "int", "long", "short");
@@ -51,7 +55,7 @@ public class UMLMetamodelHelper {
   /** The list of UML basic library primitive types names */
   private static final List<String> UML_BASIC_LIBRARY_PRIMITIVE_TYPE_NAMES = Arrays.asList(
       "Boolean", "String", "Integer", "Real", "UnlimitedNatural");
- 
+  
   /**
    * Returns if the element_p is a UML library primitive type.
    * @param element_p a potentially null Object
@@ -98,7 +102,7 @@ public class UMLMetamodelHelper {
     boolean result = false;
     EObject container = null;
     EReference containment = null;
-    //TODO: not the eContainer but the eContainer of the counterpart !!!!!!
+    //TODO: not the eContainer but the eContainer of the counterpart!
     //like in :
 //    if (element_p instanceof ActivityEdge) {
 //      ActivityEdge casted = (ActivityEdge)element_p;
@@ -138,7 +142,6 @@ public class UMLMetamodelHelper {
       DataType casted = (DataType)element_p;
       container = casted.eContainer();
     }
-
 //    if (null != container && null != containment) {
 //      IReferenceLocation location =
 //          new BasicReferenceLocation(container, containment);
@@ -151,7 +154,7 @@ public class UMLMetamodelHelper {
 //    }
     return result;
   }
-
+  
   /**
    * 
    * @param element_p
@@ -238,7 +241,7 @@ public class UMLMetamodelHelper {
 //        //containment_o = UMLPackage.eINSTANCE.getCl);
 //    }     
   }
-
+  
   /**
    * Helper method for deriveOwnership: case where container is derived from the ends
    * of a link/exchange
@@ -282,5 +285,4 @@ public class UMLMetamodelHelper {
     return element_p.eContainer().eContainer();
   }
   
-
 }

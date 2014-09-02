@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.ui.wizards.update;
 
 import org.eclipse.emf.diffmerge.api.IMatch;
@@ -52,8 +56,8 @@ import org.eclipse.swt.widgets.Menu;
 
 /**
  * A wizard page for updating a new pattern
- * @author O. CONSTANT
- * @author S. TURKI
+ * @author Olivier Constant
+ * @author Skander Turki
  */
 public class PatternUpdateElementsPage
 extends AbstractModifiableTemplateElementsPage<TemplatePatternUpdateSpecification> {
@@ -295,7 +299,6 @@ extends AbstractModifiableTemplateElementsPage<TemplatePatternUpdateSpecificatio
     _detailsViewer = new FeaturesViewer(parent_p);
     // feature viewer listener
     _detailsViewer.addSelectionChangedListener(new ISelectionChangedListener() {
-      @SuppressWarnings("null")
       public void selectionChanged(SelectionChangedEvent event_p) {
         _targetViewer.setInput(null);
         _referenceViewer.setInput(null);
@@ -331,7 +334,6 @@ extends AbstractModifiableTemplateElementsPage<TemplatePatternUpdateSpecificatio
   protected void createSynchronizationListener() {
     // Selection synchronization: Synthesis[user] -> Global
     _templateElementsViewer.getClientViewer().getTree().addSelectionListener(new SelectionAdapter() {
-      @SuppressWarnings("null")
       @Override
       public void widgetSelected(SelectionEvent event_p) {
         _detailsViewer.setInput(null);

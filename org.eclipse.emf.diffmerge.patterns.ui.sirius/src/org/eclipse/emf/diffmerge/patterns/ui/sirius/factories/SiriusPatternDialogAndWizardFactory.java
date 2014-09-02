@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.ui.sirius.factories;
 
 import java.util.List;
@@ -26,12 +30,12 @@ import org.eclipse.swt.widgets.Shell;
 
 
 /**
- * A Sirius-specific factory that will instantiate the proper dialogs and wizards depending on the design environment
- * @author Skander TURKI
- *
+ * A Sirius-specific factory that will instantiate the proper dialogs and wizards depending on
+ * the design environment.
+ * @author Skander Turki
  */
 public class SiriusPatternDialogAndWizardFactory implements IPatternDialogAndWizardFactory{
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiateHighlightAllPatternsInstancesPanelDialog(java.util.Set, java.util.List, java.lang.Object, org.eclipse.swt.widgets.Shell, java.lang.String, java.lang.String)
    */
@@ -41,14 +45,14 @@ public class SiriusPatternDialogAndWizardFactory implements IPatternDialogAndWiz
     return   new SiriusHighlightAllPatternsInstancesPanelDialog(instances_p, diagram_p, shell_p, 
         dialogTitle_p, dialogMessage_p);
   }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternBrowsingWizard(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern)
    */
   public AbstractPatternBrowsingWizard instantiatePatternBrowsingWizard(EObject context_p, TemplatePattern pattern_p) {
     return new SiriusPatternBrowsingWizard(context_p, pattern_p) ;
   }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternBrowsingWizard(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository)
    */
@@ -56,7 +60,7 @@ public class SiriusPatternDialogAndWizardFactory implements IPatternDialogAndWiz
       EObject context_p, IPatternRepository repository_p) {
     return new SiriusPatternBrowsingWizard(context_p, repository_p) ;
   }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternBrowsingWizard(java.lang.Object, org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository)
    */
@@ -64,7 +68,7 @@ public class SiriusPatternDialogAndWizardFactory implements IPatternDialogAndWiz
       Object context_p, IPatternRepository repository_p) {
     return new SiriusPatternBrowsingWizard(context_p, repository_p);
   }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory#instantiatePatternBrowsingWizard(org.eclipse.emf.ecore.resource.ResourceSet, org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository)
    */
@@ -72,5 +76,5 @@ public class SiriusPatternDialogAndWizardFactory implements IPatternDialogAndWiz
       ResourceSet rset_p, IPatternRepository repository_p) {
     return new SiriusPatternBrowsingWizard(rset_p, repository_p);
   }
-
+  
 }

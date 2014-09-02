@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.diagram.sirius.operations;
 
 import java.util.ArrayList;
@@ -40,10 +44,11 @@ import org.eclipse.sirius.diagram.ui.tools.api.layout.PinHelper;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.swt.graphics.Point;
 
+
 /**
  * An operation for applying the graphical layout defined in a pattern on an instance.
- * @author O. CONSTANT
- * @author S. TURKI
+ * @author Olivier Constant
+ * @author Skander Turki
  */
 public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOperation {
 
@@ -337,7 +342,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
 
   /**
    * Inner class, simulates multiple inheritance of SiriusLayoutReuseOperation --> (AbstractLayoutReuseOperation, SiriusFilteredGraphicalUpdateOperation)
-   * @author Skander TURKI
+   * @author Skander Turki
    *
    */
   protected class InnerLayoutReuseOperation extends AbstractLayoutReuseOperation{

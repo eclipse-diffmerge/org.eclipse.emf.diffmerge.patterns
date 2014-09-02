@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.ui.wizards.update;
 
 import java.util.ArrayList;
@@ -32,8 +36,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * A wizard for updating an existing pattern from one of its instances.
- * @author O. CONSTANT
- * @author Skander TURKI
+ * @author Olivier Constant
+ * @author Skander Turki
  */
 public class PatternUpdateWizard extends AbstractPatternWizard<TemplatePatternUpdateSpecification> {
 
@@ -77,7 +81,8 @@ public class PatternUpdateWizard extends AbstractPatternWizard<TemplatePatternUp
     boolean result = false;
     IPatternOperationFactory factory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
-      AbstractPatternWithLayoutOperation operation = factory.instantiateUpdatePatternInCatalogOperation(getData(), getGraphicalContext());
+      AbstractPatternWithLayoutOperation<?> operation =
+          factory.instantiateUpdatePatternInCatalogOperation(getData(), getGraphicalContext());
       Object returned = CorePatternsPlugin.getDefault().getModelEnvironment().execute(
           operation);
       result = returned != null;
@@ -89,7 +94,6 @@ public class PatternUpdateWizard extends AbstractPatternWizard<TemplatePatternUp
    * 
    * @see org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard#instantiatePatternImageBuilderJob(org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard, java.util.List, boolean)
    */
-  @SuppressWarnings("unchecked")
   @Override
   protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternUpdateSpecification> wizard_p,  
       List<Object> context_p, boolean updatePattern_p){
@@ -104,7 +108,6 @@ public class PatternUpdateWizard extends AbstractPatternWizard<TemplatePatternUp
    * 
    * @see org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard#instantiatePatternImageBuilderJob(org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard, java.lang.String, boolean)
    */
-  @SuppressWarnings("unchecked")
   @Override
   protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternUpdateSpecification> wizard_p,  
       String imageSpecification_p, boolean updatePattern_p){

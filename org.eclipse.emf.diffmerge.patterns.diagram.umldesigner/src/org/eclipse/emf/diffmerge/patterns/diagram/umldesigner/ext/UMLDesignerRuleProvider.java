@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.diagram.umldesigner.ext;
 
 import java.util.ArrayList;
@@ -52,7 +56,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.window.Window;
-import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.sequence.SequenceDDiagram;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Association;
@@ -70,15 +73,15 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * A provider of business-specific UML Designer logics for consistently manipulating models.
- * @author Skander TURKI
+ * @author Skander Turki
  */
 public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider{
 
   /** Saves storage by prompt locations when "Apply for all Similar Elements" is selected */
-  Map<EClass, IReferenceLocation> _perTypeLocations;
+  private Map<EClass, IReferenceLocation> _perTypeLocations;
 
   /** Saves storage by prompt locations when "Apply for all Compatible Elements" is selected */
-  Collection<IReferenceLocation> _perdefinedLocations;
+  private Collection<IReferenceLocation> _perdefinedLocations;
 
   /** The set of references that must not be considered for dependencies */
   protected static final List<EReference> NON_DEPENDENCY_REFERENCES = 
@@ -256,7 +259,7 @@ public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider{
   public void initializeTargetScope(IFeaturedModelScope referenceScope_p,
       IFeaturedModelScope targetScope_p) {
     _libaryImportsToAdd = new ArrayList<String>();
-    Iterator it = referenceScope_p.getContents().iterator();
+    Iterator<EObject> it = referenceScope_p.getContents().iterator();
     while(it.hasNext()){
       Object current = it.next();
       if(UMLMetamodelHelper.isUMLBasicLibraryPrimitiveType(current)){
@@ -581,8 +584,9 @@ public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider{
     }else if(targetScope_p instanceof EditingDomain){
       domain = (EditingDomain)targetScope_p;
     }else if (targetScope_p instanceof Collection){
-      if(((Collection)targetScope_p).iterator().hasNext()){
-        domain = AdapterFactoryEditingDomain.getEditingDomainFor(((Collection)targetScope_p).iterator().next());
+      if(((Collection<?>)targetScope_p).iterator().hasNext()){
+        domain = AdapterFactoryEditingDomain.getEditingDomainFor(
+            ((Collection<?>)targetScope_p).iterator().next());
       }
     }else
       domain = AdapterFactoryEditingDomain.getEditingDomainFor(targetScope_p);

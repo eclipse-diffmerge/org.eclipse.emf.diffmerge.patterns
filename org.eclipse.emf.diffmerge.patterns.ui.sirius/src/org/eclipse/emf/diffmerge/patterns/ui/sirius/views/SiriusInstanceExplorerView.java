@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.ui.sirius.views;
 
 import java.util.ArrayList;
@@ -45,25 +49,25 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 
+
 /**
  * A View for exploring pattern instances.
- * @author O. CONSTANT
- * @author Skander TURKI
+ * @author Olivier Constant
+ * @author Skander Turki
  */
 public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
-
+  
   /** The view ID */
   public static String ID =
       "org.eclipse.emf.diffmerge.patterns.ui.sirius.views.siriusinstanceexplorerview"; //$NON-NLS-1$
-
+  
   /** The non-null, potentially empty, unmodifiable list of contextual GEF elements */
   protected final List<Object> _graphicalContext;
-
-
-
+  
   /** The session which are being monitored */
   protected Map<Session, ClosingSessionListener> _monitoredSessions;
-
+  
+  
   /**
    * Constructor
    */
@@ -72,7 +76,7 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
     _graphicalContext = new FOrderedSet<Object>();
     _monitoredSessions = new HashMap<Session, ClosingSessionListener>(1);
   }
-
+  
   /**
    * Returns the view's ID
    * @return a String
@@ -80,7 +84,7 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
   public static String getID(){
     return ID;
   }
-
+  
   /**
    * Build and return a selection containing all the paths to the given object or
    * the given objects if it is a collection
@@ -112,7 +116,7 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
     }
     return new TreeSelection(result.toArray(new TreePath[result.size()]));
   }
-
+  
   /**
    * Recursive helper method for buildSelectionTo
    * @param path_p a non-null, non-empty list
@@ -134,7 +138,7 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
     }
     return result;
   }
-
+  
   /**
    * Return the parents for the given object
    * @param object_p a non-null object
@@ -153,7 +157,7 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
     }
     return result;
   }
-
+  
   /**
    * Clean the viewer
    */
@@ -164,9 +168,7 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
     _referenceElement = null;
     _contextElement = null;
   }
-
-
-
+  
   /**
    * Return the diagram currently shown in the active editor, if any
    * @return a potentially null diagram
@@ -191,7 +193,7 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
     }
     return result;
   }
-
+  
   /**
    * Open the Manage Instance dialog on the selected instances
    */
@@ -204,8 +206,7 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
       dialog.open();
     }
   }
-
-
+  
   /**
    * @see org.eclipse.ui.part.WorkbenchPart#dispose()
    */
@@ -222,9 +223,7 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
     clean();
     super.dispose();
   }
-
-
-
+  
   /**
    * Return the diagram for the given object
    * @param object_p an object
@@ -235,7 +234,7 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
     EObject viewpointElement = SiriusLayersUtil.getViewpointElement(object_p);
     return SiriusUtil.getDiagram(viewpointElement);
   }
-
+  
   /**
    * Monitor the session that holds the specified element
    * @param element_p a non-null element
@@ -248,9 +247,8 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
       _monitoredSessions.put(session, listener);
     }
   }
-
+  
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.ui.viewers.AbstractInstanceExplorerView#setInput(org.eclipse.jface.viewers.ISelection)
    */
   @Override
@@ -284,7 +282,7 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
     }
     setInput(instances, initialSelection, referenceElement, graphicalContext);
   }
-
+  
   /**
    * Set the current input of this view
    * @param instances_p the non-null, potentially empty collection of instances to represent
@@ -328,7 +326,7 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
       _viewer.setSelection(newSelection, singleSelection);
     }
   }
-
+  
   /**
    * @param context_p a potentially null element
    */
@@ -340,7 +338,7 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
       _contextElement = root;
     }
   }
-
+  
   /**
    * A listener for closing sessions.
    */
@@ -391,6 +389,5 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
       }
     }
   }
-
-
+  
 }

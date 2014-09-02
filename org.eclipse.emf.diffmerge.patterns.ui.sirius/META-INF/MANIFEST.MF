@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.diffmerge.patterns.ui.sirius;singleton:=true
-Bundle-Version: 0.3.0.qualifier
+Bundle-Version: 0.4.0.qualifier
 Bundle-Activator: org.eclipse.emf.diffmerge.patterns.ui.sirius.SiriusPatternsUIPlugin
 Require-Bundle: org.eclipse.emf.diffmerge.patterns.templates.engine,
  org.eclipse.emf.diffmerge.patterns.templates.ocl,
@@ -24,5 +24,6 @@ Export-Package: org.eclipse.emf.diffmerge.patterns.ui.sirius,
  org.eclipse.emf.diffmerge.patterns.ui.sirius.factories,
  org.eclipse.emf.diffmerge.patterns.ui.sirius.misc,
  org.eclipse.emf.diffmerge.patterns.ui.sirius.util,
- org.eclipse.emf.diffmerge.patterns.ui.sirius.views
+ org.eclipse.emf.diffmerge.patterns.ui.sirius.views,
+ org.eclipse.emf.diffmerge.patterns.ui.sirius.wizards.browsing
 Bundle-Vendor: %providerName

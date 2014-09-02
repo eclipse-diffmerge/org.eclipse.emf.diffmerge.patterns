@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.emf.diffmerge.patterns.ui" id="org.eclipse.emf.diffmerge.patterns.ui.dialogAndWizardFactory" name="dialogAndWizardFactory"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         This extension points allows instantiating the proper dialogs and wizards depending on the design environment.
       </documentation>
    </annotation>
 
@@ -67,7 +67,7 @@
          <meta.section type="since"/>
       </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         0.4.0
       </documentation>
    </annotation>
 

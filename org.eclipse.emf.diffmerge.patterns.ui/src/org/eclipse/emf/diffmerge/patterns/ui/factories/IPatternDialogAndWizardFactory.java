@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.ui.factories;
 
 import java.util.List;
@@ -22,24 +26,23 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.swt.widgets.Shell;
 
+
 /**
- * A factory that will instantiate the proper dialogs and wizards depending on the design environment
- * @author Skander TURKI
- *
+ * A factory that will instantiate the proper dialogs and wizards depending on the design environment.
+ * @author Skander Turki
  */
 public interface IPatternDialogAndWizardFactory {
-
-
+  
   HighlightAllPatternsInstancesPanelDialog instantiateHighlightAllPatternsInstancesPanelDialog(
       Set<IPatternInstance> instances_p, List<Object> selection_p, Object diagram_p, 
       Shell shell_p, String dialogTitle_p, String dialogMessage_p);
-
+  
   AbstractPatternBrowsingWizard instantiatePatternBrowsingWizard(EObject context_p, TemplatePattern pattern_p);
-
+  
   AbstractPatternBrowsingWizard instantiatePatternBrowsingWizard(EObject context_p, IPatternRepository repository_p);
-
+  
   AbstractPatternBrowsingWizard instantiatePatternBrowsingWizard(Object context_p, IPatternRepository repository_p);
-
+  
   AbstractPatternBrowsingWizard instantiatePatternBrowsingWizard(ResourceSet rset_p, IPatternRepository repository_p);
-
+  
 }

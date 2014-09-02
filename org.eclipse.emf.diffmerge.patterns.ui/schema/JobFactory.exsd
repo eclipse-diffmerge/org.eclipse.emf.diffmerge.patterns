@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.emf.diffmerge.patterns.ui" id="org.eclipse.emf.diffmerge.patterns.ui.jobFactory" name="jobFactory"/>
       </appinfo>
       <documentation>
-         [Enter description of this extension point.]
+         This extension point allows instantiating jobs for certain purposes in order to enhance the user experience in specific design environments.
       </documentation>
    </annotation>
 
@@ -67,7 +67,7 @@
          <meta.section type="since"/>
       </appinfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         0.4.0
       </documentation>
    </annotation>
 

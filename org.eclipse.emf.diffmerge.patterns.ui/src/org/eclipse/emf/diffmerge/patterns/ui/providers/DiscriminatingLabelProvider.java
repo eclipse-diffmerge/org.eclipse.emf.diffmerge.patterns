@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.ui.providers;
 
 import java.util.List;
@@ -42,7 +46,7 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Templat
 /**
  * A simple label provider which, if no label can be found, provides a basic
  * label guaranteeing that label is not null and discriminating w.r.t. other elements.
- * @author O. CONSTANT
+ * @author Olivier Constant
  */
 public class DiscriminatingLabelProvider extends LabelProvider {
   

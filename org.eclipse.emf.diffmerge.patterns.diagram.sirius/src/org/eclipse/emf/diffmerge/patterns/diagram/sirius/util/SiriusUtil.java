@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.diagram.sirius.util;
 
 import java.util.Collection;
@@ -44,11 +48,9 @@ import org.eclipse.sirius.viewpoint.description.AbstractMappingImport;
 import org.eclipse.sirius.diagram.description.DescriptionPackage;
 
 
-
-
 /**
  * Utility class providing services related to Viewpoint concepts
- * @author O. CONSTANT
+ * @author Olivier Constant
  */
 @SuppressWarnings({ "deprecation", "restriction" })
 public final class SiriusUtil {

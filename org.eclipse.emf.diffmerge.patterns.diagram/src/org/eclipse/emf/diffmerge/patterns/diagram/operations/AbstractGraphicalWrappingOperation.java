@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.diagram.operations;
 
 
@@ -21,8 +25,8 @@ import org.eclipse.emf.diffmerge.patterns.diagram.Messages;
  * for graphical concerns in a certain diagram.
  * @param E the type parameter of this operation
  * @param F the type parameter of the wrapped operation
- * @author O. CONSTANT
- * @author S. TURKI
+ * @author Olivier Constant
+ * @author Skander Turki
  */
 public abstract class AbstractGraphicalWrappingOperation<T, F> 
 extends AbstractModelOperation<T> {

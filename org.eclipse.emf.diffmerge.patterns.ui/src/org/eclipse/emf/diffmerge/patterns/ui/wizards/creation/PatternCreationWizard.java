@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.ui.wizards.creation;
 
 import java.util.ArrayList;
@@ -26,10 +30,11 @@ import org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternPage;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.CompositeWizardPage;
 
+
 /**
  * A wizard for creating a new pattern.
- * @author O. CONSTANT
- * @author Skander TURKI
+ * @author Olivier Constant
+ * @author Skander Turki
  */
 public class PatternCreationWizard extends AbstractPatternWizard<TemplatePatternCreationSpecification> {
 
@@ -99,7 +104,6 @@ public class PatternCreationWizard extends AbstractPatternWizard<TemplatePattern
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard#instantiatePatternImageBuilderJob(org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard, java.util.List, boolean)
    */
-  @SuppressWarnings("unchecked")
   @Override
   protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternCreationSpecification> wizard_p,  
       List<Object> context_p, boolean updatePattern_p){
@@ -113,7 +117,6 @@ public class PatternCreationWizard extends AbstractPatternWizard<TemplatePattern
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard#instantiatePatternImageBuilderJob(org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard, java.lang.String, boolean)
    */
-  @SuppressWarnings("unchecked")
   @Override
   protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternCreationSpecification> wizard_p,  
       String imageSpecification_p, boolean updatePattern_p){

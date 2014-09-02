@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.ui.dialogs;
 
 import java.util.Arrays;
@@ -22,7 +26,7 @@ import org.eclipse.emf.diffmerge.patterns.core.api.IPatternRole;
 
 /**
  * A dialog that displays the list of roles of a given pattern.
- * @author O. CONSTANT
+ * @author Olivier Constant
  */
 public class RoleChoiceDialog extends AbstractTableChoiceDialog<IPatternRole> {
 	

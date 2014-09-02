@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.ui.dialogs;
 
 import java.util.Arrays;
@@ -66,7 +70,7 @@ import org.eclipse.swt.widgets.Shell;
 /**
  * A message dialog which prompts for OCL input
  * Copied and adapted from org.eclipse.emf.ocl.examples.interpreter.OCLConsolePage
- * @author O. CONSTANT
+ * @author Olivier Constant
  */
 public class OclInputMessageDialog extends MessageDialog {
   
@@ -457,7 +461,6 @@ public class OclInputMessageDialog extends MessageDialog {
     /**
      * @see org.eclipse.emf.ocl.examples.interpreter.console.IOCLFactory#createOCL()
      */
-    @SuppressWarnings("unchecked")
     public OCL createOCL() {
       EObject context = _context instanceof EObject? (EObject)_context: null;
       OCL result = getInterpreter().createOCL(_contextRole, context);
@@ -466,7 +469,6 @@ public class OclInputMessageDialog extends MessageDialog {
     /**
      * @see org.eclipse.emf.ocl.examples.interpreter.console.IOCLFactory#createOCL(org.eclipse.emf.ecore.resource.Resource)
      */
-    @SuppressWarnings("unchecked")
     public OCL createOCL(Resource res) {
       return null;
     }

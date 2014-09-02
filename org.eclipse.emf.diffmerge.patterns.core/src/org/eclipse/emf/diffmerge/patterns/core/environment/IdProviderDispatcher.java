@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.core.environment;
 
 import java.util.ArrayList;
@@ -25,29 +29,31 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
+
 /**
  * A provider of ID-based services. 
  * The priority is always given to the viewpoint contributed services.
- * @author S. TURKI
+ * @author Skander Turki
  */
 public class IdProviderDispatcher implements IIdProvider{
-
+  
   /** List of all contributing ID providers */
   private List<IIdProvider> _IDProviders;
-
+  
   /** IDs related to the IdProvider extension point */
   private static final String ID_PROVIDER_EXTENSION_POINT =
     "org.eclipse.emf.diffmerge.patterns.core.idProvider"; //$NON-NLS-1$
+  
   private static final String ID_PROVIDER_EXTENSION_POINT_PROPERTY = "class"; //$NON-NLS-1$
-
-
+  
+  
   /**
    * Constructor.
    */
   public IdProviderDispatcher(){
     _IDProviders = discoverRegisteredIDProviders();
   }
-
+  
   /**
    * Discover the ID providers which are registered through the dedicated
    * extension point, if any
@@ -72,7 +78,7 @@ public class IdProviderDispatcher implements IIdProvider{
     }
     return Collections.unmodifiableList(result);
   }
-
+  
   /**
    * Return a default new unique ID for a model element
    * @return a non-null string
@@ -107,7 +113,7 @@ public class IdProviderDispatcher implements IIdProvider{
     return getDefaultNewId();
   }
   
-/**
+  /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#getId(org.eclipse.emf.ecore.EObject)
    */
   public String getId(EObject element_p, EditingDomain editingDomain_p) {
@@ -131,7 +137,7 @@ public class IdProviderDispatcher implements IIdProvider{
     }
     return null;
   }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#getById(java.lang.String, java.util.Collection)
    */
@@ -152,7 +158,7 @@ public class IdProviderDispatcher implements IIdProvider{
     }
     return null;
   }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#getByIdInContext(java.lang.String, java.lang.Object)
    */
@@ -173,7 +179,7 @@ public class IdProviderDispatcher implements IIdProvider{
     }
     return null;
   }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#getByIdInResource(java.lang.String, org.eclipse.emf.ecore.EObject)
    */
@@ -193,9 +199,8 @@ public class IdProviderDispatcher implements IIdProvider{
       if(result != null) return result;
     }
     return null;
-
   }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#isApplicableTo(org.eclipse.emf.ecore.EObject)
    */
@@ -207,8 +212,7 @@ public class IdProviderDispatcher implements IIdProvider{
     }
     return false;
   }
-
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#isMainModel()
    */
@@ -216,9 +220,9 @@ public class IdProviderDispatcher implements IIdProvider{
     return false;
   }
 
- /**
-  * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#requiresNewIntrinsicID(org.eclipse.emf.ecore.EObject, java.lang.Object)
-  */
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#requiresNewIntrinsicID(org.eclipse.emf.ecore.EObject, java.lang.Object)
+   */
   public boolean requiresNewIntrinsicID(EObject element_p, Object scope_p) {
     for(IIdProvider provider : _IDProviders){
       if(provider.isApplicableTo(element_p))
@@ -226,5 +230,5 @@ public class IdProviderDispatcher implements IIdProvider{
     }
     return false;
   }
-
+  
 }

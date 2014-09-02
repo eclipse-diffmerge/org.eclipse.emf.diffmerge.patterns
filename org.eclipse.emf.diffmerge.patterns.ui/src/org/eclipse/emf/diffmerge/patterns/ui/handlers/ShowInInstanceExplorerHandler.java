@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.ui.handlers;
 
 import org.eclipse.core.commands.ExecutionEvent;
@@ -18,13 +22,13 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 
+
 /**
- * @author Mohamed Sidati
- * @author Skander TURKI
+ * @author Skander Turki
  */
 public class ShowInInstanceExplorerHandler<DiagramElementType, D extends AbstractInstanceExplorerView> 
 extends AbstractWorkbenchSelectionHandler {
-
+  
   /**
    * @see AbstractWorkbenchSelectionHandler#handleSelection(ISelection, IWorkbenchPart, ExecutionEvent)
    */
@@ -36,7 +40,8 @@ extends AbstractWorkbenchSelectionHandler {
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          ShowInInstanceExplorerViewAction action = new ShowInInstanceExplorerViewAction();
+          ShowInInstanceExplorerViewAction<?> action =
+              new ShowInInstanceExplorerViewAction<AbstractInstanceExplorerView>();
           action.setActivePart(null, part);
           action.selectionChanged(null, selection_p);
           action.run(null);
@@ -45,5 +50,5 @@ extends AbstractWorkbenchSelectionHandler {
     }
     return null;
   }
-
+  
 }

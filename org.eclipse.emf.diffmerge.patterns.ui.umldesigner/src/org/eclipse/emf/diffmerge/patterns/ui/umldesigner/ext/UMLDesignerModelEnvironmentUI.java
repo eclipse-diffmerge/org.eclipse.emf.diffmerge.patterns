@@ -1,12 +1,16 @@
 /**
- * Copyright (c) 2014 Thales Global Services S.A.S.
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
- * Thales Global Services S.A.S - initial API and implementation
+ *    Thales Global Services S.A.S. - initial API and implementation
+ * 
+ * </copyright>
  */
 package org.eclipse.emf.diffmerge.patterns.ui.umldesigner.ext;
 
@@ -21,15 +25,14 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 
 
 /**
- * A model environment UI for UMLDesigner
- * @author Skander TURKI
+ * A model environment UI for UMLDesigner.
+ * @author Skander Turki
  */
 public class UMLDesignerModelEnvironmentUI extends DefaultModelEnvironmentUI{
 
-/**
- * 
- * @see org.eclipse.emf.diffmerge.patterns.ui.environment.DefaultModelEnvironmentUI#getText(java.lang.Object)
- */
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.ui.environment.DefaultModelEnvironmentUI#getText(java.lang.Object)
+   */
   @Override
   public String getText(Object element_p) { 
     if(!(element_p instanceof EObject)){
@@ -52,6 +55,5 @@ public class UMLDesignerModelEnvironmentUI extends DefaultModelEnvironmentUI{
     }
     return result;
   }
-  
   
 }

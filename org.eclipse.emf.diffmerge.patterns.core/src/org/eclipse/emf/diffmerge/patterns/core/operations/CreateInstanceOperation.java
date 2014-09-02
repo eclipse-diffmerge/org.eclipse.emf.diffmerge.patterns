@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.core.operations;
 
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
@@ -19,9 +23,9 @@ import org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport;
 
 /**
  * A model operation that consists in creating an instance of a pattern from a
- * given application of the pattern
- * @author O. CONSTANT
- * @author Skander TURKI
+ * given application of the pattern.
+ * @author Olivier Constant
+ * @author Skander Turki
  */
 public class CreateInstanceOperation extends AbstractModelOperation<IPatternInstance> {
 

@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.support.resources;
 
 import java.util.HashMap;
@@ -23,9 +27,10 @@ import org.eclipse.emf.ecore.xmi.impl.XMISaveImpl;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Element;
 
+
 /**
  * An XMI resource that handles not yet serialized IDs of pattern elements
- * @author Skander TURKI
+ * @author Skander Turki
  */
 public class DefaultPatternsXMIResource extends XMIResourceImpl{
 
@@ -98,7 +103,7 @@ public class DefaultPatternsXMIResource extends XMIResourceImpl{
 
   /**
    * An XMI Save that handles not yet serialized IDs of pattern elements
-   * @author Skander TURKI
+   * @author Skander Turki
    *
    */
   public class PatternCatalogXMISaveImpl extends XMISaveImpl{

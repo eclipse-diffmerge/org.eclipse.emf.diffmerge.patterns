@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.support.contributions;
 
 import java.util.Collection;
@@ -27,18 +31,16 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 
-
 /**
- * A basic pattern support that handles the instances model as an independant resource having the same name and location 
- * as the model resource with a specific extension.
- * By default, we assume that the resource(s) containing the model and the resource containing the pattern instances 
- * are in the same resource set. If this is not the case, this class must be redefined. 
- * @author Skander TURKI
+ * A basic pattern support that handles the instances model as an independent resource having the same
+ * name and location as the model resource with a specific extension.
+ * By default, we assume that the resource(s) containing the model and the resource containing the
+ * pattern instances are in the same resource set. If this is not the case, this class must be extended. 
+ * @author Skander Turki
  */
 public class BasicPatternSupport extends DefaultPatternSupport{
-
+  
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.support.contributions.basic.DefaultPatternSupport#getInstanceSet(org.eclipse.emf.ecore.resource.Resource, boolean)
    */
   @Override
@@ -65,9 +67,8 @@ public class BasicPatternSupport extends DefaultPatternSupport{
     }
     return result;
   }
-
+  
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.support.contributions.basic.DefaultPatternSupport#storeOwnInstance(org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonPatternInstance, java.lang.Object)
    */
   @Override
@@ -85,9 +86,8 @@ public class BasicPatternSupport extends DefaultPatternSupport{
     }
     return false;
   }
-
+  
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.support.contributions.basic.DefaultPatternSupport#getResourceForStorage(java.lang.Object)
    */
   @Override
@@ -103,9 +103,8 @@ public class BasicPatternSupport extends DefaultPatternSupport{
     }
     return null;
   }
-
+  
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.support.contributions.basic.DefaultPatternSupport#isApplicableTo(org.eclipse.emf.ecore.EObject)
    */
   @Override
@@ -117,9 +116,8 @@ public class BasicPatternSupport extends DefaultPatternSupport{
     }
     return false;
   }
-
+  
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.support.contributions.basic.DefaultPatternSupport#isApplicableTo(org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication)
    */
   @Override
@@ -134,7 +132,7 @@ public class BasicPatternSupport extends DefaultPatternSupport{
     }
     return false;
   }
-
+  
   /**
    * By default, we assume that the resource(s) containing the model and the resource containing the pattern instances 
    * are in the same resource set. If this is not the case, this method must be redefined. 
@@ -155,18 +153,16 @@ public class BasicPatternSupport extends DefaultPatternSupport{
     }
     return null;
   }
-
+  
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport#getPatternInstanceEncodingModel(org.eclipse.emf.ecore.EObject)
    */
   public IPatternInstanceMarker getPatternInstanceEncodingModel(
       EObject context_p) {
     return getPatternInstanceEncodingModel(context_p.eResource());
   }
-
+  
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport#getPatternInstanceEncodingModel(org.eclipse.emf.ecore.resource.Resource)
    */
   public IPatternInstanceMarker getPatternInstanceEncodingModel(
@@ -177,6 +173,5 @@ public class BasicPatternSupport extends DefaultPatternSupport{
     }
     return null;
   }
-
-
+  
 }

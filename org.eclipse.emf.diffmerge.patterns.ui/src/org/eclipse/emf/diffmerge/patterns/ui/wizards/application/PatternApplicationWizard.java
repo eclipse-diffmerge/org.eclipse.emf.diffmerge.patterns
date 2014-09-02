@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.ui.wizards.application;
 
 import static org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind.DIAGRAM;
@@ -43,7 +47,7 @@ import org.eclipse.swt.graphics.Point;
 
 /**
  * A wizard for applying an existing pattern.
- * @author O. CONSTANT
+ * @author Olivier Constant
  */
 public class PatternApplicationWizard extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
 
@@ -78,7 +82,6 @@ public class PatternApplicationWizard extends AbstractPatternWizard<TemplatePatt
    * @see org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard#doPerformFinish()
    */
   @Override
-  @SuppressWarnings("unchecked")
   protected boolean doPerformFinish() {
     Map<Object, Point> elementsLocationsMap = new Hashtable<Object, Point>();
     Map<Object, Object> elementsContainersMap = new Hashtable<Object, Object>();
@@ -121,10 +124,10 @@ public class PatternApplicationWizard extends AbstractPatternWizard<TemplatePatt
           new CompoundModelOperation<IPatternInstance>(
               applyOperations.get(0).getName(), applyOperations, null,
               applyOperations.get(0).getTargetContext(), applyOperations.get(0).getSourceContext());
-      AbstractGraphicalWrappingInstanceOperation mainOperation =
+      AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>> mainOperation =
           instantiateGraphicalWrappingInstanceOperation(
               applyAllOperation, _diagramToRefresh, refreshRequest);
-      List<IPatternInstance> instances = execute(mainOperation);
+      List<? extends IPatternInstance> instances = execute(mainOperation);
       result = instances != null && !instances.isEmpty();
       // After execution of the main operation because the GMF/Doremi
       // synchronization happens in post-commit listeners
@@ -155,7 +158,6 @@ public class PatternApplicationWizard extends AbstractPatternWizard<TemplatePatt
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard#instantiatePatternImageBuilderJob(org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard, java.util.List, boolean)
    */
-  @SuppressWarnings("unchecked")
   @Override
   protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternApplicationSpecification> wizard_p,  
       List<Object> context_p, boolean updatePattern_p){
@@ -169,7 +171,6 @@ public class PatternApplicationWizard extends AbstractPatternWizard<TemplatePatt
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard#instantiatePatternImageBuilderJob(org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard, java.lang.String, boolean)
    */
-  @SuppressWarnings("unchecked")
   @Override
   protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternApplicationSpecification> wizard_p,  
       String imageSpecification_p, boolean updatePattern_p){
@@ -189,7 +190,6 @@ public class PatternApplicationWizard extends AbstractPatternWizard<TemplatePatt
       int vx_p, int vy_p, boolean updateLayout_p, boolean updateStyle_p
       ,Object modelSideContext_p)
       {
-    @SuppressWarnings("unchecked")
     IPatternOperationFactory factory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateLayoutReuseOperation(diagram_p, instance_p, initialElementsLocationsMap_p, elementsContainersMap_p, vx_p, vy_p, updateLayout_p, updateStyle_p, modelSideContext_p);
@@ -202,7 +202,6 @@ public class PatternApplicationWizard extends AbstractPatternWizard<TemplatePatt
    */
   protected  AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>> 
   instantiateGraphicalWrappingInstanceOperation(IModelOperation<List<IPatternInstance>> operation_p, Object diagram_p, RefreshRequestKind refreshRequest_p){
-    @SuppressWarnings("unchecked")
     IPatternOperationFactory factory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateGraphicalWrappingInstanceOperation(operation_p, diagram_p, refreshRequest_p, true);

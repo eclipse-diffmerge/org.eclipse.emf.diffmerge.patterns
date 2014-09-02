@@ -2,7 +2,9 @@ Manifest-Version: 1.0
 Ant-Version: Apache Ant 1.7.1
 Created-By: 16.0-b13 (Sun Microsystems Inc.)
 Export-Package: org.eclipse.emf.diffmerge.patterns.repositories.catalogs,
- org.eclipse.emf.diffmerge.patterns.repositories.catalogs.operations
+ org.eclipse.emf.diffmerge.patterns.repositories.catalogs.notification,
+ org.eclipse.emf.diffmerge.patterns.repositories.catalogs.operations,
+ org.eclipse.emf.diffmerge.patterns.repositories.catalogs.resources
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.emf.ecore,
@@ -13,7 +15,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.transaction
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.3.0.qualifier
+Bundle-Version: 0.4.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.emf.diffmerge.patterns.repositories.catalogs.PatternCatalogsPlugin

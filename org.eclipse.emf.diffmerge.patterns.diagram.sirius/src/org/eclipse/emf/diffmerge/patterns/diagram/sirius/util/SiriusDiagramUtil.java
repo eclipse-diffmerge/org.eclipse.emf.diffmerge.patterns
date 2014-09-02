@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.diagram.sirius.util;
 
 import java.io.ByteArrayOutputStream;
@@ -46,11 +50,10 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 
 
-
 /**
- * A Sirius-specific utility class for services related to diagram template types
+ * A Sirius-specific utility class for services related to diagram template types.
  * @author Olivier Constant
- * @author Skander TURKI
+ * @author Skander Turki
  */
 public class SiriusDiagramUtil extends AbstractDiagramUtil{
 
@@ -216,7 +219,7 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil{
 
   /**
    * A structure for holding node style data
-   * @author S. TURKI
+   * @author Skander Turki
    */
   public static class LocalNodeStyle {
     public int selectedNSBorderColor = -1;
@@ -229,7 +232,7 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil{
 
   /**
    * A structure for holding font style data
-   * @author S. TURKI
+   * @author Skander Turki
    */
   public static class LocalFontStyle {
     public int selectedFontColor = -1;
@@ -243,7 +246,7 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil{
 
   /**
    * A structure for holding edge style data
-   * @author S. TURKI
+   * @author Skander Turki
    */
   public static class LocalEdgeStyle {
     public int selectedLineColor = -1;

@@ -1,13 +1,17 @@
-/*******************************************************************************
- * Copyright (c) 2014 Thales Global Services S.A.S.
+/**
+ * <copyright>
+ * 
+ * Copyright (c) 2010-2014 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
+ * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Thales Global Services S.A.S. - initial API and implementation
  * 
- *  Contributors:
- * Thales Global Services S.A.S - initial API and implementation
- ******************************************************************************/
+ * </copyright>
+ */
 package org.eclipse.emf.diffmerge.patterns.ui.wizards;
 
 import java.util.Collection;
@@ -63,7 +67,7 @@ import org.eclipse.swt.widgets.MenuItem;
 
 /**
  * A wizard page for specifying the content of a template pattern and modifying it.
- * @author O. CONSTANT
+ * @author Olivier Constant
  */
 public abstract class AbstractModifiableTemplateElementsPage
 <T extends AbstractModifiableTemplatePatternSpecification>
@@ -571,7 +575,6 @@ extends AbstractTemplateElementsPage<T> {
       /**
        * @see org.eclipse.emf.diffmerge.patterns.ui.viewers.RoleBindingViewer#getText(org.eclipse.emf.ecore.EObject, java.lang.String)
        */
-      @SuppressWarnings("null")
       @Override
       protected String getText(EObject element_p, String defaultText_p) {
         String result = defaultText_p;
