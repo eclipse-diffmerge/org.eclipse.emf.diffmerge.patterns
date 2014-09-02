@@ -40,7 +40,6 @@ import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.TextViewer;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.OCLExpression;
 import org.eclipse.ocl.examples.interpreter.OCLExamplePlugin;
 import org.eclipse.ocl.examples.interpreter.console.IOCLFactory;
@@ -459,20 +458,6 @@ public class OclInputMessageDialog extends MessageDialog {
       return TargetMetamodel.Ecore;
     }
     /**
-     * @see org.eclipse.emf.ocl.examples.interpreter.console.IOCLFactory#createOCL()
-     */
-    public OCL createOCL() {
-      EObject context = _context instanceof EObject? (EObject)_context: null;
-      OCL result = getInterpreter().createOCL(_contextRole, context);
-      return result;
-    }
-    /**
-     * @see org.eclipse.emf.ocl.examples.interpreter.console.IOCLFactory#createOCL(org.eclipse.emf.ecore.resource.Resource)
-     */
-    public OCL createOCL(Resource res) {
-      return null;
-    }
-    /**
      * @see org.eclipse.emf.ocl.examples.interpreter.console.IOCLFactory#getContextClassifier(org.eclipse.emf.ecore.EObject)
      */
     public Object getContextClassifier(EObject object) {
@@ -486,12 +471,10 @@ public class OclInputMessageDialog extends MessageDialog {
     }
     public <PK, O, P, EL, PM, S, COA, SSA, CT, CLS, E> org.eclipse.ocl.OCL<PK, Object, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCL(
         ModelingLevel level) {
-      // TODO Auto-generated method stub
       return null;
     }
     public <PK, O, P, EL, PM, S, COA, SSA, CT, CLS, E> org.eclipse.ocl.OCL<PK, Object, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCL(
         ModelingLevel level, Resource res) {
-      // TODO Auto-generated method stub
       return null;
     }
 

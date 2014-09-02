@@ -326,10 +326,6 @@
                label="Show in Pattern Instance Explorer"
                style="push">
          </command>
-         <separator
-               name="com.thalesgroup.mde.melody.patterns.ui.separator14"
-               visible="true">
-         </separator>
       </menuContribution>
       
       <menuContribution
@@ -337,7 +333,6 @@
             locationURI="popup:melody.project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.HighlightAllPatternsInstances"
-               icon="/icons/full/pattern.gif"
                label="Highlight all Instances"
                style="push">
          </command>
