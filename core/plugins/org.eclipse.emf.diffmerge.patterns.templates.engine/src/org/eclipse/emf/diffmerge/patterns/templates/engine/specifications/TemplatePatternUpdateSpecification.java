@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePatternApplicationComparison;
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil.Copier;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 
 /**
@@ -81,12 +83,21 @@ public class TemplatePatternUpdateSpecification extends AbstractModifiableTempla
   
   private Resource createVirtualResource(Copier copier_p,
       EditingDomain originalPatternEditingDomain) {
-    AdapterFactoryEditingDomain ed = new AdapterFactoryEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE) , new BasicCommandStack());
+    EditingDomain ed = CorePatternsPlugin.getDefault().getModelEnvironment().getEditingDomain((EObject)null);
+    if (ed == null) { // Model environment cannot provide a default editing domain: create one
+      ed = new AdapterFactoryEditingDomain(
+          new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE) ,
+          new BasicCommandStack());
+    } else if (ed instanceof TransactionalEditingDomain) {
+      // Default editing domain is transactional: do not use it, just give up
+      ed = null;
+    }
     String resourceURI = "platform:/resource/Patterns/Temp.virtualpattern"; //$NON-NLS-1$
     //_comparisonResource = resourceSet.createResource(URI.createURI(resourceURI));
     Resource vres = new PatternVirtualResource(copier_p, originalPatternEditingDomain);
     vres.setURI(URI.createURI(resourceURI));
-    ed.getResourceSet().getResources().add(vres);
+    if (ed != null)
+      ed.getResourceSet().getResources().add(vres);
     return vres;
   }
 

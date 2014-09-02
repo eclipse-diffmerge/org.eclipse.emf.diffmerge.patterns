@@ -57,7 +57,6 @@ public class OpenCatalogAction extends AbstractContextualAction<IFile> {
       }else if(context instanceof EObject){
         domain = CorePatternsPlugin.getDefault().getModelEnvironment().getEditingDomain((EObject)context);
       }
-     
       if (domain instanceof TransactionalEditingDomain) {
         Collection<PatternRepository> repositories = new ArrayList<PatternRepository>();
         Iterator<Object> it = selection_p.iterator();
