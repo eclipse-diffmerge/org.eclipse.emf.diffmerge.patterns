@@ -14,9 +14,9 @@
  */
 package org.eclipse.emf.diffmerge.patterns.ui.wizards.application;
 
-import static org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind.DIAGRAM;
-import static org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind.INSTANCE;
-import static org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind.NONE;
+import static org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind.DIAGRAM;
+import static org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind.INSTANCE;
+import static org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind.NONE;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,11 +29,11 @@ import org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelOperation;
 import org.eclipse.emf.diffmerge.patterns.core.operations.CompoundModelOperation;
-import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
-import org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory;
-import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractFilteredGraphicalUpdateOperation;
-import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation;
-import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind;
+import org.eclipse.emf.diffmerge.patterns.diagrams.PatternCoreDiagramPlugin;
+import org.eclipse.emf.diffmerge.patterns.diagrams.factories.IPatternOperationFactory;
+import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractFilteredGraphicalUpdateOperation;
+import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGraphicalWrappingInstanceOperation;
+import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsEnginePlugin;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.operations.ApplyTemplatePatternOperation;

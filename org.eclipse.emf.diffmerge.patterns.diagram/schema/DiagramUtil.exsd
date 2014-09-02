@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.eclipse.emf.diffmerge.patterns.diagram" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.emf.diffmerge.patterns.diagrams" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.emf.diffmerge.patterns.diagram" id="org.eclipse.emf.diffmerge.patterns.diagram.diagramUtil" name="diagramUtil"/>
+         <meta.schema plugin="org.eclipse.emf.diffmerge.patterns.diagrams" id="org.eclipse.emf.diffmerge.patterns.diagrams.diagramUtil" name="diagramUtil"/>
       </appinfo>
       <documentation>
          This extension point must be contributed to from specific diagram technologies.
@@ -55,7 +55,7 @@
                   
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil:"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.emf.diffmerge.patterns.diagrams.util.AbstractDiagramUtil:"/>
                </appinfo>
             </annotation>
          </attribute>

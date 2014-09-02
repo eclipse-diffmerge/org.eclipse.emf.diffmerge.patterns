@@ -19,9 +19,9 @@ import java.util.List;
 
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
-import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
-import org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory;
-import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractPatternWithLayoutOperation;
+import org.eclipse.emf.diffmerge.patterns.diagrams.PatternCoreDiagramPlugin;
+import org.eclipse.emf.diffmerge.patterns.diagrams.factories.IPatternOperationFactory;
+import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractPatternWithLayoutOperation;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsEnginePlugin;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.AbstractBijectiveTemplatePatternSpecification;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternCreationSpecification;

@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.emf.diffmerge.patterns.diagram;singleton:=true
+Bundle-SymbolicName: org.eclipse.emf.diffmerge.patterns.diagrams;singleton:=true
 Bundle-Version: 0.4.0.qualifier
-Bundle-Activator: org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin
+Bundle-Activator: org.eclipse.emf.diffmerge.patterns.diagrams.PatternCoreDiagramPlugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface,
  org.eclipse.emf.diffmerge,
@@ -13,10 +13,10 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.diffmerge.patterns.core.gen.edit
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.emf.diffmerge.patterns.diagram,
- org.eclipse.emf.diffmerge.patterns.diagram.extensions,
- org.eclipse.emf.diffmerge.patterns.diagram.factories,
- org.eclipse.emf.diffmerge.patterns.diagram.misc,
- org.eclipse.emf.diffmerge.patterns.diagram.operations,
- org.eclipse.emf.diffmerge.patterns.diagram.util
+Export-Package: org.eclipse.emf.diffmerge.patterns.diagrams,
+ org.eclipse.emf.diffmerge.patterns.diagrams.extensions,
+ org.eclipse.emf.diffmerge.patterns.diagrams.factories,
+ org.eclipse.emf.diffmerge.patterns.diagrams.misc,
+ org.eclipse.emf.diffmerge.patterns.diagrams.operations,
+ org.eclipse.emf.diffmerge.patterns.diagrams.util
 Bundle-Vendor: %providerName

@@ -17,7 +17,7 @@ package org.eclipse.emf.diffmerge.patterns.ui.sirius.dialogs;
 import java.util.Set;
 
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
-import org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.ColorUtil;
+import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.util.ColorUtil;
 import org.eclipse.emf.diffmerge.patterns.ui.dialogs.HighlightAllPatternsInstancesPanelDialog;
 import org.eclipse.sirius.viewpoint.RGBValues;
 import org.eclipse.swt.graphics.RGB;

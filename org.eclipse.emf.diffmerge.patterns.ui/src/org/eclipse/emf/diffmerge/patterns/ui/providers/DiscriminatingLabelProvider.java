@@ -36,9 +36,9 @@ import org.eclipse.emf.diffmerge.patterns.core.api.locations.IAtomicLocation;
 import org.eclipse.emf.diffmerge.patterns.core.api.locations.IElementRelativeLocation;
 import org.eclipse.emf.diffmerge.patterns.core.api.locations.ILocation;
 import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.PatternRepository;
-import org.eclipse.emf.diffmerge.patterns.diagram.misc.UnresolvedPattern;
-import org.eclipse.emf.diffmerge.patterns.diagram.misc.UnresolvedRepository;
-import org.eclipse.emf.diffmerge.patterns.diagram.util.PatternsDiagramsUtil;
+import org.eclipse.emf.diffmerge.patterns.diagrams.misc.UnresolvedPattern;
+import org.eclipse.emf.diffmerge.patterns.diagrams.misc.UnresolvedRepository;
+import org.eclipse.emf.diffmerge.patterns.diagrams.util.PatternsDiagramsUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternData;
 

@@ -33,8 +33,8 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
-import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
+import org.eclipse.emf.diffmerge.patterns.diagrams.PatternCoreDiagramPlugin;
+import org.eclipse.emf.diffmerge.patterns.diagrams.util.AbstractDiagramUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.ITemplatePatternBasedSpecification;
 
 

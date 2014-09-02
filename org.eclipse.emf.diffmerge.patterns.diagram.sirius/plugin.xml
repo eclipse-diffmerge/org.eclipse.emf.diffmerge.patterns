@@ -20,24 +20,24 @@
    <extension
          point="org.eclipse.emf.diffmerge.patterns.core.genericTypeUtil">
       <client
-            class="org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.SiriusGenericTypeUtil">
+            class="org.eclipse.emf.diffmerge.patterns.diagrams.sirius.util.SiriusGenericTypeUtil">
       </client>
    </extension>
    
 <!-- Diagram Util implementation Extension -->
    
    <extension
-         point="org.eclipse.emf.diffmerge.patterns.diagram.diagramUtil">
+         point="org.eclipse.emf.diffmerge.patterns.diagrams.diagramUtil">
       <client
-            class="org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.SiriusDiagramUtil"></client>
+            class="org.eclipse.emf.diffmerge.patterns.diagrams.sirius.util.SiriusDiagramUtil"></client>
    </extension>
 
 <!-- Operation Factory Extension -->
 
  <extension
-                point="org.eclipse.emf.diffmerge.patterns.diagram.operationFactory">
+                point="org.eclipse.emf.diffmerge.patterns.diagrams.operationFactory">
              <client
-                   class="org.eclipse.emf.diffmerge.patterns.diagram.sirius.factories.SiriusPatternOperationFactory">
+                   class="org.eclipse.emf.diffmerge.patterns.diagrams.sirius.factories.SiriusPatternOperationFactory">
              </client>
  </extension>
 

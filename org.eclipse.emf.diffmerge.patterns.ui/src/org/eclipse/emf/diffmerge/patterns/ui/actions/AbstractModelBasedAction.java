@@ -17,8 +17,8 @@ package org.eclipse.emf.diffmerge.patterns.ui.actions;
 import java.util.Collection;
 
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
-import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
-import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
+import org.eclipse.emf.diffmerge.patterns.diagrams.PatternCoreDiagramPlugin;
+import org.eclipse.emf.diffmerge.patterns.diagrams.util.AbstractDiagramUtil;
 import org.eclipse.emf.diffmerge.patterns.ui.Messages;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;

@@ -30,7 +30,7 @@ import org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository;
 import org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport;
 import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.AbstractPattern;
 import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.PatternRepository;
-import org.eclipse.emf.diffmerge.patterns.diagram.operations.DeletePatternOperation;
+import org.eclipse.emf.diffmerge.patterns.diagrams.operations.DeletePatternOperation;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.operations.CloseCatalogOperation;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.operations.CreateCatalogOperation;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.operations.OpenCatalogOperation;

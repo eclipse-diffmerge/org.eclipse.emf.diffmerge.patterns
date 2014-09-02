@@ -16,8 +16,8 @@ package org.eclipse.emf.diffmerge.patterns.ui.sirius.misc;
 
 import java.util.List;
 
-import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
-import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
+import org.eclipse.emf.diffmerge.patterns.diagrams.PatternCoreDiagramPlugin;
+import org.eclipse.emf.diffmerge.patterns.diagrams.util.AbstractDiagramUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.ITemplatePatternBasedSpecification;
 import org.eclipse.emf.diffmerge.patterns.ui.misc.AbstractPatternImageBuilderJob;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard;

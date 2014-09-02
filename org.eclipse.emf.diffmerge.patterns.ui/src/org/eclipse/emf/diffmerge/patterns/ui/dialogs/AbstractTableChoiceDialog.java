@@ -42,9 +42,9 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.core.environment.AbstractGenericTypeUtil;
-import org.eclipse.emf.diffmerge.patterns.diagram.PatternCoreDiagramPlugin;
-import org.eclipse.emf.diffmerge.patterns.diagram.factories.IPatternOperationFactory;
-import org.eclipse.emf.diffmerge.patterns.diagram.util.AbstractDiagramUtil;
+import org.eclipse.emf.diffmerge.patterns.diagrams.PatternCoreDiagramPlugin;
+import org.eclipse.emf.diffmerge.patterns.diagrams.factories.IPatternOperationFactory;
+import org.eclipse.emf.diffmerge.patterns.diagrams.util.AbstractDiagramUtil;
 import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin;
 import org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory;
 

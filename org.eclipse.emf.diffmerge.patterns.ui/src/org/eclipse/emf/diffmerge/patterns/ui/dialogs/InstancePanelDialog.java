@@ -37,10 +37,10 @@ import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.PatternRepositor
 import org.eclipse.emf.diffmerge.patterns.core.operations.InstanceOperation;
 import org.eclipse.emf.diffmerge.patterns.core.operations.InstanceOperation.InstanceOperationKind;
 import org.eclipse.emf.diffmerge.patterns.core.util.BasicModelUpdateSpecification;
-import org.eclipse.emf.diffmerge.patterns.diagram.misc.HighlightingSpecification;
-import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractFilteredGraphicalUpdateOperation;
-import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation;
-import org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind;
+import org.eclipse.emf.diffmerge.patterns.diagrams.misc.HighlightingSpecification;
+import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractFilteredGraphicalUpdateOperation;
+import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGraphicalWrappingInstanceOperation;
+import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.operations.CloseCatalogOperation;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.NamingUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsEnginePlugin;
@@ -189,7 +189,7 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
    */
   protected AbstractGraphicalWrappingInstanceOperation<IPatternInstance> 
   instantiateGraphicalWrappingInstanceOperation(IModelOperation<? extends IPatternInstance> operation_p, Object diagram_p,
-      org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind refreshRequest_p){
+      org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind refreshRequest_p){
       return _operationFactory.instantiateGraphicalWrappingInstanceOperation(operation_p, diagram_p, refreshRequest_p);
   }
 
@@ -198,7 +198,7 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
    */
   protected AbstractGraphicalWrappingInstanceOperation<IEvaluationStatus> 
   instantiateGraphicalWrappingInstanceOperation(InstanceOperation operation_p, IPatternInstance instance_p, Object diagram_p, 
-      org.eclipse.emf.diffmerge.patterns.diagram.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind refreshRequest_p){
+      org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind refreshRequest_p){
       return _operationFactory.instantiateGraphicalWrappingInstanceOperation(operation_p, instance_p, diagram_p, refreshRequest_p);
   }
 

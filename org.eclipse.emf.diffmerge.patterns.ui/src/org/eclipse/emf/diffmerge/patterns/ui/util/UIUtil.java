@@ -42,7 +42,7 @@ import org.eclipse.emf.diffmerge.patterns.core.api.INamedElement;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository;
 import org.eclipse.emf.diffmerge.patterns.core.api.status.IEvaluationStatus;
-import org.eclipse.emf.diffmerge.patterns.diagram.util.PatternsDiagramsUtil;
+import org.eclipse.emf.diffmerge.patterns.diagrams.util.PatternsDiagramsUtil;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.PatternCatalogResourceHelper;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.ResourcesUtil;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.operations.OpenCatalogOperation;

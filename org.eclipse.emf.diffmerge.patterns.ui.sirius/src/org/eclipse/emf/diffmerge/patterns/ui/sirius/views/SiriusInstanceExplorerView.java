@@ -25,8 +25,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
-import org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.SiriusLayersUtil;
-import org.eclipse.emf.diffmerge.patterns.diagram.sirius.util.SiriusUtil;
+import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.util.SiriusLayersUtil;
+import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.util.SiriusUtil;
 import org.eclipse.emf.diffmerge.patterns.ui.dialogs.InstancePanelDialog;
 import org.eclipse.emf.diffmerge.patterns.ui.viewers.AbstractInstanceExplorerView;
 import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
