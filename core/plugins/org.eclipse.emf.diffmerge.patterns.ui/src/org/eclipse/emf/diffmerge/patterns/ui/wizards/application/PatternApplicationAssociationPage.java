@@ -28,12 +28,12 @@ import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternRole;
 import org.eclipse.emf.diffmerge.patterns.core.api.locations.IAtomicLocation;
 import org.eclipse.emf.diffmerge.patterns.core.api.locations.IElementLocation;
+import org.eclipse.emf.diffmerge.patterns.core.api.locations.IElementMappingLocation;
 import org.eclipse.emf.diffmerge.patterns.core.api.locations.ILocation;
 import org.eclipse.emf.diffmerge.patterns.core.api.locations.IReferenceLocation;
 import org.eclipse.emf.diffmerge.patterns.core.util.BasicPatternApplication;
 import org.eclipse.emf.diffmerge.patterns.core.util.LocationsUtil;
 import org.eclipse.emf.diffmerge.patterns.core.util.locations.BasicElementLocation;
-import org.eclipse.emf.diffmerge.patterns.core.util.locations.BasicElementMappingLocation;
 import org.eclipse.emf.diffmerge.patterns.core.util.locations.BasicReferenceLocation;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.NamingUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsEnginePlugin;
@@ -84,10 +84,10 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 
 
-
 /**
  * A wizard page for applying an existing pattern.
  * @author Olivier Constant
+ * @author Skander Turki
  */
 public class PatternApplicationAssociationPage 
 extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> {
@@ -474,12 +474,14 @@ extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> 
           if (templateElements.size() == 1) {
             // Unique element
             EClass mergeType = templateElements.get(0).eClass();
-            String message = String.format(Messages.PatternApplicationAssociationPage_SelectMerge, role.getName());
-            MergeTargetChoiceDialog dialog = new MergeTargetChoiceDialog(getShell(), message, (EObject) scopeElement, mergeType);
+            String message = String.format(
+                Messages.PatternApplicationAssociationPage_SelectMerge,
+                role.getName());
+            MergeTargetChoiceDialog dialog = new MergeTargetChoiceDialog(
+                getShell(), message, (EObject)scopeElement, mergeType);
             int answer = dialog.open();
-            if (Window.OK == answer) {
+            if (Window.OK == answer)
               location = dialog.getChoice();
-            }
           } else {
             // Generic role: Perform detailed merge
             final List<EObject> candidates = new FArrayList<EObject>();
@@ -488,58 +490,57 @@ extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> 
                 /**
                  * @see org.eclipse.jface.operation.IRunnableWithProgress#run(org.eclipse.core.runtime.IProgressMonitor)
                  */
-                public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
+                public void run(IProgressMonitor monitor) throws InvocationTargetException,
+                InterruptedException {
                   final Set<EClass> types = new HashSet<EClass>();
                   for (EObject templateElement : templateElements) {
                     types.add(templateElement.eClass());
                   }
-                  candidates.addAll(ModelsUtil.getAllContents(EcoreUtil.getRootContainer((EObject) scopeElement), true, new IElementFilter() {
-                    /**
-                     * @see org.eclipse.emf.diffmerge.util.ModelsUtil.IElementFilter#accepts(org.eclipse.emf.ecore.EObject)
-                     */
-                    public boolean accepts(EObject element_p) {
-                      return types.contains(element_p.eClass());
-                    }
-                  }));
+                  candidates.addAll(ModelsUtil.getAllContents(
+                      EcoreUtil.getRootContainer((EObject)scopeElement), true, new IElementFilter() {
+                        /**
+                         * @see org.eclipse.emf.diffmerge.util.ModelsUtil.IElementFilter#accepts(org.eclipse.emf.ecore.EObject)
+                         */
+                        public boolean accepts(EObject element_p) {
+                          return types.contains(element_p.eClass());
+                        }
+                      }));
                 }
               });
             } catch (Exception e) {
               // Proceed
             }
             ElementMappingDialog dialog = new ElementMappingDialog(getShell(), role, candidates);
-            if (Window.OK == dialog.open()) {
+            if (Window.OK == dialog.open())
               location = dialog.getResult();
-            }
           }
           if (location != null) {
             boolean mergeMappingExists = false;
             EObject selectedElement = null;
-            if(location instanceof BasicElementLocation){
-            	selectedElement = ((BasicElementLocation) location).getElement();
-            }else if(location instanceof BasicElementMappingLocation){
-            	Iterator<EObject> it = ((BasicElementMappingLocation) location).getModelElements().iterator();
-            	if(it.hasNext()){
-            		selectedElement = it.next();
-            	}
+            if (location instanceof IElementLocation) {
+              selectedElement = ((IElementLocation) location).getElement();
+            } else if (location instanceof IElementMappingLocation) {
+              Collection<EObject> mappedElements = ((IElementMappingLocation)location).getModelElements();
+              if (!mappedElements.isEmpty())
+                selectedElement = mappedElements.iterator().next();
             }
-            if(selectedElement != null){
-            	 List<IPatternRole> mergeRoles = new ArrayList<IPatternRole>(getData().getApplication().getRolesOf(selectedElement));
-                 mergeRoles.removeAll(getData().getApplication().getAdditionRolesOf(selectedElement));
-                 int n = mergeRoles.size();
-                 if (n > 0) {
-                   mergeMappingExists = true;
-                   MessageDialog.openInformation(getShell(), null,
-                       Messages.PatternApplicationAssociationPage_UniqueAssociationByMerge + " " + //$NON-NLS-1$
-                          mergeRoles.get(0).getName());
-                 }	
-                 if (!mergeMappingExists) {
-                     getData().getApplication().setLocation(role, location);
-                   }
-                   extendSelectedElements(location);
-                   _modelViewer.setInput(getData());
-                   getRolesViewer().refresh();
-                   getRolesViewer().setSelection(getRolesViewer().getSelection());
-                   validate();
+            if (selectedElement != null) {
+              List<IPatternRole> mergeRoles = new ArrayList<IPatternRole>(
+                  getData().getApplication().getRolesOf(selectedElement));
+              mergeRoles.removeAll(getData().getApplication().getAdditionRolesOf(selectedElement));
+              if (mergeRoles.size() > 0) {
+                mergeMappingExists = true;
+                MessageDialog.openInformation(getShell(), null,
+                    Messages.PatternApplicationAssociationPage_UniqueAssociationByMerge + " " + //$NON-NLS-1$
+                        mergeRoles.get(0).getName());
+              }	
+              if (!mergeMappingExists)
+                getData().getApplication().setLocation(role, location);
+              extendSelectedElements(location);
+              _modelViewer.setInput(getData());
+              getRolesViewer().refresh();
+              getRolesViewer().setSelection(getRolesViewer().getSelection());
+              validate();
             }
           }
         }
@@ -910,14 +911,14 @@ extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> 
    */
   protected RuleEvaluationResult deriveForMerge(TemplatePatternRole role_p) {
     RuleEvaluationResult result;
-    List<EObject> evalResult = role_p.getMergeDerivationRule().deriveCandidateElements(getData().getApplication());
+    List<EObject> evalResult = role_p.getMergeDerivationRule().deriveCandidateElements(
+        getData().getApplication());
     if (evalResult != null) {
       if (role_p.isGeneric()) {
         // Perform detailed merge
         ElementMappingDialog dialog = new ElementMappingDialog(getShell(), role_p, evalResult);
         if (Window.OK == dialog.open()) {
           getData().getApplication().setLocation(role_p, dialog.getResult());
-
           result = new RuleEvaluationResult(evalResult);
         } else {
           result = new RuleEvaluationResult(RuleEvaluationStatus.CANCEL);
@@ -945,7 +946,6 @@ extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> 
    * Create and return the controls for the "display when done" property in the given composite
    * @param parent_p a non-null composite
    * @return a non-null check box
-   * -- SKANDER
    */
   private Button createDisplayControls(Composite parent_p) {
     // Definition: "Show" button
@@ -967,7 +967,7 @@ extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> 
     layoutCheckbox.setEnabled(showInstanceAvailable);
     //
     new Label(parent_p, SWT.None);
-    // Definition: "reuse style" checkbox
+    // Definition: "Reuse style" checkbox
     final Button styleCheckbox = new Button(parent_p, SWT.CHECK);
     GridData dataStyleCheckbox = new GridData(SWT.LEFT, SWT.TOP, true, false);
     styleCheckbox.setLayoutData(dataStyleCheckbox);
@@ -1019,7 +1019,7 @@ extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> 
     });
     return result;
   }
-
+  
   /**
    * Create and return the controls for setting up the instance
    * @param parent_p a non-null composite

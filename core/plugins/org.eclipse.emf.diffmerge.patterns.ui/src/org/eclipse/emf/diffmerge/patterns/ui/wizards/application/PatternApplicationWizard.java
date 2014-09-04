@@ -48,6 +48,7 @@ import org.eclipse.swt.graphics.Point;
 /**
  * A wizard for applying an existing pattern.
  * @author Olivier Constant
+ * @author Skander Turki
  */
 public class PatternApplicationWizard extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
 

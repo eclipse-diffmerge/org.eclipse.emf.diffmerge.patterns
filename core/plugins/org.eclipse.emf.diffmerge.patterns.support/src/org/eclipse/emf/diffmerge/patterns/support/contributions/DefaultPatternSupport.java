@@ -113,10 +113,10 @@ public abstract class DefaultPatternSupport implements IPatternSupport{
       ILocation location = application_p.getLocation(role);
       setLocation(role, result, location);
     }
-    // Pattern data
-    pattern.createDataFor(result, application_p.getScopeElement());
     // Storage
     storeOwnInstance(result, application_p.getScopeElement());
+    // Pattern data
+    pattern.createDataFor(result, application_p.getScopeElement());
     return result;
   }
 

@@ -42,6 +42,7 @@ import org.eclipse.emf.ecore.EReference;
 /**
  * A modifiable specification of the application of a template pattern.
  * @author Olivier Constant
+ * @author Skander Turki
  */
 public class TemplatePatternApplicationSpecification extends AbstractMultiRoleSelection implements IMultiRoleBasedSpecification {
 
@@ -60,10 +61,8 @@ public class TemplatePatternApplicationSpecification extends AbstractMultiRoleSe
   /** Whether predefined layout data must be used if present in the pattern */
   private boolean _reuseLayout;
 
-  // SKANDER::BEGIN
   /** Whether predefined style data must be used if present in the pattern */
   private boolean _reuseStyle;
-  // SKANDER::END
 
   /** The number of instances to create */
   private int _numberOfApplications;
@@ -73,6 +72,7 @@ public class TemplatePatternApplicationSpecification extends AbstractMultiRoleSe
 
   /** The naming rule for the unfolded elements */
   private String _namingRule;
+
 
   /**
    * Constructor
@@ -176,14 +176,17 @@ public class TemplatePatternApplicationSpecification extends AbstractMultiRoleSe
         }
       } else {
         // Any compatible containment
-        EClass requirement = ModelsUtil.getCommonType(role_p.getTemplateElements());
-        ISemanticRuleProvider ruleProvider = TemplatePatternsEnginePlugin.getDefault().getSemanticRuleProviderFor(element_p);
-        List<EReference> references = ruleProvider.getReferencesForAddition(element_p, requirement, true, true);
+        EClass requirement = ModelsUtil.getCommonType(
+            role_p.getTemplateElements());
+        ISemanticRuleProvider ruleProvider =
+            TemplatePatternsEnginePlugin.getDefault().getSemanticRuleProviderFor(element_p);
+        List<EReference> references =
+            ruleProvider.getReferencesForAddition(element_p, requirement, true, true);
         if(references != null){
         	for (EReference reference : references) {
         		IReferenceLocation location = new BasicReferenceLocation(element_p, reference);
-                result.add(location);
-            }	
+        		result.add(location);
+        	}
         } 
       }
     }
@@ -196,13 +199,13 @@ public class TemplatePatternApplicationSpecification extends AbstractMultiRoleSe
    * @param element_p a non-null element
    * @return a potentially null location
    */
-  public IElementLocation getApplicableMergeLocation(TemplatePatternRole role_p, EObject element_p) {
+  public IElementLocation getApplicableMergeLocation(TemplatePatternRole role_p,
+      EObject element_p) {
     IElementLocation result = null;
     if ((role_p != null) && role_p.acceptsMerge()) {
       BasicElementLocation location = new BasicElementLocation(element_p);
-      if (role_p.checkApplicability(location, getApplication()).isOk()) {
+      if (role_p.checkApplicability(location, getApplication()).isOk())
         result = location;
-      }
     }
     return result;
   }
@@ -255,7 +258,8 @@ public class TemplatePatternApplicationSpecification extends AbstractMultiRoleSe
    * @see org.eclipse.emf.diffmerge.patterns.core.api.IUserScopeProvider#getScopeElement()
    */
   public Object getScopeElement() {
-    return getSelectedElements().isEmpty() ? getApplication().getScopeElement() : getSelectedElements().get(0);
+    return getSelectedElements().isEmpty() ? getApplication().getScopeElement():
+      getSelectedElements().get(0);
   }
 
   /**

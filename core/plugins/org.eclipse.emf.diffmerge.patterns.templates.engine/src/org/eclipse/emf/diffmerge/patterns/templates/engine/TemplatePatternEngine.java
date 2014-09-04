@@ -337,7 +337,7 @@ public class TemplatePatternEngine implements ITemplatePatternEngine {
    */
   public IModelTransformationStatus unfold(TemplatePattern pattern_p,
       IPatternInstance instance_p) {
-    BasicModelUpdateSpecification specification =  new BasicModelUpdateSpecification();
+    BasicModelUpdateSpecification specification = new BasicModelUpdateSpecification();
     ISemanticRuleProvider ruleProvider =
         TemplatePatternsEnginePlugin.getDefault().getSemanticRuleProviderFor(null);
     if (ruleProvider != null){

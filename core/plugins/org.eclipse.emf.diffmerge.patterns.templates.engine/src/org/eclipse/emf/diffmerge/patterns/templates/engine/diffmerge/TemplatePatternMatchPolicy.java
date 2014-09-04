@@ -35,21 +35,24 @@ import org.eclipse.emf.edit.domain.EditingDomain;
  */
 public class TemplatePatternMatchPolicy extends DefaultMatchPolicy {
 
-  /** The non-null application comparison */
+  /** The optional application comparison */
   private final TemplatePatternApplicationComparison _applicationComparison;
   
-  /** Editing domain of the pattern */
+  /** The optional editing domain of the pattern */
   private EditingDomain _referenceEditingDomain;
-
-  /** Editing domain of the instances */
+  
+  /** The optional editing domain of the instance */
   private EditingDomain _targetEditingDomain;
   
   /**
    * Constructor
-   * @param applicationComparison_p a non-null application comparison
+   * @param applicationComparison_p an optional application comparison
+   * @param referenceEditingDomain_p the optional editing domain of the pattern
+   * @param targetEditingDomain_p the optional editing domain of the instance
    */
   public TemplatePatternMatchPolicy(
-      TemplatePatternApplicationComparison applicationComparison_p, EditingDomain referenceEditingDomain_p, EditingDomain targetEditingDomain_p) {
+      TemplatePatternApplicationComparison applicationComparison_p,
+      EditingDomain referenceEditingDomain_p, EditingDomain targetEditingDomain_p) {
     _applicationComparison = applicationComparison_p;
     _referenceEditingDomain = referenceEditingDomain_p;
     _targetEditingDomain = targetEditingDomain_p;
@@ -73,7 +76,7 @@ public class TemplatePatternMatchPolicy extends DefaultMatchPolicy {
   @Override
   public Object getMatchID(EObject element_p, IModelScope scope_p) {
     EditingDomain currentEditingDomain = null;
-    if(EcoreUtil.getRootContainer(element_p) instanceof AbstractIdentifiedElement)
+    if (EcoreUtil.getRootContainer(element_p) instanceof AbstractIdentifiedElement)
       currentEditingDomain = _referenceEditingDomain;
     if (currentEditingDomain == null)
       currentEditingDomain = _targetEditingDomain;
