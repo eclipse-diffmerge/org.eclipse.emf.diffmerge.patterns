@@ -21,6 +21,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
+import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
+import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
+import org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport;
+import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonPatternInstance;
+import org.eclipse.emf.diffmerge.patterns.templates.engine.NamingUtil;
 import org.eclipse.emf.diffmerge.util.ModelsUtil;
 import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 import org.eclipse.emf.ecore.EAttribute;
@@ -28,14 +33,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EContentsEList.FeatureIterator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.FeatureMapUtil;
-import org.eclipse.emf.ecore.util.EContentsEList.FeatureIterator;
-import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
-import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
-import org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport;
-import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonPatternInstance;
-import org.eclipse.emf.diffmerge.patterns.templates.engine.NamingUtil;
 
 
 /**

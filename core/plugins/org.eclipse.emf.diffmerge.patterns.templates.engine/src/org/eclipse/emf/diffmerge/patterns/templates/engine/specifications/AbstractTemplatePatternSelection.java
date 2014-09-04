@@ -17,11 +17,10 @@ package org.eclipse.emf.diffmerge.patterns.templates.engine.specifications;
 import java.util.Collection;
 import java.util.HashSet;
 
-import org.eclipse.emf.diffmerge.util.ModelsUtil.IElementFilter;
-import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePatternApplicationScope;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
+import org.eclipse.emf.diffmerge.util.ModelsUtil.IElementFilter;
+import org.eclipse.emf.ecore.EObject;
 
 
 /**

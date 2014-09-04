@@ -14,9 +14,8 @@
  */
 package org.eclipse.emf.diffmerge.patterns.templates.engine.specifications;
 
-import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
+import org.eclipse.emf.ecore.EObject;
 
 
 /**

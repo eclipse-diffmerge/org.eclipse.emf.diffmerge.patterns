@@ -17,15 +17,14 @@ package org.eclipse.emf.diffmerge.patterns.templates.engine;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.diffmerge.impl.scopes.FilteredModelScope;
-import org.eclipse.emf.diffmerge.util.ModelsUtil;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.core.util.LocationsUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternData;
+import org.eclipse.emf.diffmerge.util.ModelsUtil;
+import org.eclipse.emf.ecore.EObject;
 
 
 /**

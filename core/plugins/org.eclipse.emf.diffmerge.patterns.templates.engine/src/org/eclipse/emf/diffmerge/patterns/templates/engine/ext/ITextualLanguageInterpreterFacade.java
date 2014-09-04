@@ -15,12 +15,11 @@
 package org.eclipse.emf.diffmerge.patterns.templates.engine.ext;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication;
 import org.eclipse.emf.diffmerge.patterns.core.api.status.IPatternConformityStatus;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TextualRoleConstraint;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TextualRoleDerivationRule;
+import org.eclipse.emf.ecore.EObject;
 
 
 /**

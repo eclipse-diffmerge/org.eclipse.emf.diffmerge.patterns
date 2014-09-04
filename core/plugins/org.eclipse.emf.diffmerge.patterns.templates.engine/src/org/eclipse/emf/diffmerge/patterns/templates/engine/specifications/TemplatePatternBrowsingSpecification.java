@@ -18,11 +18,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EObject;
-
+import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole;
 import org.eclipse.emf.diffmerge.util.ModelsUtil;
 import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
-import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole;
+import org.eclipse.emf.ecore.EObject;
 
 
 /**

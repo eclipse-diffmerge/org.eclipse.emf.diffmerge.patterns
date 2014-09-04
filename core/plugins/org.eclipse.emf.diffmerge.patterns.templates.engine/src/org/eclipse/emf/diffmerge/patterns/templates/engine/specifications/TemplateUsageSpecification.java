@@ -20,12 +20,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.diffmerge.impl.scopes.FilteredModelScope;
-import org.eclipse.emf.diffmerge.util.ModelsUtil;
-import org.eclipse.emf.diffmerge.util.structures.FArrayList;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternRole;
 import org.eclipse.emf.diffmerge.patterns.core.api.locations.IElementLocation;
@@ -37,6 +31,11 @@ import org.eclipse.emf.diffmerge.patterns.core.util.locations.BasicElementLocati
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.AbstractRoleDerivationRule;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole;
+import org.eclipse.emf.diffmerge.util.ModelsUtil;
+import org.eclipse.emf.diffmerge.util.structures.FArrayList;
+import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 
 /**

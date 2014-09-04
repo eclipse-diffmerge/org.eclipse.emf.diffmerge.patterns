@@ -452,30 +452,42 @@ public class OclInputMessageDialog extends MessageDialog {
       super();
     }
     /**
-     * @see org.eclipse.emf.ocl.examples.interpreter.console.IOCLFactory#getTargetMetamodel()
+     * @see org.eclipse.ocl.examples.interpreter.console.IOCLFactory#getTargetMetamodel()
      */
     public TargetMetamodel getTargetMetamodel() {
       return TargetMetamodel.Ecore;
     }
     /**
-     * @see org.eclipse.emf.ocl.examples.interpreter.console.IOCLFactory#getContextClassifier(org.eclipse.emf.ecore.EObject)
+     * @see org.eclipse.ocl.examples.interpreter.console.IOCLFactory#getContextClassifier(org.eclipse.emf.ecore.EObject)
      */
     public Object getContextClassifier(EObject object) {
       return _context instanceof EObject? ((EObject)_context).eClass(): null;
     }
     /**
-     * @see org.eclipse.emf.ocl.examples.interpreter.console.IOCLFactory#getName(java.lang.Object)
+     * @see org.eclipse.ocl.examples.interpreter.console.IOCLFactory#getName(java.lang.Object)
      */
     public String getName(Object modelElement) {
       return ((ENamedElement) modelElement).getName();
     }
+    /**
+     * @see org.eclipse.ocl.examples.interpreter.console.IOCLFactory#createOCL(org.eclipse.ocl.examples.interpreter.console.ModelingLevel)
+     */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public <PK, O, P, EL, PM, S, COA, SSA, CT, CLS, E> org.eclipse.ocl.OCL<PK, Object, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCL(
         ModelingLevel level) {
-      return null;
+      EObject context = _context instanceof EObject? (EObject)_context: null;
+      org.eclipse.ocl.OCL result = getInterpreter().createOCL(_contextRole, context);
+      return result;
     }
+    /**
+     * @see org.eclipse.ocl.examples.interpreter.console.IOCLFactory#createOCL(org.eclipse.ocl.examples.interpreter.console.ModelingLevel, org.eclipse.emf.ecore.resource.Resource)
+     */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public <PK, O, P, EL, PM, S, COA, SSA, CT, CLS, E> org.eclipse.ocl.OCL<PK, Object, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCL(
         ModelingLevel level, Resource res) {
-      return null;
+      EObject context = _context instanceof EObject? (EObject)_context: null;
+      org.eclipse.ocl.OCL result = getInterpreter().createOCL(_contextRole, context);
+      return result;
     }
 
   }

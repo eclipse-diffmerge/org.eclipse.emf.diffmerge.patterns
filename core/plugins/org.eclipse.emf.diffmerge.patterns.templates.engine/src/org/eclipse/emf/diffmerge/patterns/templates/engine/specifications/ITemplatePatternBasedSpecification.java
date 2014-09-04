@@ -16,12 +16,11 @@ package org.eclipse.emf.diffmerge.patterns.templates.engine.specifications;
 
 import java.util.Collection;
 
-import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternBasedSpecification;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole;
+import org.eclipse.emf.ecore.EObject;
 
 
 /**

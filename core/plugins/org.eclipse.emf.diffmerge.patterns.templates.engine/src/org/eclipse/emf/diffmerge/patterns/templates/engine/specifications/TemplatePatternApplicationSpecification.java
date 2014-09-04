@@ -20,12 +20,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.diffmerge.util.ModelsUtil;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication;
 import org.eclipse.emf.diffmerge.patterns.core.api.locations.IElementLocation;
 import org.eclipse.emf.diffmerge.patterns.core.api.locations.ILocation;
@@ -39,6 +33,11 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProv
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.AdditionKind;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole;
+import org.eclipse.emf.diffmerge.util.ModelsUtil;
+import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * A modifiable specification of the application of a template pattern.

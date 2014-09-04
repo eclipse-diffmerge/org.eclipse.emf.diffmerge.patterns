@@ -24,12 +24,11 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
-import org.osgi.framework.BundleContext;
-
 import org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ITextualLanguageInterpreterFacade;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.ext.SemanticRuleProvidersDispatcher;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternCreationSpecification;
+import org.osgi.framework.BundleContext;
 
  
 /**
