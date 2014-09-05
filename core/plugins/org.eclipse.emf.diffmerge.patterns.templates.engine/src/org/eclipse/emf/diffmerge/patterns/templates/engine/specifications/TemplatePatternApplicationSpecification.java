@@ -312,15 +312,12 @@ public class TemplatePatternApplicationSpecification extends AbstractMultiRoleSe
     return true;
   }
 
-
   /**
    * Return whether predefined layout data is present
-   * -- SKANDER
    */
   public boolean mayReuseLayoutAndStyle() {
     return (getPattern() != null) && !getPattern().getLayoutData().isEmpty();
   }
-
 
   /**
    * Return whether the instance must be displayed when created

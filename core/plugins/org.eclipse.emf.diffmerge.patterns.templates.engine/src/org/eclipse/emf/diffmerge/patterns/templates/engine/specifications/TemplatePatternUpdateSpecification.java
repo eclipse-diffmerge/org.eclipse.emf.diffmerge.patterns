@@ -40,9 +40,10 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 
 /**
- * A data structure which contains all useful data for updating a template pattern
+ * A data structure which contains all useful data for updating a template pattern.
  * from an existing instance.
  * @author Olivier Constant
+ * @author Skander Turki
  */
 public class TemplatePatternUpdateSpecification extends AbstractModifiableTemplatePatternSpecification {
   
@@ -55,13 +56,18 @@ public class TemplatePatternUpdateSpecification extends AbstractModifiableTempla
   /** A non-merged variant of getComparison() for differences visualization */
   private TemplatePatternApplicationComparison _visualizationComparison;
   
+  
   /**
    * Constructor
    * @param instance_p a non-null instance of the template pattern to update
    * @param referenceElement_p an optional element to use as a reference for multipart
    */
-  public TemplatePatternUpdateSpecification(IPatternInstance instance_p, EObject referenceElement_p, List<EStructuralFeature> featuresToIgnore_p) {
-    super(false, true, getDefaultScopeElement(instance_p));
+  public TemplatePatternUpdateSpecification(IPatternInstance instance_p, EObject referenceElement_p,
+      List<EStructuralFeature> featuresToIgnore_p) {
+    super(false,
+        instance_p.getPattern() instanceof TemplatePattern &&
+          !((TemplatePattern)instance_p.getPattern()).getLayoutData().isEmpty(),
+        getDefaultScopeElement(instance_p));
     _instance = instance_p;
     _ignoredFeatures = featuresToIgnore_p;
     TemplatePattern originalPattern = (TemplatePattern)instance_p.getPattern();
@@ -74,7 +80,6 @@ public class TemplatePatternUpdateSpecification extends AbstractModifiableTempla
     //Resource vres = new PatternVirtualResource(copier, originalPatternEditingDomain);
     Resource vres = createVirtualResource(copier, originalPatternEditingDomain);
     vres.getContents().add(copy);
-
     setPattern(copy);
     copy.setVersion(getNewVersion(copy));
     setRepository(originalPattern.getRepository());

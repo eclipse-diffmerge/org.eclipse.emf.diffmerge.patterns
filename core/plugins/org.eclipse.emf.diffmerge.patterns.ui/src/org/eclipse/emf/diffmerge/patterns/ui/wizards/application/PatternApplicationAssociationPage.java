@@ -964,7 +964,6 @@ extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> 
     layoutCheckbox.setEnabled(getData().mayReuseLayoutAndStyle());
     layoutCheckbox.setText(Messages.PatternApplicationAssociationPage_ReuseLayout);
     layoutCheckbox.setSelection(getData().mustReuseLayout());
-    layoutCheckbox.setEnabled(showInstanceAvailable);
     //
     new Label(parent_p, SWT.None);
     // Definition: "Reuse style" checkbox
@@ -974,7 +973,6 @@ extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> 
     styleCheckbox.setEnabled(getData().mayReuseLayoutAndStyle());
     styleCheckbox.setText(Messages.PatternApplicationAssociationPage_ReuseStyle);
     styleCheckbox.setSelection(getData().mustReuseStyle());
-    styleCheckbox.setEnabled(showInstanceAvailable);
     // Behavior
     result.addSelectionListener(new SelectionAdapter() {
       /**
