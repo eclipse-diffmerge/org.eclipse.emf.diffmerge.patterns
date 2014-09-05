@@ -48,7 +48,7 @@ public abstract class AbstractWorkbenchSelectionHandler  extends AbstractHandler
       if(window != null){
         IWorkbenchPage page = window.getActivePage();
         if(page != null){
-          activePart = page.getActiveEditor();
+          activePart = page.getActivePart();
           if (activePart != null){
             //Action called from a diagram
             IWorkbenchPartSite site = activePart.getSite();

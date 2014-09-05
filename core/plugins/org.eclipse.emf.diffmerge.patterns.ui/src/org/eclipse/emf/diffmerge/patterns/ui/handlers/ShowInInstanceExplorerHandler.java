@@ -24,6 +24,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 
 
 /**
+ * A handler for the "show in instance explorer" command.
  * @author Skander Turki
  */
 public class ShowInInstanceExplorerHandler<DiagramElementType, D extends AbstractInstanceExplorerView> 
