@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.emf.diffmerge.patterns.sdk.feature"
+      id="org.eclipse.emf.diffmerge.patterns"
       label="Patterns Generic Framework (Incubation)"
       version="0.4.0.qualifier"
       provider-name="Eclipse Modeling Project">
@@ -24,10 +24,6 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
-
-   <includes
-         id="org.eclipse.emf.diffmerge.patterns.sdk.source.feature"
-         version="0.0.0"/>
 
    <requires>
       <import plugin="org.eclipse.core.runtime"/>
