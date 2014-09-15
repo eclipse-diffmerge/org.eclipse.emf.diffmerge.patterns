@@ -149,16 +149,17 @@ public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvi
    */
   public List<EObject> getRootsForContainerRetrieval(Object context_p) {
     List<EObject> result = new FOrderedSet<EObject>();
-    if(context_p instanceof CommonPatternInstance){
+    if (context_p instanceof CommonPatternInstance) {
       IPatternSupport support = CorePatternsPlugin.getDefault().getPatternSupportFor((EObject)context_p);
       Resource modelResource = support.getModelResource((CommonPatternInstance)context_p);
       if(modelResource!= null && !modelResource.getContents().isEmpty()){
         result.add(modelResource.getContents().get(0));
       }
-    }else if (context_p instanceof EObject) 
+    } else if (context_p instanceof EObject) {
       result.add(EcoreUtil.getRootContainer((EObject)context_p));
-    else if (context_p instanceof Resource)
+    } else if (context_p instanceof Resource) {
       result.addAll(((Resource)context_p).getContents());
+    }
     return Collections.unmodifiableList(result);
   }
 

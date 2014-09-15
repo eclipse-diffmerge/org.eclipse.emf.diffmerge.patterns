@@ -114,11 +114,11 @@ public class UMLDesignerModelEnvironment implements IModelEnvironment{
         OpenCatalogOperation oop = (OpenCatalogOperation)operation_p;
         if(oop.getTargetContext() instanceof TransactionalEditingDomain)
           domain = (EditingDomain) oop.getTargetContext();
-      }else if(operation_p instanceof SiriusCreatePatternAndInstanceOperation){
+      } else if(operation_p instanceof SiriusCreatePatternAndInstanceOperation) {
         SiriusCreatePatternAndInstanceOperation sop = (SiriusCreatePatternAndInstanceOperation)operation_p;
         context = adaptContext(sop.getPatternSideContext());
-      }else{
-        AbstractModelOperation op = (AbstractModelOperation)operation_p;
+      } else {
+        AbstractModelOperation<E> op = (AbstractModelOperation<E>)operation_p;
         op.setModelEnvironment(this);
         context = adaptContext(op.getTargetContext());
       }
@@ -129,14 +129,10 @@ public class UMLDesignerModelEnvironment implements IModelEnvironment{
           domain = getEditingDomain((AbstractIdentifiedElement)context);
         else
           domain = AdapterFactoryEditingDomain.getEditingDomainFor(context);
-
-      if(domain instanceof TransactionalEditingDomain){
-
-        OperationWithResultCommand cmd = new OperationWithResultCommand(domain.getResourceSet(), operation_p);
-
+      if (domain instanceof TransactionalEditingDomain){
+        OperationWithResultCommand<E> cmd = new OperationWithResultCommand<E>(domain.getResourceSet(), operation_p);
         domain.getCommandStack().execute(cmd);
-
-        return (E) cmd.getOperationResult();
+        return cmd.getOperationResult();
       }}
     return null;
   }
@@ -160,7 +156,7 @@ public class UMLDesignerModelEnvironment implements IModelEnvironment{
         context = ((Resource)context).getContents().get(0);
     }
     if(context instanceof Collection){
-      context = ((Collection) context).iterator().next();
+      context = ((Collection<?>) context).iterator().next();
     }
     if(context instanceof EditPart){
       context = ((EditPart)context).getModel();
@@ -203,11 +199,11 @@ public class UMLDesignerModelEnvironment implements IModelEnvironment{
     if(set_p instanceof CommonPatternInstanceSet){
       CommonPatternInstanceSet set = (CommonPatternInstanceSet)set_p;
       URI modelUri = URI.createURI(set.eResource().getURI().trimFileExtension().toString() + "." + "uml"); //$NON-NLS-1$ //$NON-NLS-2$
-      IModelEnvironment env = CorePatternsPlugin.getDefault().getModelEnvironment();
-      if(env != null){
-        EditingDomain edt = env.getEditingDomain(set);
-        if(edt != null){
-          ResourceSet modelRSet = edt.getResourceSet();
+      // Instance set and user model are assumed to belong to the same resource set
+      if (set_p instanceof EObject) {
+        Resource resource = ((EObject)set_p).eResource();
+        if(resource != null){
+          ResourceSet modelRSet = resource.getResourceSet();
           if(modelRSet != null){
             for(Resource res : modelRSet.getResources()){
               if(res.getURI()!= null && res.getURI().toPlatformString(true)!= null 
@@ -247,8 +243,11 @@ public class UMLDesignerModelEnvironment implements IModelEnvironment{
       //Not found: Create a new one
 
       modelRSet.getPackageRegistry().put(CommonpatternsupportPackage.eNS_URI, CommonpatternsupportPackage.eINSTANCE);
-      AbstractModelOperation operation = new AbstractModelOperation("Create Instance Set Operation", modelRSet, false, false, true, modelRSet, modelRSet){ //$NON-NLS-1$
-
+      AbstractModelOperation<Object> operation = new AbstractModelOperation<Object>(
+          "Create Instance Set Operation", modelRSet, false, false, true, modelRSet, modelRSet){ //$NON-NLS-1$
+        /**
+         * @see org.eclipse.emf.diffmerge.patterns.core.operations.AbstractModelOperation#run()
+         */
         @Override
         protected Object run() {
           Resource resource = getResourceSet().createResource(insResURI);

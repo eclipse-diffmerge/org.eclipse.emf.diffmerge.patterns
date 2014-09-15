@@ -50,10 +50,12 @@ public class UMLDesignerDeleteCommand extends AbstractCommand{
    * @see org.eclipse.emf.common.command.Command#execute()
    */
   public void execute() {
-    try{
-      DeleteOperation op = new DeleteOperation((Collection<? extends EObject>) _selection, false, _editingDomain);
+    try {
+      @SuppressWarnings("unchecked")
+      DeleteOperation op = new DeleteOperation(
+          (Collection<? extends EObject>) _selection, false, _editingDomain);
       op.run(null);
-    }catch(Exception ex){
+    } catch(Exception ex){
       //Nothing
     }
   }

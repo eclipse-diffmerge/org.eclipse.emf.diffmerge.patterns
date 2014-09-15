@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.eclipse.emf.diffmerge.patterns_0.4.0.qualifier.jar" id="org.eclipse.emf.diffmerge.patterns" version="0.4.0.qualifier">
+      <category name="org.eclipse.emf.diffmerge.patterns.umldesigner.category"/>
+   </feature>
+   <feature url="features/org.eclipse.emf.diffmerge.patterns.sirius_0.4.0.qualifier.jar" id="org.eclipse.emf.diffmerge.patterns.sirius" version="0.4.0.qualifier">
+      <category name="org.eclipse.emf.diffmerge.patterns.umldesigner.category"/>
+   </feature>
+   <feature url="features/org.eclipse.emf.diffmerge.patterns.umldesigner.sdk.feature_0.4.0.qualifier.jar" id="org.eclipse.emf.diffmerge.patterns.umldesigner.sdk.feature" version="0.4.0.qualifier">
+      <category name="org.eclipse.emf.diffmerge.patterns.umldesigner.category"/>
+   </feature>
+   <category-def name="org.eclipse.emf.diffmerge.patterns.umldesigner.category" label="UML Designer Extension for EMF Diff/Merge Modeling Patterns (Incubation)"/>
+</site>
