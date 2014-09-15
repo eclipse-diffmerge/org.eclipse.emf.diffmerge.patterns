@@ -186,21 +186,6 @@
             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
             sequence="M2+F7">
       </key>
-      <key
-            commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.applypattern"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M1+M2+M3+L">
-      </key>
-      <key
-            commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.createpattern"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M1+M2+M3+C">
-      </key>
-      <key
-            commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.browsecatalogs"
-            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-            sequence="M1+M2+M3+B">
-      </key>
    </extension>
    
         <!-- Views Declaration -->
