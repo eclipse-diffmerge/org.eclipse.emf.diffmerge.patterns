@@ -24,12 +24,14 @@ import org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment;
 import org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelOperation;
 import org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport;
 import org.eclipse.emf.diffmerge.patterns.core.operations.AbstractModelOperation;
+import org.eclipse.emf.diffmerge.patterns.support.PatternSupportPlugin;
 import org.eclipse.emf.diffmerge.patterns.support.contributions.BasicPatternSupport;
 import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonPatternInstanceSet;
 import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonpatternsupportFactory;
 import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonpatternsupportPackage;
 import org.eclipse.emf.diffmerge.patterns.support.resources.DefaultPatternsXMIResource;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -46,9 +48,13 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
  * @author Skander Turki
  */
 public class DefaultModelEnvironment implements IModelEnvironment{
-
+  
+  /** The editing domain dedicated to pattern catalogs */
   private TransactionalEditingDomain _patternCatalogCommonEditingDomain;
-  private static String CATALOG_COMMON_EDITING_DOMAIN_ID = "Catalogs_Common_Editing_Domain"; //$NON-NLS-1$
+  
+  /** The ID suffix for the editing domain dedicated to pattern catalogs */
+  private static String CATALOG_COMMON_EDITING_DOMAIN_ID_END = "Catalogs_Common_Editing_Domain"; //$NON-NLS-1$
+  
   
   /**
    * Constructor
@@ -56,9 +62,10 @@ public class DefaultModelEnvironment implements IModelEnvironment{
   public DefaultModelEnvironment(){
     ResourceSet rset = new ResourceSetImpl();
     _patternCatalogCommonEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(rset);
-    _patternCatalogCommonEditingDomain.setID(CATALOG_COMMON_EDITING_DOMAIN_ID);
+    String edID = PatternSupportPlugin.getDefault().getPluginId() + '.' + CATALOG_COMMON_EDITING_DOMAIN_ID_END;
+    _patternCatalogCommonEditingDomain.setID(edID);
   }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#abortOperation()
    */
@@ -75,7 +82,7 @@ public class DefaultModelEnvironment implements IModelEnvironment{
     ModelAccessJob job = new ModelAccessJob(operation_p);
     job.schedule();
   }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#execute(org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelOperation)
    */
@@ -84,28 +91,28 @@ public class DefaultModelEnvironment implements IModelEnvironment{
       ((AbstractModelOperation<?>)operation_p).setModelEnvironment(this);
     return operation_p.run(null);
   }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getEditingDomain(org.eclipse.emf.ecore.EObject)
    */
   public EditingDomain getEditingDomain(EObject context_p) {
     return AdapterFactoryEditingDomain.getEditingDomainFor(context_p);
   }
-  
-/**
- * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getEditingDomain(org.eclipse.emf.ecore.EObject)
- */
+
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getEditingDomain(org.eclipse.emf.ecore.EObject)
+   */
   public EditingDomain getEditingDomain(IFile context_p) {
     return AdapterFactoryEditingDomain.getEditingDomainFor(context_p);
   }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getInverseCrossReferencer(org.eclipse.emf.ecore.EObject)
    */
   public ECrossReferenceAdapter getInverseCrossReferencer(EObject element_p) {
     return null;
   }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#isModelResource(org.eclipse.emf.ecore.resource.Resource)
    */
@@ -114,11 +121,11 @@ public class DefaultModelEnvironment implements IModelEnvironment{
     URI uri = resource_p.getURI();
     if (uri != null) {
       String extension = uri.fileExtension();
-      result = !"ecore".equals(extension); //$NON-NLS-1$
+      result = !EcorePackage.eNAME.equals(extension); //$NON-NLS-1$
     }
     return result;
   }
-
+  
   /**
    * 
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#isModelElement(java.lang.Object)
@@ -126,7 +133,7 @@ public class DefaultModelEnvironment implements IModelEnvironment{
   public boolean isModelElement(Object object_p) {
     return object_p instanceof EObject;
   }
-
+  
   /**
    * By default, the first resource that has the same name as the pattern instances resource 
    * with different file extensions, is returned, in the same resourceSet.
@@ -147,7 +154,7 @@ public class DefaultModelEnvironment implements IModelEnvironment{
     }
     return null;
   }
-
+  
   /**
    * 
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getOrCreateInstanceSetForModelResource(org.eclipse.emf.ecore.resource.Resource)
@@ -182,21 +189,14 @@ public class DefaultModelEnvironment implements IModelEnvironment{
     }
     return null;
   }
-
-  /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getOverridenClasses()
-   */
-  public Collection<? extends Class<?>> getOverridenClasses() {
-    return new ArrayList<Class<?>>();
-  }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#createPatternCatalogResource(org.eclipse.emf.common.util.URI)
    */
   public Resource createPatternCatalogResource(URI uri) {
     return new DefaultPatternsXMIResource(uri);
   }
-
+  
   /**
    * 
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#isAppropriatePatternSupport(org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport)
@@ -204,7 +204,7 @@ public class DefaultModelEnvironment implements IModelEnvironment{
   public boolean isAppropriatePatternSupport(IPatternSupport o) {
     return o instanceof BasicPatternSupport;
   }
-
+  
   /**
    * 
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getCommonCatalogEditingDomain()
@@ -212,4 +212,12 @@ public class DefaultModelEnvironment implements IModelEnvironment{
   public TransactionalEditingDomain getCommonCatalogEditingDomain(){
     return _patternCatalogCommonEditingDomain; 
   }
+  
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getOverridenClasses()
+   */
+  public Collection<? extends Class<?>> getOverridenClasses() {
+    return new ArrayList<Class<?>>();
+  }
+  
 }

@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.CorepatternsFactory;
 import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.PatternRepository;
+import org.eclipse.emf.diffmerge.patterns.core.util.ResourcesUtil;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.notification.CatalogResourceChangeHandler;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;

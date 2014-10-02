@@ -14,29 +14,35 @@
  */
 package org.eclipse.emf.diffmerge.patterns.support;
 
-import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
 
 /**
- * The activator class controls the plug-in life cycle.
+ * The activator class for this plug-in.
  * @author Olivier Constant
  */
-public class Activator extends AbstractUIPlugin {
+public class PatternSupportPlugin extends Plugin {
   
-	/** The plug-in ID */
-	public static final String PLUGIN_ID = "org.eclipse.emf.diffmerge.patterns.support"; //$NON-NLS-1$
-	
 	/** The shared instance */
-	private static Activator plugin;
+	private static PatternSupportPlugin plugin;
 	
 	
 	/**
 	 * The constructor
 	 */
-	public Activator() {
+	public PatternSupportPlugin() {
+	  // Nothing to add
 	}
 	
+  /**
+   * Return the ID of this plug-in according to MANIFEST.MF
+   * @return a non-null string
+   */
+  public String getPluginId() {
+    return getBundle().getSymbolicName();
+  }
+  
 	/**
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
@@ -59,7 +65,7 @@ public class Activator extends AbstractUIPlugin {
 	 * Return the shared instance
 	 * @return the shared instance
 	 */
-	public static Activator getDefault() {
+	public static PatternSupportPlugin getDefault() {
 		return plugin;
 	}
 	

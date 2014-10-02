@@ -12,7 +12,7 @@
  * 
  * </copyright>
  */
-package org.eclipse.emf.diffmerge.patterns.repositories.catalogs;
+package org.eclipse.emf.diffmerge.patterns.core.util;
 
 import java.io.IOException;
 import java.util.HashMap;

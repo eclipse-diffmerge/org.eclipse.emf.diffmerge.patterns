@@ -78,10 +78,10 @@ import org.eclipse.uml2.uml.UMLPackage;
 public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider{
 
   /** Saves storage by prompt locations when "Apply for all Similar Elements" is selected */
-  private Map<EClass, IReferenceLocation> _perTypeLocations;
+  private final Map<EClass, IReferenceLocation> _perTypeLocations;
 
   /** Saves storage by prompt locations when "Apply for all Compatible Elements" is selected */
-  private Collection<IReferenceLocation> _perdefinedLocations;
+  private final Collection<IReferenceLocation> _predefinedLocations;
 
   /** The set of references that must not be considered for dependencies */
   protected static final List<EReference> NON_DEPENDENCY_REFERENCES = 
@@ -95,7 +95,8 @@ public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider{
    * Constructor
    */
   public UMLDesignerRuleProvider(){
-    super();
+    _perTypeLocations = new HashMap<EClass, IReferenceLocation>();
+    _predefinedLocations = new HashSet<IReferenceLocation>(); 
   }
 
   /**
@@ -303,41 +304,33 @@ public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider{
   /**
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#enforceOwnership(java.util.Collection, java.lang.Object)
    */
-  public boolean enforceOwnership(Collection<? extends EObject> roots_p,
+  public Boolean enforceOwnership(Collection<? extends EObject> roots_p,
       Object context_p) {
     EList<EObject> derivables = new FOrderedSet<EObject>();
-    if(_perTypeLocations == null){
-      _perTypeLocations = new HashMap<EClass, IReferenceLocation>();
-    }
-    if(_perdefinedLocations == null){
-      _perdefinedLocations = new HashSet<IReferenceLocation>();
-    }
-
     // Prompt for ownership of non-derivables, remember derivables
     for (EObject root : roots_p) {
       if (root.eContainer() == null) {
         if (ownershipMightBeDerived(root))
           derivables.add(root);
         else {
-          boolean success = enforceOwnershipByPrompt(
-              root, context_p, true, _perTypeLocations, _perdefinedLocations);
-          if (!success) return false;
+          Boolean success = enforceOwnershipByPrompt(
+              root, context_p, true, _perTypeLocations, _predefinedLocations);
+          if (!Boolean.TRUE.equals(success)) return success;
         }
       }
     }
-
     // Try and derive ownerships
     for (EObject derivable : derivables) {
       boolean derived = deriveOwnership(derivable, context_p);
       if (!derived) {
-        boolean success = enforceOwnershipByPrompt(
-            derivable, context_p, true, _perTypeLocations, _perdefinedLocations);
-        if (!success) return false;
+        Boolean success = enforceOwnershipByPrompt(
+            derivable, context_p, true, _perTypeLocations, _predefinedLocations);
+        if (!Boolean.TRUE.equals(success)) return success;
       }
     }
-    return true;
+    return Boolean.TRUE;
   }
-
+  
   /**
    * Enforce ownership of the given element by prompting the user or using former prompts
    * @param element_p a non-null element
@@ -345,12 +338,12 @@ public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider{
    * @param allowCancel_p whether cancellation by the user is allowed
    * @param perTypeLocations_p a non-null, modifiable map that registers reference locations for given types
    * @param predefinedLocations_p a non-null, modifiable collection of reference locations to be tried
-   * @return whether the operation succeeded
+   * @return whether the operation succeeded, or null for canceled
    */
-  private boolean enforceOwnershipByPrompt(EObject element_p, Object context_p, boolean allowCancel_p,
+  private Boolean enforceOwnershipByPrompt(EObject element_p, Object context_p, boolean allowCancel_p,
       Map<EClass, IReferenceLocation> perTypeLocations_p,
       Collection<IReferenceLocation> predefinedLocations_p) {
-    boolean result = true;
+    Boolean result = Boolean.TRUE;
     boolean done = false;
     // Trying predefined per-type locations
     IReferenceLocation registeredLocation = perTypeLocations_p.get(element_p.eClass());
@@ -409,14 +402,13 @@ public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider{
         }
       } else {
         // Canceled
-        done = allowCancel_p;
-        if (done) result = false;
+        if (allowCancel_p)
+          return null;
       }
     }
     return result;
   }
-
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ModellerSemanticRuleProvider#ownershipMightBeDerived(org.eclipse.emf.ecore.EObject)
    */
@@ -620,8 +612,8 @@ public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider{
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#reset()
    */
   public void reset() {
-    _perTypeLocations = new HashMap<EClass, IReferenceLocation>();
-    _perdefinedLocations = new HashSet<IReferenceLocation>(); 
+    _perTypeLocations.clear();
+    _predefinedLocations.clear(); 
   }
 
   /**

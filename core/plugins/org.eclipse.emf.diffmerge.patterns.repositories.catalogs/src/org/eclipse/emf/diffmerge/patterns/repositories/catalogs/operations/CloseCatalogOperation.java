@@ -18,10 +18,10 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.PatternRepository;
 import org.eclipse.emf.diffmerge.patterns.core.operations.AbstractModelOperation;
+import org.eclipse.emf.diffmerge.patterns.core.util.ResourcesUtil;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.Messages;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.PatternCatalogAccessor;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.PatternCatalogsPlugin;
-import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.ResourcesUtil;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 

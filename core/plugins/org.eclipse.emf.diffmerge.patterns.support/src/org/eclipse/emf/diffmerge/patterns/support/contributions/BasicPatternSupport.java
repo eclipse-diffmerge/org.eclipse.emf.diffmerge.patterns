@@ -22,10 +22,11 @@ import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstanceMarker;
 import org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment;
 import org.eclipse.emf.diffmerge.patterns.core.api.locations.IAtomicLocation;
 import org.eclipse.emf.diffmerge.patterns.core.api.locations.IElementRelativeLocation;
-import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.ResourcesUtil;
+import org.eclipse.emf.diffmerge.patterns.core.util.ResourcesUtil;
 import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonPatternInstanceSet;
 import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonpatternsupportFactory;
+import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonpatternsupportPackage;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -38,7 +39,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * pattern instances are in the same resource set. If this is not the case, this class must be extended. 
  * @author Skander Turki
  */
-public class BasicPatternSupport extends DefaultPatternSupport{
+public class BasicPatternSupport extends DefaultPatternSupport {
   
   /**
    * @see org.eclipse.emf.diffmerge.patterns.support.contributions.basic.DefaultPatternSupport#getInstanceSet(org.eclipse.emf.ecore.resource.Resource, boolean)
@@ -48,7 +49,7 @@ public class BasicPatternSupport extends DefaultPatternSupport{
       boolean createIfAbsent_p) {
     CommonPatternInstanceSet result = null;
     if(resource_p != null){
-      if(resource_p.getURI().fileExtension().equals("patterninstances")){ //$NON-NLS-1$
+      if(resource_p.getURI().fileExtension().equals(CommonpatternsupportPackage.eNAME)){ //$NON-NLS-1$
         if(resource_p.getContents().isEmpty()){
           CommonPatternInstanceSet set = CommonpatternsupportFactory.eINSTANCE.createCommonPatternInstanceSet();
           resource_p.getContents().add(set);
@@ -76,12 +77,6 @@ public class BasicPatternSupport extends DefaultPatternSupport{
     CommonPatternInstanceSet instanceSet = getCreateInstanceSet(context_p);
     if (instanceSet != null) {
       instanceSet.getOwnedInstances().add(instance_p);
-//      try {
-//        instanceSet.eResource().save(null);
-//      } catch (IOException e) {
-//        e.printStackTrace();
-//        return false;
-//      }
       return true;
     }
     return false;

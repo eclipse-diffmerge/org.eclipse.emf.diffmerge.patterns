@@ -203,37 +203,34 @@ public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider{
   /**
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#enforceOwnership(java.util.Collection, java.lang.Object)
    */
-  public boolean enforceOwnership(Collection<? extends EObject> roots_p, Object context_p) {
+  public Boolean enforceOwnership(Collection<? extends EObject> roots_p, Object context_p) {
     Collection<EObject> enforcedRoots = new ArrayList<EObject>();
     ISemanticRuleProvider mainProvider = null;
-    for(EObject root : roots_p){
-      boolean singleRootResult = false;
+    for(EObject root : roots_p) {
+      Boolean rootSuccess = Boolean.FALSE;
       Collection<EObject> singleton = new ArrayList<EObject>();
       singleton.add(root);
-      for(ISemanticRuleProvider provider : _semanticRuleProviders){
-        if(provider.isMainModel()){
+      for (ISemanticRuleProvider provider : _semanticRuleProviders) {
+        if (provider.isMainModel()) {
           mainProvider = provider;
-        }else{
-          if(provider.isApplicableTo(root)){
-            singleRootResult = provider.enforceOwnership(singleton, context_p);
-          }
+        } else {
+          if (provider.isApplicableTo(root))
+            rootSuccess = provider.enforceOwnership(singleton, context_p);
+          if (rootSuccess != null && rootSuccess.booleanValue())
+            break;
         }
       }
-      if(mainProvider != null){
-        if (singleRootResult == false)
-          if(mainProvider.isApplicableTo(root)){
-            singleRootResult = mainProvider.enforceOwnership(singleton, context_p);
-          }
+      if (mainProvider != null && rootSuccess != null && !rootSuccess.booleanValue() &&
+          mainProvider.isApplicableTo(root)) {
+        rootSuccess = mainProvider.enforceOwnership(singleton, context_p);
+        if (rootSuccess == null)
+          return null; // Canceled
       }
-      if (singleRootResult == true)
+      if (rootSuccess != null && rootSuccess.booleanValue())
         enforcedRoots.add(root);
     }
-    if(enforcedRoots.size() == roots_p.size()){
-      return true;
-    }	
-    return false;
+    return Boolean.valueOf(enforcedRoots.size() == roots_p.size());
   }
-
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#getRootsForPatternInclusion(org.eclipse.emf.ecore.EObject)
@@ -402,11 +399,10 @@ public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider{
   }
 
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#reset()
    */
   public void reset() {
-    for(ISemanticRuleProvider provider : _semanticRuleProviders){
+    for (ISemanticRuleProvider provider : _semanticRuleProviders){
       provider.reset();
     }
   }

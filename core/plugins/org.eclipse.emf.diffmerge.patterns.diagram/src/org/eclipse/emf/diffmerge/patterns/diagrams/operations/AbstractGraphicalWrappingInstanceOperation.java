@@ -111,6 +111,7 @@ public abstract class AbstractGraphicalWrappingInstanceOperation<F> extends Abst
       if (getWrappedOperation() instanceof AbstractModelOperation<?>)        
         ((AbstractModelOperation<?>)getWrappedOperation()).setModelEnvironment(getModelEnvironment());
       result = getWrappedOperation().run(getMonitor());
+      semanticRuleProvider.reset();
     }
     if (_instances.isEmpty()) {
       if (result instanceof IPatternInstance) {
@@ -122,7 +123,6 @@ public abstract class AbstractGraphicalWrappingInstanceOperation<F> extends Abst
         }
       }
     }
-    List<EObject> roots = Collections.emptyList();
     if ((result != null || getWrappedOperation() == null) && getDiagram() != null) {
       switch(_refreshRequest) {
       case DIAGRAM:
@@ -132,7 +132,7 @@ public abstract class AbstractGraphicalWrappingInstanceOperation<F> extends Abst
         IPatternOperationFactory factory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
         if(factory != null){
           for (IPatternInstance instance : _instances) {
-            roots = TemplatePatternsUtil.getApplicationRoots(instance);
+            List<EObject> roots = TemplatePatternsUtil.getApplicationRoots(instance);
             AbstractDisplayOperation displayOperation = factory.instantiateDisplayOperation(roots, getDiagram(), true);
             _createdDiagramElements.addAll(call(displayOperation));
           }

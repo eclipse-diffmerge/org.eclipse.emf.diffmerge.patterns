@@ -17,9 +17,9 @@ package org.eclipse.emf.diffmerge.patterns.diagrams.util;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.diffmerge.patterns.core.util.ResourcesUtil;
 import org.eclipse.emf.diffmerge.patterns.diagrams.Messages;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.PatternCatalogResourceHelper;
-import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.ResourcesUtil;
 import org.eclipse.emf.ecore.resource.Resource;
 
 /**

@@ -52,7 +52,7 @@ import org.eclipse.emf.diffmerge.patterns.core.util.LocationsUtil;
  * @author Olivier Constant
  * @author Skander Turki
  */
-public abstract class DefaultPatternSupport implements IPatternSupport{
+public abstract class DefaultPatternSupport implements IPatternSupport {
 
   /**
    * Return the instance set in which instances would be stored in the given resource,

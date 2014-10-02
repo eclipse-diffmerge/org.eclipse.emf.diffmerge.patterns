@@ -108,9 +108,8 @@ public interface IModelEnvironment {
   Resource getModelResourceFromInstanceSet(IPatternInstanceMarker set_p);
 
   /**
-   * Returns, from the given resource, the IPatternInstanceMarker which is the pattern instances encoder for the given Resource.
-   * If the encoder is not found, a new one is created.
-   * NOTE: Only used 
+   * Returns, from the given resource, the IPatternInstanceMarker which is the pattern instances
+   * encoder for the given Resource. If the encoder is not found, a new one is created.
    * @param resource_p a non-null Resource, should be the model resource
    * @return a potentially-null IPatternInstanceMarker
    */

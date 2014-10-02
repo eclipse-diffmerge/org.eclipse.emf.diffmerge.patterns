@@ -3,13 +3,11 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.diffmerge.patterns.support;singleton:=true
 Bundle-Version: 0.4.0.qualifier
-Bundle-Activator: org.eclipse.emf.diffmerge.patterns.support.Activator
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
+Bundle-Activator: org.eclipse.emf.diffmerge.patterns.support.PatternSupportPlugin
+Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.diffmerge.patterns.support.gen,
  org.eclipse.emf.edit,
  org.eclipse.emf.ecore.xmi,
- org.eclipse.emf.diffmerge.patterns.repositories.catalogs,
  org.eclipse.core.resources,
  org.eclipse.emf.transaction
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

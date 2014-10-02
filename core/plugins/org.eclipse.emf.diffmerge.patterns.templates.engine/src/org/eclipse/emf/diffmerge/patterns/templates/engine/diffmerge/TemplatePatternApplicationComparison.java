@@ -430,7 +430,8 @@ public class TemplatePatternApplicationComparison extends TemplatePatternCompari
           Object context = _application.getScopeElement();
           ISemanticRuleProvider semanticRuleProvider =
               TemplatePatternsEnginePlugin.getDefault().getSemanticRuleProviderFor(context);
-          result = semanticRuleProvider.enforceOwnership(unstored, context);
+          Boolean enforcementResult = semanticRuleProvider.enforceOwnership(unstored, context);
+          result = enforcementResult != null && enforcementResult.booleanValue();
         }
         if (result) {
           String suffix = getMultipartSuffix();

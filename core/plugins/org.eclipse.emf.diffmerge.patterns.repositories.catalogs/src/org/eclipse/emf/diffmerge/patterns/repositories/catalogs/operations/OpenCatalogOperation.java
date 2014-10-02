@@ -34,9 +34,9 @@ import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.PatternRepositor
 import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.PatternSymbol;
 import org.eclipse.emf.diffmerge.patterns.core.operations.AbstractModelOperation;
 import org.eclipse.emf.diffmerge.patterns.core.util.ModelsUtil;
+import org.eclipse.emf.diffmerge.patterns.core.util.ResourcesUtil;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.Messages;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.PatternCatalogsPlugin;
-import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.ResourcesUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
