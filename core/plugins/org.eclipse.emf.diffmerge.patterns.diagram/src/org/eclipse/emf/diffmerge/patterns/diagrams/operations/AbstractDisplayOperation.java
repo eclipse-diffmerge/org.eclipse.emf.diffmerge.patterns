@@ -33,20 +33,20 @@ import org.eclipse.emf.ecore.EObject;
  */
 public abstract class AbstractDisplayOperation 
 extends AbstractModelOperation<Collection<Object>> {
-
+  
   /** The non-null set of roots of the elements to display */
-  private final Collection<EObject> _semanticRoots;
-
+  protected final Collection<EObject> _semanticRoots;
+  
   /** The non-null diagram in which to display the instance */
-  private Object _diagram;
-
-
+  protected Object _diagram;
+  
+  
   /** Whether the diagram must be finally refreshed (required for displaying edges) */
   private final boolean _refresh;
-
+  
   /** The non-null set of graphical nodes created */
   private final Collection<Object> _output;
-
+  
   /**
    * Constructor
    * @param semanticElements_p the elements to represent in diagram_p, their containment trees included
@@ -63,12 +63,12 @@ extends AbstractModelOperation<Collection<Object>> {
     _refresh = refresh_p;
     _output = new FOrderedSet<Object>();
   }
-
+  
   /**
    * Refreshes diagram
    */
   protected abstract void refreshDiagram();
-
+  
   /**
    * Convert a parametric collection to another one by filtering out all
    * elements which do not conform to the given type
@@ -84,7 +84,7 @@ extends AbstractModelOperation<Collection<Object>> {
     }
     return result;
   }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.operations.AbstractModelOperation#run()
    */
@@ -95,27 +95,12 @@ extends AbstractModelOperation<Collection<Object>> {
       refreshDiagram();
     return Collections.unmodifiableCollection(_output);
   }
-
+  
   /**
    * Update the diagram by creating graphical elements
    * @param diagram_p a non-null diagram
    * @return a non-null, potentially empty, unmodifiable set of the nodes created
    */
   protected abstract Collection<Object> updateDiagram(Object diagram_p);
-
-  /**
-   * Getter
-   */
-  protected Object get_diagram() {
-    return _diagram;
-  }
-
-  /**
-   * Getter
-   */
-  public Collection<EObject> get_semanticRoots() {
-    return _semanticRoots;
-  }
-
-
+  
 }

@@ -56,6 +56,7 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation{
   /** The non-null behaviour for pinning graphical elements */
   private final PinHelper _pinHelper;
   
+  
   /**
    * Constructor
    * @param semanticElements_p
@@ -68,10 +69,8 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation{
     super(semanticElements_p, diagram_p, refresh_p);
     _pinHelper = new PinHelper();
   }
-
-
+  
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractDisplayOperation#updateDiagram(java.lang.Object)
    */
   @Override
@@ -80,53 +79,56 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation{
       DDiagram diagram_p = (DDiagram)objectDiagram_p;
       // Initialization: find existing nodes
       List<EObject> rootsAndContainers = new FOrderedSet<EObject>();
-      rootsAndContainers.addAll(get_semanticRoots());
+      rootsAndContainers.addAll(_semanticRoots);
       ISiriusSemanticMapping sMapping = null;
       ISemanticMapping<?> mapping =
           PatternCoreDiagramPlugin.getDefault().getSemanticMapping();
       if(mapping instanceof ISiriusSemanticMapping){
         sMapping = (ISiriusSemanticMapping)mapping;
       }
-      for (EObject root : get_semanticRoots()) {
+      for (EObject root : _semanticRoots) {
         Collection<EObject> candidates =
             sMapping.getSemanticCandidatesForGraphicalStorage(root, diagram_p);
         rootsAndContainers.addAll(candidates);
       }
       EMap<EObject, DSemanticDecorator> rootsToNodes =
-          getExistingDecorators(rootsAndContainers, (DDiagram)get_diagram());
+          getExistingDecorators(rootsAndContainers, (DDiagram)_diagram);
+      LinkedList<DContainer> containers = new LinkedList<DContainer>(
+          filter(rootsToNodes.values(), DContainer.class));
       Collection<EObject> remainingElements =
-          ModelsUtil.getAllContents(get_semanticRoots(), false, null);
+          ModelsUtil.getAllContents(_semanticRoots, false, null);
       remainingElements.removeAll(rootsToNodes.keySet());
       // Ignore semantic elements which are visible in the diagram
       Collection<EObject> remainingElementsCopy =
           new FOrderedSet<EObject>(remainingElements);
       for (EObject remainingElement : remainingElementsCopy) {
-        if (!getNodesInDiagram(remainingElement, diagram_p).isEmpty())
+        Collection<AbstractDNode> nodes = getNodesInDiagram(remainingElement, diagram_p);
+        if (!nodes.isEmpty()) {
           remainingElements.remove(remainingElement);
+          for (AbstractDNode node : nodes) {
+            if (node instanceof DNodeContainer)
+              containers.add((DNodeContainer)node);
+          }
+        }
       }
       // Phase 1: use existing nodes
-      LinkedList<DContainer> containers = new LinkedList<DContainer>(
-          filter(rootsToNodes.values(), DContainer.class));
       Collection<Object> createdNodes =
           new FOrderedSet<Object>();
       showAllInContainers(containers, remainingElements, createdNodes);
       // Phase 2: start from diagram if relevant
-      if (!rootsToNodes.values().contains(get_diagram()))
+      if (!rootsToNodes.values().contains(_diagram))
         showAllInContainer(diagram_p, remainingElements, createdNodes);
       return Collections.unmodifiableCollection(createdNodes); 
     }
    return Collections.emptyList();
   }
-
-
-
+  
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractDisplayOperation#refreshDiagram()
    */
   @Override
   protected void refreshDiagram() {
-    SiriusUtil.refreshDiagram((DDiagram)get_diagram()); // For displaying arcs
+    SiriusUtil.refreshDiagram((DDiagram)_diagram); // For displaying arcs
   }
   
   /**
