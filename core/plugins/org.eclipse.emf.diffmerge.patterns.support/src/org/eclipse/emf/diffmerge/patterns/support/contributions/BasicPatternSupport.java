@@ -49,7 +49,7 @@ public class BasicPatternSupport extends DefaultPatternSupport {
       boolean createIfAbsent_p) {
     CommonPatternInstanceSet result = null;
     if(resource_p != null){
-      if(resource_p.getURI().fileExtension().equals(CommonpatternsupportPackage.eNAME)){ //$NON-NLS-1$
+      if(resource_p.getURI().fileExtension().equals(CommonpatternsupportPackage.eNAME)){
         if(resource_p.getContents().isEmpty()){
           CommonPatternInstanceSet set = CommonpatternsupportFactory.eINSTANCE.createCommonPatternInstanceSet();
           resource_p.getContents().add(set);

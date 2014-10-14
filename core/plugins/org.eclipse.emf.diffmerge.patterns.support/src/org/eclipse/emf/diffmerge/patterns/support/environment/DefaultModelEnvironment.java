@@ -121,7 +121,7 @@ public class DefaultModelEnvironment implements IModelEnvironment{
     URI uri = resource_p.getURI();
     if (uri != null) {
       String extension = uri.fileExtension();
-      result = !EcorePackage.eNAME.equals(extension); //$NON-NLS-1$
+      result = !EcorePackage.eNAME.equals(extension);
     }
     return result;
   }

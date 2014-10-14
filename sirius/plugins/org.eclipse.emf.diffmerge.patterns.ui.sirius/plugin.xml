@@ -215,18 +215,34 @@
   <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            allPopups="false"
+            allPopups="true"
             locationURI="popup:org.eclipse.ui.popup.any?after=additions">
          <menu
-               id="melody.project.explorer.menu.patterns.preferences"
+               icon="icons/full/pattern.gif"
+               id="project.explorer.menu.patterns.preferences"
                label="Patterns">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <or>
+                     <adapt
+                           type="org.eclipse.emf.ecore.EObject">
+                     </adapt>
+                     <adapt
+                           type="org.eclipse.gef.EditPart">
+                     </adapt>
+                  </or>
+               </iterate>
+            </visibleWhen>
             
          </menu>
       </menuContribution>
       
        <menuContribution
             allPopups="false"
-            locationURI="popup:melody.project.explorer.menu.patterns.preferences?after=additions">
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.applypattern"
                label="Apply Pattern..."
@@ -237,14 +253,14 @@
             </visibleWhen>
          </command>
          <separator
-               name="com.thalesgroup.mde.melody.patterns.ui.separator11"
+               name="org.eclipse.emf.diffmerge.patterns.ui.separator11"
                visible="true">
          </separator>
       </menuContribution>
   
     <menuContribution
             allPopups="false"
-            locationURI="popup:melody.project.explorer.menu.patterns.preferences?after=additions">
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.createpattern"
                label="Create Pattern..."
@@ -254,7 +270,7 @@
       
       <menuContribution
             allPopups="false"
-            locationURI="popup:melody.project.explorer.menu.patterns.preferences?after=additions">
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.includepatterns"
                label="Include in Patterns"
@@ -264,35 +280,35 @@
       
       <menuContribution
             allPopups="false"
-            locationURI="popup:melody.project.explorer.menu.patterns.preferences?after=additions">
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.resetinclusions"
                label="Reset Inclusions"
                style="push">
          </command>
          <separator
-               name="com.thalesgroup.mde.melody.patterns.ui.separator12"
+               name="org.eclipse.emf.diffmerge.patterns.ui.separator12"
                visible="true">
          </separator>
       </menuContribution>
       
       <menuContribution
             allPopups="false"
-            locationURI="popup:melody.project.explorer.menu.patterns.preferences?after=additions">
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.createtamplate"
                label="Create Template..."
                style="push">
          </command>
          <separator
-               name="com.thalesgroup.mde.melody.patterns.ui.separator13"
+               name="org.eclipse.emf.diffmerge.patterns.ui.separator13"
                visible="true">
          </separator>
       </menuContribution>
       
       <menuContribution
             allPopups="false"
-            locationURI="popup:melody.project.explorer.menu.patterns.preferences?after=additions">
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.manageinstance"
                label="Manage Instance(s)..."
@@ -304,7 +320,7 @@
       
        <menuContribution
             allPopups="false"
-            locationURI="popup:melody.project.explorer.menu.patterns.preferences?after=additions">
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.PatternInstanceExplorerSetSelectionCommand"
                icon="/icons/full/pattern.gif"
@@ -315,21 +331,21 @@
       
       <menuContribution
             allPopups="false"
-            locationURI="popup:melody.project.explorer.menu.patterns.preferences?after=additions">
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.HighlightAllPatternsInstances"
                label="Highlight all Instances"
                style="push">
          </command>
          <separator
-               name="com.thalesgroup.mde.melody.patterns.ui.separator15"
+               name="org.eclipse.emf.diffmerge.patterns.ui.separator15"
                visible="true">
          </separator>
       </menuContribution>
       
       <menuContribution
             allPopups="false"
-            locationURI="popup:melody.project.explorer.menu.patterns.preferences?after=additions">
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.browsecatalogs"
                label="Browse Catalogs..."
