@@ -117,14 +117,11 @@ public class CompositeLocationItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((CompositeLocation)object).getId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_CompositeLocation_type") : //$NON-NLS-1$
-			getString("_UI_CompositeLocation_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return getString("_UI_CompositeLocation_type"); //$NON-NLS-1$
 	}
 
 	/**

@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -28,7 +28,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonpatternsupportPackage;
 import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.ReferenceLocation;
 
@@ -109,11 +108,12 @@ public class ReferenceLocationItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
   @Override
   public String getText(Object object) {
-		String label = ((ReferenceLocation)object).getId();
+    EReference reference = ((ReferenceLocation)object).getReference();
+		String label = reference == null? "": reference.getName(); //$NON-NLS-1$
 		return label == null || label.length() == 0 ?
 			getString("_UI_ReferenceLocation_type") : //$NON-NLS-1$
 			getString("_UI_ReferenceLocation_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$

@@ -15,20 +15,15 @@
 package org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.provider;
 
 
-import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.CorepatternsFactory;
-import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.CorepatternsPackage;
-import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.PatternRoleBinding;
-
 import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.ResourceLocator;
-
+import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.CorepatternsFactory;
+import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.CorepatternsPackage;
+import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.PatternRoleBinding;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -121,14 +116,11 @@ public class PatternRoleBindingItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PatternRoleBinding)object).getId();
-		return label == null || label.length() == 0 ?
-			getString("_UI_PatternRoleBinding_type") : //$NON-NLS-1$
-			getString("_UI_PatternRoleBinding_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+		return getString("_UI_PatternRoleBinding_type"); //$NON-NLS-1$
 	}
 
 	/**
