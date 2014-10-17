@@ -4,6 +4,7 @@
   <properties xmi:id="_5LBGMNWQEeGg-5Vjl_7Xaw" key="eclipse.p2" value="${eclipse.download.prefix}/releases/${releaseName}/"/>
   <properties xmi:id="_DYgekFXfEeSeFMFh-PfSLQ" key="diffmerge.p2" value="https://hudson.eclipse.org/hudson/job/buckminster-emf-diffmerge-master/lastSuccessfulBuild/artifact/result/publish/org.eclipse.emf.diffmerge.sdk.feature/site.p2/"/>
   <properties xmi:id="_FYW2cFXfEeSeFMFh-PfSLQ" key="sirius.p2" value="http://download.eclipse.org/sirius/updates/nightly/latest/juno"/>
+  <properties xmi:id="_d942YFYOEeSAU6hfuIlgOQ" key="orbit.p2" value="http://download.eclipse.org/tools/orbit/downloads/drops/R20130827064939/repository/"/>
   <properties xmi:id="_cmqJUNWaEeGg-5Vjl_7Xaw" key="eclipse.download.prefix" value="file:/home/data/httpd/download.eclipse.org"/>
   <properties xmi:id="_c9TuwNWaEeGg-5Vjl_7Xaw" key="eclipse.staging.area" value="/shared/download-staging.priv/modeling/diffmerge-patterns/"/>
   <steps xsi:type="buildstep:CleanStep" xmi:id="_xv0f8dWQEeGg-5Vjl_7Xaw" name="Clean previous results" type="Result"/>
@@ -22,6 +23,7 @@
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_qCfkpVX2EeSeFMFh-PfSLQ" url="${eclipse.p2}"/>
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_qCfkplX2EeSeFMFh-PfSLQ" url="${diffmerge.p2}"/>
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_qCfkp1X2EeSeFMFh-PfSLQ" url="${sirius.p2}"/>
+    <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_hQlWMFYOEeSAU6hfuIlgOQ" url="${orbit.p2}"/>
     <components xsi:type="buildstep:Feature" xmi:id="_qCfkqVX2EeSeFMFh-PfSLQ" id="org.eclipse.emf.diffmerge.patterns.sirius.sdk.feature"/>
   </steps>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_xbImIFX2EeSeFMFh-PfSLQ" name="Publish results sirius" component="_qCfkqVX2EeSeFMFh-PfSLQ" signing="true" generateDropins="true"/>
