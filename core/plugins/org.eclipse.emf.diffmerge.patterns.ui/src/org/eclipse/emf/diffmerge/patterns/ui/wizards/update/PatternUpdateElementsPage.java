@@ -311,14 +311,10 @@ extends AbstractModifiableTemplateElementsPage<TemplatePatternUpdateSpecificatio
                 MatchAndFeature maf = new MatchAndFeatureImpl(_selectedMatch, (EStructuralFeature)obj);
                 // Target viewer input
                 ValuesInput targetInput = new ValuesInput(_diffNode, maf);
-                if(targetInput != null){
-                  _targetViewer.setInput(targetInput);
-                } 
+                _targetViewer.setInput(targetInput);
                 // Reference viewer input
                 ValuesInput referenceInput = new ValuesInput(_diffNode, maf);
-                if(referenceInput != null){
-                  _referenceViewer.setInput(referenceInput); 
-                } 
+                _referenceViewer.setInput(referenceInput); 
               }
             }
           }
@@ -347,12 +343,9 @@ extends AbstractModifiableTemplateElementsPage<TemplatePatternUpdateSpecificatio
             if(match instanceof EMatch){
               _selectedMatch = (EMatch) match;
               FeaturesInput input = new FeaturesInput(_diffNode , _selectedMatch);
-              if(input != null){
-                _detailsViewer.setInput(input);
-                if(_detailsViewer.getElementAt(0) != null){
-                  _detailsViewer.setSelection(new StructuredSelection(_detailsViewer.getElementAt(0)));
-                }
-              } 
+              _detailsViewer.setInput(input);
+              if(_detailsViewer.getElementAt(0) != null)
+                _detailsViewer.setSelection(new StructuredSelection(_detailsViewer.getElementAt(0)));
             }
           }
         }   

@@ -209,8 +209,7 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation{
     ISemanticMapping<?> mapping = PatternCoreDiagramPlugin.getDefault().getSemanticMapping();
     EObject target = null;
     if(mapping instanceof ISiriusSemanticMapping){
-      target = ((ISiriusSemanticMapping)mapping).getSemanticStorage(
-          (DSemanticDecorator)graphicalContainer_p);
+      target = ((ISiriusSemanticMapping)mapping).getSemanticStorage(graphicalContainer_p);
       try {
         if (((ISiriusSemanticMapping)mapping).conformsToMapping(
             semanticTarget_p, mapping_p, true, true, graphicalContainer_p)) {

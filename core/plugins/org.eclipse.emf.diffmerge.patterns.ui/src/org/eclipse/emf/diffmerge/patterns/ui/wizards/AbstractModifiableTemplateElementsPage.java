@@ -584,11 +584,10 @@ extends AbstractTemplateElementsPage<T> {
             prefix = "(" + prefix  + ")_" ; //$NON-NLS-1$ //$NON-NLS-2$
           }
           result = prefix + result;
-        }else{
+        } else {
           result = "?_" + result; //$NON-NLS-1$
         }
-        if (result != null &&
-            AbstractModifiableTemplateElementsPage.this.getData().hasDependencies(element_p))
+        if (AbstractModifiableTemplateElementsPage.this.getData().hasDependencies(element_p))
           result = UIUtil.markAsDependentElement(result);
         result = super.getText(element_p, result);
         return result;

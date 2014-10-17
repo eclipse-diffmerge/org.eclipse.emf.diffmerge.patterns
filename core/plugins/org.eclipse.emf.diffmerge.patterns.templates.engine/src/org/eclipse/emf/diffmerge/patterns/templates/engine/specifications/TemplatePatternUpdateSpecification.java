@@ -71,10 +71,9 @@ public class TemplatePatternUpdateSpecification extends AbstractModifiableTempla
     _instance = instance_p;
     _ignoredFeatures = featuresToIgnore_p;
     TemplatePattern originalPattern = (TemplatePattern)instance_p.getPattern();
-    @SuppressWarnings("cast") // Keep cast for upward compatibility
     EditingDomain originalPatternEditingDomain = AdapterFactoryEditingDomain.getEditingDomainFor(originalPattern);
     Copier copier = new Copier();
-    TemplatePattern copy = (TemplatePattern) copier.copy(originalPattern);
+    TemplatePattern copy = (TemplatePattern)copier.copy(originalPattern);
     copier.copyReferences();
     //Set a virtual Resource for the copy
     //Resource vres = new PatternVirtualResource(copier, originalPatternEditingDomain);

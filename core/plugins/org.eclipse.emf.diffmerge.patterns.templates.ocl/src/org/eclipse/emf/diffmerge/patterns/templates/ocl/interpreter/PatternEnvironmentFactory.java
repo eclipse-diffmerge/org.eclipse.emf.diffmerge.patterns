@@ -313,6 +313,7 @@ public class PatternEnvironmentFactory extends EcoreEnvironmentFactory {
      * Duplicated from superclass for compatibility reasons
      * @see EcoreEvaluationEnvironment#coerceValue(ETypedElement, Object, boolean)
      */
+    @Override
     protected Object coerceValue(ETypedElement element_p, Object value_p, boolean copy_p) {
       CollectionKind kind = getCollectionKind2(element_p);
       if (kind != null) {
