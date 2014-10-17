@@ -3,7 +3,7 @@
   <properties xmi:id="_K07u0O0tEeGk4JQtqqQ5AQ" key="releaseName" value="juno"/>
   <properties xmi:id="_5LBGMNWQEeGg-5Vjl_7Xaw" key="eclipse.p2" value="${eclipse.download.prefix}/releases/${releaseName}/"/>
   <properties xmi:id="_DYgekFXfEeSeFMFh-PfSLQ" key="diffmerge.p2" value="https://hudson.eclipse.org/hudson/job/buckminster-emf-diffmerge-master/lastSuccessfulBuild/artifact/result/publish/org.eclipse.emf.diffmerge.sdk.feature/site.p2/"/>
-  <properties xmi:id="_FYW2cFXfEeSeFMFh-PfSLQ" key="sirius.p2" value="${eclipse.download.prefix}/releases/${releaseName}/"/>
+  <properties xmi:id="_FYW2cFXfEeSeFMFh-PfSLQ" key="sirius.p2" value="http://download.eclipse.org/sirius/updates/nightly/latest/juno"/>
   <properties xmi:id="_cmqJUNWaEeGg-5Vjl_7Xaw" key="eclipse.download.prefix" value="file:/home/data/httpd/download.eclipse.org"/>
   <properties xmi:id="_c9TuwNWaEeGg-5Vjl_7Xaw" key="eclipse.staging.area" value="/shared/download-staging.priv/modeling/diffmerge-patterns/"/>
   <steps xsi:type="buildstep:CleanStep" xmi:id="_xv0f8dWQEeGg-5Vjl_7Xaw" name="Clean previous results" type="Result"/>
