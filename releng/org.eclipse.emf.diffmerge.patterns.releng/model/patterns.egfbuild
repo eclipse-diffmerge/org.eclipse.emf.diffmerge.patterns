@@ -7,6 +7,7 @@
   <properties xmi:id="_cmqJUNWaEeGg-5Vjl_7Xaw" key="eclipse.download.prefix" value="file:/home/data/httpd/download.eclipse.org"/>
   <properties xmi:id="_c9TuwNWaEeGg-5Vjl_7Xaw" key="eclipse.staging.area" value="/shared/download-staging.priv/modeling/diffmerge-patterns/"/>
   <steps xsi:type="buildstep:CleanStep" xmi:id="_xv0f8dWQEeGg-5Vjl_7Xaw" name="Clean previous results" type="Result"/>
+  <steps xsi:type="buildstep:AntStep" xmi:id="_jqC-YFYCEeSAU6hfuIlgOQ" name="Copy director proxy prefs" targetName="copy.director.proxy.prefs" xml="&lt;target name=&quot;copy.director.proxy.prefs&quot;>&#xD;&#xA;  &lt;mkdir dir=&quot;${tools}/director/configuration/.settings&quot;/>&#xD;&#xA;  &lt;copy &#xD;&#xA;    file=&quot;${build.root}/git/releng/org.eclipse.emf.diffmerge.patterns.releng/ant/director.org.eclipse.core.net.prefs&quot;&#xD;&#xA;    tofile=&quot;${tools}/director/configuration/.settings/org.eclipse.core.net.prefs&quot;&#xD;&#xA;  />&#xD;&#xA;&lt;/target>"/>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_p8V8oNTMEeGOc4hDMM5euQ" name="Import and compile core">
     <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_CqnccN1NEeGLW89eUbtzmA" gitLocation="_8hrIQN1MEeGLW89eUbtzmA" folderName="core/features"/>
     <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_DCUKwN1NEeGLW89eUbtzmA" gitLocation="_8hrIQN1MEeGLW89eUbtzmA" folderName="core/plugins"/>
