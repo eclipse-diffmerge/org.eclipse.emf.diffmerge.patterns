@@ -27,7 +27,7 @@ Matthieu Helleboid
 		</properties>
 	</xsl:template>
 
-	<xsl:template match="artifact[@classifier='org.eclipse.update.feature' and @id='org.eclipse.emf.diffmerge.patterns.sdk.feature']/properties">
+	<xsl:template match="artifact[@classifier='org.eclipse.update.feature' and @id='org.eclipse.emf.diffmerge.patterns.sirius.sdk.feature']/properties">
 		<xsl:call-template name="artifact_properties"/>
 	</xsl:template>
 			
