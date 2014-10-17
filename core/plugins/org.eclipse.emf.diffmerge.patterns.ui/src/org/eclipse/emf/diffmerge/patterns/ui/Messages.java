@@ -113,6 +113,8 @@ public class Messages extends NLS {
   public static String AbstractRoleSpecificationPage_RoleDetails;
   public static String AbstractRoleSpecificationPage_TargetDerivation;
   public static String AbstractRoleSpecificationPage_TargetType;
+
+  public static String AbstractRoleSpecificationPage_WarnOCLAbsence;
   public static String AbstractTemplateElementsPage_Message;
   public static String AbstractTemplateElementsPage_TemplateElements;
   public static String AbstractTemplateElementsPage_Unique;

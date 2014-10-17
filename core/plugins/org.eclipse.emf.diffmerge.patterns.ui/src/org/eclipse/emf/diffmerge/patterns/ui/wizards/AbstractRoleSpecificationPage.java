@@ -191,25 +191,29 @@ extends AbstractRoleSelectionPage<T> {
             MessageDialog.openError(getShell(), CorePatternsPlugin.getDefault().getLabel(),
                 Messages.AbstractRoleSpecificationPage_EmptyRole);
           } else {
-            EObject context = role.getTemplateElements().get(0);
-            EObject modelContext = getData().getCounterpart(context, true);
-            OclInputMessageDialog dialog = new OclInputMessageDialog(getShell(), Messages.AbstractRoleSpecificationPage_ConformityConstraint,
-                Messages.AbstractRoleSpecificationPage_PromptOCLConstraint,
-                modelContext, role, getData(), getConformityConstraint(role), !isReadOnly()) {
-              /**
-               * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.OclInputMessageDialog#isValid(org.eclipse.ocl.expressions.OCLExpression, java.lang.Object)
-               */
-              @Override
-              protected boolean isValid(OCLExpression parsedExpression_p, Object evaluationResult_p) {
-                Object type = parsedExpression_p.getType();
-                return type == getInterpreter().getStandardLibrary().getBoolean();
+            try {
+              EObject context = role.getTemplateElements().get(0);
+              EObject modelContext = getData().getCounterpart(context, true);
+              OclInputMessageDialog dialog = new OclInputMessageDialog(getShell(), Messages.AbstractRoleSpecificationPage_ConformityConstraint,
+                  Messages.AbstractRoleSpecificationPage_PromptOCLConstraint,
+                  modelContext, role, getData(), getConformityConstraint(role), !isReadOnly()) {
+                /**
+                 * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.OclInputMessageDialog#isValid(org.eclipse.ocl.expressions.OCLExpression, java.lang.Object)
+                 */
+                @Override
+                protected boolean isValid(OCLExpression parsedExpression_p, Object evaluationResult_p) {
+                  Object type = parsedExpression_p.getType();
+                  return type == getInterpreter().getStandardLibrary().getBoolean();
+                }
+              };
+              int answer = dialog.open();
+              if (Window.OK == answer) {
+                String newValue = dialog.getExpression();
+                setConformityConstraint(role, newValue);
+                conformityConstraint.setText(getOclLabel(newValue));
               }
-            };
-            int answer = dialog.open();
-            if (Window.OK == answer) {
-              String newValue = dialog.getExpression();
-              setConformityConstraint(role, newValue);
-              conformityConstraint.setText(getOclLabel(newValue));
+            } catch (NoClassDefFoundError e) {
+              warnOCLAbsent();
             }
           }
         }
@@ -259,18 +263,22 @@ extends AbstractRoleSelectionPage<T> {
             MessageDialog.openError(getShell(), CorePatternsPlugin.getDefault().getLabel(),
                 Messages.AbstractRoleSpecificationPage_EmptyRole);
           } else {
-            EObject context = role.getTemplateElements().get(0);
-            EObject modelContext = getData().getCounterpart(context, true);
-            OclInputMessageDialog dialog = new OclInputMessageDialog(getShell(), Messages.AbstractRoleSpecificationPage_ContainerDerivation,
-                Messages.AbstractRoleSpecificationPage_PromptOCLQuery,
-                modelContext, role, getData(), getAdditionDerivationRule(role), !isReadOnly());
-            int answer = dialog.open();
-            if (Window.OK == answer) {
-              String newValue = dialog.getExpression();
-              setAdditionDerivationRule(role, newValue);
-              containerDerivationRule.setText(getOclLabel(newValue));
-              getData().roleUpdated();
-              validate();
+            try {
+              EObject context = role.getTemplateElements().get(0);
+              EObject modelContext = getData().getCounterpart(context, true);
+              OclInputMessageDialog dialog = new OclInputMessageDialog(getShell(), Messages.AbstractRoleSpecificationPage_ContainerDerivation,
+                  Messages.AbstractRoleSpecificationPage_PromptOCLQuery,
+                  modelContext, role, getData(), getAdditionDerivationRule(role), !isReadOnly());
+              int answer = dialog.open();
+              if (Window.OK == answer) {
+                String newValue = dialog.getExpression();
+                setAdditionDerivationRule(role, newValue);
+                containerDerivationRule.setText(getOclLabel(newValue));
+                getData().roleUpdated();
+                validate();
+              }
+            } catch (NoClassDefFoundError e) {
+              warnOCLAbsent();
             }
           }
         }
@@ -588,19 +596,23 @@ extends AbstractRoleSelectionPage<T> {
             MessageDialog.openError(getShell(), CorePatternsPlugin.getDefault().getLabel(),
                 Messages.AbstractRoleSpecificationPage_EmptyRole);
           } else {
-            EObject context = role.getTemplateElements().get(0);
-            EObject modelContext = getData().getCounterpart(context, true);
-            OclInputMessageDialog dialog = new OclInputMessageDialog(
-                getShell(), Messages.AbstractRoleSpecificationPage_TargetDerivation,
-                Messages.AbstractRoleSpecificationPage_PromptOCLQueryWithRoles,
-                modelContext, role, getData(), getMergeDerivationRule(role), !isReadOnly());
-            int answer = dialog.open();
-            if (Window.OK == answer) {
-              String newValue = dialog.getExpression();
-              setMergeDerivationRule(role, newValue);
-              mergeDerivationRule.setText(getOclLabel(newValue));
-              getData().roleUpdated();
-              validate();
+            try {
+              EObject context = role.getTemplateElements().get(0);
+              EObject modelContext = getData().getCounterpart(context, true);
+              OclInputMessageDialog dialog = new OclInputMessageDialog(
+                  getShell(), Messages.AbstractRoleSpecificationPage_TargetDerivation,
+                  Messages.AbstractRoleSpecificationPage_PromptOCLQueryWithRoles,
+                  modelContext, role, getData(), getMergeDerivationRule(role), !isReadOnly());
+              int answer = dialog.open();
+              if (Window.OK == answer) {
+                String newValue = dialog.getExpression();
+                setMergeDerivationRule(role, newValue);
+                mergeDerivationRule.setText(getOclLabel(newValue));
+                getData().roleUpdated();
+                validate();
+              }
+            } catch (NoClassDefFoundError e) {
+              warnOCLAbsent();
             }
           }
         }
@@ -762,6 +774,14 @@ extends AbstractRoleSelectionPage<T> {
    */
   protected boolean showSimplifiedInterface() {
     return true;
+  }
+  
+  /**
+   * Warn the user about the absence of optional OCL tools
+   */
+  protected void warnOCLAbsent() {
+    String msg = Messages.AbstractRoleSpecificationPage_WarnOCLAbsence;
+    MessageDialog.openError(getShell(), CorePatternsPlugin.getDefault().getLabel(), msg);
   }
   
 }
