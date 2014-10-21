@@ -41,16 +41,18 @@ extends AbstractModelOperation<T> {
    * Constructor
    * @param operation_p a potentially null operation to wrap
    * @param diagram_p an optional diagram to refresh
+   * @param sourceContext_p an optional context object for the source side of the operation
+   * @param targetContext_p an optional context object for the target side of the operation
    */
   public AbstractGraphicalWrappingOperation(IModelOperation<? extends F> operation_p, 
-      Object diagram_p) {
+      Object diagram_p, Object sourceContext_p, Object targetContext_p) {
     super(
         operation_p != null? operation_p.getName(): Messages.AbstractViewpointWrappingOperation_Refresh,
-            operation_p != null? operation_p.getResourceSet(): null,
-                operation_p != null? operation_p.isDirtying(): true,
-                    operation_p != null? operation_p.isReadOnly(): false,
-                        operation_p != null? operation_p.isExpensive(): false,
-                            diagram_p, diagram_p);
+        operation_p != null? operation_p.getResourceSet(): null,
+        operation_p != null? operation_p.isDirtying(): true,
+        operation_p != null? operation_p.isReadOnly(): false,
+        operation_p != null? operation_p.isExpensive(): false,
+        sourceContext_p, targetContext_p);
     _operation = operation_p;
     _diagram = diagram_p;
   }

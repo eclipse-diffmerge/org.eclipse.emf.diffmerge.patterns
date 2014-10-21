@@ -67,6 +67,8 @@ public abstract class AbstractModelOperation<T> implements IModelOperation<T> {
    * @param isDirtying_p whether the operation must be considered as dirtying w.r.t. editors on the model
    * @param isReadOnly_p whether the operation is read-only w.r.t. the model
    * @param isExpensive_p whether the operation must be considered as expensive
+   * @param sourceContext_p an optional context object for the source side of the operation
+   * @param targetContext_p an optional context object for the target side of the operation
    */
   protected AbstractModelOperation(String name_p, ResourceSet resourceSet_p,
       boolean isDirtying_p, boolean isReadOnly_p, boolean isExpensive_p,

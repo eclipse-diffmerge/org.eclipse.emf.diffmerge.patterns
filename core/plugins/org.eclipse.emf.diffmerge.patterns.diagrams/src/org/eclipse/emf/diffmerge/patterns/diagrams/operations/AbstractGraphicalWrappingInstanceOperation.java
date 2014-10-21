@@ -72,7 +72,9 @@ public abstract class AbstractGraphicalWrappingInstanceOperation<F> extends Abst
    */
   public AbstractGraphicalWrappingInstanceOperation(IModelOperation<? extends F> operation_p,
       IPatternInstance instance_p, Object diagram_p, RefreshRequestKind refreshRequest_p) {
-    super(operation_p, diagram_p);
+    super(operation_p, diagram_p,
+        diagram_p != null? diagram_p: instance_p,
+        diagram_p != null? diagram_p: instance_p);
     _instances = new FArrayList<IPatternInstance>();
     if (instance_p != null)
       _instances.add(instance_p);
