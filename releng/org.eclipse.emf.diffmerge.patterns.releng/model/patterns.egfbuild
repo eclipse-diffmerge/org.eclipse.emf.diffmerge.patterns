@@ -16,7 +16,6 @@
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_AdgtEFXfEeSeFMFh-PfSLQ" url="${diffmerge.p2}"/>
     <components xsi:type="buildstep:Feature" xmi:id="_EPIT8NTNEeGOc4hDMM5euQ" id="org.eclipse.emf.diffmerge.patterns.sdk.feature"/>
   </steps>
-  <steps xsi:type="buildstep:PublishStep" xmi:id="_zGibQNWQEeGg-5Vjl_7Xaw" name="Publish results core" component="_EPIT8NTNEeGOc4hDMM5euQ" signing="true" generateDropins="true"/>
   <steps xsi:type="buildstep:BuildStep" xmi:id="_qCfkoFX2EeSeFMFh-PfSLQ" name="Import and compile sirius">
     <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_qCfko1X2EeSeFMFh-PfSLQ" gitLocation="_8hrIQN1MEeGLW89eUbtzmA" folderName="sirius/features"/>
     <buildLocations xsi:type="buildscm:GITBuildLocation" xmi:id="_qCfkpFX2EeSeFMFh-PfSLQ" gitLocation="_8hrIQN1MEeGLW89eUbtzmA" folderName="sirius/plugins"/>
@@ -26,6 +25,7 @@
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_hQlWMFYOEeSAU6hfuIlgOQ" url="${orbit.p2}"/>
     <components xsi:type="buildstep:Feature" xmi:id="_qCfkqVX2EeSeFMFh-PfSLQ" id="org.eclipse.emf.diffmerge.patterns.sirius.sdk.feature"/>
   </steps>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_zGibQNWQEeGg-5Vjl_7Xaw" name="Publish results core" component="_EPIT8NTNEeGOc4hDMM5euQ" signing="true" generateDropins="true"/>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_xbImIFX2EeSeFMFh-PfSLQ" name="Publish results sirius" component="_qCfkqVX2EeSeFMFh-PfSLQ" signing="true" generateDropins="true"/>
   <steps xsi:type="buildstep:JavadocStep" xmi:id="_NQxi0N1NEeGLW89eUbtzmA" name="Create JavaDoc" sources="_DCUKwN1NEeGLW89eUbtzmA _qCfkpFX2EeSeFMFh-PfSLQ">
     <includes>**/*.java</includes>
