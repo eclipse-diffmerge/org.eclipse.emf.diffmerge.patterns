@@ -29,27 +29,24 @@ public class SiriusGraphicalWrappingInstanceOperation<F> extends AbstractGraphic
 
   /**
    * Constructor
-   * @param operation_p
-   * @param diagram_p
-   * @param refreshRequest_p
+   * @param operation_p a potentially null operation to wrap
+   * @param diagram_p an optional diagram where refresh can happen
+   * @param refreshRequest_p the non-null refresh request for this operation
    */
   public SiriusGraphicalWrappingInstanceOperation(
-      IModelOperation<? extends F> operation_p,
-      Object diagram_p,
-      org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind refreshRequest_p) {
+      IModelOperation<? extends F> operation_p, Object diagram_p, RefreshRequestKind refreshRequest_p) {
     super(operation_p, diagram_p, refreshRequest_p);
   }
 
   /**
    * Constructor
-   * @param operation_p
-   * @param instance_p
-   * @param diagram_p
-   * @param refreshRequest_p
+   * @param operation_p a potentially null operation to wrap
+   * @param instance_p an optional pattern instance to refresh
+   * @param diagram_p an optional diagram where refresh can happen
+   * @param refreshRequest_p the non-null refresh request for this operation
    */
   public SiriusGraphicalWrappingInstanceOperation(IModelOperation<? extends F> operation_p,
-      IPatternInstance instance_p, Object diagram_p, 
-      org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind refreshRequest_p){
+      IPatternInstance instance_p, Object diagram_p, RefreshRequestKind refreshRequest_p){
     super(operation_p, instance_p, diagram_p, refreshRequest_p);
   }
   

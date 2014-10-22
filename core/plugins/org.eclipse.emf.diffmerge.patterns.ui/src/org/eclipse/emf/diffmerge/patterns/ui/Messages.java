@@ -166,6 +166,10 @@ public class Messages extends NLS {
   public static String InstanceExplorerView_OpenBrowse;
   public static String InstanceExplorerView_Refresh;
   public static String InstancePanelDialog_Check;
+  public static String InstancePanelDialog_CheckFailedMessage;
+
+  public static String InstancePanelDialog_CheckFailedTitle;
+
   public static String InstancePanelDialog_CloseCatalog;
   public static String InstancePanelDialog_Conformity;
 

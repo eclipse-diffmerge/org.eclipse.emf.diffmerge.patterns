@@ -60,7 +60,7 @@ public interface IPatternOperationFactory {
    * @return a non-null AbstractGraphicalWrappingInstanceOperation (must be a concrete GraphicalWrappingInstanceOperation)
    */
   AbstractGraphicalWrappingInstanceOperation<IPatternInstance> instantiateGraphicalWrappingInstanceOperation(
-      IModelOperation<? extends IPatternInstance> operation_p,
+      IModelOperation<? extends IPatternInstance> operation_p, IPatternInstance instance_p,
       Object diagram_p, RefreshRequestKind refreshRequest_p);
 
   /**
