@@ -45,6 +45,7 @@ import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.Eleme
  *
  * @generated
  */
+@SuppressWarnings("nls")
 public class ElementMappingEntryImpl extends EObjectImpl implements BasicEMap.Entry<String,ElementLocation> {
   /**
 	 * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
@@ -251,7 +252,7 @@ public class ElementMappingEntryImpl extends EObjectImpl implements BasicEMap.En
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (key: "); //$NON-NLS-1$
+		result.append(" (key: ");
 		result.append(key);
 		result.append(')');
 		return result.toString();

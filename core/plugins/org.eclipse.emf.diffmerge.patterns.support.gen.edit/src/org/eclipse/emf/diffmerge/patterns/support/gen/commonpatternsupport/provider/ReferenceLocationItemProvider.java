@@ -82,8 +82,8 @@ public class ReferenceLocationItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ReferenceLocation_reference_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ReferenceLocation_reference_feature", "_UI_ReferenceLocation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ReferenceLocation_reference_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ReferenceLocation_reference_feature", "_UI_ReferenceLocation_type"),
 				 CommonpatternsupportPackage.Literals.REFERENCE_LOCATION__REFERENCE,
 				 true,
 				 false,
@@ -101,7 +101,7 @@ public class ReferenceLocationItemProvider
 	 */
   @Override
   public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReferenceLocation")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReferenceLocation"));
 	}
 
   /**

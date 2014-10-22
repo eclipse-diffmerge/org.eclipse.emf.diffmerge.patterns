@@ -43,7 +43,7 @@ public final class CommonPatternSupportEditPlugin extends EMFPlugin {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected static Implementation plugin;
+  private static Implementation plugin;
 
   /**
 	 * Create the instance.
@@ -95,6 +95,7 @@ public final class CommonPatternSupportEditPlugin extends EMFPlugin {
      * <!-- end-user-doc -->
 		 * @generated
 		 */
+    @SuppressWarnings("synthetic-access")
     public Implementation() {
 			super();
 

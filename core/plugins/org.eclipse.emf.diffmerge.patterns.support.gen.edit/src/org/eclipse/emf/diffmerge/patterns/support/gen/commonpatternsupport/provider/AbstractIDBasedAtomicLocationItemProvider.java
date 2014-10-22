@@ -89,8 +89,8 @@ public class AbstractIDBasedAtomicLocationItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_AbstractIDBasedAtomicLocation_elementId_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractIDBasedAtomicLocation_elementId_feature", "_UI_AbstractIDBasedAtomicLocation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_AbstractIDBasedAtomicLocation_elementId_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AbstractIDBasedAtomicLocation_elementId_feature", "_UI_AbstractIDBasedAtomicLocation_type"),
 				 CommonpatternsupportPackage.Literals.ABSTRACT_ID_BASED_ATOMIC_LOCATION__ELEMENT_ID,
 				 true,
 				 false,
@@ -110,8 +110,8 @@ public class AbstractIDBasedAtomicLocationItemProvider
   public String getText(Object object) {
 		String label = ((AbstractIDBasedAtomicLocation)object).getId();
 		return label == null || label.length() == 0 ?
-			getString("_UI_AbstractIDBasedAtomicLocation_type") : //$NON-NLS-1$
-			getString("_UI_AbstractIDBasedAtomicLocation_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_AbstractIDBasedAtomicLocation_type") :
+			getString("_UI_AbstractIDBasedAtomicLocation_type") + " " + label;
 	}
 
   /**

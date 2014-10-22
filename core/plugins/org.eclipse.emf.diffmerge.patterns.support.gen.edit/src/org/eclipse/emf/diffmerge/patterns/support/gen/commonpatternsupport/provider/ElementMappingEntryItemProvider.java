@@ -91,8 +91,8 @@ public class ElementMappingEntryItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_ElementMappingEntry_key_feature"), //$NON-NLS-1$
-				 getString("_UI_PropertyDescriptor_description", "_UI_ElementMappingEntry_key_feature", "_UI_ElementMappingEntry_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				 getString("_UI_ElementMappingEntry_key_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ElementMappingEntry_key_feature", "_UI_ElementMappingEntry_type"),
 				 CommonpatternsupportPackage.Literals.ELEMENT_MAPPING_ENTRY__KEY,
 				 true,
 				 false,
@@ -140,7 +140,7 @@ public class ElementMappingEntryItemProvider
 	 */
   @Override
   public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ElementMappingEntry")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ElementMappingEntry"));
 	}
 
   /**
@@ -152,7 +152,7 @@ public class ElementMappingEntryItemProvider
   @Override
   public String getText(Object object) {
 		Map.Entry<?, ?> elementMappingEntry = (Map.Entry<?, ?>)object;
-		return "" + elementMappingEntry.getKey() + " -> " + elementMappingEntry.getValue(); //$NON-NLS-1$ //$NON-NLS-2$
+		return "" + elementMappingEntry.getKey() + " -> " + elementMappingEntry.getValue();
 	}
 
   /**

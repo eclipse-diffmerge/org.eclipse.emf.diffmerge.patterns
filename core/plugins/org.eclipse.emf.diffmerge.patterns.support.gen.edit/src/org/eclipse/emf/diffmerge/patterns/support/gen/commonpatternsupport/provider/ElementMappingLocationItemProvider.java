@@ -112,7 +112,7 @@ public class ElementMappingLocationItemProvider
 	 */
   @Override
   public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ElementMappingLocation")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ElementMappingLocation"));
 	}
 
   /**
@@ -125,8 +125,8 @@ public class ElementMappingLocationItemProvider
   public String getText(Object object) {
 		String label = ((ElementMappingLocation)object).getId();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ElementMappingLocation_type") : //$NON-NLS-1$
-			getString("_UI_ElementMappingLocation_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_ElementMappingLocation_type") :
+			getString("_UI_ElementMappingLocation_type") + " " + label;
 	}
 
   /**

@@ -44,7 +44,7 @@ public interface CommonpatternsupportPackage extends EPackage {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  String eNAME = "patterninstances"; //$NON-NLS-1$
+  String eNAME = "commonpatternsupport"; //$NON-NLS-1$
 
   /**
 	 * The package namespace URI.

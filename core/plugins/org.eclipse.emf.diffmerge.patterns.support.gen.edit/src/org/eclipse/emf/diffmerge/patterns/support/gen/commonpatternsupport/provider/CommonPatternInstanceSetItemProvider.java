@@ -112,7 +112,7 @@ public class CommonPatternInstanceSetItemProvider
 	 */
   @Override
   public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/CommonPatternInstanceSet")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CommonPatternInstanceSet"));
 	}
 
   /**

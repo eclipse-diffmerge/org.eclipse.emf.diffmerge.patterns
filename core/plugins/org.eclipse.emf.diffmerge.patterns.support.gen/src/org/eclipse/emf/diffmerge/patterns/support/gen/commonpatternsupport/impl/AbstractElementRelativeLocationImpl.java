@@ -39,23 +39,23 @@ public abstract class AbstractElementRelativeLocationImpl extends AbstractIDBase
   private transient EObject _element = null;
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected AbstractElementRelativeLocationImpl() {
-    super();
-  }
+		super();
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected EClass eStaticClass() {
-    return CommonpatternsupportPackage.Literals.ABSTRACT_ELEMENT_RELATIVE_LOCATION;
-  }
+		return CommonpatternsupportPackage.Literals.ABSTRACT_ELEMENT_RELATIVE_LOCATION;
+	}
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.util.locations.AbstractElementRelativeLocation#getElement()

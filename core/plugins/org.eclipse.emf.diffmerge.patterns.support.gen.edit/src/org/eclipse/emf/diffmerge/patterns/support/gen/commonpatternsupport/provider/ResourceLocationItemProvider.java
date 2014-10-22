@@ -77,7 +77,7 @@ public class ResourceLocationItemProvider
 	 */
   @Override
   public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ResourceLocation")); //$NON-NLS-1$
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ResourceLocation"));
 	}
 
   /**
@@ -90,8 +90,8 @@ public class ResourceLocationItemProvider
   public String getText(Object object) {
 		String label = ((ResourceLocation)object).getId();
 		return label == null || label.length() == 0 ?
-			getString("_UI_ResourceLocation_type") : //$NON-NLS-1$
-			getString("_UI_ResourceLocation_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_ResourceLocation_type") :
+			getString("_UI_ResourceLocation_type") + " " + label;
 	}
 
   /**

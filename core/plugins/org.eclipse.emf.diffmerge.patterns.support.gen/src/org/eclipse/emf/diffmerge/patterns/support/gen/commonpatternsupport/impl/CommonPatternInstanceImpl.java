@@ -47,23 +47,23 @@ import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.Commo
  */
 public class CommonPatternInstanceImpl extends AbstractPatternInstanceImpl implements CommonPatternInstance {
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   protected CommonPatternInstanceImpl() {
-    super();
-  }
+		super();
+	}
 
   /**
-   * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
+	 * @generated
+	 */
   @Override
   protected EClass eStaticClass() {
-    return CommonpatternsupportPackage.Literals.COMMON_PATTERN_INSTANCE;
-  }
+		return CommonpatternsupportPackage.Literals.COMMON_PATTERN_INSTANCE;
+	}
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance#delete(boolean)

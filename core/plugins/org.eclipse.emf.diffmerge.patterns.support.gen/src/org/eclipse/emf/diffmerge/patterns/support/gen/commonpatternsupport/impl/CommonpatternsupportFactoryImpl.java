@@ -79,7 +79,7 @@ public class CommonpatternsupportFactoryImpl extends EFactoryImpl implements Com
 			case CommonpatternsupportPackage.ELEMENT_MAPPING_LOCATION: return createElementMappingLocation();
 			case CommonpatternsupportPackage.ELEMENT_MAPPING_ENTRY: return (EObject)createElementMappingEntry();
 			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");  //$NON-NLS-1$//$NON-NLS-2$
 		}
 	}
 

@@ -79,8 +79,8 @@ public class AbstractElementRelativeLocationItemProvider
   public String getText(Object object) {
 		String label = ((AbstractElementRelativeLocation)object).getId();
 		return label == null || label.length() == 0 ?
-			getString("_UI_AbstractElementRelativeLocation_type") : //$NON-NLS-1$
-			getString("_UI_AbstractElementRelativeLocation_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+			getString("_UI_AbstractElementRelativeLocation_type") :
+			getString("_UI_AbstractElementRelativeLocation_type") + " " + label;
 	}
 
   /**

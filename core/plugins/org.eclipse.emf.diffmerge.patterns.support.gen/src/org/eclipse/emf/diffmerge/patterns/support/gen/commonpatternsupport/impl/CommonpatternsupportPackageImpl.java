@@ -46,6 +46,7 @@ import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.Resou
  * <!-- end-user-doc -->
  * @generated
  */
+@SuppressWarnings("nls")
 public class CommonpatternsupportPackageImpl extends EPackageImpl implements CommonpatternsupportPackage {
   /**
 	 * <!-- begin-user-doc -->
@@ -441,32 +442,32 @@ public class CommonpatternsupportPackageImpl extends EPackageImpl implements Com
 		elementMappingLocationEClass.getESuperTypes().add(thePredefinedPackage.getIElementMappingLocation());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(commonPatternInstanceSetEClass, CommonPatternInstanceSet.class, "CommonPatternInstanceSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getCommonPatternInstanceSet_OwnedInstances(), this.getCommonPatternInstance(), null, "ownedInstances", null, 0, -1, CommonPatternInstanceSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(commonPatternInstanceSetEClass, CommonPatternInstanceSet.class, "CommonPatternInstanceSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getCommonPatternInstanceSet_OwnedInstances(), this.getCommonPatternInstance(), null, "ownedInstances", null, 0, -1, CommonPatternInstanceSet.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(commonPatternInstanceEClass, CommonPatternInstance.class, "CommonPatternInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(commonPatternInstanceEClass, CommonPatternInstance.class, "CommonPatternInstance", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(resourceLocationEClass, ResourceLocation.class, "ResourceLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(resourceLocationEClass, ResourceLocation.class, "ResourceLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(elementLocationEClass, ElementLocation.class, "ElementLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(elementLocationEClass, ElementLocation.class, "ElementLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(attributeLocationEClass, AttributeLocation.class, "AttributeLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getAttributeLocation_Attribute(), theEcorePackage.getEAttribute(), null, "attribute", null, 1, 1, AttributeLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(attributeLocationEClass, AttributeLocation.class, "AttributeLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAttributeLocation_Attribute(), theEcorePackage.getEAttribute(), null, "attribute", null, 1, 1, AttributeLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(referenceLocationEClass, ReferenceLocation.class, "ReferenceLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getReferenceLocation_Reference(), theEcorePackage.getEReference(), null, "reference", null, 1, 1, ReferenceLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(referenceLocationEClass, ReferenceLocation.class, "ReferenceLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getReferenceLocation_Reference(), theEcorePackage.getEReference(), null, "reference", null, 1, 1, ReferenceLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(abstractIDBasedAtomicLocationEClass, AbstractIDBasedAtomicLocation.class, "AbstractIDBasedAtomicLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getAbstractIDBasedAtomicLocation_ElementId(), theEcorePackage.getEString(), "elementId", null, 1, 1, AbstractIDBasedAtomicLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(abstractIDBasedAtomicLocationEClass, AbstractIDBasedAtomicLocation.class, "AbstractIDBasedAtomicLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAbstractIDBasedAtomicLocation_ElementId(), theEcorePackage.getEString(), "elementId", null, 1, 1, AbstractIDBasedAtomicLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(abstractElementRelativeLocationEClass, AbstractElementRelativeLocation.class, "AbstractElementRelativeLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEClass(abstractElementRelativeLocationEClass, AbstractElementRelativeLocation.class, "AbstractElementRelativeLocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(elementMappingLocationEClass, ElementMappingLocation.class, "ElementMappingLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getElementMappingLocation_Mapping(), this.getElementMappingEntry(), null, "mapping", null, 0, -1, ElementMappingLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(elementMappingLocationEClass, ElementMappingLocation.class, "ElementMappingLocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getElementMappingLocation_Mapping(), this.getElementMappingEntry(), null, "mapping", null, 0, -1, ElementMappingLocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(elementMappingEntryEClass, Map.Entry.class, "ElementMappingEntry", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getElementMappingEntry_Key(), theEcorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getElementMappingEntry_Value(), this.getElementLocation(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(elementMappingEntryEClass, Map.Entry.class, "ElementMappingEntry", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getElementMappingEntry_Key(), theEcorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getElementMappingEntry_Value(), this.getElementLocation(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
