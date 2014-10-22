@@ -49,7 +49,6 @@ import org.eclipse.emf.ecore.util.FeatureMapUtil;
  */
 public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvider {
 
-
   /**
    * Default constructor
    * @throws InstantiationException 
@@ -139,8 +138,6 @@ public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvi
     return Collections.unmodifiableList(result);
   }
 
-
-
   /**
    * Return the root elements to consider for container retrieval,
    * given a certain context object
@@ -162,8 +159,6 @@ public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvi
     }
     return Collections.unmodifiableList(result);
   }
-
-
 
   /**
    * Return whether the given container element may contain the given elements
@@ -187,9 +182,7 @@ public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvi
     return element_p instanceof IPatternInstance;
   }
 
-
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.SemanticRuleProvider#supportsAdditionOf(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EReference, org.eclipse.emf.ecore.EObject, boolean)
    */
   public boolean supportsAdditionOf(EObject element_p, EReference reference_p,
@@ -197,9 +190,7 @@ public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvi
     return supportsAdditionOf(element_p, reference_p, value_p.eClass(), nonErasing_p);
   }
 
-
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.SemanticRuleProvider#supportsAdditionOf(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EReference, java.util.Collection, boolean)
    */
   public boolean supportsAdditionOf(EObject element_p, EReference reference_p,
@@ -212,7 +203,6 @@ public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvi
   }
 
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.SemanticRuleProvider#getReferencesForAddition(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EClass, boolean, boolean)
    */
   public List<EReference> getReferencesForAddition(EObject element_p,
@@ -231,7 +221,6 @@ public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvi
     }
     return Collections.unmodifiableList(result);
   }
-
 
   /**
    * Return whether the given reference supports the setting of values of the
@@ -272,7 +261,6 @@ public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvi
   }
 
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#hasNotInScopeDependencies(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.api.scopes.IModelScope)
    */
   public boolean hasNotInScopeDependencies(EObject sourceElement_p, IModelScope scope_p) {
@@ -290,13 +278,11 @@ public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvi
   }
 
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#isApplicableTo(org.eclipse.emf.ecore.EObject)
    */
   public abstract boolean isApplicableTo(EObject obj_p);
 
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#getDependencies(org.eclipse.emf.ecore.EObject)
    */
   public List<EObject> getDependencies(EObject object_p) {
@@ -320,8 +306,6 @@ public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvi
    * @param reference_p a non-null reference
    */
   public abstract boolean isDependency(EReference reference_p);
-
-
 
   /**
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#isMainModel()

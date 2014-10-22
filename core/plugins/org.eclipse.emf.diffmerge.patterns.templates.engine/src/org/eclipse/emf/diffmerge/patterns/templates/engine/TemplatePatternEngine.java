@@ -472,7 +472,7 @@ public class TemplatePatternEngine implements ITemplatePatternEngine {
       };
       IEvaluationStatus result = CorePatternsPlugin.getDefault().getModelEnvironment().execute(updateInstanceOperation);
       if(!result.isOk()){
-        //TODO : inform user?!
+        //TODO : inform user?
       }
     }
   }
