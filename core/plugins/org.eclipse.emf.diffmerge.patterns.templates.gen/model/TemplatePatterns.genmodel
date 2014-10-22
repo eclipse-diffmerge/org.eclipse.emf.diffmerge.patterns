@@ -1,21 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Copyright (c) 2010-2014 Thales Global Services S.A.S.
-  All rights reserved. This program and the accompanying materials
-   are made available under the terms of the Eclipse Public License v1.0
-  which accompanies this distribution, and is available at
-  http://www.eclipse.org/legal/epl-v10.html
-  
-   Contributors:
-  Thales Global Services S.A.S - initial API and implementation
--->
-<genmodel:GenModel xmi:version="2.0"
-    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.emf.diffmerge.patterns.templates.gen/src"
     modelPluginID="org.eclipse.emf.diffmerge.patterns.templates.gen" modelName="TemplatePatterns"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
     usedGenPackages="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.genmodel#//corepatterns platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <foreignModel>TemplatePatterns.ecore</foreignModel>
+  <modelPluginVariables>EMFEDIT=org.eclipse.emf.edit&#xD;
+EMFEDIT=org.eclipse.emf.edit&#xD;
+EMFEDIT=org.eclipse.emf.edit&#xD;
+EMFEDIT=org.eclipse.emf.edit</modelPluginVariables>
   <genPackages prefix="Templatepatterns" basePackage="org.eclipse.emf.diffmerge.patterns.templates.gen"
       disposableProviderFactory="true" ecorePackage="TemplatePatterns.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="TemplatePatterns.ecore#//AdditionKind">
@@ -29,6 +22,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TemplatePatterns.ecore#//TemplatePattern/templateElements"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TemplatePatterns.ecore#//TemplatePattern/multiElements"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TemplatePatterns.ecore#//TemplatePattern/image"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TemplatePatterns.ecore#//TemplatePattern/layoutData"/>
       <genOperations ecoreOperation="TemplatePatterns.ecore#//TemplatePattern/isUnique">
         <genParameters ecoreParameter="TemplatePatterns.ecore#//TemplatePattern/isUnique/element"/>
       </genOperations>
@@ -138,8 +132,63 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//InstancePart/key"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//InstancePart/value"/>
     </genClasses>
-    <genClasses ecoreClass="TemplatePatterns.ecore#//Image">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//Image/specification"/>
+    <genClasses ecoreClass="TemplatePatterns.ecore#//ImageSpecification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//ImageSpecification/contents"/>
+    </genClasses>
+    <genClasses ecoreClass="TemplatePatterns.ecore#//LayoutEntry">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference TemplatePatterns.ecore#//LayoutEntry/key"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TemplatePatterns.ecore#//LayoutEntry/value"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="TemplatePatterns.ecore#//Layout"/>
+    <genClasses ecoreClass="TemplatePatterns.ecore#//NodeLayout">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//NodeLayout/x"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//NodeLayout/y"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//NodeLayout/height"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//NodeLayout/width"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TemplatePatterns.ecore#//NodeLayout/containedFontStyles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TemplatePatterns.ecore#//NodeLayout/ownedStyle"/>
+    </genClasses>
+    <genClasses ecoreClass="TemplatePatterns.ecore#//EdgeLayout">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TemplatePatterns.ecore#//EdgeLayout/bendpoints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//EdgeLayout/linewidth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//EdgeLayout/linecolor"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TemplatePatterns.ecore#//EdgeLayout/ownedStyle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TemplatePatterns.ecore#//EdgeLayout/beginFontStyle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TemplatePatterns.ecore#//EdgeLayout/endFontStyle"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TemplatePatterns.ecore#//EdgeLayout/centerFontStyle"/>
+    </genClasses>
+    <genClasses ecoreClass="TemplatePatterns.ecore#//EdgeBendpoint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//EdgeBendpoint/sourceX"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//EdgeBendpoint/sourceY"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//EdgeBendpoint/targetX"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//EdgeBendpoint/targetY"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="TemplatePatterns.ecore#//ShapeLayout">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference TemplatePatterns.ecore#//ShapeLayout/fontStyle"/>
+    </genClasses>
+    <genClasses ecoreClass="TemplatePatterns.ecore#//TemplateFontStyle">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//TemplateFontStyle/color"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//TemplateFontStyle/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//TemplateFontStyle/height"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//TemplateFontStyle/bold"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//TemplateFontStyle/italic"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//TemplateFontStyle/underline"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//TemplateFontStyle/strikethrough"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="TemplatePatterns.ecore#//Style"/>
+    <genClasses ecoreClass="TemplatePatterns.ecore#//NodeStyle">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//NodeStyle/bordercolor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//NodeStyle/bordersize"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//NodeStyle/shapecolor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//NodeStyle/transparency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//NodeStyle/backgroundcolor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//NodeStyle/foregroundcolor"/>
+    </genClasses>
+    <genClasses ecoreClass="TemplatePatterns.ecore#//EdgeStyle">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//EdgeStyle/linestyle"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//EdgeStyle/routingstyle"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//EdgeStyle/targetarrow"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute TemplatePatterns.ecore#//EdgeStyle/sourcearrow"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
