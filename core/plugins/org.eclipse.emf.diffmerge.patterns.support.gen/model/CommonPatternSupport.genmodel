@@ -16,6 +16,7 @@
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
     usedGenPackages="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.genmodel#//corepatterns platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <foreignModel>CommonPatternSupport.ecore</foreignModel>
+  <modelPluginVariables>EMFEDIT=org.eclipse.emf.edit</modelPluginVariables>
   <genPackages prefix="Commonpatternsupport" basePackage="org.eclipse.emf.diffmerge.patterns.support.gen"
       disposableProviderFactory="true" ecorePackage="CommonPatternSupport.ecore#/">
     <genClasses ecoreClass="CommonPatternSupport.ecore#//CommonPatternInstanceSet">

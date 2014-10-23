@@ -227,7 +227,7 @@ public class InstanceConformityDialog extends MessageDialog {
    */
   protected void createSynchronizationListener() {
     // Selection synchronization: Synthesis[user] -> Global
-    _differencesViewer.getClientViewer().getTree().addSelectionListener(new SelectionAdapter() {
+    _differencesViewer.getTreeViewer().getTree().addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected(SelectionEvent event_p) {
         _detailsViewer.setInput(null);

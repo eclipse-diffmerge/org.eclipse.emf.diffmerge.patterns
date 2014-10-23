@@ -198,7 +198,7 @@ extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> 
         result.setEnabled(computeAdditionMenuItemEnabled(viewer_p));
       }
     });
-    viewer_p.getClientViewer().addSelectionChangedListener(new ISelectionChangedListener() {
+    viewer_p.getTreeViewer().addSelectionChangedListener(new ISelectionChangedListener() {
       /**
        * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
        */
@@ -786,7 +786,7 @@ extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> 
         result.setEnabled(computeMergeMenuItemEnabled(viewer_p));
       }
     });
-    viewer_p.getClientViewer().addSelectionChangedListener(new ISelectionChangedListener() {
+    viewer_p.getTreeViewer().addSelectionChangedListener(new ISelectionChangedListener() {
       /**
        * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
        */
@@ -852,10 +852,10 @@ extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> 
       }
     };
     modelViewer.setInput(getData());
-    final Menu menu = new Menu(modelViewer.getClientViewer().getTree());
+    final Menu menu = new Menu(modelViewer.getTreeViewer().getTree());
     createMergeMenuItem(menu, modelViewer);
     createAddMenuItem(menu, modelViewer);
-    modelViewer.getClientViewer().getTree().setMenu(menu);
+    modelViewer.getTreeViewer().getTree().setMenu(menu);
     return modelViewer;
   }
 
@@ -901,7 +901,7 @@ extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> 
         resultViewer.setInput(ModelsUtil.getAllContents(newElements, true, null));
       }
     });
-    resultViewer.getClientViewer().getControl().setEnabled(true);
+    resultViewer.getTreeViewer().getControl().setEnabled(true);
   }
 
   /**
