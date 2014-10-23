@@ -30,7 +30,9 @@ import org.eclipse.emf.diffmerge.patterns.ui.providers.CollectionAsTreeContentPr
 import org.eclipse.emf.diffmerge.patterns.ui.providers.DiscriminatingLabelProvider;
 import org.eclipse.emf.diffmerge.patterns.ui.util.UIUtil;
 import org.eclipse.emf.diffmerge.util.ModelsUtil;
+import org.eclipse.emf.diffmerge.util.structures.FHashSet;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -70,11 +72,11 @@ import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.Shell;
 
 /**
- * A viewer for an arbitrary subset of a model structured as a tree
+ * A viewer for an arbitrary model subset, classically represented as a tree.
  * @author Olivier Constant
  * @author Skander Turki
  */
-public class ModelSubsetViewer extends Viewer{
+public class ModelSubsetViewer extends Viewer {
 
   /** The different configurations for control widgets */
   public static int NONE = 0;
@@ -101,19 +103,20 @@ public class ModelSubsetViewer extends Viewer{
 
   /** The potentially null "show parents" check box */
   protected Button _showParentsButton;
-
-  // The internal composite.
+  
+  /** The internal composite */
   private Composite _composite;
-
-  // The Multiple Selection option
+  
+  /** The multiple selection option */
   protected boolean _isMultipleSelection;
-
-  // The client viewer.
-  TreeViewer _clientViewer;
-
-  // data content provider for the clientViewer
+  
+  /** The sub-viewer */
+  protected TreeViewer _treeViewer;
+  
+  /** Data content provider for the client viewer */
   private ITreeContentProvider _dataProvider;
-
+  
+  
   /**
    * Constructor
    * @param parent_p the non-null graphical owner
@@ -131,12 +134,12 @@ public class ModelSubsetViewer extends Viewer{
     ModelSubsetLabelProvider labelProvider = new ModelSubsetLabelProvider(getInternalLabelProvider());
     // Set up tree viewer
     _dataProvider = new CollectionAsTreeContentProvider();
-    _clientViewer.setContentProvider(_dataProvider); //TODO: ITreeContentProvider
-    _clientViewer.setLabelProvider(labelProvider);
+    _treeViewer.setContentProvider(_dataProvider); //TODO: ITreeContentProvider
+    _treeViewer.setLabelProvider(labelProvider);
     _sortingMethod = null;
     ViewerSorter sorter = getSorter();
     if (sorter != null)
-      _clientViewer.setSorter(sorter);
+      _treeViewer.setSorter(sorter);
     else
       setSortingMethod(SortingMethod.BY_TYPE_AND_NAME);
     if (_showParentsButton != null) {
@@ -145,9 +148,23 @@ public class ModelSubsetViewer extends Viewer{
   }
 
   /**
-   * Initialize this viewer.
-   * @param parent_p
-   * @param style_p
+   * Adds the given filter to this viewer, and triggers refiltering and resorting of the elements.<br>
+   * If you want to add more than one filter consider using {@link #setFilters(ViewerFilter[])}.<br>
+   * Only works if client viewer ({@link #getTreeViewer()} is {@link StructuredViewer}.
+   * @param filter_p a viewer filter
+   * @see #setFilters(ViewerFilter[])
+   */
+  public void addFilter(ViewerFilter filter_p) {
+    Viewer clientViewer = _treeViewer;
+    // Don't add twice internal filter.
+    if (clientViewer instanceof StructuredViewer) {
+      ((StructuredViewer) clientViewer).addFilter(filter_p);
+    }
+  }
+
+  /**
+   * Initialize this viewer
+   * @param parent_p a non-null composite
    */
   protected void initialize(Composite parent_p) {
     _composite = new Composite(parent_p, SWT.NONE);
@@ -155,31 +172,32 @@ public class ModelSubsetViewer extends Viewer{
   }
 
   /**
-   * Creates the control.
-   * @param parent_p The parent composite.
+   * Create the control of the viewer
+   * @param parent_p a non-null composite
    */
   protected void createControl(Composite parent_p) {
     // Set a layout.
     GridLayout layout = new GridLayout(1, true);
     parent_p.setLayout(layout);
     // Creates the client viewer.
-    _clientViewer = createClientViewer(parent_p);
+    _treeViewer = createTreeViewer(parent_p);
     // Layouts the client area.
-    if (null != _clientViewer) {
+    if (null != _treeViewer) {
       GridData gdData = new GridData();
       gdData.verticalAlignment = SWT.FILL;
       gdData.horizontalAlignment = SWT.FILL;
       gdData.grabExcessHorizontalSpace = true;
       gdData.grabExcessVerticalSpace = true;
-      _clientViewer.getControl().setLayoutData(gdData);
+      _treeViewer.getControl().setLayoutData(gdData);
     }
   }
 
   /**
-   * Set a selection listener on this viewer (delegated to the client viewer)
+   * Set a selection listener on this viewer (delegated to the tree viewer)
+   * @param listener_p a non-null object
    */
   public void addSelectionListener(ISelectionChangedListener listener_p) {
-    _clientViewer.addSelectionChangedListener(listener_p);
+    _treeViewer.addSelectionChangedListener(listener_p);
   }
 
   /**
@@ -265,7 +283,7 @@ public class ModelSubsetViewer extends Viewer{
              * @see java.lang.Runnable#run()
              */
             public void run() {
-              _clientViewer.expandAll();
+              _treeViewer.expandAll();
             }
           });
         }
@@ -287,7 +305,7 @@ public class ModelSubsetViewer extends Viewer{
              * @see java.lang.Runnable#run()
              */
             public void run() {
-              _clientViewer.collapseAll();
+              _treeViewer.collapseAll();
             }
           });
         }
@@ -312,19 +330,19 @@ public class ModelSubsetViewer extends Viewer{
   }
 
   /**
-   * 
-   * @param parent_p
-   * @return
+   * Create and return the sub-viewer
+   * @param parent_p a non-null composite
+   * @return a non-null viewer
    */
-  protected TreeViewer createClientViewer(Composite parent_p) {
+  protected TreeViewer createTreeViewer(Composite parent_p) {
     createControlWidgets(parent_p);
-    TreeViewer mainViewer;
+    TreeViewer result;
     if ((getControlWidgetConfiguration() & NAME_FILTER) == NAME_FILTER ) {  
       parent_p.setLayoutData(new GridData(GridData.FILL_BOTH));
-      mainViewer = new TreeViewer(parent_p,  getTreeStyle());
-      mainViewer.setAutoExpandLevel(AbstractTreeViewer.ALL_LEVELS);
+      result = new TreeViewer(parent_p,  getTreeStyle());
+      result.setAutoExpandLevel(AbstractTreeViewer.ALL_LEVELS);
     } else {
-      mainViewer = new TreeViewer(parent_p, getTreeStyle());
+      result = new TreeViewer(parent_p, getTreeStyle());
       Layout parentLayout = parent_p.getLayout();
       if (parentLayout instanceof GridLayout) {
         GridLayout gridLayout = (GridLayout)parentLayout;
@@ -333,12 +351,29 @@ public class ModelSubsetViewer extends Viewer{
       }
       parent_p.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
     }
-    mainViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+    result.addSelectionChangedListener(new ISelectionChangedListener() {
       public void selectionChanged(SelectionChangedEvent event) {
         _selection = (ITreeSelection)event.getSelection();
       }
     });
-    return mainViewer;
+    return result;
+  }
+
+  /**
+   * Returns a collection containing all parents of obj_p
+   * @param obj_p a non-null EObject
+   * @return a potentially empty collection
+   */
+  protected Collection<Object> getAllParents(EObject obj_p) {
+    Collection<Object> res = new FHashSet<Object>();
+    Object parent = getParent(obj_p);
+    if (parent != null){
+      if (parent instanceof EObject && !(parent instanceof Resource)) { // CDOResource case
+        res.add(parent);
+        res.addAll(getAllParents((EObject)parent));
+      }
+    }
+    return res;
   }
 
   /**
@@ -382,6 +417,14 @@ public class ModelSubsetViewer extends Viewer{
   }
 
   /**
+   * @see org.eclipse.jface.viewers.Viewer#getControl()
+   */
+  @Override
+  public Composite getControl() {
+    return _composite;
+  }
+
+  /**
    * Return what control widgets must be displayed
    */
   protected int getControlWidgetConfiguration() {
@@ -421,6 +464,14 @@ public class ModelSubsetViewer extends Viewer{
   }
 
   /**
+   * @see org.eclipse.jface.viewers.Viewer#getInput()
+   */
+  @Override
+  public Object getInput() {
+    return _treeViewer == null? null: _treeViewer.getInput();
+  }
+
+  /**
    * Return the base label provider for the tree viewer
    * @return a non-null label provider
    */
@@ -439,6 +490,22 @@ public class ModelSubsetViewer extends Viewer{
         return result;
       }
     };
+  }
+
+  /**
+   * Return the item provider for the given element
+   * @param element_p a non-null element
+   * @return a potentially null item provider
+   */
+  protected IEditingDomainItemProvider getItemProvider(EObject element_p) {
+    IEditingDomainItemProvider result = null;
+    AdapterFactoryEditingDomain editingDomain =
+        (AdapterFactoryEditingDomain)AdapterFactoryEditingDomain.getEditingDomainFor(element_p);
+    if (null != editingDomain) {
+      result = (IEditingDomainItemProvider)editingDomain.getAdapterFactory().adapt(
+          element_p, IEditingDomainItemProvider.class);
+    }
+    return result;
   }
 
   /**
@@ -463,20 +530,7 @@ public class ModelSubsetViewer extends Viewer{
     return parent;
   }
   
-/**
- * Returns the item provider for the given EObject
- */
-  private IEditingDomainItemProvider getItemProvider(EObject element_p) {
-    IEditingDomainItemProvider result = null;
-    AdapterFactoryEditingDomain editingDomain = (AdapterFactoryEditingDomain) AdapterFactoryEditingDomain.getEditingDomainFor(element_p);
-    if (null != editingDomain) {
-      result = (IEditingDomainItemProvider) editingDomain.getAdapterFactory().adapt(element_p, IEditingDomainItemProvider.class);
-    }
-    return result;
-  }
-
   /**
-   * 
    * @see org.eclipse.jface.viewers.Viewer#getSelection()
    */
   @Override
@@ -511,11 +565,17 @@ public class ModelSubsetViewer extends Viewer{
   }
 
   /**
-   * 
-   * @return
+   * Return the sub-viewer that represents the contents of the model subset
+   * @return a non-null object
+   */
+  public TreeViewer getTreeViewer() {
+    return _treeViewer;
+  }
+
+  /**
+   * Return the tree style to apply to the tree widget
    */
   protected int getTreeStyle() {
-
     return SWT.NONE | (_isMultipleSelection ? SWT.MULTI : SWT.SINGLE) | SWT.BORDER 
         | SWT.FULL_SELECTION | SWT.V_SCROLL;
   }
@@ -527,71 +587,20 @@ public class ModelSubsetViewer extends Viewer{
   public boolean isValid(EObject element_p) {
     return _vdata.contains(element_p);
   }
-
+  
   /**
-   * 
+   * @see org.eclipse.jface.viewers.Viewer#refresh()
    */
   @Override
   public void refresh() {
-    _clientViewer.refresh();
-  }
-
-  /**
-   * 
-   * @see org.eclipse.jface.viewers.Viewer#getControl()
-   */
-  @Override
-  public Composite getControl() {
-    return _composite;
-  }
-
-  /**
-   * 
-   * @return
-   */
-  public TreeViewer getClientViewer() {
-    return _clientViewer;
-  }
-
-  /**
-   * 
-   * @see org.eclipse.jface.viewers.Viewer#setSelection(org.eclipse.jface.viewers.ISelection, boolean)
-   */
-  @Override
-  public void setSelection(ISelection selection_p, boolean reveal_p) {
-    // Do nothing.
-  }
-
-  /**
-   * Adds the given filter to this viewer, and triggers refiltering and resorting of the elements.<br>
-   * If you want to add more than one filter consider using {@link #setFilters(ViewerFilter[])}.<br>
-   * Only works if client viewer ({@link #getClientViewer()} is {@link StructuredViewer}.
-   * @param filter_p a viewer filter
-   * @see #setFilters(ViewerFilter[])
-   */
-  public void addFilter(ViewerFilter filter_p) {
-    Viewer clientViewer = _clientViewer;
-    // Don't add twice internal filter.
-    if (clientViewer instanceof StructuredViewer) {
-      ((StructuredViewer) clientViewer).addFilter(filter_p);
-    }
-  }
-
-  /**
-   * 
-   * @see org.eclipse.jface.viewers.Viewer#getInput()
-   */
-
-  @Override
-  public Object getInput() {
-    return null;
+    _treeViewer.refresh();
   }
 
   /**
    * Try and select the given elements in the tree
    */
   public void select(Object... elements_p) {
-    _clientViewer.setSelection(new StructuredSelection(elements_p), true);
+    _treeViewer.setSelection(new StructuredSelection(elements_p), true);
   }
 
   /**
@@ -608,7 +617,16 @@ public class ModelSubsetViewer extends Viewer{
   }
 
   /**
-   * 
+   * Set the enabled state of this viewer
+   * @param enabled_p whether to enable or disable
+   */
+  public void setEnabled(boolean enabled_p) {
+    if ((null != _treeViewer) && !_treeViewer.getControl().isDisposed()) {
+      _treeViewer.getControl().setEnabled(enabled_p);
+    }
+  }
+
+  /**
    * @see org.eclipse.jface.viewers.Viewer#setInput(java.lang.Object)
    */
   @Override
@@ -621,7 +639,7 @@ public class ModelSubsetViewer extends Viewer{
   
   /**
    * Sets or clears the input for this viewer.
-   * @param input_p
+   * @param input_p a potentially null object
    */
   protected void setFlatInput(Object input_p) {
     if (input_p instanceof Collection<?>) {
@@ -630,23 +648,21 @@ public class ModelSubsetViewer extends Viewer{
       Iterator it = ((Collection<?>)input_p).iterator();
       while(it.hasNext()){
         Object obj = it.next();
-        if(obj instanceof EObject){
+        if(obj instanceof EObject)
           elements.add((EObject) obj);
-        }
       }
       _vdata = elements;
-      _clientViewer.setAutoExpandLevel(getExpandDepth());
-      _clientViewer.setInput(_vdata);
+      _treeViewer.setAutoExpandLevel(getExpandDepth());
+      _treeViewer.setInput(_vdata);
     } else {
-      if (null != _clientViewer) {
-        _clientViewer.setInput(input_p);
-      }
+      if (null != _treeViewer)
+        _treeViewer.setInput(input_p);
     }
   }
   
   /**
    * Sets or clears the input for this viewer showing all the objects hierarchy.
-   * @param input_p
+   * @param input_p a potentially null object
    */
   protected void setInputWithParents(Object input_p) {
     if (input_p instanceof Collection<?>) {
@@ -659,39 +675,29 @@ public class ModelSubsetViewer extends Viewer{
         if(obj instanceof EObject){
           EObject current = (EObject) obj;
           Collection<Object> parents = getAllParents(current);
-          for(Object p : parents){
-            if(p instanceof EObject){
+          for (Object p : parents){
+            if (p instanceof EObject)
               elementsAndParents.add((EObject) p);
-            }
           }
           elementsAndParents.add((EObject) obj);
           elements.add((EObject) obj);
         }
       }
       _vdata = elements;
-      _clientViewer.setAutoExpandLevel(getExpandDepth());
-      _clientViewer.setInput(elementsAndParents);
+      _treeViewer.setAutoExpandLevel(getExpandDepth());
+      _treeViewer.setInput(elementsAndParents);
     } else {
-      if (null != _clientViewer) {
-        _clientViewer.setInput(input_p);
-      }
+      if (null != _treeViewer)
+        _treeViewer.setInput(input_p);
     }
   }
 
   /**
-   * Returns a collection containing all parents of obj_p
-   * @param obj_p a non-null EObject
-   * @return a potentially empty collection
+   * @see org.eclipse.jface.viewers.Viewer#setSelection(org.eclipse.jface.viewers.ISelection, boolean)
    */
-  private Collection<Object> getAllParents(EObject obj_p) {
-    Collection<Object> res = new ArrayList<Object>();
-    Object parent = getParent(obj_p);
-    if(parent != null){
-      res.add(parent);
-      if(parent instanceof EObject)
-      res.addAll(getAllParents((EObject)parent));
-    }
-    return res;
+  @Override
+  public void setSelection(ISelection selection_p, boolean reveal_p) {
+    // Do nothing.
   }
 
   /**
@@ -704,19 +710,18 @@ public class ModelSubsetViewer extends Viewer{
       if (me != null) {
         _sortingMethod = newMethod_p;
         ViewerSorter sorter = me.getSorter(newMethod_p);
-        _clientViewer.setSorter(sorter);
+        _treeViewer.setSorter(sorter);
       }
     }
   }
 
+  
   /**
    * A label provider which delegates to an inner label provider and provides additional functionality
    */
   private class ModelSubsetLabelProvider implements ILabelProvider, IFontProvider, IColorProvider {
-
     /** The non-null inner label provider to which to delegate */
     private final ILabelProvider _innerLabelProvider;
-
     /**
      * Constructor
      * @param innerLabelProvider_p a non-null label provider to which to delegate
@@ -771,7 +776,7 @@ public class ModelSubsetViewer extends Viewer{
      */
     public Font getFont(Object element_p) {
       Font result = null;
-      Font defaultFont = _clientViewer.getTree().getFont();
+      Font defaultFont = _treeViewer.getTree().getFont();
       if (element_p instanceof EObject) {
         result = ModelSubsetViewer.this.getFont((EObject)element_p, defaultFont);
       }
@@ -784,21 +789,19 @@ public class ModelSubsetViewer extends Viewer{
      */
     public Color getBackground(Object element_p) {
       Color result = null;
-      Color defaultColor = _clientViewer.getTree().getBackground();
+      Color defaultColor = _treeViewer.getTree().getBackground();
       if (element_p instanceof EObject)
         result = ModelSubsetViewer.this.getBackgroundColor((EObject)element_p, defaultColor);
       if (result == null)
         result = defaultColor;
       return result;
     }
-
-
     /**
      * @see org.eclipse.jface.viewers.IColorProvider#getForeground(java.lang.Object)
      */
     public Color getForeground(Object element_p) {
       Color result = null;
-      Color defaultColor = _clientViewer.getTree().getForeground();
+      Color defaultColor = _treeViewer.getTree().getForeground();
       if (element_p instanceof EObject)
         result = ModelSubsetViewer.this.getForegroundColor((EObject)element_p, defaultColor);
       if (result == null)
@@ -806,16 +809,5 @@ public class ModelSubsetViewer extends Viewer{
       return result;
     }
   }
-
-  /**
-   * Enable the viewer or not.
-   * @param enabled_p <code>true</code> to enable the viewer else <code>false</code>.
-   */
-  public void setEnabled(boolean enabled_p) {
-    if ((null != _clientViewer) && !_clientViewer.getControl().isDisposed()) {
-      _clientViewer.getControl().setEnabled(enabled_p);
-    }
-  }
-
   
 }

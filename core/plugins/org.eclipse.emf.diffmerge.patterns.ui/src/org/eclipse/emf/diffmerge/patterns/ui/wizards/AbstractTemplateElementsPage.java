@@ -218,14 +218,14 @@ extends AbstractRoleSelectionPage<T> {
     // Tree viewer
     final ModelSubsetViewer result = createModelViewer(contentsGroup);
     // Popup menus
-    final Menu menu = new Menu(result.getClientViewer().getTree());
+    final Menu menu = new Menu(result.getTreeViewer().getTree());
     createNavigationControls(menu, result);
     if (allowEdition())
       createMappingControls(menu, result);
     createIsUniqueItem(menu, result);
     if (allowEdition())
       createScopeModificationControls(menu, result);
-    result.getClientViewer().getTree().setMenu(menu);
+    result.getTreeViewer().getTree().setMenu(menu);
     return result;
   }
   

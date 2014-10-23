@@ -236,14 +236,14 @@ extends AbstractModifiableTemplateElementsPage<TemplatePatternUpdateSpecificatio
     // Tree viewer
     final ModelSubsetViewer result = createModelViewer(_sash);
     // Popup menus
-    final Menu menu = new Menu(result.getClientViewer().getTree());
+    final Menu menu = new Menu(result.getTreeViewer().getTree());
     createNavigationControls(menu, result);
     if (allowEdition())
       createMappingControls(menu, result);
     createIsUniqueItem(menu, result);
     if (allowEdition())
       createScopeModificationControls(menu, result);
-    result.getClientViewer().getTree().setMenu(menu);
+    result.getTreeViewer().getTree().setMenu(menu);
     return result;
   }
 
@@ -329,7 +329,7 @@ extends AbstractModifiableTemplateElementsPage<TemplatePatternUpdateSpecificatio
    */
   protected void createSynchronizationListener() {
     // Selection synchronization: Synthesis[user] -> Global
-    _templateElementsViewer.getClientViewer().getTree().addSelectionListener(new SelectionAdapter() {
+    _templateElementsViewer.getTreeViewer().getTree().addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected(SelectionEvent event_p) {
         _detailsViewer.setInput(null);

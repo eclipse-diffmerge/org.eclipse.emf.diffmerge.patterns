@@ -5,10 +5,7 @@
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
     usedGenPackages="platform:/plugin/org.eclipse.emf.diffmerge.patterns.core.gen/model/CorePatterns.genmodel#//corepatterns platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <foreignModel>TemplatePatterns.ecore</foreignModel>
-  <modelPluginVariables>EMFEDIT=org.eclipse.emf.edit&#xD;
-EMFEDIT=org.eclipse.emf.edit&#xD;
-EMFEDIT=org.eclipse.emf.edit&#xD;
-EMFEDIT=org.eclipse.emf.edit</modelPluginVariables>
+  <modelPluginVariables>EMFEDIT=org.eclipse.emf.edit</modelPluginVariables>
   <genPackages prefix="Templatepatterns" basePackage="org.eclipse.emf.diffmerge.patterns.templates.gen"
       disposableProviderFactory="true" ecorePackage="TemplatePatterns.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="TemplatePatterns.ecore#//AdditionKind">
