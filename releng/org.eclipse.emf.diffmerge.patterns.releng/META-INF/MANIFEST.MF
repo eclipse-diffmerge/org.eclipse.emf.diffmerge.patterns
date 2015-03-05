@@ -3,3 +3,8 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Releng
 Bundle-SymbolicName: org.eclipse.emf.diffmerge.patterns.releng;singleton:=true
 Bundle-Version: 0.1.0.qualifier
+Require-Bundle: org.eclipse.egf.pattern;visibility:=reexport,
+ org.eclipse.egf.pattern.ftask;visibility:=reexport,
+ org.eclipse.egf.portfolio.eclipse.build
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: default_package
