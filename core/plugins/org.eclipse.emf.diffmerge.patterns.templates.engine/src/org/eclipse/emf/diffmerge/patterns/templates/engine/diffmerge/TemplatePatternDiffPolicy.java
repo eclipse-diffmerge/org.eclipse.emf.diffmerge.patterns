@@ -29,12 +29,12 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 /**
  * A diff policy for template pattern comparison.
  * @author Olivier Constant
+ * @author Skander Turki
  */
 public class TemplatePatternDiffPolicy extends DefaultDiffPolicy {
 
   /** The non-null set of ignored features */
   private List<EStructuralFeature> _ignoredFeatures;
-
 
 
   /**
@@ -55,7 +55,6 @@ public class TemplatePatternDiffPolicy extends DefaultDiffPolicy {
   }
 
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.impl.policies.DefaultDiffPolicy#coverFeature(org.eclipse.emf.ecore.EStructuralFeature)
    */
   @Override
@@ -78,8 +77,8 @@ public class TemplatePatternDiffPolicy extends DefaultDiffPolicy {
     else
       obj = match_p.get(Role.TARGET);
     ISemanticRuleProvider ruleProvider = TemplatePatternsEnginePlugin.getDefault().getSemanticRuleProviderFor(obj);
-    if(ruleProvider.isMergeDependency(obj.eContainer())){
-      return  false;
+    if(ruleProvider.canBeAutomaticallyMerged(obj.eContainer())){
+      return false;
     }
     return match_p.coversRole(Role.TARGET) || match_p.coversRole(Role.REFERENCE);
   }

@@ -103,11 +103,13 @@ public class TemplatePatternMatchPolicy extends DefaultMatchPolicy {
           result = instanceId;
         } else if (ruleProvider.canBeAutomaticallyMerged(element_p)) {
           EObject instanceElement = ruleProvider.getAutomaticMergeTarget(element_p, currentEditingDomain);
-          result = idProvider.getId(instanceElement, currentEditingDomain);
+          if (instanceElement != null)
+            result = idProvider.getId(instanceElement, currentEditingDomain);
         }
       } else if (ruleProvider.canBeAutomaticallyMerged(element_p)) {
         EObject instanceElement = ruleProvider.getAutomaticMergeTarget(element_p, currentEditingDomain);
-        result = idProvider.getId(instanceElement, currentEditingDomain);
+        if (instanceElement != null)
+          result = idProvider.getId(instanceElement, currentEditingDomain);
       }
     }
    return result;
