@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/org.eclipse.emf.diffmerge.patterns.sdk.feature_0.4.0.qualifier.jar" id="org.eclipse.emf.diffmerge.patterns.sdk.feature" version="0.4.0.qualifier">
+   <feature url="features/org.eclipse.emf.diffmerge.patterns.sdk.feature_0.4.1.qualifier.jar" id="org.eclipse.emf.diffmerge.patterns.sdk.feature" version="0.4.1.qualifier">
       <category name="org.eclipse.emf.diffmerge.patterns.sirus.category"/>
    </feature>
-   <feature url="features/org.eclipse.emf.diffmerge.patterns.sirius.sdk.feature._0.4.0.qualifier.jar" id="org.eclipse.emf.diffmerge.patterns.sirius.sdk.feature" version="0.4.0.qualifier">
+   <feature url="features/org.eclipse.emf.diffmerge.patterns.sirius.sdk.feature._0.4.1.qualifier.jar" id="org.eclipse.emf.diffmerge.patterns.sirius.sdk.feature" version="0.4.1.qualifier">
       <category name="org.eclipse.emf.diffmerge.patterns.sirus.category"/>
    </feature>
    <category-def name="org.eclipse.emf.diffmerge.patterns.sirus.category" label="Sirius Extension for EMF Diff/Merge Modeling Patterns (Incubation)"/>
