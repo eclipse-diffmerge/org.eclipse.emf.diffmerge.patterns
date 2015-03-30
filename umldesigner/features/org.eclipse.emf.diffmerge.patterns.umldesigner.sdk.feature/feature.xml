@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.diffmerge.patterns.umldesigner.sdk.feature"
       label="UML Designer Extension Feature for Modeling Patterns (Incubation)"
-      version="0.4.0.qualifier"
+      version="0.4.1.qualifier"
       provider-name="Eclipse Modeling Project">
 
    <description>

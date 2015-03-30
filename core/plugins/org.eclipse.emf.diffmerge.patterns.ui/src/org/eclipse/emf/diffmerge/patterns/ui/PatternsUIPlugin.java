@@ -15,8 +15,14 @@
 package org.eclipse.emf.diffmerge.patterns.ui;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.diffmerge.patterns.core.SingletonContributionDiscoverer;
 import org.eclipse.emf.diffmerge.patterns.ui.environment.DefaultModelEnvironmentUI;
 import org.eclipse.emf.diffmerge.patterns.ui.environment.IModelEnvironmentUI;
@@ -233,10 +239,33 @@ public class PatternsUIPlugin extends AbstractUIPlugin {
    */
   public IUIExtender getSemanticUIUtil() {
     if(_uiExtender == null){
-      SingletonContributionDiscoverer<IUIExtender> d = 
-          new SingletonContributionDiscoverer<IUIExtender>(IUIExtender.class,
-              UI_EXTENDER_EXTENSION_POINT, UI_EXTENDER_POINT_PROPERTY); 
-      _uiExtender = d.getContributedSingleton();
+      IExtensionRegistry registry = Platform.getExtensionRegistry();
+      IConfigurationElement[] config = registry.getConfigurationElementsFor(
+          UI_EXTENDER_EXTENSION_POINT);
+      Set<IUIExtender> extenders = new HashSet<IUIExtender>();
+      // Discover all contributions
+      for (IConfigurationElement e : config) {
+        try {
+          Object o = e.createExecutableExtension(UI_EXTENDER_POINT_PROPERTY);
+          if (o instanceof IUIExtender)
+            extenders.add((IUIExtender)o);
+        } catch (CoreException ex) {
+          // Proceed
+        }
+      }
+      // Filtering out overridden ones
+      Set<Class<? extends IUIExtender>> overriddenClasses = new HashSet<Class<? extends IUIExtender>>();
+      for (IUIExtender extender : extenders) {
+        overriddenClasses.addAll(extender.getOverridenClasses());
+      }
+      for (IUIExtender extender : new HashSet<IUIExtender>(extenders)) {
+        for (Class<? extends IUIExtender> overriddenClass : overriddenClasses) {
+          if (extender.getClass().equals(overriddenClass))
+            extenders.remove(extender);
+        }
+      }
+      if (!extenders.isEmpty())
+        _uiExtender = extenders.iterator().next();
     }
     return _uiExtender;
   }

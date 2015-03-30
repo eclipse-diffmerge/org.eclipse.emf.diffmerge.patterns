@@ -14,6 +14,9 @@
  */
 package org.eclipse.emf.diffmerge.patterns.ui.sirius.util;
 
+import java.util.Collection;
+import java.util.Collections;
+
 import org.eclipse.emf.diffmerge.patterns.ui.sirius.views.SiriusInstanceExplorerView;
 import org.eclipse.emf.diffmerge.patterns.ui.util.IUIExtender;
 import org.eclipse.emf.diffmerge.patterns.ui.viewers.ModelSubsetViewer;
@@ -38,6 +41,13 @@ public class SiriusUIExtender implements IUIExtender{
    */
   public String getInstanceExplorerViewID() {
     return SiriusInstanceExplorerView.getID();
+  }
+
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.ui.util.IUIExtender#getOverridenClasses()
+   */
+  public Collection<? extends Class<? extends IUIExtender>> getOverridenClasses() {
+    return Collections.emptySet();
   }
   
 }

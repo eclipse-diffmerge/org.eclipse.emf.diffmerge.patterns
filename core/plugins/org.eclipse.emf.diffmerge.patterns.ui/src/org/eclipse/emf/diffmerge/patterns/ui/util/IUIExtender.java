@@ -14,11 +14,13 @@
  */
 package org.eclipse.emf.diffmerge.patterns.ui.util;
 
+import java.util.Collection;
+
 import org.eclipse.emf.diffmerge.patterns.ui.viewers.ModelSubsetViewer;
 import org.eclipse.swt.widgets.Menu;
 
 /**
- * A semantic/UI utility interface about the relationship between ui
+ * A semantic/UI utility interface about the relationship between UI
  * and semantic elements.
  * @author Olivier Constant
  * @author Skander Turki
@@ -34,6 +36,14 @@ public interface IUIExtender{
    */
   boolean createNavigationItems(Menu menu_p, ModelSubsetViewer viewer_p);
  
+  /**
+   * Return the similar classes that this class overrides.
+   * This "override" relation must be such that its transitive
+   * closure is antisymmmetric (no "loops"). Only instances of the returned classes are
+   * concerned, not instances of sub-classes.
+   * @return a non-null, potentially empty collection
+   */
+  Collection<? extends Class<? extends IUIExtender>> getOverridenClasses();
 
   /**
    * Returns the ID of the modeller's instance explorer view.
