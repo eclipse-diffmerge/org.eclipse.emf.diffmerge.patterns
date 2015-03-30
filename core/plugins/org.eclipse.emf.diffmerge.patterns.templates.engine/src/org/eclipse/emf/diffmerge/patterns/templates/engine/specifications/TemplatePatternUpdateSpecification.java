@@ -40,8 +40,17 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 
 /**
- * A data structure which contains all useful data for updating a template pattern.
+ * A data structure which contains the necessary data for updating a template pattern
  * from an existing instance.
+ * It is structured as follows:
+ * - Its getComparison() maps instance elements to a copy (getPattern()) of the original pattern
+ *   (getOriginalPattern()) stored in a PatternVirtualResource. 
+ *   It is automatically recomputed and merged when the instance scope is updated.
+ *   It is used to later update the original pattern via a TemplatePatternUpdateComparison.
+ * - Its getVisualizationComparison() maps instance elements to another copy of the pattern
+ *   stored in a PatternVirtualResource.
+ *   It is automatically recomputed and not merged when the instance scope is updated.
+ *   It only serves for visualization purposes.
  * @author Olivier Constant
  * @author Skander Turki
  */
@@ -104,7 +113,7 @@ public class TemplatePatternUpdateSpecification extends AbstractModifiableTempla
       ed.getResourceSet().getResources().add(vres);
     return vres;
   }
-
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.AbstractModifiableTemplatePatternSpecification#getAllElements()
    */

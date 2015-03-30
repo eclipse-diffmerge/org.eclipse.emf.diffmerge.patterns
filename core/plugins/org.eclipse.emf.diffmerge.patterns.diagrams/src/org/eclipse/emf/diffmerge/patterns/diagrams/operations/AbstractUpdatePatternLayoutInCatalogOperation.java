@@ -16,6 +16,7 @@ package org.eclipse.emf.diffmerge.patterns.diagrams.operations;
 
 
 import org.eclipse.emf.diffmerge.patterns.diagrams.Messages;
+import org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePatternUpdateComparison;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
 
 /**
@@ -38,8 +39,10 @@ public abstract class AbstractUpdatePatternLayoutInCatalogOperation extends Abst
   /**
    * Update the layout data of the given pattern from the given GEF elements
    * @param pattern_p a non-null pattern
+   * @param interPatternComparison_p the non-null result of the update of the pattern
    */
-  protected abstract void updateLayoutData(TemplatePattern pattern_p);
+  protected abstract void updateLayoutData(TemplatePattern pattern_p,
+      TemplatePatternUpdateComparison interPatternComparison_p);
     
   /**
    * Getter

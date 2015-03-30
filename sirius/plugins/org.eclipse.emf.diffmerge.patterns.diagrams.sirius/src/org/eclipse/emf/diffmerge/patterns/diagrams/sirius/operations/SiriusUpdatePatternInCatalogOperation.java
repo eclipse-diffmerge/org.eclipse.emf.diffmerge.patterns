@@ -14,21 +14,23 @@
  */
 package org.eclipse.emf.diffmerge.patterns.diagrams.sirius.operations;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
+import org.eclipse.emf.diffmerge.api.IMatch;
 import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.PatternRepository;
 import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractUpdatePatternLayoutInCatalogOperation;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.operations.UpdateCatalogOperation;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternEngine;
+import org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePatternComparison;
+import org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePatternUpdateComparison;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternUpdateSpecification;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Layout;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 
 /**
@@ -72,9 +74,12 @@ extends SiriusAbstractPatternWithLayoutOperation<TemplatePattern>{
   /**
    * Update the layout data of the given pattern from the given GEF elements
    * @param pattern_p a non-null pattern
+   * @param interPatternComparison_p the non-null result of the update of the pattern
    */
-  protected void updateLayoutData(TemplatePattern pattern_p) {
-    ((InnerUpdatePatternInCatalogOperation)_innerPatternLayoutOperation).updateLayoutData(pattern_p);
+  protected void updateLayoutData(TemplatePattern pattern_p,
+      TemplatePatternUpdateComparison interPatternComparison_p) {
+    ((InnerUpdatePatternInCatalogOperation)_innerPatternLayoutOperation).updateLayoutData(
+        pattern_p, interPatternComparison_p);
   }
 
   /**
@@ -83,21 +88,26 @@ extends SiriusAbstractPatternWithLayoutOperation<TemplatePattern>{
    *
    */
   protected class InnerUpdatePatternInCatalogOperation extends AbstractUpdatePatternLayoutInCatalogOperation{
-
+    
     /**
-     * @see org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractUpdatePatternLayoutInCatalogOperation#updateLayoutData(org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern)
+     * @see org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractUpdatePatternLayoutInCatalogOperation#updateLayoutData(org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern, org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePatternUpdateComparison)
      */
     @Override
-    protected void updateLayoutData(TemplatePattern pattern_p) {
+    protected void updateLayoutData(TemplatePattern pattern_p,
+        TemplatePatternUpdateComparison interPatternComparison_p) {
       Resource resource = pattern_p.eResource();
       if (resource != null) {
         EMap<EObject, Layout> layoutData = buildLayoutData();
         pattern_p.getLayoutData().clear();
         for (Entry<EObject, Layout> entry : layoutData.entrySet()) {
-          String id = CorePatternsPlugin.getDefault().getIdProvider().getId(entry.getKey(), null);
-          EObject updatedElement = CorePatternsPlugin.getDefault().getIdProvider().getById(id, Collections.singleton(resource));
-          if (updatedElement != null)
-            pattern_p.getLayoutData().put(updatedElement, entry.getValue());
+          EObject sourcePatternElement = entry.getKey();
+          IMatch match = interPatternComparison_p.getMapping().getMatchFor(sourcePatternElement,
+              TemplatePatternComparison.getPatternRole().opposite());
+          if (match != null) {
+            EObject updatedElement = match.get(TemplatePatternComparison.getPatternRole());
+            if (updatedElement != null && EcoreUtil.isAncestor(pattern_p, updatedElement))
+              pattern_p.getLayoutData().put(updatedElement, entry.getValue());
+          }
         }
       }
     }
@@ -108,9 +118,10 @@ extends SiriusAbstractPatternWithLayoutOperation<TemplatePattern>{
     @Override
     protected TemplatePattern execute() {
       // In-memory pattern update
-      new TemplatePatternEngine().updatePattern(getData());
+      TemplatePatternUpdateComparison patternComparison =
+          new TemplatePatternEngine().updatePattern(getData());
       if (getData().includeLayoutData())
-        updateLayoutData(getData().getOriginalPattern());
+        updateLayoutData(getData().getOriginalPattern(), patternComparison);
       // Persistent catalog update
       PatternRepository catalog =
           (PatternRepository)getData().getOriginalPattern().getRepository();

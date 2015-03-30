@@ -418,8 +418,9 @@ public class TemplatePatternEngine implements ITemplatePatternEngine {
   /**
    * Update a pattern according to the given specification
    * @param specification_p a non-null specification of the update operation
+   * @return a non-null comparison from the copy pattern of the update specification to the real pattern
    */
-  public void updatePattern(final TemplatePatternUpdateSpecification specification_p) {
+  public TemplatePatternUpdateComparison updatePattern(final TemplatePatternUpdateSpecification specification_p) {
     final TemplatePatternUpdateComparison comparison =
         new TemplatePatternUpdateComparison(specification_p);
     IStatus status = comparison.updatePattern();
@@ -471,10 +472,11 @@ public class TemplatePatternEngine implements ITemplatePatternEngine {
         }
       };
       IEvaluationStatus result = CorePatternsPlugin.getDefault().getModelEnvironment().execute(updateInstanceOperation);
-      if(!result.isOk()){
+      if (result.isOk()){
         //TODO : inform user?
       }
     }
+    return comparison;
   }
   
 
