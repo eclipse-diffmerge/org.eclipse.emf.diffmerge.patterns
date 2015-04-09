@@ -125,9 +125,15 @@ public class PatternApplicationWizard extends AbstractPatternWizard<TemplatePatt
           new CompoundModelOperation<IPatternInstance>(
               applyOperations.get(0).getName(), applyOperations, null,
               applyOperations.get(0).getTargetContext(), applyOperations.get(0).getSourceContext());
+      Object globalTargetContext;
+      if (_diagramToRefresh != null) {
+        globalTargetContext = _diagramToRefresh;
+      } else {
+        globalTargetContext = applyOperations.get(0).getTargetContext();
+      }
       AbstractGraphicalWrappingInstanceOperation<List<? extends IPatternInstance>> mainOperation =
           instantiateGraphicalWrappingInstanceOperation(
-              applyAllOperation, _diagramToRefresh, refreshRequest);
+              applyAllOperation, globalTargetContext, refreshRequest);
       List<? extends IPatternInstance> instances = execute(mainOperation);
       result = instances != null && !instances.isEmpty();
       // After execution of the main operation because the GMF/Doremi
