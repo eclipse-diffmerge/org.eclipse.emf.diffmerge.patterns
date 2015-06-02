@@ -41,6 +41,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.command.ChangeCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 
@@ -211,16 +213,34 @@ extends AbstractModelOperation<Collection<PatternRepository>> {
     for (IPatternInstance instance : instancesToUpdate_p) {
       IPatternSymbol iSymbol = instance.getPatternVersion().getPatternSymbol();
       if (iSymbol instanceof PatternSymbol) {
-        PatternSymbol symbol = (PatternSymbol)iSymbol;
+        final PatternSymbol symbol = (PatternSymbol)iSymbol;
         String id = symbol.getPatternId();
         EObject pattern = CorePatternsPlugin.getDefault().getIdProvider().getById(id, resources);
         if (pattern != null) {
           // Pattern found in one of the resources: update last path
           URI uri = EcoreUtil.getURI(pattern);
           if (uri != null) {
-            String newPath = uri.toString();
-            if (!newPath.equals(symbol.getLastPath()))
-              symbol.setLastPath(newPath);
+            final String newPath = uri.toString();
+            if (!newPath.equals(symbol.getLastPath())) {
+              EditingDomain ed =
+                  CorePatternsPlugin.getDefault().getModelEnvironment().getEditingDomain(
+                      EcoreUtil.getRootContainer(symbol));
+              if (ed != null) {
+                ChangeCommand cmd = new ChangeCommand(ed.getResourceSet()) {
+                  {
+                    label = OpenCatalogOperation.this.getName();
+                  }
+                  /**
+                   * @see org.eclipse.emf.edit.command.ChangeCommand#doExecute()
+                   */
+                  @Override
+                  protected void doExecute() {
+                    symbol.setLastPath(newPath);
+                  }
+                };
+                ed.getCommandStack().execute(cmd);
+              }
+            }
           }
         }
       }

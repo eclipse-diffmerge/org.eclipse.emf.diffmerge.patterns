@@ -555,10 +555,11 @@ public final class UIUtil {
 	              List<IFile> userSelected = promptForExistingCatalogs(shell_p, resource, rs);
 	              if (userSelected.isEmpty())
 	                return true;
-	              operation = new OpenCatalogOperation(userSelected, catalogDomain, instances_p);
-	              loaded =
-	                CorePatternsPlugin.getDefault().getModelEnvironment().execute(operation);
-	              result = result || !loaded.isEmpty();
+	              for (IFile selectedFile : userSelected) {
+	                operation = new OpenCatalogOperation(selectedFile, catalogDomain, instances_p);
+	                loaded = CorePatternsPlugin.getDefault().getModelEnvironment().execute(operation);
+	                result = result || !loaded.isEmpty();
+	              }
 	            }
 	          }    
 	        }
