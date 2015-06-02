@@ -14,6 +14,7 @@
  */
 package org.eclipse.emf.diffmerge.patterns.templates.engine;
 
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.core.util.LocationsUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider;
+import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternData;
 import org.eclipse.emf.diffmerge.util.ModelsUtil;
 import org.eclipse.emf.ecore.EObject;
@@ -97,6 +99,15 @@ public final class TemplatePatternsUtil {
         result = (TemplatePatternData)instance.getPatternData();
     }
     return result;
+  }
+  
+  /**
+   * Update the time stamp that corresponds to the last modification of the given pattern
+   * to the current date and time
+   * @param pattern_p a non-null pattern
+   */
+  public static void updateLastModificationStamp(TemplatePattern pattern_p) {
+    pattern_p.setLastModificationStamp(Calendar.getInstance().getTime().toString());
   }
   
 }

@@ -25,6 +25,7 @@ import org.eclipse.emf.diffmerge.patterns.core.operations.CreateInstanceOperatio
 import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractCreatePatternAndInstanceLayoutOperation;
 import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractPatternWithLayoutOperation;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.operations.AddToCatalogOperation;
+import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternCreationSpecification;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Layout;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
@@ -106,6 +107,7 @@ extends SiriusAbstractPatternWithLayoutOperation<IPatternInstance> {
     @Override
     protected IPatternInstance execute() {
       TemplatePattern pattern = getData().getPattern();
+      TemplatePatternsUtil.updateLastModificationStamp(pattern);
       // Pattern layout definition
       if (getData().includeLayoutData())
         setupLayoutData(pattern);

@@ -69,7 +69,7 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
 
 
 /**
- * An engine for template patterns which is based on the Melody Diff/Merge engine.
+ * An engine for template patterns which is based on the EMF Diff/Merge engine.
  * An instance of this class may be used several times on different instances.
  * @author Olivier Constant
  */

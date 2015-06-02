@@ -23,6 +23,7 @@ import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.PatternRepositor
 import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractUpdatePatternLayoutInCatalogOperation;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.operations.UpdateCatalogOperation;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternEngine;
+import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePatternComparison;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePatternUpdateComparison;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternUpdateSpecification;
@@ -120,6 +121,7 @@ extends SiriusAbstractPatternWithLayoutOperation<TemplatePattern>{
       // In-memory pattern update
       TemplatePatternUpdateComparison patternComparison =
           new TemplatePatternEngine().updatePattern(getData());
+      TemplatePatternsUtil.updateLastModificationStamp(getData().getOriginalPattern());
       if (getData().includeLayoutData())
         updateLayoutData(getData().getOriginalPattern(), patternComparison);
       // Persistent catalog update
