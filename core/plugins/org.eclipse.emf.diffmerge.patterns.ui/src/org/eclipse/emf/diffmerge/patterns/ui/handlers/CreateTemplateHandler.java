@@ -41,6 +41,7 @@ public class CreateTemplateHandler extends AbstractWorkbenchSelectionHandler {
           CreateTemplateAction action = new CreateTemplateAction();
           action.setActivePart(null, part);
           action.selectionChanged(null, selection_p);
+          action.run(null);
         }
       }
     }
