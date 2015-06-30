@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.diffmerge.patterns.sdk.feature"
       label="Modeling Patterns Generic Framework (Incubation)"
-      version="0.4.1.qualifier"
+      version="0.4.2.qualifier"
       provider-name="Eclipse Modeling Project">
 
    <description>
