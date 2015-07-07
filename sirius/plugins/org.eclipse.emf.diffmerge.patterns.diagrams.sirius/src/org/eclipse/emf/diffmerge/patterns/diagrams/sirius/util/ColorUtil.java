@@ -36,17 +36,17 @@ public class ColorUtil {
    * Returns an RGBValues object built out of a red, blue and green int values. When the creation of the object fails a black color object is returned.
    * @return a non-null RGBValues object.
    */
-  public static RGBValues getRGBColor(int red, int green, int blue) {
-    ViewpointFactory fact = ViewpointFactory.eINSTANCE;
-    RGBValues rgbValues = fact.createRGBValues();
-    if (rgbValues != null) {
-      rgbValues.setRed(red);
-      rgbValues.setGreen(green);
-      rgbValues.setBlue(blue);
-      return rgbValues;
-    }
-    return getRGBColor(0, 0, 0);
-  }
+//  public static RGBValues getRGBColor(int red, int green, int blue) {
+//    ViewpointFactory fact = ViewpointFactory.eINSTANCE;
+//    RGBValues rgbValues = fact.createRGBValues();
+//    if (rgbValues != null) {
+//      rgbValues.setRed(red);
+//      rgbValues.setGreen(green);
+//      rgbValues.setBlue(blue);
+//      return rgbValues;
+//    }
+//    return getRGBColor(0, 0, 0);
+//  }
 
   /**
    * Converts a doremi RGBValues color to an SWT RGB object If the conversion fails, the a black RGB object is returned
@@ -66,15 +66,10 @@ public class ColorUtil {
    * @return a non-null Doremi RGBValues color
    */
   public static RGBValues convertRGBToRGBValues(RGB rgbObject_p) {
-    ViewpointFactory fact = ViewpointFactory.eINSTANCE;
-    RGBValues rgbValues = fact.createRGBValues();
-    if ((rgbObject_p != null) && (rgbValues != null)) {
-      rgbValues.setBlue(rgbObject_p.blue);
-      rgbValues.setGreen(rgbObject_p.green);
-      rgbValues.setRed(rgbObject_p.red);
-      return rgbValues;
+    if (rgbObject_p != null) {
+      return RGBValues.create(rgbObject_p.red, rgbObject_p.green, rgbObject_p.blue);
     }
-    return getRGBColor(0, 0, 0);
+    return RGBValues.create(0, 0, 0);
   }
 
   /**
@@ -94,15 +89,11 @@ public class ColorUtil {
    * @return a non-null RGBValues object
    */
   public static RGBValues convertIntColorToRGBValues(int color_p) {
-    ViewpointFactory fact = ViewpointFactory.eINSTANCE;
-    RGBValues rgbValues = fact.createRGBValues();
     int redpart = color_p % 256;
     int greenpart = (color_p - redpart) / 256;
     int green = greenpart % 256;
-    rgbValues.setRed(redpart);
-    rgbValues.setGreen(green);
-    rgbValues.setBlue((greenpart - green) / 256);
-    return rgbValues;
+    
+    return RGBValues.create(redpart, green, (greenpart - green) / 256);
   }
 
 }

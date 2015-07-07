@@ -19,8 +19,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.sirius.diagram.AbstractDNode;
 import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.DDiagramElement;
+import org.eclipse.sirius.diagram.DDiagramElementContainer;
 import org.eclipse.sirius.diagram.DNodeContainer;
-import org.eclipse.sirius.viewpoint.DContainer;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.sirius.viewpoint.RGBValues;
 
@@ -92,7 +92,7 @@ extends AbstractGenericTypeUtil{
    */
   @Override
   public boolean isInstanceOfGraphicalContainerType(Object object_p) {
-    return object_p instanceof DContainer;
+    return ((object_p instanceof DDiagram) || (object_p instanceof DDiagramElementContainer));
   }
 
   /**
@@ -155,15 +155,6 @@ extends AbstractGenericTypeUtil{
   @Override
   public Class<?> getGraphicalNodeContainerTypeClass(){
     return DNodeContainer.class;
-  }
-
-  /**
-   * 
-   * @see org.eclipse.emf.diffmerge.patterns.core.environment.AbstractGenericTypeUtil#getGraphicalContainerTypeClass()
-   */
-  @Override
-  public Class<?> getGraphicalContainerTypeClass() {
-    return DContainer.class;
   }
 
   /**

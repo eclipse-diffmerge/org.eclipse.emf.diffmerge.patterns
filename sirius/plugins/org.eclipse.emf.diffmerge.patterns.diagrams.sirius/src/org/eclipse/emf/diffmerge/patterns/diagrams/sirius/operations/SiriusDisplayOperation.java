@@ -32,11 +32,11 @@ import org.eclipse.emf.diffmerge.util.structures.FHashMap;
 import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.sirius.common.tools.api.interpreter.IInterpreter;
-import org.eclipse.sirius.diagram.ui.tools.api.layout.PinHelper;
+import org.eclipse.sirius.diagram.tools.api.layout.PinHelper;
 import org.eclipse.sirius.diagram.AbstractDNode;
-import org.eclipse.sirius.viewpoint.DContainer;
 import org.eclipse.sirius.viewpoint.SiriusPlugin;
 import org.eclipse.sirius.diagram.DDiagram;
+import org.eclipse.sirius.diagram.DDiagramElementContainer;
 import org.eclipse.sirius.diagram.DNodeContainer;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.sirius.diagram.business.internal.metamodel.description.extensions.IContainerMappingExt;
@@ -93,8 +93,11 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation{
       }
       EMap<EObject, DSemanticDecorator> rootsToNodes =
           getExistingDecorators(rootsAndContainers, (DDiagram)_diagram);
-      LinkedList<DContainer> containers = new LinkedList<DContainer>(
-          filter(rootsToNodes.values(), DContainer.class));
+      LinkedList<EObject> diagramContainers = new LinkedList<EObject>(
+          filter(rootsToNodes.values(), DDiagram.class));
+      LinkedList<EObject> containers = new LinkedList<EObject>(
+              filter(rootsToNodes.values(), DDiagramElementContainer.class));
+      containers.addAll(diagramContainers);
       Collection<EObject> remainingElements =
           ModelsUtil.getAllContents(_semanticRoots, false, null);
       remainingElements.removeAll(rootsToNodes.keySet());
@@ -138,9 +141,9 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation{
    * @param remainingElements_p a non-null, modifiable ordered set of semantic elements to display
    * @param createdNodes_p a non-null, modifiable set of nodes that have been created
    */
-  private void showAllInContainer(DContainer container_p, Collection<EObject> remainingElements_p,
+  private void showAllInContainer(EObject container_p, Collection<EObject> remainingElements_p,
       Collection<Object> createdNodes_p) {
-    LinkedList<DContainer> containers = new LinkedList<DContainer>();
+    LinkedList<EObject> containers = new LinkedList<EObject>();
     containers.add(container_p);
     showAllInContainers(containers, remainingElements_p, createdNodes_p);
   }
@@ -152,10 +155,10 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation{
    * @param remainingElements_p a non-null, modifiable ordered set of semantic elements to display
    * @param createdNodes_p a non-null, modifiable set of nodes that have been created
    */
-  private void showAllInContainers(LinkedList<DContainer> containers_p,
+  private void showAllInContainers(LinkedList<EObject> containers_p,
       Collection<EObject> remainingElements_p, Collection<Object> createdNodes_p) {
     while (!containers_p.isEmpty() && !remainingElements_p.isEmpty()) {
-      DContainer nodeContainer = containers_p.poll();
+      EObject nodeContainer = containers_p.poll();
       Collection<AbstractDNode> allCreated =
           showInContainer(nodeContainer, remainingElements_p);
       createdNodes_p.addAll(allCreated);
@@ -171,7 +174,7 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation{
    * @param remainingElements_p a non-null, modifiable ordered set of semantic elements to display
    * @return a non-null, potentially empty, unmodifiable set of the nodes created
    */
-  private Collection<AbstractDNode> showInContainer(DContainer graphicalContainer_p,
+  private Collection<AbstractDNode> showInContainer(EObject graphicalContainer_p,
       Collection<EObject> remainingElements_p) {
     Collection<AbstractDNode> result = new FOrderedSet<AbstractDNode>();
     Collection<AbstractNodeMapping> innerMappings =
@@ -203,7 +206,7 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation{
    * @return the diagram element being created, or null if failure
    */
   private AbstractDNode showElement(AbstractNodeMapping mapping_p,
-      EObject semanticTarget_p, DContainer graphicalContainer_p) {
+      EObject semanticTarget_p, EObject graphicalContainer_p) {
     AbstractDNode result = null;
     DDiagram diagram = SiriusUtil.getDiagram(graphicalContainer_p);
     ISemanticMapping<?> mapping = PatternCoreDiagramPlugin.getDefault().getSemanticMapping();

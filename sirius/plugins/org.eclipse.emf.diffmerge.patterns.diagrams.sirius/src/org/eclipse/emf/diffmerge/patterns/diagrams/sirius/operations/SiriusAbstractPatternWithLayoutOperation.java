@@ -262,19 +262,26 @@ extends AbstractPatternWithLayoutOperation<T>{
     }
     if (customFeatures.contains(
         ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelFormat().getName())) {
-      FontFormat format = style_p.getLabelFormat();
-      if (format.equals(FontFormat.NORMAL_LITERAL)) {
-        localfontstyle_p.selectedIsBold = false;
-        localfontstyle_p.selectedIsItalic = false;
-      } else if (format.equals(FontFormat.ITALIC_LITERAL)) {
-        localfontstyle_p.selectedIsBold = false;
-        localfontstyle_p.selectedIsItalic = true;
-      } else if (format.equals(FontFormat.BOLD_LITERAL)) {
-        localfontstyle_p.selectedIsBold = true;
-        localfontstyle_p.selectedIsItalic = false;
-      } else if (format.equals(FontFormat.BOLD_ITALIC_LITERAL)) {
-        localfontstyle_p.selectedIsBold = true;
-        localfontstyle_p.selectedIsItalic = true;
+      List<FontFormat> format = style_p.getLabelFormat();
+      localfontstyle_p.selectedIsBold = false;
+      localfontstyle_p.selectedIsItalic = false;
+      localfontstyle_p.selectedIsStrikeThrough = false;
+      localfontstyle_p.selectedIsUnderline = false;
+
+      for (FontFormat fontFormat : format) {
+//    	  BOLD_LITERAL
+//    	  ITALIC_LITERAL
+//    	  STRIKE_THROUGH_LITERAL
+//    	  UNDERLINE_LITERAL
+    	  if (FontFormat.BOLD_LITERAL == fontFormat) {
+    		  localfontstyle_p.selectedIsBold = true;
+    	  } else if (FontFormat.ITALIC_LITERAL == fontFormat) {
+    		  localfontstyle_p.selectedIsItalic = true;
+    	  } else if (format.equals(FontFormat.STRIKE_THROUGH_LITERAL)) {
+    		  localfontstyle_p.selectedIsStrikeThrough = true;
+    	  } else if (format.equals(FontFormat.UNDERLINE_LITERAL)) {
+    		  localfontstyle_p.selectedIsUnderline = true;
+    	  }
       }
     }
     if (customFeatures.contains(

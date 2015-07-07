@@ -42,7 +42,6 @@ import org.eclipse.sirius.diagram.description.NodeMapping;
 import org.eclipse.sirius.diagram.description.NodeMappingImport;
 import org.eclipse.sirius.ecore.extender.business.api.accessor.ModelAccessor;
 import org.eclipse.sirius.ecore.extender.business.api.accessor.ModelAccessorsRegistry;
-import org.eclipse.sirius.viewpoint.DContainer;
 import org.eclipse.sirius.viewpoint.SiriusPlugin;
 import org.eclipse.sirius.viewpoint.description.AbstractMappingImport;
 import org.eclipse.sirius.diagram.description.DescriptionPackage;
@@ -79,8 +78,8 @@ public final class SiriusUtil {
   public static boolean conformsToMapping(EObject semanticElt_p, AbstractNodeMapping mapping_p,
       boolean considerPrecondition_p, boolean considerCandidates_p, Object graphicalContainer_p) {
     boolean result = false;
-    if(graphicalContainer_p instanceof DContainer){
-      DContainer container = (DContainer)graphicalContainer_p;
+    if((graphicalContainer_p instanceof DDiagram) || (graphicalContainer_p instanceof DDiagramElementContainer) ){
+      EObject container = (EObject)graphicalContainer_p;
       //ModelAccessorsRegistry reg = ViewpointPlugin.getDefault().getModelAccessorRegistry();
       ModelAccessorsRegistry reg = SiriusPlugin.getDefault().getModelAccessorRegistry();
       ModelAccessor accessor = reg.getModelAccessor(semanticElt_p);
@@ -121,7 +120,7 @@ public final class SiriusUtil {
    * @return a non-null, potentially empty, unmodifiable set
    */
   public static UniqueEList<AbstractNodeMapping> getApplicableMappingsIn(
-      DContainer graphicalContainer_p) {
+		  EObject graphicalContainer_p) {
     UniqueEList<AbstractNodeMapping> result = null;
     if (graphicalContainer_p instanceof DDiagram)
       result = getApplicableMappingsInDiagram((DDiagram)graphicalContainer_p);

@@ -86,11 +86,6 @@ public abstract class AbstractGenericTypeUtil {
   public abstract boolean isInstanceOfGraphicalContainerType(Object object_p);
   
   /**
-   * Run-time type getter for GraphicalContainerType.
-   */
-  public abstract Class<?> getGraphicalContainerTypeClass();
-  
-  /**
    * Run-time type checker for GraphicalNodeContainerType.
    * @param object_p any Object
    */

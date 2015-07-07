@@ -40,6 +40,7 @@ import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.ShapeStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
+import org.eclipse.sirius.business.api.metamodel.helper.FontFormatHelper;
 import org.eclipse.sirius.diagram.AbstractDNode;
 import org.eclipse.sirius.diagram.BeginLabelStyle;
 import org.eclipse.sirius.diagram.BorderedStyle;
@@ -191,7 +192,7 @@ public final class LayoutUtil {
   }
 
   /**
-   * edgelayout_p from the patterns model is appllied to fontstyle_p, appropriate customfeatures strings are added to element_p style
+   * edgelayout_p from the patterns model is applied to fontstyle_p, appropriate customfeatures strings are added to element_p style
    * @param fontstyle_p a non-null GMF Font Style to which the style is applied
    * @param edgelayout_p a non-null patterns font style that is applied to the GMF Font Style
    * @param element_p the non-null DOREMI element to which the style is applied
@@ -261,14 +262,17 @@ public final class LayoutUtil {
       edgestyle.setStrokeColor(null);
       edgestyle.getCenterLabelStyle().setLabelColor(ColorUtil.convertIntColorToRGBValues(edgefontstyle.getColor()));
       edgestyle.getCenterLabelStyle().setLabelSize(edgefontstyle.getHeight());
-      if (edgefontstyle.isItalic() && edgefontstyle.isBold()) {
-        edgestyle.getCenterLabelStyle().setLabelFormat(FontFormat.BOLD_ITALIC_LITERAL);
+      if (edgefontstyle.isBold()) {
+        FontFormatHelper.setFontFormat(edgestyle.getCenterLabelStyle().getLabelFormat(), FontFormat.BOLD_LITERAL);
         customfeatures.add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelFormat().getName());
       } else if (edgefontstyle.isItalic()) {
-        edgestyle.getCenterLabelStyle().setLabelFormat(FontFormat.ITALIC_LITERAL);
+          FontFormatHelper.setFontFormat(edgestyle.getCenterLabelStyle().getLabelFormat(), FontFormat.ITALIC_LITERAL);
         customfeatures.add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelFormat().getName());
-      } else if (edgefontstyle.isBold()) {
-        edgestyle.getCenterLabelStyle().setLabelFormat(FontFormat.BOLD_LITERAL);
+      } else if (edgefontstyle.isStrikethrough()) {
+          FontFormatHelper.setFontFormat(edgestyle.getCenterLabelStyle().getLabelFormat(), FontFormat.STRIKE_THROUGH_LITERAL);
+        customfeatures.add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelFormat().getName());
+      } else if (edgefontstyle.isUnderline()) {
+          FontFormatHelper.setFontFormat(edgestyle.getCenterLabelStyle().getLabelFormat(), FontFormat.UNDERLINE_LITERAL);
         customfeatures.add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelFormat().getName());
       }
 
@@ -292,16 +296,19 @@ public final class LayoutUtil {
       basicLabelStyle_p.setLabelSize(fontStyle_p.getHeight());
       customFeatures.add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelSize().getName());
     }
-    if (fontStyle_p.isBold() && fontStyle_p.isItalic()) {
-      basicLabelStyle_p.setLabelFormat(FontFormat.BOLD_ITALIC_LITERAL);
-      customFeatures.add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelFormat().getName());
-    } else if (fontStyle_p.isItalic()) {
-      basicLabelStyle_p.setLabelFormat(FontFormat.ITALIC_LITERAL);
+    if (fontStyle_p.isItalic()) {
+    	FontFormatHelper.setFontFormat(basicLabelStyle_p.getLabelFormat(), FontFormat.ITALIC_LITERAL);
       customFeatures.add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelFormat().getName());
     } else if (fontStyle_p.isBold()) {
-      basicLabelStyle_p.setLabelFormat(FontFormat.BOLD_LITERAL);
+    	FontFormatHelper.setFontFormat(basicLabelStyle_p.getLabelFormat(), FontFormat.BOLD_LITERAL);
       customFeatures.add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelFormat().getName());
-    }
+    } else if (fontStyle_p.isStrikethrough()) {
+    	FontFormatHelper.setFontFormat(basicLabelStyle_p.getLabelFormat(), FontFormat.STRIKE_THROUGH_LITERAL);
+      customFeatures.add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelFormat().getName());
+    }  else if (fontStyle_p.isUnderline()) {
+    	FontFormatHelper.setFontFormat(basicLabelStyle_p.getLabelFormat(), FontFormat.UNDERLINE_LITERAL);
+        customFeatures.add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelFormat().getName());
+      }
   }
 
   /**
@@ -765,18 +772,19 @@ public final class LayoutUtil {
         BasicLabelStyle basiclabelownedstyle = (BasicLabelStyle) ownedstyle;
         // Label format
         if (sourcefontstyle_p != null) {
-          if (sourcefontstyle_p.isBold() && sourcefontstyle_p.isItalic()) {
+          if (sourcefontstyle_p.isBold()) {
             customfeatures.add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelFormat().getName());
-            basiclabelownedstyle.setLabelFormat(FontFormat.BOLD_ITALIC_LITERAL);
+            FontFormatHelper.setFontFormat(basiclabelownedstyle.getLabelFormat(), FontFormat.BOLD_LITERAL);
           } else if (sourcefontstyle_p.isItalic()) {
             customfeatures.add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelFormat().getName());
-            basiclabelownedstyle.setLabelFormat(FontFormat.ITALIC_LITERAL);
-          } else if (sourcefontstyle_p.isBold()) {
+            FontFormatHelper.setFontFormat(basiclabelownedstyle.getLabelFormat(), FontFormat.ITALIC_LITERAL);
+          } else if (sourcefontstyle_p.isStrikethrough()) {
             customfeatures.add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelFormat().getName());
-            basiclabelownedstyle.setLabelFormat(FontFormat.BOLD_LITERAL);
-          } else {
-            basiclabelownedstyle.setLabelFormat(FontFormat.NORMAL_LITERAL);
-          }
+            FontFormatHelper.setFontFormat(basiclabelownedstyle.getLabelFormat(), FontFormat.STRIKE_THROUGH_LITERAL);
+          } else if (sourcefontstyle_p.isUnderline()) {
+              customfeatures.add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelFormat().getName());
+              FontFormatHelper.setFontFormat(basiclabelownedstyle.getLabelFormat(), FontFormat.UNDERLINE_LITERAL);
+            }
 
           if (sourcefontstyle_p.getColor() != -1) {
             basiclabelownedstyle.setLabelColor(ColorUtil.convertIntColorToRGBValues(sourcefontstyle_p.getColor()));
@@ -821,26 +829,24 @@ public final class LayoutUtil {
 
   /**
    * 
-   * @param templateFontStyle_p adjust this object parameters according to the doremiElement's ownedstyle
-   * @param doremiElement_p
+   * @param templateFontStyle_p adjust this object parameters according to the siriusElement's ownedstyle
+   * @param siriusElement
    */
   public static void adjustTemplateFontStyleWithDoremiElement(
-      TemplateFontStyle templateFontStyle_p, DSemanticDecorator doremiElement_p) {
-    if (doremiElement_p instanceof DEdge) {
-      DEdge edge = (DEdge) doremiElement_p;
+      TemplateFontStyle templateFontStyle_p, DSemanticDecorator siriusElement) {
+    if (siriusElement instanceof DEdge) {
+      DEdge edge = (DEdge) siriusElement;
       EdgeStyle edgeStyle = edge.getOwnedStyle();
       CenterLabelStyle centerLabelStyle = edgeStyle.getCenterLabelStyle();
       if(centerLabelStyle != null){
         templateFontStyle_p.setColor(ColorUtil.convertRGBValuesToIntColor(centerLabelStyle.getLabelColor()));
         templateFontStyle_p.setHeight(centerLabelStyle.getLabelSize());
-        if (centerLabelStyle.getLabelFormat() == FontFormat.BOLD_ITALIC_LITERAL) {
-          templateFontStyle_p.setItalic(true);
-          templateFontStyle_p.setBold(true);
-        } else if (centerLabelStyle.getLabelFormat() == FontFormat.BOLD_LITERAL) {
-          templateFontStyle_p.setBold(true);
-        } else if (centerLabelStyle.getLabelFormat() == FontFormat.ITALIC_LITERAL) {
-          templateFontStyle_p.setItalic(true);
-        }
+        
+        templateFontStyle_p.setBold(centerLabelStyle.getLabelFormat().contains(FontFormat.BOLD_LITERAL));
+        templateFontStyle_p.setItalic(centerLabelStyle.getLabelFormat().contains(FontFormat.ITALIC_LITERAL));
+        templateFontStyle_p.setItalic(centerLabelStyle.getLabelFormat().contains(FontFormat.STRIKE_THROUGH_LITERAL));
+        templateFontStyle_p.setUnderline(centerLabelStyle.getLabelFormat().contains(FontFormat.UNDERLINE_LITERAL));
+    
       }
     }
   }

@@ -147,14 +147,9 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
     private void updateContainer(DNodeContainer container_p) {
       if (container_p.getStyle() instanceof BorderedStyle) {
         BorderedStyle style = (BorderedStyle) container_p.getStyle();
-        if (style.getBorderColor() != null) {
-          setHighlighted(style.getBorderColor());
-        } else {
-          ViewpointFactory fact = ViewpointFactory.eINSTANCE;
-          RGBValues newColor = fact.createRGBValues();
-          style.setBorderColor(newColor);
-          setHighlighted(newColor);
-        }
+    	RGBValues highlightColor = highlightColor();
+        style.setBorderColor(highlightColor);
+
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
         style.setBorderSize(_innerHighlightOperation.get_borderSize());
         style.setBorderSizeComputationExpression(_innerHighlightOperation.get_borderSize().toString());
@@ -172,8 +167,9 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
       if (edge_p.getStyle() instanceof EdgeStyle) {
         EdgeStyle style = (EdgeStyle) edge_p.getStyle();
         if (style.getStrokeColor() != null) {
-          setHighlighted(style.getStrokeColor());
-          style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName());
+        	RGBValues highlightColor = highlightColor();
+        	style.setStrokeColor(highlightColor);
+        	style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName());
         }
         style.setSize(Integer.valueOf(3));
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getEdgeStyle_Size().getName());
@@ -211,18 +207,11 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
      * @param labelStyle_p a potentially null label style
      */
     private void updateBasicLabelStyle(BasicLabelStyle labelStyle_p) {
-      if (labelStyle_p != null) {
         RGBValues color = labelStyle_p.getLabelColor();
-        if (color != null) {
-          setHighlighted(color);
-        } else {
-          ViewpointFactory fact = ViewpointFactory.eINSTANCE;
-          RGBValues newColor = fact.createRGBValues();
-          labelStyle_p.setLabelColor(newColor);
-          setHighlighted(newColor);
-        }
+        RGBValues highlightColor = highlightColor();
+        labelStyle_p.setLabelColor(highlightColor);
+   
         labelStyle_p.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelColor().getName());
-      } 
     }
 
     /**
@@ -232,14 +221,10 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
     private void updateNode(DNode node_p) {
       if (node_p.getOwnedStyle() instanceof Square) {
         Square style = (Square) node_p.getStyle();
-        if (style.getBorderColor() != null) {
-          setHighlighted(style.getBorderColor());
-        } else {
-          ViewpointFactory fact = ViewpointFactory.eINSTANCE;
-          RGBValues newColor = fact.createRGBValues();
-          style.setBorderColor(newColor);
-          setHighlighted(newColor);
-        }
+        RGBValues color = style.getLabelColor();
+        RGBValues highlightColor = highlightColor();
+        style.setLabelColor(highlightColor);
+
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
         // not stable with a diagram resresh
         style.setBorderSize(_innerHighlightOperation.get_borderSize());
@@ -255,21 +240,19 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
      * Turn the given color to the highlight color
      * @param color_p a potentially null color in RGB format
      */
-    private void setHighlighted(RGBValues color_p) {
-      if (color_p != null) {
-        color_p.setBlue(_innerHighlightOperation.get_color().blue);
-        color_p.setGreen(_innerHighlightOperation.get_color().green);
-        color_p.setRed(_innerHighlightOperation.get_color().red);
+    private RGBValues highlightColor() {
+    	  RGBValues color_p= RGBValues.create(_innerHighlightOperation.get_color().red, _innerHighlightOperation.get_color().green, _innerHighlightOperation.get_color().blue);
+    	  return color_p;
       }
-    }
 
     /**
      * Highlight the label color of the given label style with appropriate custom features
      * @param newLabelStyle a non-null BasicLabelStyle
      */
     private void highlightBasicLabelStyle(BasicLabelStyle newLabelStyle) {
-      setHighlighted(newLabelStyle.getLabelColor());
-      newLabelStyle.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelColor().getName());
+    	RGBValues highlightColor = highlightColor();
+    	newLabelStyle.setLabelColor(highlightColor);
+    	newLabelStyle.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelColor().getName());
     }
 
     /**
@@ -279,14 +262,9 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
     private void updateList(DNodeList list_p) {
       if (list_p.getStyle() instanceof BorderedStyle) {
         BorderedStyle style = (BorderedStyle) list_p.getStyle();
-        if (style.getBorderColor() != null) {
-          setHighlighted(style.getBorderColor());
-        } else {
-          ViewpointFactory fact = ViewpointFactory.eINSTANCE;
-          RGBValues newColor = fact.createRGBValues();
-          style.setBorderColor(newColor);
-          setHighlighted(newColor);
-        }
+        RGBValues highlightColor = highlightColor();
+        style.setBorderColor(highlightColor);
+        
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
         // not stable with a diagram refresh
         style.setBorderSize(_innerHighlightOperation.get_borderSize());
@@ -298,5 +276,4 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
       }
     }
   }
-
 }

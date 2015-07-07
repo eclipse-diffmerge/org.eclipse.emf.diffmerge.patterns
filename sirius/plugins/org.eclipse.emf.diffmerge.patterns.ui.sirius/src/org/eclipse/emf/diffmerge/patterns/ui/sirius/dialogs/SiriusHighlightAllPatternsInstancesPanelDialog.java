@@ -45,7 +45,7 @@ public class SiriusHighlightAllPatternsInstancesPanelDialog extends HighlightAll
    */
   @Override
   protected RGBValues instantiateColorObject(int R, int G, int B) {
-    return ColorUtil.getRGBColor(255, 0, 0);
+    return RGBValues.create(255, 0, 0);
   }
 
   /**
