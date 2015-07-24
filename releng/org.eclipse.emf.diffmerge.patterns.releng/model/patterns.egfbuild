@@ -25,8 +25,8 @@
     <buildLocations xsi:type="buildstep:UpdateSiteBuildLocation" xmi:id="_hQlWMFYOEeSAU6hfuIlgOQ" url="${orbit.p2}"/>
     <components xsi:type="buildstep:Feature" xmi:id="_qCfkqVX2EeSeFMFh-PfSLQ" id="org.eclipse.emf.diffmerge.patterns.sirius.sdk.feature"/>
   </steps>
-  <steps xsi:type="buildstep:PublishStep" xmi:id="_zGibQNWQEeGg-5Vjl_7Xaw" name="Publish results core" component="_EPIT8NTNEeGOc4hDMM5euQ" signing="true" generateDropins="true"/>
   <steps xsi:type="buildstep:PublishStep" xmi:id="_xbImIFX2EeSeFMFh-PfSLQ" name="Publish results sirius" component="_qCfkqVX2EeSeFMFh-PfSLQ" signing="true" generateDropins="true"/>
+  <steps xsi:type="buildstep:PublishStep" xmi:id="_zGibQNWQEeGg-5Vjl_7Xaw" name="Publish results core" component="_EPIT8NTNEeGOc4hDMM5euQ" signing="true" generateDropins="true"/>
   <steps xsi:type="buildstep:JavadocStep" xmi:id="_NQxi0N1NEeGLW89eUbtzmA" name="Create JavaDoc" sources="_DCUKwN1NEeGLW89eUbtzmA _qCfkpFX2EeSeFMFh-PfSLQ">
     <includes>**/*.java</includes>
     <links>http://download.oracle.com/javase/1.5.0/docs/api/</links>
