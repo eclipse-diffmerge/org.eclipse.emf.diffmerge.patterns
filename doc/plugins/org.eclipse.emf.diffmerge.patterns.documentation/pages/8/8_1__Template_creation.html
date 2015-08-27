@@ -1,0 +1,55 @@
+<HTML>
+	<HEAD>
+		<TITLE>Template Creation</TITLE>
+	</HEAD>
+	
+	<BODY TEXT="black">
+	<B>Template Creation</FONT><BR></B>
+	
+	<BR> Creating a template is by many ways similar to creating a pattern. In a model, create model elements that correspond to the simplest pattern the template must support. Whenever there can be several elements, just create two (unless the elements do not need to be navigated by OCL queries, see below, in which case one is sufficient).<BR>
+
+	<BR> Let us consider the example of Node Physical Components and some of their content in Capella. In the figures below, a Physical Architecture Blank diagram and an Contextual Component External Interfaces diagram represent the relevant elements: <BR>
+	
+	<UL> <BR><LI> a Node Physical Component, which will be the main element;<BR>
+		<BR><LI> the Behavior Physical Components which are deployed on it;<BR>
+		<BR><LI> the Physical Functions that are allocated to the Behaviors;<BR>
+		<BR><LI> the Functional Exchanges between the Functions;<BR>
+		<BR><LI> the Interfaces used and implemented by the Behaviors.<BR>
+	</UL>
+
+	<BR> <IMG SRC="images/templates_01.jpg"><BR><BR>	
+				
+	<BR> <IMG SRC="images/templates_02.jpg"><BR><BR>
+	
+	<BR> In the Architecture diagram, select the main element (the Node) and its content and click the “Create template…” menu item from the Patterns menu.	<BR>
+			
+	<BR> <IMG SRC="images/templates_03.jpg"><BR><BR>
+	
+	<BR> A Template Creation wizard pops up. It looks a lot like the Pattern Creation wizard, with a few differences. In the first tab, basic properties, meta-data and documentation about the template can be written.<BR> 
+				
+	<BR> <IMG SRC="images/templates_04.jpg"><BR><BR>	
+				
+	<BR> An error message may indicate that the roles must be elaborated for the template to be complete. Click the “Content” tab for that purpose. <BR>		
+	<BR> In the “Content” tab, the first role must be mapped to the main element of the template and every root element must be mapped to a role. This will enable the user to specify how to collect those root elements in the model according to the main element. In the figure below, one role has been created per kind of element: Node Part, Node PC, Behavior Parts, Behavior PCs, Functions, Exchanges, Implemented Interfaces, Used Interfaces.<BR>
+			
+	<BR> <IMG SRC="images/templates_05.jpg"><BR><BR>
+	
+	<BR> Several configurations are possible. For example, the implemented Interfaces and used Interfaces could have been grouped together in an “Interfaces” role. The objective is to define roles that will be as convenient as possible for pattern application while being suitable for template creation.<BR> 
+
+	<BR> An error message indicates that the roles miss an “element collection rule”. To deal with it, click the “Advanced” tab.<BR> 
+	
+	<BR> In this tab, roles have a “Usage” section in which an “element collection rule” can be written.<BR> 
+	
+	<BR> <IMG SRC="images/templates_06.jpg"><BR><BR>
+	
+	<BR> This rule is an OCL query on the model which is similar to the “target derivation rule” of the Pattern Creation wizard 
+		(see <A HREF="../../pages/3/3_4_1__Section_Role_details.html"> section “Role details”</A>). Its purpose is to specify how to collect elements which are similar to those mapped to the role in every situation. It is, in a way, a generalization of the elements that are mapped to the role.<BR> 
+	<BR> For example, the role “BehaviorParts” must have a rule which specifies that the Behavior PC Parts are those which are deployed on the Node PC Part. This can be written “NodePart.deployedParts” in OCL, where “NodePart” refers to the element mapped to the main role. As explained in 
+		<A HREF="../../pages/3/3_4_2__The_OCL_editor.html"> section “The OCL editor”</A>, it is possible to refer to the roles which are above the current one, so roles must be ordered according to the dependencies between their respective collection rules.<BR> 
+	<BR> Other properties of the roles can be specified, such as the description or the Container Derivation Rule. These properties will be included in the patterns created with the template but do not have a direct impact on the template.<BR> 
+	<BR> Once the specification of the roles has been completed, the “Finish” button terminates the wizard and creates the template in the selected catalog.
+	
+	<BR> <BR>
+
+	</BODY>
+</HTML>

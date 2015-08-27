@@ -1,0 +1,30 @@
+<HTML>
+	<HEAD>
+		<TITLE>The check button</TITLE>
+	</HEAD>
+	
+	<BODY TEXT="black">
+	<B>The check button</FONT><BR></B>
+
+	<BR> The “Check” button determines whether the instance conforms to its pattern. The verdict is displayed in the associated text field: <BR>
+
+	<BR> <IMG SRC="images/instance_10.jpg"><BR><BR>	
+	
+	<UL> <BR><LI>If a conformity constraint of a role is violated, the description of the role is displayed.<BR>
+		<BR><LI> If the instance contains additional elements or references than the pattern, a number of “extra values” is displayed (the instance is still considered conform). <BR>
+		<BR><LI> Similarly, if the instance misses elements or references compared to the pattern, a number of “missing values” is displayed.<BR>
+		<BR><LI> Otherwise, “OK” is displayed.<BR>
+	</UL>
+	
+	<BR> The “number of values” takes into account every element and every value on its references and attributes. For example, adding a function F2 in another function F1 results in 2 “extra values”: 1 for the presence of F2 and 1 for the containment of F2 into F1 via the “subFunctions” reference.<BR>
+	<BR> The “Conformity” text field provides a quick overview on conformity. To better understand the reasons for non-conformity, use the “Show details” check box. When this check box is ticked, clicking the “Check” button pops up a dialog which graphically shows all the differences (additions, removals, other changes) between the instance and its pattern. This checking ignores differences related to “Name”, “Description” and “Summary” if checked in the “Features to exclude” group. For a precise description of the kinds of differences and how they are represented, 
+		see <A HREF="../../pages/6/6_3_3__The_Update_pattern_button.html"> section “The “Update pattern” button”</A>. <BR>
+ 
+	<BR> <IMG SRC="images/instance_11.jpg"><BR><BR>	
+	
+	<BR>  <BR>
+	
+	
+
+	</BODY>
+</HTML>

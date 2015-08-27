@@ -1,0 +1,88 @@
+<toc label="Modeling Patterns Guide">
+    <topic label="Introduction" href="./pages/1/1__introduction.html">
+       
+    </topic>
+    
+    <topic label="User Interface Overview" href="./pages/2/2__User_Interface_Overview.html">
+    	<topic label="Main features" href="./pages/2/2_1__MAIN_features.html"/>
+    	<topic label="Model validation feature (Capella only)" href="./pages/2/2_2__MODEL_validation_FEATURE.html"/>
+    </topic>
+
+    <topic label="Pattern Creation" href="./pages/3/3__Pattern_Creation.html">
+    	<topic label="Marking elements for pattern creation" href="./pages/3/3_1__Marking_elements_for_pattern_creation.html"/>
+    	<topic label="Creation wizard tab 1: Pattern properties" href="./pages/3/3_2__Creation_Wizard_Tab_1_Pattern_properties.html"/>
+    	<topic label="Creation wizard tab 2: Pattern content" href="./pages/3/3_3__Creation_Wizard_Tab_2_Pattern_content.html">
+			<topic label="Pattern elements" href="./pages/3/3_3_1__Pattern_elements.html"/>
+			<topic label="Roles" href="./pages/3/3_3_2__Roles.html"/>
+			<topic label="Multi-part patterns" href="./pages/3/3_3_3__Multi-part_patterns.html"/>
+		</topic>
+    	<topic label="Creation wizard tab 3: Advanced properties" href="./pages/3/3_4__Creation_Wizard_tab_3_Advanced_properties.html">
+	    	<topic label="Section “Role details”" href="./pages/3/3_4_1__Section_Role_details.html"/>
+	    	<topic label="The OCL editor" href="./pages/3/3_4_2__The_OCL_editor.html"/>
+	    </topic>
+    </topic>
+
+    <topic label="Browsing Catalogs" href="./pages/4/4__Browsing_Catalogs.html">
+    	<topic label="Browsing: tab 1" href="./pages/4/4_1__Browsing_Tab_1.html">
+        	<topic label="Pattern deletion" href="./pages/4/4_1_1__Pattern_deletion.html"/>
+        </topic>
+     	<topic label="Browsing: tab 2" href="./pages/4/4_2__Browsing_Tab_2.html"/>
+		<topic label="Browsing: tab 3" href="./pages/4/4_3__Browsing_Tab_3.html"/>
+    </topic>
+
+    <topic label="Pattern Application" href="./pages/5/5__Pattern_Application.html">
+    	<topic label="Wizard page 1: Pattern selection" href="./pages/5/5_1__Wizard_page_1_Pattern_selection.html"/>
+    	<topic label="Wizard page 2: Role mapping" href="./pages/5/5_2__Wizard_page_2_Role_mapping.html"/>
+    	<topic label="Dialogs for missing containers" href="./pages/5/5_3__Dialogs_for_missing_containers.html"/>
+    </topic>
+
+    <topic label="Instance Management" href="./pages/6/6__Instance_Management.html">
+    	<topic label="The Instance management panel" href="./pages/6/6_1__The_Instance_Management_Panel.html"/>
+    	<topic label="Life-cycle features" href="./pages/6/6_2__Life-cycle_features.html">
+			<topic label="The Fold / Unfold button" href="./pages/6/6_2_1__The_Fold_Unfold_button.html"/>
+			<topic label="The “Rename” button" href="./pages/6/6_2_2__The_Rename_button.html"/>
+			<topic label="The “Delete” button" href="./pages/6/6_2_3__The_Delete_button.html"/>
+		</topic>
+		<topic label="Synchronization features" href="./pages/6/6_3__Synchronisation_features.html">
+			<topic label="The “Check” button" href="./pages/6/6_3_1__The_Check_button.html"/>
+			<topic label="The “Update instance” button" href="./pages/6/6_3_2__The_Update_instance_button.html"/>
+			<topic label="The “Update pattern” button" href="./pages/6/6_3_3__The_Update_pattern_button.html"/>
+		</topic>
+		<topic label="Representation features" href="./pages/6/6_4__Representation_features.html">
+			<topic label="The “Show” button" href="./pages/6/6_4_1__The_Show_button.html"/>
+			<topic label="The “Reuse layout” button" href="./pages/6/6_4_2__The_Reuse_layout_button.html"/>
+			<topic label="The “Highlight” button" href="./pages/6/6_4_3__The_Highlight_button.html"/>
+			<topic label="The “Reset” button" href="./pages/6/6_4_4__The_Reset_button.html"/>
+			<topic label="The Highlight all instances utility" href="./pages/6/6_4_5__The_Highlight_all_Instances_utility.html"/>
+		</topic>
+    </topic>
+
+    <topic label="Browsing Instances" href="./pages/7/7__Browsing_Instances.html">
+    	<topic label="Access to the pattern instance explorer" href="./pages/7/7_1__Access_to_the_Pattern_Instance_Explorer.html">
+			<topic label="From the instance management panel" href="./pages/7/7_1_1__From_the_Instance_Management_Panel.html"/>
+			<topic label="From the semantic browser" href="./pages/7/7_1_2__From_the_Semantic_Browser.html"/>
+			<topic label="From a Sirius diagram or the Project Explorer" href="./pages/7/7_1_3__From_a_diagram_or_the_Project_Explorer.html"/>
+			<topic label="From the “Show View” menu item" href="./pages/7/7_1_4__From_the_Show_View_menu_item.html"/>
+		</topic>
+		<topic label="Using the Pattern Instance Explorer" href="./pages/7/7_2__Using_the_Pattern_Instance_Explorer.html">
+			<topic label="Catalog representations" href="./pages/7/7_2_1__Catalog_representations.html"/>
+			<topic label="Pattern representations" href="./pages/7/7_2_2__Pattern_representations.html"/>
+			<topic label="Instance representations" href="./pages/7/7_2_3__Instance_representations.html"/>
+			<topic label="Model element representations" href="./pages/7/7_2_4__Model_element_representations.html"/>
+		</topic>
+    </topic>
+
+    <topic label="Templates" href="./pages/8/8__Templates.html">
+    	<topic label="Template creation" href="./pages/8/8_1__Template_creation.html"/>
+    	<topic label="Template usage" href="./pages/8/8_2__Template_Usage.html"/>
+    	<topic label="Template life-cycle" href="./pages/8/8_3__Template_Lifecycle.html"/>
+    </topic>
+
+    <topic label="Known Bugs and Limitations" href="./pages/9/9_Known_Bugs_and_Limitations.html">
+
+    </topic>
+
+ 
+    
+    
+</toc>
