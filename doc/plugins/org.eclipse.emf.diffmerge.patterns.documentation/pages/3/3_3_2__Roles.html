@@ -6,19 +6,19 @@
 	<BODY TEXT="black">
 	<B>Roles</FONT><BR></B>
 	
-	<BR> Roles are the explicit integration points of a pattern. Integration refers to how pattern elements are “inserted” in a model when the pattern is being applied. A role is mapped to the pattern elements it has to “insert”. By default, a role supports two insertion modes:<BR>
+	<BR> Roles are the explicit integration points of a pattern. Integration refers to how pattern elements are 'inserted' in a model when the pattern is being applied. A role is mapped to the pattern elements it has to 'insert'. By default, a role supports two insertion modes:<BR>
 	<BR><LI>Addition: the pattern elements are stored in some container element in the model;</LI><BR>
 	<BR><LI>Merge: pattern elements are merged with existing model elements in the model. It means that the sub-elements and properties of the model element and the pattern element are combined. Whenever a choice must be made, the properties of the pattern element takes precedence. </LI><BR>
 	<BR>When a pattern is being created, the tool automatically proposes a predefined set of roles that map the root elements of the pattern. This is because every element must have a container. Since the roots are, by definition, the only pattern elements without a container, they must be inserted at a specific location in the model when the pattern is unfolded. An exception to this rule is elements whose location is enforced or can be derived automatically. For example, in Capella: Exchanges between Functions or Components, Associations between Classes, or Components that accompany a Part.<BR>
-	<BR>Note that roles are not strictly mandatory: if pattern elements are only intended to be inserted in addition mode, they do not need a role. Nevertheless, a pattern must have at least one role. This single role determines which pattern elements are the “main” ones, i.e., the ones that the tool should try to insert within the user selection when the pattern is being applied.<BR>
-	<BR>Roles can be added, deleted and renamed via the dedicated buttons on the right-hand side. The order of the roles can also be changed via the “Up” and “Down” buttons. This order is significant for inter-role dependencies: a role can only depend on the roles above it. This has an impact on conformity constraints and derivation rules 
-	(see <A HREF="./pages/3/3_4_2__The_OCL_editor.html"> section “The OCL Editor”</A>) and for an easy application process 
-	(see <A HREF="./pages/5/5_2__Wizard_page_2_Role_mapping.html"> section “Role Mapping”</A>).<BR>
-	<BR>Model elements can be mapped to the roles via popup menu items in the “Pattern elements” section.<BR>
-	<BR><LI>The “Map to current role” menu item maps the selected element to the role currently selected.</LI><BR>
-	<BR><LI>The “Map to role...” menu item opens a dialog for mapping the selected element to an arbitrary role.</LI><BR>
-	<BR><LI>The “Map to new role” menu item opens a dialog for creating a new role and mapping the selected elements to it.</LI><BR>
-	<BR><LI>The “Remove mapping” menu item un-maps the selected element from every role.</LI><BR>
+	<BR>Note that roles are not strictly mandatory: if pattern elements are only intended to be inserted in addition mode, they do not need a role. Nevertheless, a pattern must have at least one role. This single role determines which pattern elements are the 'main' ones, i.e., the ones that the tool should try to insert within the user selection when the pattern is being applied.<BR>
+	<BR>Roles can be added, deleted and renamed via the dedicated buttons on the right-hand side. The order of the roles can also be changed via the 'Up' and 'Down' buttons. This order is significant for inter-role dependencies: a role can only depend on the roles above it. This has an impact on conformity constraints and derivation rules 
+	(see <A HREF="./pages/3/3_4_2__The_OCL_editor.html"> section 'The OCL Editor'</A>) and for an easy application process 
+	(see <A HREF="./pages/5/5_2__Wizard_page_2_Role_mapping.html"> section 'Role Mapping'</A>).<BR>
+	<BR>Model elements can be mapped to the roles via popup menu items in the 'Pattern elements' section.<BR>
+	<BR><LI>The 'Map to current role' menu item maps the selected element to the role currently selected.</LI><BR>
+	<BR><LI>The 'Map to role...' menu item opens a dialog for mapping the selected element to an arbitrary role.</LI><BR>
+	<BR><LI>The 'Map to new role' menu item opens a dialog for creating a new role and mapping the selected elements to it.</LI><BR>
+	<BR><LI>The 'Remove mapping' menu item un-maps the selected element from every role.</LI><BR>
 	
 	<BR> <IMG SRC="images/pattern_creation_14.jpg"><BR><BR>
 	

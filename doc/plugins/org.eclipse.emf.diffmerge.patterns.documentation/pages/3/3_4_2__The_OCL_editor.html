@@ -12,11 +12,11 @@
 	
 	<BR> OCL is a statically typed, declarative, standard language dedicated to writing queries on models. The syntax of these queries is based upon the metamodel of the model being queried. Extensive documentation and tutorials about OCL can be found online; the official specification can be found at: http://www.omg.org/spec/OCL/.<BR> 
 
-	<BR> The editor is composed of two text fields: the top one displays the queries being executed and their results, while the bottom one allows the user to edit the current query. When writing in the bottom field, pressing <Control><Space> triggers a text box for syntax assistance. Pressing <Return> evaluates the expression being written. When the “Ok” button is pressed, the result of the last successfully evaluated expression is returned.<BR> 
+	<BR> The editor is composed of two text fields: the top one displays the queries being executed and their results, while the bottom one allows the user to edit the current query. When writing in the bottom field, pressing <Control><Space> triggers a text box for syntax assistance. Pressing <Return> evaluates the expression being written. When the 'Ok' button is pressed, the result of the last successfully evaluated expression is returned.<BR> 
 	
 	<BR> <BR> <I> Variables </I> <BR>
-		<BR> Since OCL expressions are written in the context of a role, the OCL self variable represents an element associated to the role when the pattern is applied. Consequently, its type is the type of the pattern elements mapped to the role. For example, in the case of a derivation rule for merge target, the type of self is the one appearing in the “Target type” line in the “Application by merge” subsection.<BR>
-		<BR> Additionally, a role can depend on the roles above it. In other words, it is possible to refer to those roles via special variables. These variables are exactly like the self variable for those roles. There exists one variable for every role above the current one. It has the same name as the role, except that non-ID characters have been removed. For example, in a conformity constraint of a role “Role  2”, if there exists a role “Role  1” above “Role  2”, then there exists a variable “Role1” which refers to the elements associated to role “Role  1” when the pattern has been applied.<BR> 
+		<BR> Since OCL expressions are written in the context of a role, the OCL self variable represents an element associated to the role when the pattern is applied. Consequently, its type is the type of the pattern elements mapped to the role. For example, in the case of a derivation rule for merge target, the type of self is the one appearing in the 'Target type' line in the 'Application by merge' subsection.<BR>
+		<BR> Additionally, a role can depend on the roles above it. In other words, it is possible to refer to those roles via special variables. These variables are exactly like the self variable for those roles. There exists one variable for every role above the current one. It has the same name as the role, except that non-ID characters have been removed. For example, in a conformity constraint of a role 'Role  2', if there exists a role 'Role  1' above 'Role  2', then there exists a variable 'Role1' which refers to the elements associated to role 'Role  1' when the pattern has been applied.<BR> 
 		<BR> Note that simply pressing <Control><Space> on an empty expression allows seeing all available variables.<BR> 
 	
 	<BR> <BR> <I> Operations </I> <BR>
@@ -29,12 +29,12 @@
 			 <LI> oclIsRoot(): returns whether the receiver has no container
 			 <LI> oclTypeName(): returns the name of the type of the receiver </UL>
 	
-	<BR> Note that the types of model elements, when mentioned in expressions, must be prefixed with the name of the package followed by “::”, like in “la::LogicalFunction”. The oclTypeName() operation is useful for obtaining these complete type names.<BR>
+	<BR> Note that the types of model elements, when mentioned in expressions, must be prefixed with the name of the package followed by '::', like in 'la::LogicalFunction'. The oclTypeName() operation is useful for obtaining these complete type names.<BR>
 	
 	<BR> <BR> <I> Examples </I> <BR>
-		<UL> <LI> A container derivation rule which specifies that the pattern elements of the current role should be stored in the same container as that of previous role “Role 1”. <BR> 
+		<UL> <LI> A container derivation rule which specifies that the pattern elements of the current role should be stored in the same container as that of previous role 'Role 1'. <BR> 
 				<BR> Role1.oclOwner() <BR>
-			<BR> <LI> A merge derivation rule for a role mapped to a Capella input port, which specifies that the role should be merged with the target port of role “Main Exchange”. Role “Main Exchange” is assumed to be above the current role and mapped to a Capella functional exchange. <BR> 
+			<BR> <LI> A merge derivation rule for a role mapped to a Capella input port, which specifies that the role should be merged with the target port of role 'Main Exchange'. Role 'Main Exchange' is assumed to be above the current role and mapped to a Capella functional exchange. <BR> 
 				<BR> MainExchange.target <BR> 
 			<BR> <LI> A conformity constraint on a role mapped to a Capella logical function, which states that every sub-function must have no more than 3 incoming exchanges and exactly 2 outgoing exchanges. <BR>
 				<BR> let subFcs : Sequence(la::LogicalFunction) =

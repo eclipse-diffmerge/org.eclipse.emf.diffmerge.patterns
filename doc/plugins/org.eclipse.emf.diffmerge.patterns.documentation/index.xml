@@ -17,7 +17,7 @@
 			<topic label="Multi-part patterns" href="./pages/3/3_3_3__Multi-part_patterns.html"/>
 		</topic>
     	<topic label="Creation wizard tab 3: Advanced properties" href="./pages/3/3_4__Creation_Wizard_tab_3_Advanced_properties.html">
-	    	<topic label="Section “Role details”" href="./pages/3/3_4_1__Section_Role_details.html"/>
+	    	<topic label="Section 'Role details'" href="./pages/3/3_4_1__Section_Role_details.html"/>
 	    	<topic label="The OCL editor" href="./pages/3/3_4_2__The_OCL_editor.html"/>
 	    </topic>
     </topic>
@@ -40,19 +40,19 @@
     	<topic label="The Instance management panel" href="./pages/6/6_1__The_Instance_Management_Panel.html"/>
     	<topic label="Life-cycle features" href="./pages/6/6_2__Life-cycle_features.html">
 			<topic label="The Fold / Unfold button" href="./pages/6/6_2_1__The_Fold_Unfold_button.html"/>
-			<topic label="The “Rename” button" href="./pages/6/6_2_2__The_Rename_button.html"/>
-			<topic label="The “Delete” button" href="./pages/6/6_2_3__The_Delete_button.html"/>
+			<topic label="The 'Rename' button" href="./pages/6/6_2_2__The_Rename_button.html"/>
+			<topic label="The 'Delete' button" href="./pages/6/6_2_3__The_Delete_button.html"/>
 		</topic>
 		<topic label="Synchronization features" href="./pages/6/6_3__Synchronisation_features.html">
-			<topic label="The “Check” button" href="./pages/6/6_3_1__The_Check_button.html"/>
-			<topic label="The “Update instance” button" href="./pages/6/6_3_2__The_Update_instance_button.html"/>
-			<topic label="The “Update pattern” button" href="./pages/6/6_3_3__The_Update_pattern_button.html"/>
+			<topic label="The 'Check' button" href="./pages/6/6_3_1__The_Check_button.html"/>
+			<topic label="The 'Update instance' button" href="./pages/6/6_3_2__The_Update_instance_button.html"/>
+			<topic label="The 'Update pattern' button" href="./pages/6/6_3_3__The_Update_pattern_button.html"/>
 		</topic>
 		<topic label="Representation features" href="./pages/6/6_4__Representation_features.html">
-			<topic label="The “Show” button" href="./pages/6/6_4_1__The_Show_button.html"/>
-			<topic label="The “Reuse layout” button" href="./pages/6/6_4_2__The_Reuse_layout_button.html"/>
-			<topic label="The “Highlight” button" href="./pages/6/6_4_3__The_Highlight_button.html"/>
-			<topic label="The “Reset” button" href="./pages/6/6_4_4__The_Reset_button.html"/>
+			<topic label="The 'Show' button" href="./pages/6/6_4_1__The_Show_button.html"/>
+			<topic label="The 'Reuse layout' button" href="./pages/6/6_4_2__The_Reuse_layout_button.html"/>
+			<topic label="The 'Highlight' button" href="./pages/6/6_4_3__The_Highlight_button.html"/>
+			<topic label="The 'Reset' button" href="./pages/6/6_4_4__The_Reset_button.html"/>
 			<topic label="The Highlight all instances utility" href="./pages/6/6_4_5__The_Highlight_all_Instances_utility.html"/>
 		</topic>
     </topic>
@@ -62,7 +62,7 @@
 			<topic label="From the instance management panel" href="./pages/7/7_1_1__From_the_Instance_Management_Panel.html"/>
 			<topic label="From the semantic browser" href="./pages/7/7_1_2__From_the_Semantic_Browser.html"/>
 			<topic label="From a Sirius diagram or the Project Explorer" href="./pages/7/7_1_3__From_a_diagram_or_the_Project_Explorer.html"/>
-			<topic label="From the “Show View” menu item" href="./pages/7/7_1_4__From_the_Show_View_menu_item.html"/>
+			<topic label="From the 'Show View' menu item" href="./pages/7/7_1_4__From_the_Show_View_menu_item.html"/>
 		</topic>
 		<topic label="Using the Pattern Instance Explorer" href="./pages/7/7_2__Using_the_Pattern_Instance_Explorer.html">
 			<topic label="Catalog representations" href="./pages/7/7_2_1__Catalog_representations.html"/>

@@ -6,24 +6,24 @@
 	<BODY TEXT="black">
 	<B>Role details</FONT><BR></B>
 		
-	<BR> The “General properties” subsection encompasses the main properties of the role. The user can provide: <BR>
+	<BR> The 'General properties' subsection encompasses the main properties of the role. The user can provide: <BR>
 	<BR> <LI> An informal description which the user will see when he applies the pattern. </LI> <BR>
 	<BR> <LI> A conformity constraint written in OCL 
-	(see <A HREF="3_4_2__The_OCL_editor.html"> section “The OCL Editor”</A>). When the user checks the conformity of an instance with respect to its pattern, the conformity constraint of every role is tested against the corresponding element(s) of the instance. </LI> <BR>
+	(see <A HREF="3_4_2__The_OCL_editor.html"> section 'The OCL Editor'</A>). When the user checks the conformity of an instance with respect to its pattern, the conformity constraint of every role is tested against the corresponding element(s) of the instance. </LI> <BR>
 	
 	<BR> <IMG SRC="images/pattern_creation_15.jpg"><BR><BR>
 	
 	<BR> When a pattern is being applied, each of its roles is associated to one or several elements of the user model. These elements are used either for merging the pattern elements mapped to the role or as a container for storing them, as explained above. The two subsections described below allow specialising the behaviour of the role for these two kinds of usage.<BR>
 	
-	<BR> <LI> Subsection “Application by merge”. 
-		<BR> <UL style="list-style-type:circle;"><LI> The “Target derivation rule” line makes it possible to automate the association of the role to one or several elements when the pattern is being applied. If no such derivation rule is provided, then the user who is applying the pattern must explicitly choose the elements to associate to the role. It is sometimes possible to define a rule for deriving these elements from those which are associated to the other roles. 
-		See <A HREF="3_4_2__The_OCL_editor.html"> section “The OCL Editor”</A> for more details.</LI> </UL>
+	<BR> <LI> Subsection 'Application by merge'. 
+		<BR> <UL style="list-style-type:circle;"><LI> The 'Target derivation rule' line makes it possible to automate the association of the role to one or several elements when the pattern is being applied. If no such derivation rule is provided, then the user who is applying the pattern must explicitly choose the elements to associate to the role. It is sometimes possible to define a rule for deriving these elements from those which are associated to the other roles. 
+		See <A HREF="3_4_2__The_OCL_editor.html"> section 'The OCL Editor'</A> for more details.</LI> </UL>
 
 	
-	<LI> Subsection “Application by addition”.  </LI> <BR>
+	<LI> Subsection 'Application by addition'.  </LI> <BR>
 	
-		<BR> <UL style="list-style-type:circle;"><LI> The “Allow application by addition” checkbox, if un-ticked, disables the possibility to use the role by addition. Even though application by addition is possible, it may not be relevant. Typically, a pattern element may not make sense by itself because it does not contain enough data: it must thus be merged with another element, not added.</UL>
-		<UL style="list-style-type:circle;"><LI> The “Container derivation rule” line is similar to the equivalent line in the “Application by merge” subsection. Instead of deriving targets for merge, the rule aims at deriving a container for the pattern elements.</UL> <BR> 
+		<BR> <UL style="list-style-type:circle;"><LI> The 'Allow application by addition' checkbox, if un-ticked, disables the possibility to use the role by addition. Even though application by addition is possible, it may not be relevant. Typically, a pattern element may not make sense by itself because it does not contain enough data: it must thus be merged with another element, not added.</UL>
+		<UL style="list-style-type:circle;"><LI> The 'Container derivation rule' line is similar to the equivalent line in the 'Application by merge' subsection. Instead of deriving targets for merge, the rule aims at deriving a container for the pattern elements.</UL> <BR> 
 		
 	<BR>  <BR> 
 	
