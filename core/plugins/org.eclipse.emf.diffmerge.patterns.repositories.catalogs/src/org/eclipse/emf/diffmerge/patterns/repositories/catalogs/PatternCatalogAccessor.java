@@ -34,16 +34,17 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  * @author Skander Turki
  */
 public class PatternCatalogAccessor {
-    
+
   /** A catalog change handler */
   private static CatalogResourceChangeHandler _catalogNotifier;
-  
-	/**
-	 * Constructor
-	 */
-	protected PatternCatalogAccessor() {
-	}
-	
+
+  /**
+   * Default constructor
+   */
+  protected PatternCatalogAccessor() {
+    // Nothing needed
+  }
+
   /**
    * Unregister and unload the given pattern repository using the given
    * editing domain
@@ -58,7 +59,7 @@ public class PatternCatalogAccessor {
       resourceSet.getResources().remove(repositoryResource);
     }
   }
-  
+
   /**
    * Load, register and return the pattern repository at the given URI using
    * the given editing domain
@@ -77,8 +78,8 @@ public class PatternCatalogAccessor {
       result = null;
     return result;
   }
-  
-	/**
+
+  /**
    * Create and return a pattern catalog with the given name in the given resource
    * @param resource_p a non-null resource
    * @param name_p a non-null name
@@ -92,21 +93,21 @@ public class PatternCatalogAccessor {
     set_catalogNotifier(new CatalogResourceChangeHandler(result));
     return result;
   }
-  
-	/**
-	 * Return the pattern repository in the given resource, if any.
-	 * The pattern repository must be a root of the resource.
-	 * @param resource_p a non-null resource
-	 * @return a potentially null pattern repository
-	 */
-	public PatternRepository getCatalogInResource(Resource resource_p) {
-	  for (EObject root : resource_p.getContents()) {
-	    if (root instanceof PatternRepository)
-	      return (PatternRepository)root;
-	  }
-	  return null;
-	}
-	
+
+  /**
+   * Return the pattern repository in the given resource, if any.
+   * The pattern repository must be a root of the resource.
+   * @param resource_p a non-null resource
+   * @return a potentially null pattern repository
+   */
+  public PatternRepository getCatalogInResource(Resource resource_p) {
+    for (EObject root : resource_p.getContents()) {
+      if (root instanceof PatternRepository)
+        return (PatternRepository)root;
+    }
+    return null;
+  }
+
   /**
    * Load, register and return the pattern repository at the given URI using
    * the given editing domain
@@ -116,7 +117,7 @@ public class PatternCatalogAccessor {
    * @throws IOException if loading failed
    */
   public PatternRepository openCatalog(URI uri_p, ResourceSet resourceSet_p)
-    throws IOException {
+      throws IOException {
     PatternRepository result = null;
     if (ResourcesUtil.isPersistent(uri_p)) {
       Resource resource = ResourcesUtil.getCreateResourceForUri(uri_p, resourceSet_p);
@@ -133,7 +134,7 @@ public class PatternCatalogAccessor {
 
     return result;
   }
-  
+
   /**
    * Save the current state of the given catalog
    * @return whether the operation succeeded
@@ -152,10 +153,10 @@ public class PatternCatalogAccessor {
 
   /**
    * Setter for catalog handler
-   * @param _catalogNotifier a potentially-null CatalogResourceChangeNotifier
+   * @param catalogNotifier_p a potentially null CatalogResourceChangeNotifier
    */
   protected static void set_catalogNotifier(CatalogResourceChangeHandler catalogNotifier_p) {
-    PatternCatalogAccessor._catalogNotifier = catalogNotifier_p;
+    _catalogNotifier = catalogNotifier_p;
   }
-	
+
 }

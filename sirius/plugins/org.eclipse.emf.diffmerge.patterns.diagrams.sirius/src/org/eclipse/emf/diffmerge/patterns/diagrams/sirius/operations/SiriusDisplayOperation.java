@@ -59,9 +59,10 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation{
   
   /**
    * Constructor
-   * @param semanticElements_p
-   * @param diagram_p
-   * @param refresh_p
+   * @param semanticElements_p the elements to represent in diagram_p, their containment trees included
+   * @param diagram_p the diagram to update
+   * @param refresh_p whether the diagram should be refreshed at the end in order to
+   *        display edges
    */
   public SiriusDisplayOperation(
       Collection<? extends EObject> semanticElements_p, Object diagram_p,
@@ -86,10 +87,12 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation{
       if(mapping instanceof ISiriusSemanticMapping){
         sMapping = (ISiriusSemanticMapping)mapping;
       }
-      for (EObject root : _semanticRoots) {
-        Collection<EObject> candidates =
-            sMapping.getSemanticCandidatesForGraphicalStorage(root, diagram_p);
-        rootsAndContainers.addAll(candidates);
+      if (sMapping != null) {
+        for (EObject root : _semanticRoots) {
+          Collection<EObject> candidates =
+              sMapping.getSemanticCandidatesForGraphicalStorage(root, diagram_p);
+          rootsAndContainers.addAll(candidates);
+        }
       }
       EMap<EObject, DSemanticDecorator> rootsToNodes =
           getExistingDecorators(rootsAndContainers, (DDiagram)_diagram);
@@ -110,7 +113,7 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation{
           remainingElements.remove(remainingElement);
           for (AbstractDNode node : nodes) {
             if (node instanceof DNodeContainer)
-              containers.add((DNodeContainer)node);
+              containers.add(node);
           }
         }
       }

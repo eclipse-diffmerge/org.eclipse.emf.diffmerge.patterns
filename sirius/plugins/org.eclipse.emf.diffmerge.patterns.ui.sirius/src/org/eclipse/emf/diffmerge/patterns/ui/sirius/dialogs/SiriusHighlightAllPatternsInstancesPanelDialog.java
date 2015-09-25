@@ -44,8 +44,8 @@ public class SiriusHighlightAllPatternsInstancesPanelDialog extends HighlightAll
    * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.HighlightAllPatternsInstancesPanelDialog#instantiateColorObject(int, int, int)
    */
   @Override
-  protected RGBValues instantiateColorObject(int R, int G, int B) {
-    return RGBValues.create(255, 0, 0);
+  protected RGBValues instantiateColorObject(int red_p, int green_p, int blue_p) {
+    return RGBValues.create(red_p, green_p, blue_p);
   }
 
   /**

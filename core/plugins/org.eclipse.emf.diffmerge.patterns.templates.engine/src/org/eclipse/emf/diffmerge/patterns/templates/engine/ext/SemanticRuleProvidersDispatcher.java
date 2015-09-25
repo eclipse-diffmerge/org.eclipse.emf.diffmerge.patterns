@@ -47,9 +47,10 @@ public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider{
   /** List of all contributing rule providers */
   private List<ISemanticRuleProvider> _semanticRuleProviders;
 
-  /** IDs related to the SemanticRuleProvider extension point */
+  /** ID related to the SemanticRuleProvider extension point */
   private static final String SEMANTIC_RULE_PROVIDER_EXTENSION_POINT =
       "org.eclipse.emf.diffmerge.patterns.templates.engine.semanticRuleProvider"; //$NON-NLS-1$
+  /** ID related to the SemanticRuleProvider extension point */
   private static final String SEMANTIC_RULE_PROVIDER_EXTENSION_POINT_PROPERTY = "class"; //$NON-NLS-1$
 
 
@@ -252,10 +253,9 @@ public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider{
       provider.adjustScope(scope_p, extend_p);
     }
   }
-
+  
   /**
-   * 
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#initializeScope(org.eclipse.emf.diffmerge.impl.scopes.FilteredModelScope)
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#initializeTargetScope(org.eclipse.emf.diffmerge.api.scopes.IFeaturedModelScope, org.eclipse.emf.diffmerge.api.scopes.IFeaturedModelScope)
    */
   public void initializeTargetScope(IFeaturedModelScope referenceScope_p,
       IFeaturedModelScope targetScope_p){
@@ -288,9 +288,9 @@ public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider{
     }
     return result;
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#hasDependencies(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.api.scopes.IModelScope)
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#hasNotInScopeDependencies(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.api.scopes.IModelScope)
    */
   public boolean hasNotInScopeDependencies(EObject sourceElement_p, IModelScope scope_p) {
     boolean result = false;
@@ -300,10 +300,9 @@ public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider{
     }
     return result;
   }
-
+  
   /**
-   * 
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#isPatternApplicable(org.eclipse.emf.ecore.EObject)
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#isApplicableTo(org.eclipse.emf.ecore.EObject)
    */
   public boolean isApplicableTo(EObject obj_p){
     boolean result = false;
@@ -338,10 +337,9 @@ public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider{
     }
     return result;
   }
-
+  
   /**
-   * 
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#getAutomaticMergeTarget(org.eclipse.emf.ecore.EObject)
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#getAutomaticMergeTarget(org.eclipse.emf.ecore.EObject, java.lang.Object)
    */
   public EObject getAutomaticMergeTarget(EObject element_p, Object targetScope_p) {
     EObject result = null;

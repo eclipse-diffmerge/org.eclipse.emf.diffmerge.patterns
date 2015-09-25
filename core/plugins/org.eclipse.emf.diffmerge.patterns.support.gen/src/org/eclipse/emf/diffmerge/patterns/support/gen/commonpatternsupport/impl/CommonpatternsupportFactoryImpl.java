@@ -178,6 +178,7 @@ public class CommonpatternsupportFactoryImpl extends EFactoryImpl implements Com
 	 * @deprecated
 	 * @generated
 	 */
+  @SuppressWarnings("javadoc")
   @Deprecated
   public static CommonpatternsupportPackage getPackage() {
 		return CommonpatternsupportPackage.eINSTANCE;

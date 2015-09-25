@@ -15,12 +15,11 @@
 package org.eclipse.emf.diffmerge.patterns.diagrams.sirius.util;
 
 import org.eclipse.sirius.viewpoint.RGBValues;
-import org.eclipse.sirius.viewpoint.ViewpointFactory;
 import org.eclipse.swt.graphics.RGB;
 
 
 /**
- * A utility class that provides color helpers (colors in int, doremi RGBValues or SWT RGB format)
+ * A utility class that provides color helpers (colors in int, Sirius RGBValues or SWT RGB format)
  * @author Skander Turki
  */
 public class ColorUtil {
@@ -49,9 +48,9 @@ public class ColorUtil {
 //  }
 
   /**
-   * Converts a doremi RGBValues color to an SWT RGB object If the conversion fails, the a black RGB object is returned
-   * @param rgbValuesObject_p
-   * @return
+   * Converts an RGBValues color to a SWT RGB object. If the conversion fails, then a black RGB object is returned.
+   * @param rgbValuesObject_p a non-null color object
+   * @return a non-null RGB
    */
   public static RGB convertRGBValuesToRGB(RGBValues rgbValuesObject_p) {
     if (rgbValuesObject_p != null) {
@@ -61,9 +60,10 @@ public class ColorUtil {
   }
 
   /**
-   * Converts an SWT RGB object to a doremi RGBValues color If the conversion fails, the a black RGBValues object is returned
-   * @param rgbObject_p a potentially-null SWT RGB object.
-   * @return a non-null Doremi RGBValues color
+   * Converts an SWT RGB object to a Sirius RGBValues color If the conversion fails,
+   * then a black RGBValues object is returned.
+   * @param rgbObject_p a potentially null SWT RGB object.
+   * @return a non-null RGBValues color
    */
   public static RGBValues convertRGBToRGBValues(RGB rgbObject_p) {
     if (rgbObject_p != null) {
@@ -73,7 +73,7 @@ public class ColorUtil {
   }
 
   /**
-   * Converts a doremi RGBValues object to an int
+   * Converts a Sirius RGBValues object to an int
    * @param rgbValues_p a potentially null RGBValues object
    * @return an int
    */

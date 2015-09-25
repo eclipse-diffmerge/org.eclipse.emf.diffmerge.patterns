@@ -76,7 +76,6 @@ public class TemplatePatternApplicationSpecification extends AbstractMultiRoleSe
 
   /**
    * Constructor
-   * @param pattern_p a non-null pattern
    * @param initialSelection_p a non-null, non-empty list of elements
    */
   public TemplatePatternApplicationSpecification(List<? extends Object> initialSelection_p) {

@@ -90,7 +90,7 @@ public interface ITemplatePatternEngine {
   
   /**
    * This method is called every time an instance of a template pattern is created.
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.IPattern#createDataFor(org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance)
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.IPattern#createDataFor(IPatternInstance, Object)
    */
   IPatternData createPatternData(TemplatePattern pattern_p, IPatternInstance instance_p, Object context_p);
   
@@ -100,7 +100,7 @@ public interface ITemplatePatternEngine {
   EList<EObject> deriveCandidateElements(TextualRoleDerivationRule rule_p, IPatternApplication context_p);
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.IPattern#fold(org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication)
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.IPattern#fold(IPatternInstance)
    */
   IModelTransformationStatus fold(TemplatePattern pattern_p, IPatternInstance instance_p);
   
@@ -119,12 +119,12 @@ public interface ITemplatePatternEngine {
   void renameElements(IPatternInstance instance_p, String newNamingRule, boolean keepUserNames);
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.IPattern#unfold(org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication)
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.IPattern#unfold(IPatternInstance)
    */
   IModelTransformationStatus unfold(TemplatePattern pattern_p, IPatternInstance instance_p);
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.IPattern#updateModel(IPatternInstance, org.eclipse.emf.diffmerge.patterns.core.api.IPattern.IModelUpdateSpecification))
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.IPattern#updateModel(IPatternInstance, org.eclipse.emf.diffmerge.patterns.core.api.IPattern.IModelUpdateSpecification)
    */
   IModelTransformationStatus updateModel(TemplatePattern pattern_p, IPatternInstance instance_p,
       IPattern.IModelUpdateSpecification specification_p);

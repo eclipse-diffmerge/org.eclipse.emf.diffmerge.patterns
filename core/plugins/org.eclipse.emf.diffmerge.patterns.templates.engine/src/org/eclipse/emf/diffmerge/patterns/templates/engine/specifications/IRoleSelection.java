@@ -62,7 +62,7 @@ public interface IRoleSelection extends IPatternProvider {
   
   /**
    * Set the selected role
-   * @param pattern_p a potentially null role
+   * @param role_p a potentially null role
    */
   void setRole(TemplatePatternRole role_p);
   

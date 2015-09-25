@@ -154,7 +154,8 @@ public class CorepatternsFactoryImpl extends EFactoryImpl implements Corepattern
 	 * @deprecated
 	 * @generated
 	 */
-	@Deprecated
+	@SuppressWarnings("javadoc")
+  @Deprecated
 	public static CorepatternsPackage getPackage() {
 		return CorepatternsPackage.eINSTANCE;
 	}

@@ -58,7 +58,6 @@ import org.eclipse.swt.widgets.Display;
 public class SiriusDiagramUtil extends AbstractDiagramUtil{
 
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.diagrams.util.AbstractDiagramUtil#getDiagramElements(java.lang.Object)
    */
   @Override
@@ -70,7 +69,6 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil{
   }
 
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.diagrams.util.AbstractDiagramUtil#getSemanticElementsFor(java.lang.Object)
    */
   @Override
@@ -80,11 +78,9 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil{
     }
     return Collections.emptyList();
   }
-
+  
   /**
-   * 
-   * @param diagramElement_p
-   * @return
+   * @see org.eclipse.emf.diffmerge.patterns.diagrams.util.AbstractDiagramUtil#getLocation(java.lang.Object)
    */
   @Override
   public Point getLocation(Object diagramElement_p) {
@@ -222,11 +218,17 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil{
    * @author Skander Turki
    */
   public static class LocalNodeStyle {
+    /** The border color */
     public int selectedNSBorderColor = -1;
+    /** The border size */
     public int selectedNSBorderSize = -1;
+    /** The shape color */
     public int selectedNSShapeColor = -1;
+    /** The level of transparency */
     public int selectedNSTransparency = -1;
+    /** The foreground color */
     public int selectedNSForegroundColor = -1;
+    /** The background color */
     public int selectedNSBackgroundColor = -1;
   }
 
@@ -235,12 +237,19 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil{
    * @author Skander Turki
    */
   public static class LocalFontStyle {
+    /** The font color */
     public int selectedFontColor = -1;
+    /** The font name */
     public String selectedFontName = "default"; //$NON-NLS-1$
+    /** The font height */
     public int selectedFontHeight = -1;
+    /** Whether the font is bold */
     public boolean selectedIsBold = false;
+    /** Whether the font is italic */
     public boolean selectedIsItalic = false;
+    /** Whether the font is "strike through" */
     public boolean selectedIsStrikeThrough = false;
+    /** Whether the font is underlined */
     public boolean selectedIsUnderline = false;
   }
 
@@ -249,11 +258,17 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil{
    * @author Skander Turki
    */
   public static class LocalEdgeStyle {
+    /** The line color */
     public int selectedLineColor = -1;
+    /** The line width */
     public int selectedLineWidth = -1;
+    /** The line style */
     public LineStyle selectedLineStyle = null;
+    /** The line routing */
     public EdgeRouting selectedEdgeRouting = null;
+    /** The target arrow style */
     public EdgeArrows selectedTargetArrow = null;
+    /** The source arrow style */
     public EdgeArrows selectedSourceArrow = null;
   }
 

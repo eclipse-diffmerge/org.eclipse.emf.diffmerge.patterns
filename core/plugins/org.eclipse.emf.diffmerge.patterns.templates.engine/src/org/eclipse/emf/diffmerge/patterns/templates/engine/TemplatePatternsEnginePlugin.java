@@ -41,9 +41,10 @@ public class TemplatePatternsEnginePlugin extends Plugin {
   /** The shared instance */
   private static TemplatePatternsEnginePlugin __plugin;
 
-  /** IDs related to the textualLanguageFacade extension point */
+  /** ID related to the textualLanguageFacade extension point */
   private static final String LANGUAGE_EXTENSION_POINT =
     "org.eclipse.emf.diffmerge.patterns.templates.engine.textualLanguageInterpreterFacade"; //$NON-NLS-1$
+  /** ID related to the textualLanguageFacade extension point */
   private static final String LANGUAGE_EXTENSION_POINT_PROPERTY =
     "class"; //$NON-NLS-1$
 

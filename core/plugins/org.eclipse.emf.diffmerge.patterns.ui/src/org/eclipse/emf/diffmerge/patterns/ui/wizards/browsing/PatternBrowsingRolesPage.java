@@ -29,7 +29,7 @@ extends AbstractRoleSpecificationPage<AbstractBijectiveTemplatePatternSpecificat
   
   /**
    * Constructor
-   * @param creationData_p the specification of the pattern
+   * @param data_p the specification of the pattern
    */
   public PatternBrowsingRolesPage(AbstractBijectiveTemplatePatternSpecification data_p) {
     super(Messages.PatternBrowsingRolesPage_Name,

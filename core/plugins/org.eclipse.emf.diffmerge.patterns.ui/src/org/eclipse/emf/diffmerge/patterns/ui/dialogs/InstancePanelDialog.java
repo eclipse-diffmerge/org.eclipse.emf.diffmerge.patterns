@@ -149,7 +149,6 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
   /**
    * Constructor
    * @param parentShell_p the shell for this dialog
-   * @param dialogTitle_p the optional dialog title
    * @param referenceElement_p the optional element to use as a reference for displaying roles
    * @param instances_p the non-null, non-empty set of instances to choose from
    * @param diagram_p an optional diagram for graphical operations
@@ -262,7 +261,7 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
 
   /**
    * Creates the group of controls that are used for synchronization
-   * @param group_p
+   * @param group_p a non-null group
    */
   private void createSynchronizationButtons(Group group_p) {
     Composite composite = createEmptyComposite(group_p, 2);
@@ -273,7 +272,7 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
 
   /**
    * Creates, under synchronization group, a sub-group containing the check boxes used to select the features to ignore
-   * @param syncGroup
+   * @param syncGroup_p a non-null group
    */
   private void createIgnoredFeaturesGroup(Group syncGroup_p) {
     initializeIgnoredFeaturesCollections();
@@ -296,7 +295,7 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
    * Creates a check box for each optional ignored feature
    * @param ignoredFeatureGroup_p a non-null SWT Group
    * @param feature_p a non-null EStructuralFeature
-   * @return
+   * @return a non-null button
    */
   private Button createIgnoredFeatureCheckBox(Group ignoredFeatureGroup_p, EStructuralFeature feature_p){
     final Button ignoreName = new Button(ignoredFeatureGroup_p, SWT.CHECK);
@@ -327,24 +326,25 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
 
   /**
    * Transforms the first character of a lower-cased string to upper case
-   * @param lowerCase
-   * @return
+   * @param lowerCase_p a non-null string
+   * @return a non-null string
    */
-  private String toUserFriendlyString(String lowerCase) {
+  private String toUserFriendlyString(String lowerCase_p) {
     String result = ""; //$NON-NLS-1$
-    result+= lowerCase.substring(0, 1).toUpperCase();
-    result+= lowerCase.substring(1, lowerCase.length());
+    result+= lowerCase_p.substring(0, 1).toUpperCase();
+    result+= lowerCase_p.substring(1, lowerCase_p.length());
     return result;
   }
 
   /**
-   * Updates the list of selected features to ignore every change of the given button state 
-   * @param _selectedFeaturesToIgnore
-   * @param feature_p
+   * Update the list of selected features to ignore according to the given button state
+   * @param button_p a non-null button 
+   * @param selectedFeaturesToIgnore_p a non-null, potentially empty list
+   * @param feature_p a non-null feature
    */
-  private void updateSelectedFeatures(Button button,
+  private void updateSelectedFeatures(Button button_p,
       List<EStructuralFeature> selectedFeaturesToIgnore_p, EStructuralFeature feature_p) {
-    if(button.isEnabled()){
+    if(button_p.isEnabled()){
       if(!selectedFeaturesToIgnore_p.contains(feature_p)){
         selectedFeaturesToIgnore_p.add(feature_p);
       }else{
@@ -352,21 +352,16 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
       }  
     }
   }
-
+  
   /**
-   * 
-   * @param ignoredFeatures
-   * @return
+   * Return whether the given feature is ignored according to the given set of ignored features
+   * @param ignoredFeatures_p a non-null collection
+   * @param feature_p a potentially null feature
    */
   private boolean isIgnoredFeature(Collection<EStructuralFeature> ignoredFeatures_p, EStructuralFeature feature_p){
-    for(EStructuralFeature feature : ignoredFeatures_p){
-      if(feature.equals(feature_p)){
-        return true;
-      }
-    }
-    return false;
+    return ignoredFeatures_p.contains(feature_p);
   }
-
+  
   /**
    * Create the row for instance conformity checking
    * @param parent_p a non-null composite
@@ -867,7 +862,6 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
   /**
    * Create and return the button for restoring the style
    * @param parent_p a non-null composite
-   * @return a non-null button
    */
   private void createReuseStyleButton(Composite parent_p) {
     // Nodes check-box
@@ -897,7 +891,6 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
   /**
    * Create the row for "restore layout"
    * @param parent_p a non-null composite
-   * @return a non-null button
    */
   private void createReuseLayoutAndStyleRow(Composite parent_p) {
     // reuse layout button
@@ -1279,7 +1272,12 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
     });
     return result;
   }
-
+  
+  /**
+   * Create and return the "update instance" button
+   * @param parent_p a non-null composite
+   * @return a non-null button
+   */
   private Button createUpdateInstanceButton(Composite parent_p) {
     final Button result = createPushButton(parent_p);
     result.setText(Messages.InstancePanelDialog_UpdateInstance);
@@ -1394,7 +1392,7 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
             }
           if(_selectedFeaturesToIgnore == null){
             _selectedFeaturesToIgnore = new LinkedList<EStructuralFeature>();
-            if(provider.getDefaultOptionalMergeFeatures() != null){
+            if(provider != null && provider.getDefaultOptionalMergeFeatures() != null){
               for(EStructuralFeature feature : provider.getDefaultOptionalMergeFeatures()){
                 if(!_selectedFeaturesToIgnore.contains(feature)){
                   _selectedFeaturesToIgnore.add(feature);
@@ -1760,7 +1758,7 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
   /**
    * Return whether the instance operation of the given kind is applicable on the given instance
    * @param operationKind_p a non-null operation kind
-   * @param a non-null instance
+   * @param instance_p a non-null instance
    */
   protected boolean isApplicable(InstanceOperationKind operationKind_p, IPatternInstance instance_p) {
     boolean result = false;

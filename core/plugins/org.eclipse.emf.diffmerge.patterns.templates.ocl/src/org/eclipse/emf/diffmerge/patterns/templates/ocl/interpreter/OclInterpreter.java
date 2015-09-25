@@ -112,7 +112,6 @@ public class OclInterpreter {
 	 * @param booleanQuery_p a non-null textual OCL query of type boolean
 	 * @param context_p an optional element
 	 * @return whether the context complies to the constraint given by the boolean query
-	 * @throws ParserException
 	 */
 	public boolean check(String booleanQuery_p, EObject context_p) throws ParserException {
     OCL.Query query = createQuery(booleanQuery_p, context_p == null? null: context_p.eClass());
@@ -126,7 +125,6 @@ public class OclInterpreter {
    * @param context_p an optional element
    * @param roleContext_p a non-null pattern role
    * @return whether the context complies to the constraint given by the boolean query
-   * @throws ParserException
    */
   public boolean check(String booleanQuery_p, EObject context_p, TemplatePatternRole roleContext_p)
   throws ParserException {
@@ -139,9 +137,8 @@ public class OclInterpreter {
 	 * Create and return an OCL query corresponding to the given textual specification for the
 	 * given parsing context
 	 * @param query_p a non-null string
-	 * @param context_p an optional meta-type
+	 * @param parsingContext_p an optional meta-type
 	 * @return a non-null OCL query
-	 * @throws ParserException
 	 */
 	private OCL.Query createQuery(String query_p, EClassifier parsingContext_p) throws ParserException {
 	  OCL ocl = createOCL();
@@ -157,7 +154,6 @@ public class OclInterpreter {
    * @param roleContext_p a non-null pattern role
    * @param context_p a potentially null context element
    * @return a non-null OCL query
-   * @throws ParserException
    */
   private OCL.Query createQuery(String query_p, TemplatePatternRole roleContext_p,
       EObject context_p) throws ParserException {
@@ -221,7 +217,6 @@ public class OclInterpreter {
    * @param query_p a non-null textual OCL query
    * @param context_p a potentially null element
    * @return a potentially null object being the result of the evaluation
-   * @throws ParserException
    */
   public Object evaluate(String query_p, EObject context_p) throws ParserException {
     OCL.Query query = createQuery(query_p, context_p == null? null: context_p.eClass());
@@ -237,7 +232,6 @@ public class OclInterpreter {
    * @param roleContext_p a non-null role
    * @param applicationContext_p a non-null application of the pattern of the given role
    * @return a potentially null object being the result of the evaluation
-   * @throws ParserException
    */
   public Object evaluate(String query_p, EObject context_p, TemplatePatternRole roleContext_p,
       IPatternApplication applicationContext_p) throws ParserException {
@@ -255,7 +249,6 @@ public class OclInterpreter {
    * @param roleContext_p a non-null role
    * @param mapping_p a non-null (pattern, model) mapping
    * @return a potentially null object being the result of the evaluation
-   * @throws ParserException
    */
   public Object evaluate(String query_p, EObject context_p, TemplatePatternRole roleContext_p,
       IPatternBasedBijection mapping_p) throws ParserException {
@@ -328,7 +321,6 @@ public class OclInterpreter {
    * @param query_p a non-null textual OCL query
    * @param roleContext_p a non-null role
    * @return a non-null OCL expression
-   * @throws ParserException
    */
   private OCLExpression parse(OCL ocl_p, String query_p, TemplatePatternRole roleContext_p)
   throws ParserException {
@@ -340,9 +332,8 @@ public class OclInterpreter {
    * Parse the given OCL query and return the corresponding syntax tree
    * @param ocl_p a non-null OCL
    * @param query_p a non-null textual OCL query
-   * @param roleContext_p a non-null role
+   * @param parsingContext_p a non-null role
    * @return a non-null OCL expression
-   * @throws ParserException
    */
   private OCLExpression parse(OCL ocl_p, String query_p, EClassifier parsingContext_p)
   throws ParserException {
@@ -358,7 +349,6 @@ public class OclInterpreter {
    * @param roleContext_p a non-null role
    * @param context_p an optional context element for global model-relative variables
    * @return a non-null OCL expression
-   * @throws ParserException
    */
   public OCLExpression parse(String query_p, TemplatePatternRole roleContext_p,
       EObject context_p) throws ParserException {

@@ -65,7 +65,7 @@ public class ContainmentChoiceDialog extends AbstractTableChoiceDialog<IReferenc
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.AbstractTableChoiceDialog#getColumnContentsFor(java.lang.Object)
+   * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.AbstractTableChoiceDialog#getColumnText(java.lang.Object, int)
    */
   @Override
   protected String getColumnText(IReferenceLocation element_p, int columnIndex_p) {

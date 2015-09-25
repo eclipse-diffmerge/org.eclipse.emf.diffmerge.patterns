@@ -21,14 +21,13 @@ import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 
 /**
- * A handler for ApplyPatternAction
+ * The handler for "apply pattern" command.
  * @author Skander Turki
  */
 public class ApplyPatternHandler extends AbstractWorkbenchSelectionHandler {
-
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.common.misc.AbstractWorkbenchSelectionHandler.ui.services.commands.AbstractLocateInWorkbenchPartHandler#handleSelection(org.eclipse.jface.viewers.ISelection, org.eclipse.ui.IWorkbenchPart, org.eclipse.core.commands.ExecutionEvent)
+   * @see org.eclipse.emf.diffmerge.patterns.ui.handlers.AbstractWorkbenchSelectionHandler#handleSelection(org.eclipse.jface.viewers.ISelection, org.eclipse.ui.IWorkbenchPart)
    */
   @Override
   protected Object handleSelection(ISelection selection_p,

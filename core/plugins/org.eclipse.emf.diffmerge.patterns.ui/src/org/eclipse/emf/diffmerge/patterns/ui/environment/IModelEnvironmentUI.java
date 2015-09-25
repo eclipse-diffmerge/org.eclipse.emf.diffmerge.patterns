@@ -28,7 +28,14 @@ import org.eclipse.swt.graphics.Image;
 public interface IModelEnvironmentUI {
 
   /** Sorting methods for model elements */
-  enum SortingMethod { NONE, BY_NAME, BY_TYPE_AND_NAME }
+  enum SortingMethod {
+    /** No sorting */
+    NONE,
+    /** By name */
+    BY_NAME,
+    /** By type then name */
+    BY_TYPE_AND_NAME
+  }
   
   /**
    * Return a description of the modeling tools for which this semantic mapping is defined

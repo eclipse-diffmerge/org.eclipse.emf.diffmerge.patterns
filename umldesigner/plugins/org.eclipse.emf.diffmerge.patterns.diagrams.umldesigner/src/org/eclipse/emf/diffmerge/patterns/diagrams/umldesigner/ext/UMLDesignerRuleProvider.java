@@ -560,9 +560,9 @@ public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider{
     return UMLMetamodelHelper.isUMLLibraryPrimitiveType(element_p);
 
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#getAutomaticMergeTarget(org.eclipse.emf.ecore.EObject)
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#getAutomaticMergeTarget(org.eclipse.emf.ecore.EObject, java.lang.Object)
    */
   public EObject getAutomaticMergeTarget(EObject element_p, Object targetScope_p) {
     EditingDomain domain = null;
@@ -582,12 +582,14 @@ public class UMLDesignerRuleProvider extends ModellerSemanticRuleProvider{
       }
     }else
       domain = AdapterFactoryEditingDomain.getEditingDomainFor(targetScope_p);
-    if(UMLMetamodelHelper.isUMLBasicLibraryPrimitiveType(element_p)){
-      Resource res = domain.getResourceSet().getResource(URI.createURI(UMLMetamodelHelper.UML_BASIC_LIBRARY_PRIMITIVE_TYPES_RESOURCE_URI), true);   
-      return res.getEObject(name);
-    }else if(UMLMetamodelHelper.isUMLJavaPrimitiveType(element_p)){
-      Resource res = domain.getResourceSet().getResource(URI.createURI(UMLMetamodelHelper.UML_JAVA_PRIMITIVE_TYPES_RESOURCE_URI), true);   
-      return res.getEObject(name);
+    if (domain != null) {
+      if(UMLMetamodelHelper.isUMLBasicLibraryPrimitiveType(element_p)){
+        Resource res = domain.getResourceSet().getResource(URI.createURI(UMLMetamodelHelper.UML_BASIC_LIBRARY_PRIMITIVE_TYPES_RESOURCE_URI), true);   
+        return res.getEObject(name);
+      }else if(UMLMetamodelHelper.isUMLJavaPrimitiveType(element_p)){
+        Resource res = domain.getResourceSet().getResource(URI.createURI(UMLMetamodelHelper.UML_JAVA_PRIMITIVE_TYPES_RESOURCE_URI), true);   
+        return res.getEObject(name);
+      }
     }
     return null;
   }

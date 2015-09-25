@@ -57,7 +57,14 @@ import org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFa
 public abstract class AbstractTableChoiceDialog<T> extends MessageDialog {
 	
   /** The possible kinds of selection */
-  public static enum SelectionKind { SINGLE, MULTI, MULTI_CHECK }
+  public static enum SelectionKind {
+    /** Single selection */
+    SINGLE,
+    /** Multiple selection */
+    MULTI,
+    /** Multiple selection based on check boxes */
+    MULTI_CHECK
+  }
   
   /** The default width for columns */
   protected static final int DEFAULT_COLUMN_WIDTH = 240;
@@ -266,7 +273,7 @@ public abstract class AbstractTableChoiceDialog<T> extends MessageDialog {
 	}
 	
   /**
-   * @see org.eclipse.jface.dialog.Dialog#getInitialSize()
+   * @see org.eclipse.jface.dialogs.Dialog#getInitialSize()
    */
   @Override
   protected Point getInitialSize() {

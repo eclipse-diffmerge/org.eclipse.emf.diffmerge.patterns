@@ -40,7 +40,7 @@ public class TemplatePatternApplicationScope extends FilteredModelScope {
    */
   public static class PatternInstanceMarkerFilter implements IElementFilter {
     /**
-     * @see org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.FilteredModelScope.IElementFilter#accepts(org.eclipse.emf.ecore.EObject)
+     * @see org.eclipse.emf.diffmerge.util.ModelsUtil.IElementFilter#accepts(org.eclipse.emf.ecore.EObject)
      */
     public boolean accepts(EObject element_p) {
       return !(element_p instanceof IPatternInstanceMarker);
@@ -147,7 +147,7 @@ public class TemplatePatternApplicationScope extends FilteredModelScope {
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.impl.scopes.AbstractModelScope#remove(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EReference, org.eclipse.emf.ecore.EObject)
+   * @see org.eclipse.emf.diffmerge.impl.scopes.AbstractEditableModelScope#remove(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EReference, org.eclipse.emf.ecore.EObject)
    */
   @Override
   public boolean remove(EObject source_p, EReference reference_p, EObject value_p) {

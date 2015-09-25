@@ -45,9 +45,9 @@ public class RoleChoiceDialog extends AbstractTableChoiceDialog<IPatternRole> {
 		    pattern_p.getRoles(), selectionKind_p);
 	}
 	
-  /**
-   * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.AbstractTableChoiceDialog#getColumnContentsFor(java.lang.Object)
-   */
+	/**
+	 * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.AbstractTableChoiceDialog#getColumnText(java.lang.Object, int)
+	 */
   @Override
   protected String getColumnText(IPatternRole role_p, int columnIndex_p) {
     return role_p.getName();

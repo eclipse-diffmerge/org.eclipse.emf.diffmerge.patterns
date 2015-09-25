@@ -38,7 +38,7 @@ import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 /**
  * This dialog requires the user to choose a model element among a set of
  * predefined ones. The elements are presented within their model tree.
- * @param T the type of the expected result after the user clicked OK
+ * @param <T> the type of the expected result after the user clicked OK
  * @author Olivier Constant
  */
 public abstract class AbstractElementSelectionDialog<T> extends MessageDialog {

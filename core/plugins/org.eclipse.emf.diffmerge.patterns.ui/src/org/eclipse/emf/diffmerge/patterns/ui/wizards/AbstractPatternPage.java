@@ -40,7 +40,7 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.ITempl
 
 /**
  * An abstract wizard page which provides reusable GUI features for template patterns.
- * @param T the type of the data being built via the page
+ * @param <T> the type of the data being built via the page
  * @author Olivier Constant
  */
 public abstract class AbstractPatternPage<T extends ITemplatePatternBasedSpecification>

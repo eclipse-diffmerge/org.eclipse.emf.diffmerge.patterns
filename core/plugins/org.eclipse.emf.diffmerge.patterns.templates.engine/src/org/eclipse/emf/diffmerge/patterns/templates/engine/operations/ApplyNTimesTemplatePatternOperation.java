@@ -55,7 +55,18 @@ public class ApplyNTimesTemplatePatternOperation extends AbstractModelOperation<
 
   /** The initial multiplicity of each instance */
   private final int _multiplicity;
-
+  
+  
+  /**
+   * Constructor
+   * @param application_p a non-null pattern application
+   * @param unfold_p whether to unfold
+   * @param namingRule_p an optional naming rule
+   * @param numberOfApplications_p the number of instances
+   * @param multiplicity_p the initial multiplicity of each instance
+   * @param targetContext_p an optional context object for the target side of the operation
+   * @param sourceContext_p an optional context object for the source side of the operation
+   */
   public ApplyNTimesTemplatePatternOperation(IPatternApplication application_p,
       boolean unfold_p, String namingRule_p, int numberOfApplications_p, int multiplicity_p, 
       Object targetContext_p, Object sourceContext_p) {

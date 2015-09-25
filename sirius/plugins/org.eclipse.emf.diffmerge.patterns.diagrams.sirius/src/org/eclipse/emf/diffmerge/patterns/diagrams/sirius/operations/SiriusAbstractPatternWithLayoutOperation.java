@@ -73,7 +73,14 @@ import org.eclipse.ui.PlatformUI;
  */
 public abstract class SiriusAbstractPatternWithLayoutOperation<T> 
 extends AbstractPatternWithLayoutOperation<T>{
-
+  
+  /**
+   * Constructor
+   * @param name_p a non-null name for the operation
+   * @param data_p a non-null pattern specification
+   * @param graphicalContext_p a non-null, potentially empty list of graphical elements
+   * @param patternSideContext_p a non-null Object
+   */
   public SiriusAbstractPatternWithLayoutOperation(String name_p,
       AbstractModifiableTemplatePatternSpecification data_p,
       List<Object> graphicalContext_p, Object patternSideContext_p) {
@@ -150,9 +157,9 @@ extends AbstractPatternWithLayoutOperation<T>{
     }
     Bendpoints bendpoints = edge_p.getBendpoints();
     if (bendpoints != null) {
-      EObject doremiElement = edge_p.getElement();
-      if (doremiElement instanceof DEdge) {
-        DEdge dedge = (DEdge) doremiElement;
+      EObject siriusElement = edge_p.getElement();
+      if (siriusElement instanceof DEdge) {
+        DEdge dedge = (DEdge) siriusElement;
         EdgeStyle edgestyle = dedge.getOwnedStyle();
         getLocalEdgeStyleData(localEdgeStyle, edgestyle, edgestyle.getCustomFeatures());
         // build the appropriate TemplateFontStyle
@@ -164,7 +171,7 @@ extends AbstractPatternWithLayoutOperation<T>{
             localEdgeFontStyle.selectedIsItalic,
             localEdgeFontStyle.selectedIsUnderline,
             localEdgeFontStyle.selectedIsStrikeThrough);
-        LayoutUtil.adjustTemplateFontStyleWithDoremiElement(templateFontStyle, dedge);
+        LayoutUtil.adjustTemplateFontStyleWithSiriusElement(templateFontStyle, dedge);
         // build the center TemplateFontStyle
         TemplateFontStyle centerEdgeFontStyle = LayoutUtil.toTemplateFontStyle(
             localCenterEdgeFontStyle.selectedFontColor,
@@ -250,8 +257,7 @@ extends AbstractPatternWithLayoutOperation<T>{
   /**
    * Return into a local font style all the font style info from the Font Style
    * @param localfontstyle_p non-null Local Font Style struct
-   * @param shapestyle_p A non-null GMF Font Style
-   * @param nodeCustomFeatures_p a non-null list of strings
+   * @param style_p A non-null GMF Font Style
    */
   private void getLocalFontStyleData(LocalFontStyle localfontstyle_p, BasicLabelStyle style_p) {
     List<String> customFeatures = style_p.getCustomFeatures();
@@ -332,10 +338,10 @@ extends AbstractPatternWithLayoutOperation<T>{
    * @param resultMap_p a non-null EMap of EObject to Layout objects
    */
   private void getViewLayoutData(View view_p, EMap<EObject, Layout> resultMap_p) {
-    EObject doremiElement = view_p.getElement();
-    if (doremiElement instanceof DSemanticDecorator) {
-      // Doremi level
-      EObject semanticElement = ((DSemanticDecorator) doremiElement).getTarget();
+    EObject siriusElement = view_p.getElement();
+    if (siriusElement instanceof DSemanticDecorator) {
+      // Sirius level
+      EObject semanticElement = ((DSemanticDecorator) siriusElement).getTarget();
       if (semanticElement != null) {
         // Semantic level
         EObject counterpart = getData().getCounterpart(semanticElement, false);
@@ -366,7 +372,7 @@ extends AbstractPatternWithLayoutOperation<T>{
     DDiagramEditor diagramEditor = getDiagramEditor();
     for(EObject obj : getData().getAllElements()){
       LayerNavigator navigator = new LayerNavigator(obj, diagramEditor);
-      View gmfElement = navigator.getUpGmfElement(navigator.getUpDoremiElement(obj));
+      View gmfElement = navigator.getUpGmfElement(navigator.getUpSiriusElement(obj));
       if(gmfElement != null){
         if(!includedElementsViews.contains(gmfElement)){
           includedElementsViews.add(gmfElement);

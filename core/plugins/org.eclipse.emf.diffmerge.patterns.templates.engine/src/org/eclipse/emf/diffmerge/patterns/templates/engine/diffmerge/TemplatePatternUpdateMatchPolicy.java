@@ -44,7 +44,7 @@ public class TemplatePatternUpdateMatchPolicy extends DefaultMatchPolicy{
 
   /**
    * Constructor
-   * @param applicationComparison_p a non-null application comparison
+   * @param updateComparison_p a non-null update comparison
    * @param referenceEditingDomain_p a non-null EditingDomain
    * @param targetEditingDomain_p a non-null EditingDomain
    */
@@ -56,10 +56,9 @@ public class TemplatePatternUpdateMatchPolicy extends DefaultMatchPolicy{
     _referenceEditingDomain = referenceEditingDomain_p;
     _targetEditingDomain = targetEditingDomain_p;
   }
-
+  
   /**
-   * 
-   * @see org.eclipse.emf.diffmerge.impl.policies.DefaultMatchPolicy#getMatchId(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.api.scopes.IModelScope)
+   * @see org.eclipse.emf.diffmerge.impl.policies.DefaultMatchPolicy#getMatchID(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.api.scopes.IModelScope)
    */
   @Override
   public Object getMatchID(EObject element_p, IModelScope scope_p) {

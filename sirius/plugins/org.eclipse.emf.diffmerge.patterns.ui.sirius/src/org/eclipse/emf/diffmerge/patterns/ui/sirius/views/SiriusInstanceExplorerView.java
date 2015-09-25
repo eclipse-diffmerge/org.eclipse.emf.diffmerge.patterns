@@ -361,7 +361,7 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
     }
     /**
      * React to the closing of a session
-     * @param monitoredSession_p
+     * @param monitoredSession_p a non-null session
      */
     @SuppressWarnings("rawtypes")
     private void handleClosingSession(Session monitoredSession_p) {
@@ -376,7 +376,7 @@ public class SiriusInstanceExplorerView extends AbstractInstanceExplorerView {
       }
     }
     /**
-     * @see fr.obeo.dsl.viewpoint.business.api.session.SessionListener#notify(int)
+     * @see org.eclipse.sirius.business.api.session.SessionListener#notify(int)
      */
     public void notify(int changeKind_p) {
       switch (changeKind_p) {

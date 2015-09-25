@@ -44,7 +44,12 @@ public class MultiStorageChoiceDialog extends StorageChoiceDialog {
    * Kinds of storage in the context of multiple elements
    */
   public static enum MultiStorageKind {
-    CURRENT_ONLY, ALL_SIMILAR, ALL_COMPATIBLE
+    /** Applies to the current element only */
+    CURRENT_ONLY,
+    /** Applies to all elements of the same type */
+    ALL_SIMILAR,
+    /** Applies to all elements that can be stored at the same location */
+    ALL_COMPATIBLE
   }
   
   /** The storage kind lastly used */

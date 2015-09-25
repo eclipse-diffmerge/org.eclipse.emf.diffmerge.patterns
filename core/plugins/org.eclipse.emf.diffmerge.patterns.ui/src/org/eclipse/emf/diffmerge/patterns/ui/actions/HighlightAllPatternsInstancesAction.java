@@ -34,10 +34,10 @@ import org.eclipse.swt.widgets.Shell;
 /**
  * An action that opens a dialog box that highlights all patterns instances in the current diagram
  * @author Skander Turki
- * @author Skander Turki
  */
 public class HighlightAllPatternsInstancesAction extends AbstractModelBasedAction {
-
+  
+  /** A potentially null diagram */
   protected Object _diagram;
  
   /**
@@ -119,18 +119,19 @@ public class HighlightAllPatternsInstancesAction extends AbstractModelBasedActio
   
   
   /**
-   * Returns current diagram from selection
-   * @return
+   * Return the current diagram from the given selection
+   * @param selection_p a potentially null selection
+   * @return a potentially null object
    */
   protected Object getDiagramFromSelection(IStructuredSelection selection_p) {
       return _diagramUtil.getDiagramFromSelection(selection_p);
   }
   
  /**
-  *  
-  * @param instances_p
-  * @param selection_p
-  * @return
+  *  Return a dialog for the "highlight all instances" command
+  * @param instances_p a non-null set of pattern instances
+  * @param selection_p a potentially null selection
+  * @return a potentially null object
   */
   protected AbstractHighlightAllPatternsInstancesPanelDialog 
   instantiateHighlightAllPatternsInstancesPanelDialog(Set<IPatternInstance> instances_p, List<Object> selection_p) {

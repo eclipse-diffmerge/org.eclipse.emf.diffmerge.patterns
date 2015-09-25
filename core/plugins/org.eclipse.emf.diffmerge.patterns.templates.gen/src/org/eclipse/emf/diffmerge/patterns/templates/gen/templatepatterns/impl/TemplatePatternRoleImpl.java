@@ -637,11 +637,11 @@ public class TemplatePatternRoleImpl extends AbstractPatternRoleImpl implements 
 	
   /**
    * Return whether this role can be derived when the pattern is being applied
-   * @param whether derivation is considered for application by merge or by addition
+   * @param forMerge_p whether derivation is considered for application by merge or by addition
    * @generated NOT
    */
-  public boolean isDerivable(boolean forMerge) {
-    return forMerge? getMergeDerivationRule() != null: getAdditionDerivationRule() != null;
+  public boolean isDerivable(boolean forMerge_p) {
+    return forMerge_p? getMergeDerivationRule() != null: getAdditionDerivationRule() != null;
   }
   
   /**
@@ -813,7 +813,7 @@ public class TemplatePatternRoleImpl extends AbstractPatternRoleImpl implements 
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.IPatternRole#deriveCandidateLocations(org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication)
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.IPatternRole#deriveCandidateLocations(IPatternApplication, boolean)
    * @generated NOT
    */
   public List<ILocation> deriveCandidateLocations(IPatternApplication context_p,

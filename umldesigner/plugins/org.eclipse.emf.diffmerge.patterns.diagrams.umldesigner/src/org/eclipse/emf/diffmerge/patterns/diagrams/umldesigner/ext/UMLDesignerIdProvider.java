@@ -51,9 +51,9 @@ public class UMLDesignerIdProvider implements IIdProvider{
   public String getNewIdFor(EObject element_p) {
     return EcoreUtil.generateUUID();
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#getId(org.eclipse.emf.ecore.EObject)
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#getId(org.eclipse.emf.ecore.EObject, org.eclipse.emf.edit.domain.EditingDomain)
    */
   public String getId(EObject element_p, EditingDomain editingDomain_p) {
     String result = null;

@@ -51,14 +51,14 @@ public interface IModelEnvironment {
   /**
    * Execute the given operation with the given characteristics
    * @param operation_p the non-null operation to execute
-   * @param E the type of the result of the execution
+   * @param <E> the type of the result of the execution
    * @return the result of the execution of this operation, or null if none
    */
   <E> E execute(IModelOperation<E> operation_p);
 
   /**
    * Return the editing domain for the given element
-   * @param a potentially null EObject
+   * @param context_p a potentially null EObject
    * @return a potentially null editing domain
    */
   EditingDomain getEditingDomain(EObject context_p);
@@ -68,7 +68,7 @@ public interface IModelEnvironment {
    * In some actions like OpenCatalogAction, we need to be able to find the editing domain of the catalog given an IFile.
    * In some modelers a unique editing domain holds all the resources but in other cases each project may have its own editing domain.
    * We also may have a project with only catalogs, in which case we need to get or create an editing domain for the resource.
-   * @param a potentially null IFile
+   * @param context_p a potentially null IFile
    * @return a potentially null editing domain
    */
   EditingDomain getEditingDomain(IFile context_p);
@@ -101,7 +101,6 @@ public interface IModelEnvironment {
 
   /**
    * Returns, from the given resource set, the resource which is referenced by the given pattern instances encoder.
-   * @param rset_p a non-null resource set
    * @param set_p a non-null pattern instances encoder (by default a CommonPatternInstanceSet)
    * @return a potentially-null resource
    */
@@ -149,7 +148,7 @@ public interface IModelEnvironment {
   /**
    * An IModelEnvironment may override other Environments so that only one IModelEnvironment is active
    * on the platform. The DefaultModelEnvironment should be overridden if not appropriate.
-   * @return
+   * @return a non-null, potentially empty collection
    */
   Collection<? extends Class<?>> getOverridenClasses();
 

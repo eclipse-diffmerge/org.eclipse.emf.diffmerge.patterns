@@ -73,9 +73,9 @@ public class InstanceChoiceDialog extends AbstractTableChoiceDialog<IPatternInst
     builder.append("'."); //$NON-NLS-1$
     return builder.toString();
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.AbstractTableChoiceDialog#getColumnContentsFor(java.lang.Object)
+   * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.AbstractTableChoiceDialog#getColumnText(java.lang.Object, int)
    */
   @Override
   protected String getColumnText(IPatternInstance instance_p, int columnIndex_p) {

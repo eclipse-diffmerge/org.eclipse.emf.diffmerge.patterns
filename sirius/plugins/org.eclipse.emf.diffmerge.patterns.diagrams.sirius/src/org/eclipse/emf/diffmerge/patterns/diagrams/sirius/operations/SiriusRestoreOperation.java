@@ -53,9 +53,9 @@ public class SiriusRestoreOperation extends SiriusFilteredGraphicalUpdateOperati
     super(AbstractRestoreOperation.getName(), diagram_p, instances_p, true, instances_p);
     _innerGraphicalOperation = new InnerRestoreOperation();
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractFilteredGraphicalUpdateOperation#update(fr.obeo.dsl.viewpoint.DSemanticDecorator)
+   * @see org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractFilteredGraphicalUpdateOperation#update(java.lang.Object, boolean)
    */
   @Override
   protected void update(Object decorator_p, boolean isMerged) {

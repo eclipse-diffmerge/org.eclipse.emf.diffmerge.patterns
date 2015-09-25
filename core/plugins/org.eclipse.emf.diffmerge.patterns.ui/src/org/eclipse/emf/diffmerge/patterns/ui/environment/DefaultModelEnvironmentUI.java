@@ -33,6 +33,7 @@ import org.eclipse.swt.graphics.Image;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
 
+
 /**
  * The default model environment UI services provider
  * @author Olivier Constant
@@ -40,34 +41,32 @@ import org.osgi.framework.Version;
  */
 public class DefaultModelEnvironmentUI implements IModelEnvironmentUI{
 
-/**
- * 
- * @see org.eclipse.emf.diffmerge.patterns.ui.environment.IModelEnvironmentUI#getEnvironments()
- */
-    public List<String> getEnvironments() {
-      List<String> result = Collections.emptyList();
-      String currentProductLabel = null;
-      IProduct product = Platform.getProduct();
-      if (product != null) {
-        currentProductLabel = product.getName();
-        if (currentProductLabel != null) {
-          Bundle mainBundle = Platform.getProduct().getDefiningBundle();
-          if (mainBundle != null) {
-            Version version = mainBundle.getVersion();
-            if (version != null) {
-              currentProductLabel = currentProductLabel + ' ' + version.getMajor() +
-                  '.' + version.getMinor() + '.' + 'x';
-            }
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.ui.environment.IModelEnvironmentUI#getEnvironments()
+   */
+  public List<String> getEnvironments() {
+    List<String> result = Collections.emptyList();
+    String currentProductLabel = null;
+    IProduct product = Platform.getProduct();
+    if (product != null) {
+      currentProductLabel = product.getName();
+      if (currentProductLabel != null) {
+        Bundle mainBundle = Platform.getProduct().getDefiningBundle();
+        if (mainBundle != null) {
+          Version version = mainBundle.getVersion();
+          if (version != null) {
+            currentProductLabel = currentProductLabel + ' ' + version.getMajor() +
+                '.' + version.getMinor() + '.' + 'x';
           }
         }
       }
-      if (currentProductLabel != null)
-        result = Collections.singletonList(currentProductLabel);
-      return result;
     }
-  
+    if (currentProductLabel != null)
+      result = Collections.singletonList(currentProductLabel);
+    return result;
+  }
+
   /**
-   * 
    * @see org.eclipse.emf.diffmerge.patterns.ui.environment.IModelEnvironmentUI#getSorter(org.eclipse.emf.diffmerge.patterns.ui.environment.IModelEnvironmentUI.SortingMethod)
    */
   public ViewerSorter getSorter(SortingMethod method_p) {
@@ -125,10 +124,9 @@ public class DefaultModelEnvironmentUI implements IModelEnvironmentUI{
     }
 
   }
-
+  
   /**
-   * 
-   * @see org.eclipse.emf.diffmerge.patterns.ui.environment.IModelEnvironmentUI#getText(org.eclipse.emf.ecore.EObject)
+   * @see org.eclipse.emf.diffmerge.patterns.ui.environment.IModelEnvironmentUI#getText(java.lang.Object)
    */
   public String getText(Object element_p) {
     if(!(element_p instanceof EObject)){

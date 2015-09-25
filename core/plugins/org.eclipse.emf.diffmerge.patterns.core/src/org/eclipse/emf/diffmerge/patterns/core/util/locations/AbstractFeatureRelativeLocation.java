@@ -29,7 +29,7 @@ public abstract class AbstractFeatureRelativeLocation extends AbstractElementRel
   
   /**
    * Constructor
-   * @param pattern_p a non-null pattern
+   * @param element_p a non-null pattern
    * @param feature_p a non-null feature
    */
   protected AbstractFeatureRelativeLocation(EObject element_p, EStructuralFeature feature_p) {

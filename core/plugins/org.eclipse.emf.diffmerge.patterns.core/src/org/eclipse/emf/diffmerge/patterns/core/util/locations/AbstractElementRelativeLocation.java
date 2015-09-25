@@ -34,7 +34,7 @@ public abstract class AbstractElementRelativeLocation implements IElementRelativ
   
   /**
    * Constructor
-   * @param pattern_p a non-null element
+   * @param element_p a non-null element
    */
   protected AbstractElementRelativeLocation(EObject element_p) {
     assert element_p != null;

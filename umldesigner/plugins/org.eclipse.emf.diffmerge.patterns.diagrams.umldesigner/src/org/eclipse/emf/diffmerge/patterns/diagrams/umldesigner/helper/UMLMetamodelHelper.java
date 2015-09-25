@@ -44,13 +44,17 @@ public class UMLMetamodelHelper {
       UMLPackage.eINSTANCE.getProperty_Class()
       );
   
-  public static final String UML_JAVA_PRIMITIVE_TYPES_RESOURCE_URI = "pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml";
+  /** The URI for the Java primitive types */
+  public static final String UML_JAVA_PRIMITIVE_TYPES_RESOURCE_URI =
+      "pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml";
   
   /** The list of UML JAVA library primitive types names */
   private static final List<String> UML_JAVA_PRIMITIVE_TYPE_NAMES = Arrays.asList(
       "boolean", "byte", "char", "double", "float", "int", "long", "short");
   
-  public static final String UML_BASIC_LIBRARY_PRIMITIVE_TYPES_RESOURCE_URI = "pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml";
+  /** The URI for the UML primitive types */
+  public static final String UML_BASIC_LIBRARY_PRIMITIVE_TYPES_RESOURCE_URI =
+      "pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml";
   
   /** The list of UML basic library primitive types names */
   private static final List<String> UML_BASIC_LIBRARY_PRIMITIVE_TYPE_NAMES = Arrays.asList(
@@ -93,10 +97,10 @@ public class UMLMetamodelHelper {
   }
   
   /**
-   * 
-   * @param element_p
-   * @param context_p
-   * @return
+   * Try and derive the ownership of the given element
+   * @param element_p a non-null element
+   * @param context_p a non-null context object
+   * @return whether the operation succeeded
    */
   public static boolean deriveOwnership(EObject element_p, Object context_p) {
     boolean result = false;
@@ -156,10 +160,9 @@ public class UMLMetamodelHelper {
   }
   
   /**
-   * 
-   * @param element_p
-   * @param context_p
-   * @return
+   * Try and derive the ownership of the given directed relationship
+   * @param element_p a non-null element
+   * @param context_p a non-null contect object
    */
   private static void deriveDirectedRelationshipOwnership(DirectedRelationship element_p, 
       Object context_p, EObject container_o, EReference containment_o) {

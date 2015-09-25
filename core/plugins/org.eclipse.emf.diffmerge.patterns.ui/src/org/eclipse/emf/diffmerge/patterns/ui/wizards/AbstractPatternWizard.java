@@ -373,24 +373,25 @@ extends Wizard {
      */
     void patternImageChanged(Image newImage_p);
   }
-
-  /**
-   * Instantiates a Job
-   * @param wizard_p
-   * @param context_p
-   * @param updatePattern_p
-   * @return
-   */
-  protected abstract Job instantiatePatternImageBuilderJob(AbstractPatternWizard<T> wizard_p,  List<Object> context_p, boolean updatePattern_p);
   
   /**
-   * Instantiates a Job
-   * @param wizard_p
-   * @param imageSpecification_p
-   * @param updatePattern_p
-   * @return
+   * Instantiates a Job that creates an image for the pattern
+   * @param wizard_p a non-null wizard
+   * @param context_p a non-null list
+   * @param updatePattern_p whether we are in a pattern update mode
+   * @return a non-null job
    */
-  protected abstract Job instantiatePatternImageBuilderJob(AbstractPatternWizard<T> wizard_p,  String imageSpecification_p, boolean updatePattern_p);
-
- 
+  protected abstract Job instantiatePatternImageBuilderJob(AbstractPatternWizard<T> wizard_p,
+      List<Object> context_p, boolean updatePattern_p);
+  
+  /**
+   * Instantiates a Job that creates an image for the pattern
+   * @param wizard_p a non-null wizard
+   * @param imageSpecification_p a potentially null string image description
+   * @param updatePattern_p whether we are in a pattern update mode
+   * @return a non-null job
+   */
+  protected abstract Job instantiatePatternImageBuilderJob(AbstractPatternWizard<T> wizard_p,
+      String imageSpecification_p, boolean updatePattern_p);
+  
 }

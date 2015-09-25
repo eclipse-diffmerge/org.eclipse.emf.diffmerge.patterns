@@ -66,19 +66,19 @@ import org.eclipse.swt.widgets.Table;
 public abstract class HighlightAllPatternsInstancesPanelDialog extends AbstractHighlightAllPatternsInstancesPanelDialog {
 
   /** The diagram from which the dialog has been called */
-  Object _diagram;
+  protected Object _diagram;
 
   /** Color to use for the highlight */
-  Object _color;
+  protected Object _color;
 
   /** Whether nodes should be highlighted or not */
-  boolean _highlightNodes;
+  protected boolean _highlightNodes;
 
   /** Whether edges should be highlighted or not */
-  boolean _highlightEdges;
+  protected boolean _highlightEdges;
 
   /** Whether ports should be highlighted or not */
-  boolean _highlightPorts;
+  protected boolean _highlightPorts;
 
   /** Whether pattern layout must be reused when instance is updated */
   protected boolean _reuseStyleAtUpdate;
@@ -104,16 +104,22 @@ public abstract class HighlightAllPatternsInstancesPanelDialog extends AbstractH
     _highlightEdges = true;
     _reuseStyleAtUpdate = true;
   }
-
-  protected abstract Object instantiateColorObject(int R, int G,int B);
+  
+  /** Return a color object with the given color values */
+  protected abstract Object instantiateColorObject(int red_p, int green_p, int blue_p);
+  /** Convert the given SWT RGB color to an equivalent color object */
   protected abstract Object convertSWTRGBToColor(RGB swtColor_p);
+  /** Convert the given color object to SWT RGB */
   protected abstract RGB convertColorToSWTRGB(Object color_p);
+  /** Return the red value for the given non-null color object */
   protected abstract int colorRed(Object color_p);
+  /** Return the green value for the given non-null color object */
   protected abstract int colorGreen(Object color_p);
+  /** Return the blue value for the given non-null color object */
   protected abstract int colorBlue(Object color_p);
-
+  
   /**
-   * {@inheritDoc}
+   * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.AbstractTableChoiceDialog#getColumnText(java.lang.Object, int)
    */
   @Override
   protected String getColumnText(IPatternInstance instance_p, int columnIndex_p) {
@@ -269,12 +275,12 @@ public abstract class HighlightAllPatternsInstancesPanelDialog extends AbstractH
 
   /**
    * Instantiates an operation for restoring diagram elements based on specific criteria on semantic elements.
-   * @param diagram_p
-   * @param instances_p
-   * @return
+   * @param diagram_p a non-null diagram
+   * @param instances_p a non-null collection
+   * @return a non-null operation
    */
-  protected AbstractFilteredGraphicalUpdateOperation instantiateRestoreOperation(Object diagram_p, Collection<? extends IPatternInstance>  instances_p)
-  {
+  protected AbstractFilteredGraphicalUpdateOperation instantiateRestoreOperation(Object diagram_p,
+      Collection<? extends IPatternInstance> instances_p) {
     IPatternOperationFactory factory = PatternCoreDiagramPlugin.getDefault().getOperationFactory();
     if(factory != null){
       return factory.instantiateRestoreOperation(diagram_p, instances_p);
@@ -420,8 +426,10 @@ public abstract class HighlightAllPatternsInstancesPanelDialog extends AbstractH
       selectionTable.setVisible(false);
     }
     GridData dataMain = new GridData(SWT.FILL, SWT.FILL, true, true);
-    selectionTable.setLayoutData(dataMain);
-    enhanceSelectionTable(selectionTable);
+    if (selectionTable != null) {
+      selectionTable.setLayoutData(dataMain);
+      enhanceSelectionTable(selectionTable);
+    }
     // Buttons
     createButtonsArea(result);
     selectAll();
@@ -505,7 +513,7 @@ public abstract class HighlightAllPatternsInstancesPanelDialog extends AbstractH
 
   /**
    * Hides the table containing the list of instances. In case we would allow the user to select instances to highlight remove the y assignment
-   * @see org.eclipse.jface.dialog.Dialog#getInitialSize()
+   * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.AbstractTableChoiceDialog#getInitialSize()
    */
   @Override
   protected Point getInitialSize() {

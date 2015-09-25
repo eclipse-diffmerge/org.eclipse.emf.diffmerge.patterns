@@ -110,17 +110,18 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
     _innerLayoutReuseOperation.set_vectorX(vx_p);
     _innerLayoutReuseOperation.set_vectorY(vy_p);
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractFilteredGraphicalUpdateOperation#update(fr.obeo.dsl.viewpoint.DSemanticDecorator)
+   * @see org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractFilteredGraphicalUpdateOperation#update(java.lang.Object, boolean)
    */
   @Override
   protected void update(Object decorator_p, boolean isMerged) {
     _innerLayoutReuseOperation.update(decorator_p, isMerged); 
   }
-
+  
   /**
-   * {@inheritDoc}
+   * Return whether the given element represents a merged semantic element
+   * @param target_p a potentially null element
    */
   private boolean isMerged(EObject target_p) {
     List<EObject> mergedElements = LocationsUtil.getMergeTargets(_innerLayoutReuseOperation.get_instance());
@@ -346,12 +347,11 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
    *
    */
   protected class InnerLayoutReuseOperation extends AbstractLayoutReuseOperation{
-
     /**
      * Constructor
-     * @param instance_p
-     * @param updateLayout_p
-     * @param updateStyle_p
+     * @param instance_p a non-null instance
+     * @param updateLayout_p whether the layout must be updated
+     * @param updateStyle_p whether the style must be updated
      */
     public InnerLayoutReuseOperation(IPatternInstance instance_p,
         boolean updateLayout_p, boolean updateStyle_p) {
@@ -366,7 +366,6 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
       //        }
       //      }
     }
-
     /**
      * @see org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGraphicalUpdateOperation#update(java.lang.Object, boolean)
      */

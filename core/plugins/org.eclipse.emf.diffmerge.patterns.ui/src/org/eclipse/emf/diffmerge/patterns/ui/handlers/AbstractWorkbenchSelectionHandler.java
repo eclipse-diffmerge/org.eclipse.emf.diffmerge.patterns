@@ -92,9 +92,9 @@ public abstract class AbstractWorkbenchSelectionHandler  extends AbstractHandler
   }
 
   /**
-   * Handles selection from active workbench part.
-   * @param selection_p
-   * @param activePart_p
+   * Handle selection from the active workbench part
+   * @param selection_p a potentially null selection
+   * @param activePart_p a potentially null part
    */
   protected abstract Object handleSelection(ISelection selection_p, IWorkbenchPart activePart_p);
 

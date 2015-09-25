@@ -27,7 +27,6 @@ import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 /**
  * An abstract action which is based on an selection extended with a "persistent selection"
  * that can be modified by other actions
- * @param T the type of the elements on which the action is applicable
  * @author Olivier Constant
  * @author Skander Turki
  */

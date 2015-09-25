@@ -198,7 +198,7 @@ extends AbstractRoleSelectionPage<T> {
                   Messages.AbstractRoleSpecificationPage_PromptOCLConstraint,
                   modelContext, role, getData(), getConformityConstraint(role), !isReadOnly()) {
                 /**
-                 * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.OclInputMessageDialog#isValid(org.eclipse.ocl.expressions.OCLExpression, java.lang.Object)
+                 * @see org.eclipse.emf.diffmerge.patterns.ui.dialogs.OclInputMessageDialog#isValid(org.eclipse.ocl.ecore.OCLExpression, java.lang.Object)
                  */
                 @Override
                 protected boolean isValid(OCLExpression parsedExpression_p, Object evaluationResult_p) {

@@ -167,12 +167,11 @@ public class CollectionAsTreeContentProvider implements ITreeContentProvider{
 
   /**
    * Control whether newly added content will be revealed
-   * by expanding the tree to the required level.
-   * 
-   * @param b
+   * by expanding the tree to the required level
+   * @param expand_p whether to expand
    */
-  public void setExpandingNewContent(boolean b){
-    expandAddedContent = b;
+  public void setExpandingNewContent(boolean expand_p){
+    expandAddedContent = expand_p;
   }
 
   /**

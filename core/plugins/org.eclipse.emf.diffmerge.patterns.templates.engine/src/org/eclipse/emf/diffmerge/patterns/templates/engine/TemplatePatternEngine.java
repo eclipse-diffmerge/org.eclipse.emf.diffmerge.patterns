@@ -113,9 +113,9 @@ public class TemplatePatternEngine implements ITemplatePatternEngine {
           Messages.TemplatePatternEngine_WrongTypeForMerge);
     return result;
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.templates.gen.ITemplatePatternEngine#checkConformance(org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern, org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication)
+   * @see org.eclipse.emf.diffmerge.patterns.templates.gen.ITemplatePatternEngine#checkConformance(org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern, org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication, java.util.List)
    */
   public IPatternConformityStatus checkConformance(TemplatePattern pattern_p,
       IPatternApplication application_p, List<EStructuralFeature> ignoredFeatures_p) {
@@ -156,7 +156,8 @@ public class TemplatePatternEngine implements ITemplatePatternEngine {
       if (result == null || !result.isOk()) {
         String label = getText(element);
         if (label != null) {
-          result = new SimpleStatus(false, result.getDescription() + " (" + label + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+          result = new SimpleStatus(
+              false, result == null? null: result.getDescription() + " (" + label + ")"); //$NON-NLS-1$ //$NON-NLS-2$
         }
         break;
       }
@@ -194,9 +195,9 @@ public class TemplatePatternEngine implements ITemplatePatternEngine {
     }
     return SimpleStatus.SUCCESS;
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.templates.gen.ITemplatePatternEngine#createPatternData(org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern, org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance)
+   * @see org.eclipse.emf.diffmerge.patterns.templates.gen.ITemplatePatternEngine#createPatternData(org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern, org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance, java.lang.Object)
    */
   public TemplatePatternData createPatternData(TemplatePattern pattern_p,
       IPatternInstance instance_p, Object context_p) {

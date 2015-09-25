@@ -24,22 +24,20 @@ import org.eclipse.swt.graphics.Point;
 /**
  * An abstract utility class for services related to diagram template types
  * @author Skander Turki
- *
- * @param <DiagramElementType>
  */
 public abstract class AbstractDiagramUtil {
 
   /**
    * Returns a list of diagram elements in the given diagram
-   * @param diagram_p
-   * @return
+   * @param diagram_p a potentially null object
+   * @return a non-null, potentially empty list
    */
   public abstract List<?> getDiagramElements(Object diagram_p);
 
   /**
    * Returns a list of the semantic elements represented by the given diagram element
-   * @param diagramElement_p
-   * @return
+   * @param diagramElement_p a potentially null object
+   * @return a non-null, potentially empty list
    */
   public abstract List<EObject> getSemanticElementsFor(Object diagramElement_p);
 
@@ -67,6 +65,7 @@ public abstract class AbstractDiagramUtil {
 
   /**
    * Return the current diagram, if any
+   * @param selection_p a potentially null selection
    * @return a potentially null diagram
    */
   public abstract Object getDiagramFromSelection(IStructuredSelection selection_p);

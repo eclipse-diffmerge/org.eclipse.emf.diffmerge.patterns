@@ -23,8 +23,8 @@ import org.eclipse.emf.diffmerge.patterns.diagrams.Messages;
 /**
  * An abstract model operation that wraps another one and performs additional treatment
  * for graphical concerns in a certain diagram.
- * @param E the type parameter of this operation
- * @param F the type parameter of the wrapped operation
+ * @param <T> the type parameter of this operation
+ * @param <F> the type parameter of the wrapped operation
  * @author Olivier Constant
  * @author Skander Turki
  */

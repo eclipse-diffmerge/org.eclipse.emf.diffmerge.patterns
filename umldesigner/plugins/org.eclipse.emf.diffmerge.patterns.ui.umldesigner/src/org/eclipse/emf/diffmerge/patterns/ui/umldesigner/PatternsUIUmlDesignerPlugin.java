@@ -24,8 +24,13 @@ import org.osgi.framework.BundleContext;
  */
 public class PatternsUIUmlDesignerPlugin implements BundleActivator {
   
+  /** The bundle context, non-null after activation */
 	private static BundleContext context;
 	
+  /**
+   * Return the bundle context
+   * @return a bundle context which is not null after activation
+   */
 	static BundleContext getContext() {
 		return context;
 	}

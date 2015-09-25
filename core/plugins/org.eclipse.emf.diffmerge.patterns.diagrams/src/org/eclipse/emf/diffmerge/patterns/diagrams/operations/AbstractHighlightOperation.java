@@ -52,12 +52,11 @@ public abstract class AbstractHighlightOperation extends AbstractGraphicalUpdate
    * @param instance_p the non-null instance whose elements must be highlighted
    * @param color_p a non-null color for highlighting
    * @param coverEdges_p whether edges must be highlighted
-   * @param coverContainers_p whether containers must be highlighted
    * @param coverNodes_p whether nodes must be highlighted
    * @param coverPorts_p whether ports must be highlighted
    */
-  public AbstractHighlightOperation(Object diagram_p, IPatternInstance instance_p, RGB color_p, int borderSize_p, boolean coverEdges_p, boolean coverNodes_p,
-      boolean coverPorts_p) {
+  public AbstractHighlightOperation(Object diagram_p, IPatternInstance instance_p, RGB color_p,
+      int borderSize_p, boolean coverEdges_p, boolean coverNodes_p, boolean coverPorts_p) {
     this(diagram_p, Collections.singleton(instance_p), color_p, borderSize_p, coverEdges_p, coverNodes_p, coverPorts_p);
   }
 
@@ -67,13 +66,12 @@ public abstract class AbstractHighlightOperation extends AbstractGraphicalUpdate
    * @param instances_p the non-null collection of instances whose elements must be highlighted
    * @param color_p a non-null color for highlighting
    * @param coverEdges_p whether edges must be highlighted
-   * @param coverContainers_p whether containers must be highlighted
    * @param coverNodes_p whether nodes must be highlighted
    * @param coverPorts_p whether ports must be highlighted
    */
   @SuppressWarnings("boxing")
-  public AbstractHighlightOperation(Object diagram_p, Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, boolean coverEdges_p,
-      boolean coverNodes_p, boolean coverPorts_p) {
+  public AbstractHighlightOperation(Object diagram_p, Collection<? extends IPatternInstance> instances_p,
+      RGB color_p, int borderSize_p, boolean coverEdges_p, boolean coverNodes_p, boolean coverPorts_p) {
     _color = color_p;
     _coverEdges = coverEdges_p;
     _coverNodes = coverNodes_p;

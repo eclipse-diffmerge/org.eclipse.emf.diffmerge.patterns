@@ -51,10 +51,9 @@ public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvi
 
   /**
    * Default constructor
-   * @throws InstantiationException 
    */
   public ModellerSemanticRuleProvider(){
-    //Nothing
+    // Nothing needed
   }
 
   /**
@@ -181,17 +180,17 @@ public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvi
   public boolean ownershipMightBeDerived(EObject element_p) {
     return element_p instanceof IPatternInstance;
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.SemanticRuleProvider#supportsAdditionOf(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EReference, org.eclipse.emf.ecore.EObject, boolean)
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#supportsAdditionOf(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EReference, org.eclipse.emf.ecore.EObject, boolean)
    */
   public boolean supportsAdditionOf(EObject element_p, EReference reference_p,
       EObject value_p, boolean nonErasing_p) {
     return supportsAdditionOf(element_p, reference_p, value_p.eClass(), nonErasing_p);
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.SemanticRuleProvider#supportsAdditionOf(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EReference, java.util.Collection, boolean)
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#supportsAdditionOf(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EReference, java.util.Collection, boolean)
    */
   public boolean supportsAdditionOf(EObject element_p, EReference reference_p,
       Collection<? extends EObject> values_p, boolean nonErasing_p) {
@@ -201,9 +200,9 @@ public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvi
     }
     return true;
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.SemanticRuleProvider#getReferencesForAddition(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EClass, boolean, boolean)
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#getReferencesForAddition(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EClass, boolean, boolean)
    */
   public List<EReference> getReferencesForAddition(EObject element_p,
       EClass valueType_p, boolean nonErasing_p, boolean containmentOnly_p) {

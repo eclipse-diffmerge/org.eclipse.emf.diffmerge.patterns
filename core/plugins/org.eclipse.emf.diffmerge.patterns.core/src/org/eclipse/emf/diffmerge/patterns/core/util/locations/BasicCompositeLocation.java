@@ -46,7 +46,7 @@ public class BasicCompositeLocation implements ICompositeLocation {
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.locations.ICompositeLocation#getLocations()
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.locations.ICompositeLocation#getOwnedLocations()
    */
   public List<IAtomicLocation> getOwnedLocations() {
     return _locations;

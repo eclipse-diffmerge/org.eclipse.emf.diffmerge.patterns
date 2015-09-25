@@ -36,7 +36,7 @@ public class PatternWizardDialog extends WizardDialog {
   /**
    * Constructor
    * @param shell_p a non-null shell
-   * @param selection_p the initial selection of elements to use as template elements
+   * @param wizard_p a non-null wizard
    */
   public PatternWizardDialog(Shell shell_p, AbstractPatternWizard<?> wizard_p) {
     this(shell_p, wizard_p, false, null);
@@ -45,7 +45,7 @@ public class PatternWizardDialog extends WizardDialog {
   /**
    * Constructor
    * @param shell_p a non-null shell
-   * @param selection_p the initial selection of elements to use as template elements
+   * @param wizard_p a non-null wizard
    * @param hideCancel_p whether the Cancel button must be disabled
    * @param location_p an optional absolute position for the dialog
    */

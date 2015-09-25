@@ -199,7 +199,7 @@ public class ElementMappingDialog extends MessageDialog {
     }
     /**
      * Notify the listeners of an event on the given property
-     * @param event_p a non-null event
+     * @param property_p a non-null property
      */
     protected void notify(String property_p) {
       PropertyChangeEvent event = new PropertyChangeEvent(this, property_p, null, null);
@@ -210,7 +210,7 @@ public class ElementMappingDialog extends MessageDialog {
 
     /**
      * Unmap the given set of elements, whatever their side
-     * @param element_p a non-null element
+     * @param elements_p a non-null, potentially empty collection
      */
     public void unmap(Collection<EObject> elements_p) {
       boolean modified = false;
@@ -256,14 +256,15 @@ public class ElementMappingDialog extends MessageDialog {
   /**
    * Constructor
    * @param parentShell_p the shell for this dialog
-   * @param elements_p the list of elements to choose from
+   * @param role_p a non-null role
+   * @param elements_p the non-null list of elements to choose from
    */
   public ElementMappingDialog(Shell parentShell_p, TemplatePatternRole role_p,
-      Collection<? extends EObject> modelElements_p) {
+      Collection<? extends EObject> elements_p) {
     super(parentShell_p, Messages.ElementMappingDialog_Title,
         null, getDialogMessage(role_p), MessageDialog.NONE, 
         new String[] {IDialogConstants.OK_LABEL, IDialogConstants.CANCEL_LABEL}, 0);
-    _data = new ElementMappingSpecification(role_p.getTemplateElements(), modelElements_p);
+    _data = new ElementMappingSpecification(role_p.getTemplateElements(), elements_p);
     setShellStyle(getShellStyle() | SWT.RESIZE);
   }
 

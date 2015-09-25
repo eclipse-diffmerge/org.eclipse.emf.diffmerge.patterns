@@ -211,7 +211,7 @@ public class TemplateUsageDialog extends MessageDialog {
     }
     /**
      * Set 
-     * @param includeChildren_p the new value
+     * @param overridePrimaryDescription_p the new value
      */
     public void setOverridePrimaryDescription(boolean overridePrimaryDescription_p) {
       _overridePrimaryDescription = overridePrimaryDescription_p;
@@ -244,7 +244,7 @@ public class TemplateUsageDialog extends MessageDialog {
     }
     /**
      * Notify the listeners of an event on the given property
-     * @param event_p a non-null event
+     * @param property_p a non-null property
      */
     protected void notify(String property_p) {
       PropertyChangeEvent event = new PropertyChangeEvent(this, property_p, null, null);

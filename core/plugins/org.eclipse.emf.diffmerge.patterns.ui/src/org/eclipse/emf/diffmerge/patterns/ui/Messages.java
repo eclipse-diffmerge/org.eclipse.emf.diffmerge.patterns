@@ -22,6 +22,7 @@ import org.eclipse.osgi.util.NLS;
  * @author Olivier Constant
  * @author Skander Turki
  */
+@SuppressWarnings("javadoc")
 public class Messages extends NLS {
   private static final String BUNDLE_NAME = "org.eclipse.emf.diffmerge.patterns.ui.messages"; //$NON-NLS-1$
   static {

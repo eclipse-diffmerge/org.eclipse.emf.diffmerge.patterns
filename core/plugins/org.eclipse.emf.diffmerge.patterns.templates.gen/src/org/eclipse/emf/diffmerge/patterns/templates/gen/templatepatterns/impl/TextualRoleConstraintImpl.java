@@ -210,7 +210,7 @@ public class TextualRoleConstraintImpl extends AbstractTextualQueryImpl implemen
   
   /**
    * Check whether the given collection of elements conforms to this constraint
-   * @param element a non-null element
+   * @param elements_p a non-null collection
    * @return a non-null status
    * @generated NOT
    */

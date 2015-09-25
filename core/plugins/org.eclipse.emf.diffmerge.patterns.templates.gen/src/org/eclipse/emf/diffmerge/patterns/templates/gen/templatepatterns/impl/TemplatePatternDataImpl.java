@@ -315,7 +315,6 @@ public class TemplatePatternDataImpl extends AbstractPatternDataImpl implements 
   /**
    * Reset the given pattern data so that only information about non-unfolded elements
    * be preserved
-   * @param data_p non-null pattern data
    * @generated NOT
    */
 	public void clearUnfolded() {

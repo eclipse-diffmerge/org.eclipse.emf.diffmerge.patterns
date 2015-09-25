@@ -82,8 +82,9 @@ import org.eclipse.swt.graphics.Point;
  */
 public final class LayoutUtil {
 
-  /** Style constants */
+  /** Style constant for color custom feature */
   public static final String COLOR_CUSTOM_FEATURE = "color"; //$NON-NLS-1$
+  /** Style constant for default font style name */
   private static final String DEFAULT_FONT_STYLE_NAME = "default"; //$NON-NLS-1$
 
   /**
@@ -115,9 +116,9 @@ public final class LayoutUtil {
   public static void applyEdgeStyle(Edge edge_p, EdgeLayout edgeLayout_p) {
     ConnectorStyle connectorstyle = null;
     if (edge_p.getElement() != null) {
-      EObject doremiElement = edge_p.getElement();
-      if (doremiElement instanceof DStylizable) {
-        Style style = ((DStylizable) doremiElement).getStyle();
+      EObject siriusElement = edge_p.getElement();
+      if (siriusElement instanceof DStylizable) {
+        Style style = ((DStylizable) siriusElement).getStyle();
         if (style != null) {
           style.refresh();
         }
@@ -195,7 +196,7 @@ public final class LayoutUtil {
    * edgelayout_p from the patterns model is applied to fontstyle_p, appropriate customfeatures strings are added to element_p style
    * @param fontstyle_p a non-null GMF Font Style to which the style is applied
    * @param edgelayout_p a non-null patterns font style that is applied to the GMF Font Style
-   * @param element_p the non-null DOREMI element to which the style is applied
+   * @param element_p the non-null Sirius element to which the style is applied
    */
   public static void applyFontStyleToEdge(FontStyle fontstyle_p, EdgeLayout edgelayout_p, EObject element_p) {
     CenterLabelStyle centerlabelstyle = null;
@@ -462,12 +463,12 @@ public final class LayoutUtil {
   /**
    * Convert the given GMF edge layout constraint to framework-neutral layout data
    * @param bendpoints_p a non-null GMF bendpoints object
-   * @param selectedSourceArrow_p
-   * @param selectedTargetArrow_p
-   * @param selectedEdgeRouting_p
-   * @param selectedLineStyle_p
-   * @param fillstyle_p a non-null GMF fillstyle object
-   * @param fontstyle_p a potentially null GMF fontstyle object
+   * @param selectedLineColor_p the line color
+   * @param selectedLineWidth_p the line width
+   * @param selectedLineStyle_p the line style
+   * @param selectedEdgeRouting_p the edge routing
+   * @param selectedTargetArrow_p the target arrow style
+   * @param selectedSourceArrow_p the source arrow style
    * @return a non-null edge layout
    */
   public static EdgeLayout toEdgeLayout(Bendpoints bendpoints_p, int selectedLineColor_p,
@@ -502,13 +503,13 @@ public final class LayoutUtil {
 
   /**
    * Returns a TemplateFontStyle object out of the input parameters
-   * @param selectedFontColor_p
-   * @param selectedFontName_p
-   * @param selectedFontHeight_p
-   * @param isBold_p
-   * @param isItalic_p
-   * @param isUnderline_p
-   * @param isStrikeThrough_p
+   * @param selectedFontColor_p the font color
+   * @param selectedFontName_p the font name
+   * @param selectedFontHeight_p the font height
+   * @param isBold_p whether the font is bold
+   * @param isItalic_p whether the font is italic
+   * @param isUnderline_p whether the font is underlined
+   * @param isStrikeThrough_p whether the font is "strike through"
    * @return a non-null TemplateFontStyle object
    */
   public static TemplateFontStyle toTemplateFontStyle(int selectedFontColor_p,
@@ -540,7 +541,8 @@ public final class LayoutUtil {
   /**
    * Convert the given GMF layout constraint to framework-neutral layout data
    * @param bounds_p a non-null GMF node layout constraint
-   * @param fillStyle_p a non-null GMF fill style of node
+   * @param nodestyle_p a non-null GMF fill style of node
+   * @param templatefontstyle_p a font style
    * @return a non-null node layout
    */
   public static NodeLayout toNodeLayout(Bounds bounds_p, NodeStyle nodestyle_p,
@@ -557,12 +559,12 @@ public final class LayoutUtil {
 
   /**
    * Return a NodeStyle object corresponding to the given parameters
-   * @param borderColor_p
-   * @param borderSize_p
-   * @param shapeColor_p
-   * @param transparency_p
-   * @param foregroundColor_p
-   * @param backgroundColor_p
+   * @param borderColor_p the border color
+   * @param borderSize_p the border size
+   * @param shapeColor_p the shape color
+   * @param transparency_p the transparency
+   * @param foregroundColor_p the foreground color
+   * @param backgroundColor_p the background color
    * @return a non-null Node Style object
    */
   public static NodeStyle toTemplateNodeStyle(int borderColor_p, int borderSize_p,
@@ -828,14 +830,14 @@ public final class LayoutUtil {
   }
 
   /**
-   * 
-   * @param templateFontStyle_p adjust this object parameters according to the siriusElement's ownedstyle
-   * @param siriusElement
+   * Adjust the given font data according to the Sirius element's owned style
+   * @param templateFontStyle_p  a non-null object
+   * @param siriusElement_p a non-null sirius element
    */
-  public static void adjustTemplateFontStyleWithDoremiElement(
-      TemplateFontStyle templateFontStyle_p, DSemanticDecorator siriusElement) {
-    if (siriusElement instanceof DEdge) {
-      DEdge edge = (DEdge) siriusElement;
+  public static void adjustTemplateFontStyleWithSiriusElement(
+      TemplateFontStyle templateFontStyle_p, DSemanticDecorator siriusElement_p) {
+    if (siriusElement_p instanceof DEdge) {
+      DEdge edge = (DEdge) siriusElement_p;
       EdgeStyle edgeStyle = edge.getOwnedStyle();
       CenterLabelStyle centerLabelStyle = edgeStyle.getCenterLabelStyle();
       if(centerLabelStyle != null){
@@ -850,8 +852,6 @@ public final class LayoutUtil {
       }
     }
   }
-
-
 
   /**
    * Set the location of the given diagram element according to the given location

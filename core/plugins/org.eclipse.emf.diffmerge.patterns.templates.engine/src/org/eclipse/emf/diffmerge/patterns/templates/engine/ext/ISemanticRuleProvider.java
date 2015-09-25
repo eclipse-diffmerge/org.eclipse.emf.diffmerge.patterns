@@ -53,7 +53,8 @@ public interface ISemanticRuleProvider {
   /**
    * This method is meant for viewpoints/library-users that might need to add references to external elements
    * in the target scope whenever an external element is referenced by the reference scope.
-   * @param scope_p a non-null FilteredModelScope
+   * @param referenceScope_p a non-null scope
+   * @param targetScope_p a non-null scope
    */
   void initializeTargetScope(IFeaturedModelScope referenceScope_p,
       IFeaturedModelScope targetScope_p);
@@ -131,10 +132,9 @@ public interface ISemanticRuleProvider {
   boolean isMergeDependency(EObject element_p);
   
   /**
-   * Says if an element can be automatically merged and then no role would be created for it.
+   * Return whether the given element can be automatically merged and then no role would be created for it.
    * Its inclusion in a pattern would be totally automatic/transparent to the user.
-   * @param element_p
-   * @return a boolean a non-null EObject
+   * @param element_p a non-null element
    */
   boolean canBeAutomaticallyMerged(EObject element_p);  
   
@@ -152,12 +152,12 @@ public interface ISemanticRuleProvider {
    * Return whether the ownership of the given element might be derived
    * @param element_p a non-null element
    */
-  boolean ownershipMightBeDerived(EObject root);
+  boolean ownershipMightBeDerived(EObject element_p);
   
   /**
    * Return whether the given element is in the model scope and has direct dependencies
-   * @param sourceElement_p
-   * @return
+   * @param sourceElement_p a non-null element
+   * @param scope_p a non-null scope
    */
   boolean hasNotInScopeDependencies(EObject sourceElement_p, IModelScope scope_p);
   
@@ -196,18 +196,16 @@ public interface ISemanticRuleProvider {
       Collection<? extends EObject> values_p, boolean nonErasing_p);
   
   /**
-   * Says if the EObject is supported by the rule provider
-   * @param obj_p
-   * @return
+   * Return whether the given element is supported by this rule provider
+   * @param element_p a non-null element
    */
-  boolean isApplicableTo(EObject obj_p);
+  boolean isApplicableTo(EObject element_p);
   
   /**
-   * Returns if the EObject can be a root element in his containing resource
-   * @param obj_p a non-null EObject
-   * @return
+   * Return whether the given element can be a root element in his containing resource
+   * @param element_p a non-null EObject
    */
-  boolean isAllowedToBeRoot(EObject obj_p);
+  boolean isAllowedToBeRoot(EObject element_p);
   
   /**
    * Return a prefix to be added when displaying the name of the element to the user
@@ -219,7 +217,6 @@ public interface ISemanticRuleProvider {
   /**
    * Return whether the given diagram is of a type that is automatically redrawn. 
    * When true is returned the layout reuse is not executed on the given diagram after pattern application.
-   * See {@link org.eclipse.emf.diffmerge.patterns.ui.wizards.application.PatternApplicationWizard#doPerformFinish}
    */
   boolean isAutomaticallyUpdatedDiagram(Object diagram_p);
   

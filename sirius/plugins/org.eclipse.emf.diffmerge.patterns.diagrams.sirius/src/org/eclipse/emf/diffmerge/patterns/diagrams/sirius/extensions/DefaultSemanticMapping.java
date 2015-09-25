@@ -29,18 +29,18 @@ import org.eclipse.sirius.viewpoint.DSemanticDecorator;
  * @author Olivier Constant
  */
 public class DefaultSemanticMapping implements ISiriusSemanticMapping {
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.diagrams.extensions.ISemanticMapping#conformsToMapping(org.eclipse.emf.ecore.EObject, fr.obeo.dsl.viewpoint.description.AbstractNodeMapping, boolean, boolean, fr.obeo.dsl.viewpoint.DContainer)
+   * @see org.eclipse.emf.diffmerge.patterns.diagrams.extensions.ISemanticMapping#conformsToMapping(org.eclipse.emf.ecore.EObject, java.lang.Object, boolean, boolean, java.lang.Object)
    */
   public boolean conformsToMapping(EObject semanticElt_p, AbstractNodeMapping mapping_p,
       boolean considerPrecondition_p, boolean considerCandidates_p, Object containerView_p) {
     return SiriusUtil.conformsToMapping(
         semanticElt_p, mapping_p, considerPrecondition_p, considerCandidates_p, containerView_p);
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.diagrams.extensions.ISemanticMapping#getSemanticCandidatesForGraphicalStorage(org.eclipse.emf.ecore.EObject, fr.obeo.dsl.viewpoint.DDiagram)
+   * @see org.eclipse.emf.diffmerge.patterns.diagrams.extensions.ISemanticMapping#getSemanticCandidatesForGraphicalStorage(org.eclipse.emf.ecore.EObject, java.lang.Object)
    */
   public Collection<EObject> getSemanticCandidatesForGraphicalStorage(
       EObject element_p, Object diagram_p) {
@@ -50,23 +50,23 @@ public class DefaultSemanticMapping implements ISiriusSemanticMapping {
       result.add(container);
     return result;
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.diagrams.extensions.ISemanticMapping#getSemanticSelection(fr.obeo.dsl.viewpoint.DSemanticDecorator)
+   * @see org.eclipse.emf.diffmerge.patterns.diagrams.extensions.ISemanticMapping#getSemanticSelection(java.lang.Object)
    */
   public Collection<EObject> getSemanticSelection(Object decorator_p) {
     if(decorator_p instanceof DSemanticDecorator)
       return Collections.singleton(((DSemanticDecorator)decorator_p).getTarget());
     return Collections.emptyList();
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.diagrams.extensions.ISemanticMapping#getSemanticStorage(fr.obeo.dsl.viewpoint.DSemanticDecorator)
+   * @see org.eclipse.emf.diffmerge.patterns.diagrams.extensions.ISemanticMapping#getSemanticStorage(java.lang.Object)
    */
   public EObject getSemanticStorage(Object decorator_p) {
     if(decorator_p instanceof DSemanticDecorator)
       return ((DSemanticDecorator)decorator_p).getTarget();
     return null;
   }
-
+  
 }

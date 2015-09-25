@@ -34,8 +34,8 @@ public abstract class AbstractHighlightAllPatternsInstancesPanelDialog extends A
   
   /**
    * Constructor
-   * @param parentShell_p
-   * @param instances_p
+   * @param parentShell_p the shell for this dialog
+   * @param instances_p a non-null, potentially empty set
    */
   public AbstractHighlightAllPatternsInstancesPanelDialog(
       Shell parentShell_p,

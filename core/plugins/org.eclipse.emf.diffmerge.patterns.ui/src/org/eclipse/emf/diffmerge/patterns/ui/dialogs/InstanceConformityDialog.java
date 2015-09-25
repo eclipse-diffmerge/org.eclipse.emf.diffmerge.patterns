@@ -167,11 +167,12 @@ public class InstanceConformityDialog extends MessageDialog {
   }
 
   /**
-   * Creates a composite area. Depending on the role_p, the details FeatureViewer, the target ValuesViewer and the reference ValuesViewer are created.
-   * @param parent_p
-   * @param message_p
-   * @param role_p
-   * @return
+   * Creates a composite area. Depending on role_p, the details FeatureViewer, the target ValuesViewer and
+   * the reference ValuesViewer are created.
+   * @param parent_p a non-null composite
+   * @param message_p an optional message
+   * @param role_p 0 for FeatureViewer, 1 for target ValuesFiewer, 2 for reference ValuesViewer
+   * @return a non-null composite
    */
   private Composite createCompositeArea(Composite parent_p, String message_p, final int role_p){
     Composite composite = createEmptyComposite(parent_p, 1);
@@ -191,7 +192,7 @@ public class InstanceConformityDialog extends MessageDialog {
 
   /**
    * Crates the details feature viewer
-   * @param parent_p
+   * @param parent_p a non-null composite
    */
   private void createDetailsFeatureViewer(Composite parent_p) {
     _detailsViewer = new FeaturesViewer(parent_p);

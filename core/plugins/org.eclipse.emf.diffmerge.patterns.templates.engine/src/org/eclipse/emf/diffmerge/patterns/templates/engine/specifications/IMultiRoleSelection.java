@@ -59,7 +59,7 @@ public interface IMultiRoleSelection extends IPatternProvider {
   
   /**
    * Set the selected roles
-   * @param pattern_p a non-null, potentially empty collection
+   * @param roles_p a non-null, potentially empty collection
    */
   void setRoles(Collection<? extends TemplatePatternRole> roles_p);
   

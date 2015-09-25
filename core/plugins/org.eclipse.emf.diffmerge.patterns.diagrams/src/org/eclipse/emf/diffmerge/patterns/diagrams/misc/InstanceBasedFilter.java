@@ -52,7 +52,10 @@ public class InstanceBasedFilter implements IElementFilter {
     _instances = Collections.unmodifiableCollection(new FOrderedSet<IPatternInstance>(instances_p));
     _instanceElements = null;
   }
-
+  
+  /**
+   * @see org.eclipse.emf.diffmerge.util.ModelsUtil.IElementFilter#accepts(org.eclipse.emf.ecore.EObject)
+   */
   public boolean accepts(EObject element_p) {
     if (_instanceElements == null) {
       initialize();

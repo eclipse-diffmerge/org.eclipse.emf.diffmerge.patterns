@@ -42,7 +42,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 public class BasicPatternSupport extends DefaultPatternSupport {
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.support.contributions.basic.DefaultPatternSupport#getInstanceSet(org.eclipse.emf.ecore.resource.Resource, boolean)
+   * @see org.eclipse.emf.diffmerge.patterns.support.contributions.DefaultPatternSupport#getInstanceSet(org.eclipse.emf.ecore.resource.Resource, boolean)
    */
   @Override
   protected CommonPatternInstanceSet getInstanceSet(Resource resource_p,
@@ -70,7 +70,7 @@ public class BasicPatternSupport extends DefaultPatternSupport {
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.support.contributions.basic.DefaultPatternSupport#storeOwnInstance(org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonPatternInstance, java.lang.Object)
+   * @see org.eclipse.emf.diffmerge.patterns.support.contributions.DefaultPatternSupport#storeOwnInstance(org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonPatternInstance, java.lang.Object)
    */
   @Override
   protected boolean storeOwnInstance(CommonPatternInstance instance_p, Object context_p) {
@@ -83,7 +83,7 @@ public class BasicPatternSupport extends DefaultPatternSupport {
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.support.contributions.basic.DefaultPatternSupport#getResourceForStorage(java.lang.Object)
+   * @see org.eclipse.emf.diffmerge.patterns.support.contributions.DefaultPatternSupport#getResourceForStorage(java.lang.Object)
    */
   @Override
   protected Resource getResourceForStorage(Object context_p) {
@@ -100,7 +100,7 @@ public class BasicPatternSupport extends DefaultPatternSupport {
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.support.contributions.basic.DefaultPatternSupport#isApplicableTo(org.eclipse.emf.ecore.EObject)
+   * @see org.eclipse.emf.diffmerge.patterns.support.contributions.DefaultPatternSupport#isApplicableTo(org.eclipse.emf.ecore.EObject)
    */
   @Override
   public boolean isApplicableTo(EObject element_p) {
@@ -113,7 +113,7 @@ public class BasicPatternSupport extends DefaultPatternSupport {
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.support.contributions.basic.DefaultPatternSupport#isApplicableTo(org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication)
+   * @see org.eclipse.emf.diffmerge.patterns.support.contributions.DefaultPatternSupport#isApplicableTo(org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication)
    */
   @Override
   public boolean isApplicableTo(IPatternApplication application_p) {

@@ -94,14 +94,21 @@ extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> 
 
   /** A trivial enumeration for evaluation status of derivation rules */
   protected static enum RuleEvaluationStatus {
-    OK, FAILURE, CANCEL
+    /** Evaluation is OK */
+    OK,
+    /** Evaluation failed */
+    FAILURE,
+    /** Evaluation was cancelled */
+    CANCEL
   }
 
   /**
    * A trivial structure that groups together a status and a set of elements returned by a rule evaluation
    */
   protected static class RuleEvaluationResult {
+    /** The non-null status */
     final private RuleEvaluationStatus _status;
+    /** The potentially null set of elements returned by the evaluation */
     final private List<EObject> _elements;
 
     /**
@@ -115,7 +122,7 @@ extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> 
 
     /**
      * Constructor
-     * @param status_p a non-null status
+     * @param elements_p a non-null set of elements
      */
     public RuleEvaluationResult(List<EObject> elements_p) {
       _status = RuleEvaluationStatus.OK;
@@ -1249,10 +1256,9 @@ extends AbstractMultiRoleSelectionPage<TemplatePatternApplicationSpecification> 
     getData().getSelectedElements().clear();
     getData().getSelectedElements().addAll(set);
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractRoleSelectionPage#getTextForRole(org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole,
-   *      java.lang.String)
+   * @see org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractRoleBasedPage#getTextForRole(org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole, java.lang.String)
    */
   @Override
   protected String getTextForRole(TemplatePatternRole role_p, String defaultLabel_p) {

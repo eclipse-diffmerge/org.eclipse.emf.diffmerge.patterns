@@ -38,8 +38,7 @@ public class BasicElementMappingLocation implements IElementMappingLocation {
   private final EMap<EObject, EObject> _mapping;
   
   /**
-   * Constructor
-   * @param pattern_p a non-null element
+   * Default constructor
    */
   public BasicElementMappingLocation() {
     _mapping = new ModelsUtil.RMap<EObject, EObject>();

@@ -49,7 +49,7 @@ public interface IRepositorySelection {
   
   /**
    * Set the selected repository
-   * @param pattern_p a potentially null repository
+   * @param repository_p a potentially null repository
    */
   void setRepository(IPatternRepository repository_p);
   

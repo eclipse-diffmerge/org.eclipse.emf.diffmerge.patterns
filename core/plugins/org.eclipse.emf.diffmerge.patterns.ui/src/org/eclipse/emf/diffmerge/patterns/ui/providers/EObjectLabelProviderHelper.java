@@ -27,55 +27,56 @@ import org.eclipse.swt.graphics.Image;
 public class EObjectLabelProviderHelper {
   
   /**
-   * Get the generated item provider for given object.
-   * @param object_p
+   * Return the generated item provider for given element
+   * @param element_p a potentially null element
    * @return<code>null</code> if one of parameters is <code>null</code> or if no provider is found.
    */
-  protected static IItemLabelProvider getItemLabelProvider(EObject object_p) {
+  protected static IItemLabelProvider getItemLabelProvider(EObject element_p) {
     // Precondition.
-    if (null == object_p) {
+    if (null == element_p) {
       return null;
     }
-    AdapterFactoryEditingDomain editingDomain = (AdapterFactoryEditingDomain) AdapterFactoryEditingDomain.getEditingDomainFor(object_p);
+    AdapterFactoryEditingDomain editingDomain =
+        (AdapterFactoryEditingDomain)AdapterFactoryEditingDomain.getEditingDomainFor(element_p);
     // Precondition.
     if (null == editingDomain) {
       return null;
     }
-    return (IItemLabelProvider) editingDomain.getAdapterFactory().adapt(object_p, IItemLabelProvider.class);
+    return (IItemLabelProvider) editingDomain.getAdapterFactory().adapt(element_p, IItemLabelProvider.class);
   }
 
   /**
-   * Get the label for given object based on generated item provider.
-   * @param object_p
+   * Get the label for given element based on the generated item provider
+   * @param element_p a non-null element
    * @return<code>null</code> if one of parameters is <code>null</code> or if no label is found.
    */
-  public static String getText(EObject object_p) {
+  public static String getText(EObject element_p) {
     String label = ""; //$NON-NLS-1$
-    IItemLabelProvider provider = getItemLabelProvider(object_p);
+    IItemLabelProvider provider = getItemLabelProvider(element_p);
     if (null != provider) {
-      label = provider.getText(object_p);
+      label = provider.getText(element_p);
     }
     return label;
   }
 
   /**
-   * Get the image for given object based on generated item provider.
-   * @param object_p
+   * Get the image for given element based on the generated item provider
+   * @param element_p a non-null elemnt
    * @return<code>null</code> if one of parameters is <code>null</code> or if no image is found.
    */
-  public static Image getImage(EObject object_p) {
+  public static Image getImage(EObject element_p) {
     Object image = null;
 
-    IItemLabelProvider provider = getItemLabelProvider(object_p);
+    IItemLabelProvider provider = getItemLabelProvider(element_p);
     if (null != provider) {
-      image = provider.getImage(object_p);
+      image = provider.getImage(element_p);
     }
     return (null != image) ? getImageFromObject(image) : null;
   }
 
   /**
-   * Get Image from a object representation of it.
-   * @param image_p
+   * Return an image from a object representation of it
+   * @param image_p a non-null object
    * @return <code>null</code> if image creation fails.
    */
   public static Image getImageFromObject(Object image_p) {

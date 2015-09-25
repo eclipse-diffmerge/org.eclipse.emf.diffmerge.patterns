@@ -21,6 +21,7 @@ import org.eclipse.osgi.util.NLS;
  * Messages for UML Designer extension.
  * @author Skander Turki
  */
+@SuppressWarnings("javadoc")
 public class Messages extends NLS{
   
   private static final String BUNDLE_NAME = "org.eclipse.emf.diffmerge.patterns.diagrams.umldesigner.messages"; //$NON-NLS-1$

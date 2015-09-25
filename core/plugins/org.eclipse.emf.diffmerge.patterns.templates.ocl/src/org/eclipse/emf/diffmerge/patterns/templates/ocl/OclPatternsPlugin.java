@@ -35,9 +35,10 @@ public class OclPatternsPlugin extends Plugin {
   /** The name of the language supported */
   private static final String LANGUAGE_NAME = "ocl"; //$NON-NLS-1$
   
-  /** IDs related to the OclEnvironmentCustomizer extension point */
+  /** ID related to the OclEnvironmentCustomizer extension point */
   private static final String OCL_ENVIRONMENT_CUSTOMIZER_EXTENSION_POINT =
     "org.eclipse.emf.diffmerge.patterns.templates.ocl.oclEnvironmentCustomizer"; //$NON-NLS-1$
+  /** ID related to the OclEnvironmentCustomizer extension point */
   private static final String OCL_ENVIRONMENT_CUSTOMIZER_POINT_PROPERTY = "class"; //$NON-NLS-1$
   
 	/** The OCL interpreter */

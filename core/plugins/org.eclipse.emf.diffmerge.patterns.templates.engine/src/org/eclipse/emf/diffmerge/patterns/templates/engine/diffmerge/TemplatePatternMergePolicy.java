@@ -28,9 +28,8 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class TemplatePatternMergePolicy extends DefaultMergePolicy {
 
-
   /**
-   * @see org.eclipse.emf.diffmerge.impl.policies.DefaultMergePolicy#copyOutOfScopeCrossReferences()
+   * @see org.eclipse.emf.diffmerge.impl.policies.DefaultMergePolicy#copyOutOfScopeCrossReferences(org.eclipse.emf.diffmerge.api.scopes.IFeaturedModelScope, org.eclipse.emf.diffmerge.api.scopes.IFeaturedModelScope)
    */
   @Override
   public boolean copyOutOfScopeCrossReferences(

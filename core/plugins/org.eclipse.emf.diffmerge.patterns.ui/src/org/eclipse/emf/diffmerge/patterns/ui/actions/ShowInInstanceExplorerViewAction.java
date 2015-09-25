@@ -30,8 +30,7 @@ import org.eclipse.ui.PartInitException;
  * @author Olivier Constant
  * @author Skander Turki
  */
-public class ShowInInstanceExplorerViewAction<InstanceExplorerViewType extends AbstractInstanceExplorerView> 
-extends AbstractModelBasedAction {
+public class ShowInInstanceExplorerViewAction extends AbstractModelBasedAction {
 
   /**
    * Constructor

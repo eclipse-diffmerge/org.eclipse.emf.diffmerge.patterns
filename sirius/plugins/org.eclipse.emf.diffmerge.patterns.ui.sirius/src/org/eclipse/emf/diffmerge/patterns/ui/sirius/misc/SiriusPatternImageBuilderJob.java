@@ -30,12 +30,24 @@ import org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard;
  */
 public class SiriusPatternImageBuilderJob<T extends ITemplatePatternBasedSpecification> 
 extends AbstractPatternImageBuilderJob{
-  
+
+  /**
+   * Constructor
+     * @param wizard_p a non-null wizard
+     * @param imageSpecification_p a potentially null image specification
+     * @param updatePattern_p whether the pattern must be updated with the new image
+   */
   public SiriusPatternImageBuilderJob(AbstractPatternWizard<T> wizard_p,
       String imageSpecification_p, boolean updatePattern_p) {
     super(wizard_p, imageSpecification_p, updatePattern_p);
   }
   
+  /**
+   * Constructor
+   * @param wizard_p a non-null wizard
+   * @param graphicalContext_p a potentially null list of contextual GEF elements
+   * @param updatePattern_p whether the pattern must be updated with the new image
+   */
   public SiriusPatternImageBuilderJob(AbstractPatternWizard<T> wizard_p,
       List<Object> graphicalContext_p, boolean updatePattern_p) {
     super(wizard_p, graphicalContext_p, updatePattern_p);

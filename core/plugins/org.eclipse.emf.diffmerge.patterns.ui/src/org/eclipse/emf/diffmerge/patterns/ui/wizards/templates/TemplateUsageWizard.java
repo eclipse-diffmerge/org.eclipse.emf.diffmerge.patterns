@@ -91,7 +91,10 @@ public class TemplateUsageWizard extends AbstractPatternWizard<TemplateUsageSpec
   protected boolean showPatternContent() {
     return true;
   }
-
+  
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard#instantiatePatternImageBuilderJob(org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard, java.util.List, boolean)
+   */
   @Override
   protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplateUsageSpecification> wizard_p,  
       List<Object> context_p, boolean updatePattern_p){
@@ -101,7 +104,10 @@ public class TemplateUsageWizard extends AbstractPatternWizard<TemplateUsageSpec
     }
     return null;
   }
-
+  
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard#instantiatePatternImageBuilderJob(org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard, java.lang.String, boolean)
+   */
   @Override
   protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplateUsageSpecification> wizard_p,  
       String imageSpecification_p, boolean updatePattern_p){

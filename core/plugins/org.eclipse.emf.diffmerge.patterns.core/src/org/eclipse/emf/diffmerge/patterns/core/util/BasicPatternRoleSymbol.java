@@ -36,8 +36,8 @@ implements IPatternRoleSymbol{
    * @param lastPath_p a potentially null URI as string
    */
   public BasicPatternRoleSymbol(String repositoryId_p, String patternId_p,
-      String roleId_p, String lastPatternName_p, String lastpath_p) {
-    super(repositoryId_p, patternId_p, lastPatternName_p, lastpath_p);
+      String roleId_p, String lastPatternName_p, String lastPath_p) {
+    super(repositoryId_p, patternId_p, lastPatternName_p, lastPath_p);
     _roleId = roleId_p;
   }
   

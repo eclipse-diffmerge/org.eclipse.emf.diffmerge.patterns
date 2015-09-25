@@ -31,7 +31,6 @@ public interface ISemanticMapping<MappingType> {
   /**
    * Return whether the given element conforms to the given mapping's requirements.
    * In addition to standard Viewpoint mechanisms, this method may involve business criteria.
-   * @see SiriusUtil#conformsToMapping(EObject, AbstractNodeMapping, boolean, boolean, EObject)
    * @param semanticElt_p the semantic element to test against the given mapping
    * @param mapping_p the mapping to test again the given semantic element
    * @param considerPrecondition_p whether the precondition of the mapping must be tested

@@ -70,6 +70,7 @@ import org.eclipse.swt.widgets.Shell;
  * A message dialog which prompts for OCL input
  * Copied and adapted from org.eclipse.emf.ocl.examples.interpreter.OCLConsolePage
  * @author Olivier Constant
+ * @author Skander Turki
  */
 public class OclInputMessageDialog extends MessageDialog {
   
@@ -105,6 +106,7 @@ public class OclInputMessageDialog extends MessageDialog {
   
   /** Label provision */
   protected IItemLabelProvider _tupleTypeLabelProvider = new TupleTypeItemLabelProvider();
+  /** The reflective item provider adapter factory */
   private static final AdapterFactory _reflectiveAdapterFactory =
     new ReflectiveItemProviderAdapterFactory();
   
@@ -331,7 +333,7 @@ public class OclInputMessageDialog extends MessageDialog {
   /**
    * Prints an error message to the output viewer, in red text.
    * 
-   * @param message the error message to print
+   * @param message_p the error message to print
    */
   private void error(String message_p) {
     append(message_p, _colorManager.getColor(ColorManager.OUTPUT_ERROR), false);
@@ -339,7 +341,8 @@ public class OclInputMessageDialog extends MessageDialog {
   }
   
   /**
-   * @see org.eclipse.jface.dialogs.Dialog#getOKButton()
+   * Return the finish button
+   * @return a non-null button
    */
   protected Button getFinishButton() {
     return getButton(IDialogConstants.OK_ID);
@@ -353,13 +356,12 @@ public class OclInputMessageDialog extends MessageDialog {
   }
   
   /**
-   * Appends the specified text to the output viewer.
-   * 
-   * @param text the text to append
-   * @param color the color to print the text with
-   * @param bold whether to print the text bold
+   * Append the specified text to the output viewer
+   * @param text_p the text to append
+   * @param color_p the color to print the text with
+   * @param bold_p whether to print the text bold
    */
-  private void append(String text_p, Color color, boolean bold) {
+  private void append(String text_p, Color color_p, boolean bold_p) {
     String text = text_p;
     IDocument doc = getDocument();
     try {
@@ -374,8 +376,8 @@ public class OclInputMessageDialog extends MessageDialog {
       StyleRange style = new StyleRange();
       style.start = offset;
       style.length = length;
-      style.foreground = color;
-      if (bold) {
+      style.foreground = color_p;
+      if (bold_p) {
         style.fontStyle = SWT.BOLD;
       }
       _output.getTextWidget().setStyleRange(style);
@@ -402,6 +404,9 @@ public class OclInputMessageDialog extends MessageDialog {
     public InputKeyListener() {
       super();
     }
+    /**
+     * @see org.eclipse.swt.events.KeyListener#keyPressed(org.eclipse.swt.events.KeyEvent)
+     */
     public void keyPressed(KeyEvent e) {
       switch (e.keyCode) {
         // Return pressed: evaluate expression
@@ -414,6 +419,9 @@ public class OclInputMessageDialog extends MessageDialog {
           break;
       }
     }
+    /**
+     * @see org.eclipse.swt.events.KeyListener#keyReleased(org.eclipse.swt.events.KeyEvent)
+     */
     public void keyReleased(KeyEvent e) {
       switch (e.keyCode) {
         // Space released: activate content assistance

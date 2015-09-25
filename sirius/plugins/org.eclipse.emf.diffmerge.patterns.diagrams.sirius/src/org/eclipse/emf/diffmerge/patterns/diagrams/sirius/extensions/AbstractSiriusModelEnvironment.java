@@ -78,7 +78,7 @@ public abstract class AbstractSiriusModelEnvironment implements IModelEnvironmen
    * The navigation to the editing domain associated with the context is realized differently
    * depending on the type of the context.
    * This method tries to find the appropriate Object that should be used in this navigation.
-   * @param context a potentially null Object. 
+   * @param context_p a potentially null Object. 
    * @return a potentially null Object
    */
   protected Object adaptContext(Object context_p) {
@@ -99,7 +99,7 @@ public abstract class AbstractSiriusModelEnvironment implements IModelEnvironmen
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#asyncExecute(org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment.IModelOperation)
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#asyncExecute(org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelOperation)
    */
   public void asyncExecute(IModelOperation<?> operation_p) {
     if (operation_p instanceof AbstractModelOperation<?>)
@@ -195,7 +195,7 @@ public abstract class AbstractSiriusModelEnvironment implements IModelEnvironmen
       _operation = operation_p;
     }
     /**
-     * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+     * @see org.eclipse.emf.edit.command.ChangeCommand#doExecute()
      */
     @Override
     protected void doExecute() {

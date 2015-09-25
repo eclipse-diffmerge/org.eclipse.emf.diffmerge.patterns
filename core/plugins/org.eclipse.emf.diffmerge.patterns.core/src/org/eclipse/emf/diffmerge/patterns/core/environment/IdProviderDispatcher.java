@@ -40,10 +40,10 @@ public class IdProviderDispatcher implements IIdProvider{
   /** List of all contributing ID providers */
   private List<IIdProvider> _IDProviders;
   
-  /** IDs related to the IdProvider extension point */
+  /** ID related to the IdProvider extension point */
   private static final String ID_PROVIDER_EXTENSION_POINT =
     "org.eclipse.emf.diffmerge.patterns.core.idProvider"; //$NON-NLS-1$
-  
+  /** ID related to the IdProvider extension point */
   private static final String ID_PROVIDER_EXTENSION_POINT_PROPERTY = "class"; //$NON-NLS-1$
   
   
@@ -88,8 +88,7 @@ public class IdProviderDispatcher implements IIdProvider{
   }
   
   /**
-   * 
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#getNewId()
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#getNewIdFor(org.eclipse.emf.ecore.EObject)
    */
   public String getNewIdFor(EObject element_p) {
     String result;
@@ -114,7 +113,7 @@ public class IdProviderDispatcher implements IIdProvider{
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#getId(org.eclipse.emf.ecore.EObject)
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider#getId(org.eclipse.emf.ecore.EObject, org.eclipse.emf.edit.domain.EditingDomain)
    */
   public String getId(EObject element_p, EditingDomain editingDomain_p) {
     String result;

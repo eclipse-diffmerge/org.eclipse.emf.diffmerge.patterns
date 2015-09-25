@@ -41,7 +41,7 @@ public class PatternsCoreGenAdapter {
   
   /**
    * Convert the given pattern symbol
-   * @param location_p a non-null pattern symbol
+   * @param symbol_p a non-null pattern symbol
    * @return a non-null pattern symbol for usage with eMDE pattern support
    */
   public PatternSymbol adapt(IPatternSymbol symbol_p) {
@@ -55,7 +55,7 @@ public class PatternsCoreGenAdapter {
   
   /**
    * Convert the given pattern role symbol
-   * @param location_p a non-null pattern role symbol
+   * @param symbol_p a non-null pattern role symbol
    * @return a non-null pattern role symbol for usage with eMDE pattern support
    */
   public PatternRoleSymbol adapt(IPatternRoleSymbol symbol_p) {

@@ -798,7 +798,7 @@ extends AbstractTemplateElementsPage<T> {
 
   /**
    * Prompt the user for adding dependency elements among the given ones
-   * @param dependencies_p a non-null, potentially empty collection
+   * @param instances_p a non-null, potentially empty collection
    */
   protected void promptAndAddInstances(
       Collection<? extends AbstractPatternInstance> instances_p) {

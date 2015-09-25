@@ -35,7 +35,7 @@ public class CatalogResourceChangeHandler extends ChangeRecorder{
 
   /**
    * Constructor
-   * @param object_p a non-null PatternRepository
+   * @param repository_p a non-null PatternRepository
    */
   public CatalogResourceChangeHandler(PatternRepository repository_p){
     super(repository_p);

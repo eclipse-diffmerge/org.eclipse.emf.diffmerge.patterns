@@ -30,7 +30,6 @@ public interface IIdProvider {
 
   /**
    * Whether the provider is contributed by the main modeler, not a viewpoint (an extension).
-   * @return
    */
   boolean isMainModel();
 

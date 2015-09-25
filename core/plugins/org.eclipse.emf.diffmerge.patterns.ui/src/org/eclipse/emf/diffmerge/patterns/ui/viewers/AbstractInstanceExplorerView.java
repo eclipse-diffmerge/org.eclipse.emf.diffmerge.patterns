@@ -135,7 +135,10 @@ public abstract class AbstractInstanceExplorerView extends ViewPart{
     _referenceElement = null;
     _contextElement = null;
   }
-
+  
+  /**
+   * @see org.eclipse.ui.part.WorkbenchPart#createPartControl(org.eclipse.swt.widgets.Composite)
+   */
   @Override
   public void createPartControl(Composite parent_p) {
     // Parent layout
@@ -326,12 +329,24 @@ public abstract class AbstractInstanceExplorerView extends ViewPart{
       refreshCurrent();
   }
 
-
+  /**
+   * Return the pattern browsing wizard
+   * @param context_p a non-null context element
+   * @param pattern_p a non-null pattern
+   * @return a non-null object
+   */
   protected AbstractPatternBrowsingWizard instantiatePatternBrowsingWizard(EObject context_p, TemplatePattern pattern_p){
     return _dialogAndWizardFactory.instantiatePatternBrowsingWizard(context_p, pattern_p);
   }
 
-  protected AbstractPatternBrowsingWizard instantiatePatternBrowsingWizard(EObject context_p, IPatternRepository repository_p){
+  /**
+   * Return the pattern browsing wizard
+   * @param context_p a non-null context element
+   * @param repository_p a non-null pattern repository
+   * @return a non-null object
+   */
+  protected AbstractPatternBrowsingWizard instantiatePatternBrowsingWizard(EObject context_p,
+      IPatternRepository repository_p){
     return _dialogAndWizardFactory.instantiatePatternBrowsingWizard(context_p, repository_p);
   }
 
@@ -750,11 +765,17 @@ public abstract class AbstractInstanceExplorerView extends ViewPart{
    */
   public class TabbedPropertyTitle
   extends Composite {
+    /** A non-null label */
     protected CLabel label;
+    /** A potentially null image */
     protected Image image = null;
+    /** A potentially null text */
     protected String text = null;
+    /** The blank string */
     private static final String BLANK = ""; //$NON-NLS-1$
+    /** An identifier for the dedicated font */
     private static final String TITLE_FONT = "org.eclipse.ui.internal.views.properties.tabbed.view.TabbedPropertyTitle"; //$NON-NLS-1$
+    /** The widget factory for the tabbed property sheet */
     private TabbedPropertySheetWidgetFactory factory;
     /**
      * Constructor for TabbedPropertyTitle.
@@ -857,11 +878,11 @@ public abstract class AbstractInstanceExplorerView extends ViewPart{
     return _viewer;
   }
 
-
   /**
-   * 
-   * @param selected_p
-   * @return
+   * Return the objects represented by the given selected object when considered
+   * as a selection
+   * @param selected_p a non-null object
+   * @return a non-null, potentially empty, unmodifiable collection
    */
   protected Collection<?> toActualSelection(Object selected_p){
     return _diagramUtil.toActualSelection(selected_p);

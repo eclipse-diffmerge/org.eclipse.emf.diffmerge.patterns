@@ -47,7 +47,7 @@ public class CloseCatalogOperation  extends AbstractModelOperation<Integer> {
 
   /**
    * Constructor
-   * @param catalogFiles_p the non-null catalog file to close
+   * @param catalogFile_p the non-null catalog file to close
    * @param resourceSet_p a non-null resource set where the catalog file has been loaded
    */
   public CloseCatalogOperation(IFile catalogFile_p, ResourceSet resourceSet_p) {

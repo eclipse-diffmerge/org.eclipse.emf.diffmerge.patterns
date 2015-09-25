@@ -45,6 +45,7 @@ import org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.graphics.Point;
 
+
 /**
  * A wizard for applying an existing pattern.
  * @author Olivier Constant
@@ -52,13 +53,13 @@ import org.eclipse.swt.graphics.Point;
  */
 public class PatternApplicationWizard extends AbstractPatternWizard<TemplatePatternApplicationSpecification> {
 
-
   /** An optional diagram to refresh eventually */
   protected final Object _diagramToRefresh;
 
   /** The graphical offset for multi-instantiation */
   protected static final int MULTI_INSTANCE_OFFSET = 10;
 
+  
   /**
    * Constructor
    * @param sources_p the elements from which the pattern must be created
@@ -143,6 +144,7 @@ public class PatternApplicationWizard extends AbstractPatternWizard<TemplatePatt
       if (result && getData().mustReuseLayout() 
           && _diagramToRefresh != null
           && ! ruleProvider.isAutomaticallyUpdatedDiagram(_diagramToRefresh)) {
+        @SuppressWarnings("null")
         List<AbstractFilteredGraphicalUpdateOperation> layoutOperations =
             new ArrayList<AbstractFilteredGraphicalUpdateOperation>(instances.size());
         final int xOffset = MULTI_INSTANCE_OFFSET, yOffset = MULTI_INSTANCE_OFFSET;

@@ -215,8 +215,8 @@ public final class ModelsUtil {
 
   /**
    * Returns the editing domain for the given element
-   * @param eleme_p a non-null EObject
-   * @return a potentially-null EditingDomain
+   * @param element_p a non-null element
+   * @return a potentially null editing domain
    */
   public static EditingDomain getEditingDomain(EObject element_p){
     IModelEnvironment env = CorePatternsPlugin.getDefault().getModelEnvironment();

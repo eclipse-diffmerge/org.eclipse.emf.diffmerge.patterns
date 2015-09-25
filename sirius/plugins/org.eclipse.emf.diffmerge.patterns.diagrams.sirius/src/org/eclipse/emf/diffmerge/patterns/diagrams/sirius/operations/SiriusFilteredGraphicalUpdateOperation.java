@@ -40,7 +40,9 @@ public abstract class SiriusFilteredGraphicalUpdateOperation extends AbstractFil
    * Constructor
    * @param name_p an optional name
    * @param diagram_p the non-null diagram to update
-   * @param filter_p the non-null filter for semantic elements whose representation must be updated
+   * @param instances_p a non-null set of pattern instances
+   * @param isDirtying_p whether the operation is dirtying
+   * @param sourceContext_p an optional context object for the source side of the operation
    */
   protected SiriusFilteredGraphicalUpdateOperation(String name_p, Object diagram_p, 
       Collection<? extends IPatternInstance> instances_p, 
@@ -52,7 +54,9 @@ public abstract class SiriusFilteredGraphicalUpdateOperation extends AbstractFil
    * Constructor
    * @param name_p an optional name
    * @param diagram_p the non-null diagram to update
-   * @param filter_p the non-null filter for semantic elements whose representation must be updated
+   * @param instance_p a non-null pattern instance
+   * @param isDirtying_p whether the operation is dirtying
+   * @param sourceContext_p an optional context object for the source side of the operation
    */
   protected SiriusFilteredGraphicalUpdateOperation(String name_p, Object diagram_p, 
       IPatternInstance instance_p, boolean isDirtying_p, Object sourceContext_p) {

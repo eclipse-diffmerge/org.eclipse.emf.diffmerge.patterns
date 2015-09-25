@@ -100,9 +100,9 @@ public abstract class AbstractElementRelativeLocationImpl extends AbstractIDBase
       result = _element;
     return result;
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.support.emde.gen.emdepatternsupport.impl.AbstractEmdeAtomicLocationImpl#setElementId(java.lang.String)
+   * @see org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.impl.AbstractIDBasedAtomicLocationImpl#setElementId(java.lang.String)
    * @generated NOT
    */
   @Override

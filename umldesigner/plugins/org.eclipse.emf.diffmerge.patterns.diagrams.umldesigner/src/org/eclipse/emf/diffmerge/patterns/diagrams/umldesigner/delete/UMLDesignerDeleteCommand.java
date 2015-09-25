@@ -32,14 +32,14 @@ public class UMLDesignerDeleteCommand extends AbstractCommand{
   /** The selection of elements to delete */
   private Collection<?> _selection;
   
-  /** Editing domain */
+  /** The potentially null editing domain */
   private EditingDomain _editingDomain;
   
   
   /**
    * Constructor
    * @param editingDomain_p a potentially null editing domain
-   * @param collection_p a non null collection
+   * @param selection_p a non null collection
    */
   public UMLDesignerDeleteCommand(EditingDomain editingDomain_p, Collection<?> selection_p) {
     _editingDomain = editingDomain_p;

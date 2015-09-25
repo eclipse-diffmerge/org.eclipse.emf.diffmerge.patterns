@@ -134,8 +134,7 @@ public class TemplatePatternComparison extends EComparisonImpl {
     clear(); // Also clears last policies
     IMatchPolicy wrappingMatchPolicy = new DefaultMatchPolicy() {
       /**
-       * 
-       * @see org.eclipse.emf.diffmerge.impl.policies.DefaultMatchPolicy#getMatchId(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.api.scopes.IModelScope)
+       * @see org.eclipse.emf.diffmerge.impl.policies.DefaultMatchPolicy#getMatchID(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.api.scopes.IModelScope)
        */
       @Override
       public Object getMatchID(EObject element_p, IModelScope scope_p){

@@ -14,7 +14,6 @@
  */
 package org.eclipse.emf.diffmerge.patterns.ui.handlers;
 
-import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.emf.diffmerge.patterns.ui.actions.BrowseCatalogAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchPage;
@@ -23,12 +22,13 @@ import org.eclipse.ui.IWorkbenchWindow;
 
 
 /**
+ * The handler for the "browse catalogs" command.
  * @author Skander Turki
  */
 public class BrowseCatalogHandler extends AbstractWorkbenchSelectionHandler {
 
   /**
-   * @see AbstractWorkbenchSelectionHandler#handleSelection(ISelection, IWorkbenchPart, ExecutionEvent)
+   * @see AbstractWorkbenchSelectionHandler#handleSelection(ISelection, IWorkbenchPart)
    */
   @Override
   protected Object handleSelection(ISelection selection_p, IWorkbenchPart activePart_p) {

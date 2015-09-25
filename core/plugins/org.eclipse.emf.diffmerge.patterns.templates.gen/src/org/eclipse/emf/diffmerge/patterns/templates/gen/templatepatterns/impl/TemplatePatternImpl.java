@@ -364,7 +364,7 @@ public class TemplatePatternImpl extends AbstractPatternImpl implements Template
 	}
 
 		/**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.IPattern#checkConformance(org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication)
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.IPattern#checkConformance(IPatternApplication, List)
    * @generated NOT
    */
   public IPatternConformityStatus checkConformance(IPatternApplication application_p, List<EStructuralFeature> ignoredFeatures_p) {
@@ -375,7 +375,7 @@ public class TemplatePatternImpl extends AbstractPatternImpl implements Template
   }
 
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.IPattern#createDataFor(org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance)
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.IPattern#createDataFor(IPatternInstance, Object)
    * @generated NOT
    */
   public IPatternData createDataFor(IPatternInstance instance_p, Object context_p) {
@@ -398,7 +398,7 @@ public class TemplatePatternImpl extends AbstractPatternImpl implements Template
   
   /**
    * Return whether the given template element is kept unique at unfolding time
-   * @param element a non-null element
+   * @param element_p a non-null element
    * @generated NOT
    */
   public boolean isUnique(EObject element_p) {

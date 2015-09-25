@@ -42,7 +42,7 @@ import org.eclipse.ui.IWorkbenchPart;
 
 /**
  * An abstract action which provides generic facilities.
- * @param ObjectType the type of the elements on which the action is applicable
+ * @param <ObjectType> the type of the elements on which the action is applicable
  * @author Olivier Constant
  */
 public abstract class AbstractContextualAction<ObjectType> implements IObjectActionDelegate {

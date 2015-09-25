@@ -33,9 +33,10 @@ public class TemplatePatternsPlugin extends Plugin {
 	/** The shared instance */
 	private static TemplatePatternsPlugin __plugin;
 	
-  /** IDs related to the templatePatternsEngine extension point */
+  /** ID related to the templatePatternsEngine extension point */
   private static final String ENGINE_EXTENSION_POINT =
     "org.eclipse.emf.diffmerge.patterns.templates.gen.templatePatternsEngine"; //$NON-NLS-1$
+  /** ID related to the templatePatternsEngine extension point */
   private static final String ENGINE_EXTENSION_POINT_PROPERTY =
     "class"; //$NON-NLS-1$
   

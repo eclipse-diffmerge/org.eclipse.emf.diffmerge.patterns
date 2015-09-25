@@ -94,6 +94,12 @@ public class TemplatePatternUpdateSpecification extends AbstractModifiableTempla
     initializeComparison(instance_p, referenceElement_p);
   }
   
+  /**
+   * Create and return a temporary resource for storing elements
+   * @param copier_p a non-null copier
+   * @param originalPatternEditingDomain an editing domain
+   * @return a non-null resource
+   */
   private Resource createVirtualResource(Copier copier_p,
       EditingDomain originalPatternEditingDomain) {
     EditingDomain ed = CorePatternsPlugin.getDefault().getModelEnvironment().getEditingDomain((EObject)null);

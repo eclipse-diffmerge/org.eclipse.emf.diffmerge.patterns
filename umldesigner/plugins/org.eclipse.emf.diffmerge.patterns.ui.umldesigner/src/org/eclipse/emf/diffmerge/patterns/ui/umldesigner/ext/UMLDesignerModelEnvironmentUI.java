@@ -42,7 +42,7 @@ public class UMLDesignerModelEnvironmentUI extends DefaultModelEnvironmentUI{
     // Centralize dependency to common.ui.services
     String result = EObjectLabelProviderHelper.getText(eobj);
     if (!UIUtil.isSignificant(result) || result.equals("-") || result.equals("+")) { //$NON-NLS-1$ //$NON-NLS-2$
-      // Try and get a label based on the main Melody editing domain
+      // Try and get a label based on the main editing domain
       EditingDomain rawEditingDomain =
           CorePatternsPlugin.getDefault().getModelEnvironment().getEditingDomain(eobj);
       if (rawEditingDomain instanceof AdapterFactoryEditingDomain) {

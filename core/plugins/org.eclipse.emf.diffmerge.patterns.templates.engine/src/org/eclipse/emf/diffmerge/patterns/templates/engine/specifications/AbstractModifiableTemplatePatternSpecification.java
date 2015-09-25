@@ -387,16 +387,16 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
   protected Collection<IPatternInstance> getInstancesToIgnore() {
     return getIncludedInstances();
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.AbstractBijectiveTemplatePatternSpecification#getModelScope()
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.IModifiableTemplatePatternSpecification#getModelScope()
    */
   public IModelScope getModelScope() {
     return _comparison.getScope(getPatternRole().opposite());
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.AbstractBijectiveTemplatePatternSpecification#getPatternScope()
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.IModifiableTemplatePatternSpecification#getPatternScope()
    */
   public IModelScope getPatternScope() {
     return _comparison.getScope(getPatternRole());
@@ -634,9 +634,9 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
   public boolean includeLayoutData() {
     return _includeLayout;
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.IPatternBasedSpecification#isComplete()
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.IPatternBasedSpecification#isComplete()
    */
   public boolean isComplete() {
     TemplatePattern pattern = getPattern();
@@ -716,7 +716,7 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
   /**
    * Remove the given elements from the pattern
    * @param elements_p a non-null set
-   * @param includeChildren_p whether children must be included too, recursively
+   * @param removeChildren_p whether children must be included too, recursively
    */
   public void removeElements(Collection<? extends EObject> elements_p,
       boolean removeChildren_p) {
@@ -752,9 +752,9 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
       }
     }
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.IBijectiveTemplatePatternSpecification#removeRole(org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole)
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.IModifiableTemplatePatternSpecification#removeRole(org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole)
    */
   public void removeRole(TemplatePatternRole role_p) {
     getPattern().getRoles().remove(role_p);

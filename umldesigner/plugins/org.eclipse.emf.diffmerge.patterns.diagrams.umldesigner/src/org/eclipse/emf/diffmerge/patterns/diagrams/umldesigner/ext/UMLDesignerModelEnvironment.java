@@ -63,9 +63,11 @@ import org.eclipse.uml2.uml.resource.UMLResource;
  * @author Skander Turki
  */
 public class UMLDesignerModelEnvironment implements IModelEnvironment{
-
+  
+  /** The non-null editing domain */
   private TransactionalEditingDomain _patternCatalogCommonEditingDomain;
-  private static String CATALOG_COMMON_EDITING_DOMAIN_ID = "Catalogs_Common_Editing_Domain"; //$NON-NLS-1$
+  /** The editing domain ID */
+  private static final String CATALOG_COMMON_EDITING_DOMAIN_ID = "Catalogs_Common_Editing_Domain"; //$NON-NLS-1$
 
 
   /**
@@ -386,14 +388,13 @@ public class UMLDesignerModelEnvironment implements IModelEnvironment{
     }
 
     /** the operation to execute*/
-    IModelOperation<E> _operation;
+    protected IModelOperation<E> _operation;
 
     /** result of the operation */
-    E _result = null;
-
-
+    protected E _result = null;
+    
     /**
-     * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+     * @see org.eclipse.emf.edit.command.ChangeCommand#doExecute()
      */
     @Override
     protected void doExecute() {

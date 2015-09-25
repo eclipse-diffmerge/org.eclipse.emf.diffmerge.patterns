@@ -455,7 +455,7 @@ public abstract class AbstractPatternInstanceImpl extends AbstractIdentifiedElem
 
 	/**
 	 * Return the binding which corresponds to the given role symbol, if any
-	 * @param role_p a non-null role symbol
+	 * @param symbol_p a non-null role symbol
 	 * @return a potentially null binding
 	 * @generated NOT
 	 */

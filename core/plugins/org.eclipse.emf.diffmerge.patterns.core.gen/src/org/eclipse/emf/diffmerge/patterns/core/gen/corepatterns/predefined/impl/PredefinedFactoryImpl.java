@@ -88,7 +88,8 @@ public class PredefinedFactoryImpl extends EFactoryImpl implements PredefinedFac
 	 * @deprecated
 	 * @generated
 	 */
-	@Deprecated
+	@SuppressWarnings("javadoc")
+  @Deprecated
 	public static PredefinedPackage getPackage() {
 		return PredefinedPackage.eINSTANCE;
 	}

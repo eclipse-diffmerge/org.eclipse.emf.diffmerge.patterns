@@ -100,10 +100,14 @@ extends AbstractPatternPage<T> {
 
   /** An enumeration for specifying how a pattern is determined */
   public static enum PatternSelectionKind {
-    FIXED, // Predefined pattern
-    NEW, // New pattern
-    SELECTABLE, // Existing pattern to select
-    SELECTABLE_WITH_DELETE // Existing pattern to select or delete
+    /** Predefined pattern */
+    FIXED,
+    /** New pattern */
+    NEW,
+    /** Existing pattern to select */
+    SELECTABLE,
+    /** Existing pattern to select or delete */
+    SELECTABLE_WITH_DELETE
   }
 
   /** How the current pattern is determined */
@@ -220,7 +224,7 @@ extends AbstractPatternPage<T> {
 
   /**
    * Create a row for altering the filtering of patterns
-   * @param parent_p
+   * @param parent_p a non-null composite
    */
   protected void createPatternFilterRow(Composite parent_p) {
     // Nothing by default

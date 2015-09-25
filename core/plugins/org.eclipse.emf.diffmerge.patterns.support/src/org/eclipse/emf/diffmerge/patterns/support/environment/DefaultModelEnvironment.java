@@ -137,7 +137,6 @@ public class DefaultModelEnvironment implements IModelEnvironment{
   /**
    * By default, the first resource that has the same name as the pattern instances resource 
    * with different file extensions, is returned, in the same resourceSet.
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getModelResourceFromInstanceSet(org.eclipse.emf.ecore.resource.ResourceSet, org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstanceMarker)
    */
   public Resource getModelResourceFromInstanceSet(IPatternInstanceMarker set_p) {
     if(set_p instanceof CommonPatternInstanceSet){

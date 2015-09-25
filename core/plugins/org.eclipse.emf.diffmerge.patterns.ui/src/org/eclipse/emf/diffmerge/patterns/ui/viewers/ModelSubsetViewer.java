@@ -79,11 +79,17 @@ import org.eclipse.swt.widgets.Shell;
 public class ModelSubsetViewer extends Viewer {
 
   /** The different configurations for control widgets */
+  /** Nothing specific */
   public static int NONE = 0;
+  /** The name filter */
   public static int NAME_FILTER = 1 << 0;
+  /** The "show parents" check box */
   public static int SHOW_PARENTS = 1 << 1;
+  /** The sorting feature */
   public static int SORT = 1 << 2;
+  /** The expand button */
   public static int EXPAND = 1 << 3;
+  /** The collapse button */
   public static int COLLAPSE = 1 << 4;
 
   /** The non-null shell */
@@ -120,7 +126,6 @@ public class ModelSubsetViewer extends Viewer {
   /**
    * Constructor
    * @param parent_p the non-null graphical owner
-   * @param elements_p the (modifiable) initial set of elements to represent
    * @param multipleSelection_p whether multiple selection is allowed
    * @param showParents_p whether the "show parents" check box must be checked initially
    */
@@ -148,11 +153,8 @@ public class ModelSubsetViewer extends Viewer {
   }
 
   /**
-   * Adds the given filter to this viewer, and triggers refiltering and resorting of the elements.<br>
-   * If you want to add more than one filter consider using {@link #setFilters(ViewerFilter[])}.<br>
-   * Only works if client viewer ({@link #getTreeViewer()} is {@link StructuredViewer}.
+   * Adds the given filter to this viewer
    * @param filter_p a viewer filter
-   * @see #setFilters(ViewerFilter[])
    */
   public void addFilter(ViewerFilter filter_p) {
     Viewer clientViewer = _treeViewer;

@@ -34,12 +34,12 @@ import org.eclipse.ui.PlatformUI;
  */
 public class UMLDesignerDeleteAction extends DeleteAction{
   
-  /** Editing domain */
+  /** The non-null editing domain */
   private EditingDomain _editingDomain;
   
   /**
    * Constructor.
-   * @param executionManager_p
+   * @param editingDomain_p a non-null editing domain
    */
   public UMLDesignerDeleteAction(EditingDomain editingDomain_p) {
     super(editingDomain_p, true);

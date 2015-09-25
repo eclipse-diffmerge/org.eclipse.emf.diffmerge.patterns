@@ -52,7 +52,7 @@ public class CorePatternsPlugin extends Plugin {
   private static final IDeleteOperationProvider DEFAULT_DELETE_OPERATION_PROVIDER =
     new IDeleteOperationProvider() {
     /**
-     * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IDeleteOperationProvider#getDeleteOperation(java.util.Collection, boolean)
+     * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IDeleteOperationProvider#getDeleteOperation(java.util.Collection, boolean, boolean, java.lang.Object)
      */
     public DeleteOperation getDeleteOperation(Collection<? extends EObject> toDelete_p,
         boolean skipConfirmation_p, boolean isExpensive_p,
@@ -67,19 +67,22 @@ public class CorePatternsPlugin extends Plugin {
     }
   };
   
-  /** IDs related to the PatternSupport extension point */
+  /** ID related to the PatternSupport extension point */
   private static final String PATTERN_SUPPORT_EXTENSION_POINT =
     "org.eclipse.emf.diffmerge.patterns.core.patternSupport"; //$NON-NLS-1$
+  /** ID related to the PatternSupport extension point */
   private static final String PATTERN_SUPPORT_EXTENSION_POINT_PROPERTY = "class"; //$NON-NLS-1$
   
-  /** IDs related to the ModelEnvironment extension point */
+  /** ID related to the ModelEnvironment extension point */
   private static final String MODEL_ENVIRONMENT_EXTENSION_POINT =
     "org.eclipse.emf.diffmerge.patterns.core.modelEnvironment"; //$NON-NLS-1$
+  /** ID related to the ModelEnvironment extension point */
   private static final String MODEL_ENVIRONMENT_EXTENSION_POINT_PROPERTY = "class"; //$NON-NLS-1$
   
-  /** IDs related to the DeleteOperationProvider extension point */
+  /** ID related to the DeleteOperationProvider extension point */
   private static final String DELETE_PROVIDER_EXTENSION_POINT =
     "org.eclipse.emf.diffmerge.patterns.core.deleteOperationProvider"; //$NON-NLS-1$
+  /** ID related to the DeleteOperationProvider extension point */
   private static final String DELETE_PROVIDER_EXTENSION_POINT_PROPERTY = "class"; //$NON-NLS-1$
   
   
@@ -101,9 +104,10 @@ public class CorePatternsPlugin extends Plugin {
   /** The current generic type checker utility class (may not be null) */
   private AbstractGenericTypeUtil _genericTypeUtil;
   
-  /** IDs related to the generic type checker utility extension point */
+  /** ID related to the generic type checker utility extension point */
   private static final String GENERIC_TYPE_UTIL_EXTENSION_POINT =
       "org.eclipse.emf.diffmerge.patterns.core.genericTypeUtil"; //$NON-NLS-1$
+  /** ID related to the generic type checker utility extension point */
   private static final String GENERIC_TYPE_UTIL_POINT_PROPERTY = "class"; //$NON-NLS-1$
   
   

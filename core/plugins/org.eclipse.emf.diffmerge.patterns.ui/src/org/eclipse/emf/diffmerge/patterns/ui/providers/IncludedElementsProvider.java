@@ -20,9 +20,9 @@ import java.util.Map;
 import org.eclipse.ui.AbstractSourceProvider;
 import org.eclipse.ui.ISources;
 
+
 /**
  * This class tracks the state of the Reset Inclusions menu
- * @author Olivier Constant
  * @author Skander Turki
  */
 public class IncludedElementsProvider extends AbstractSourceProvider{
@@ -48,13 +48,15 @@ public class IncludedElementsProvider extends AbstractSourceProvider{
   private boolean isVisible = false;
   
   /**
-   * 
    * @see org.eclipse.ui.ISourceProvider#dispose()
    */
   public void dispose() {
     // TODO Auto-generated method stub
   }
-
+  
+  /**
+   * @see org.eclipse.ui.ISourceProvider#getCurrentState()
+   */
   public Map< String, String > getCurrentState() {
     Map < String, String > currentState = new HashMap < String, String >(1);
     String state;
@@ -66,28 +68,28 @@ public class IncludedElementsProvider extends AbstractSourceProvider{
     currentState.put(INCLUDED_ELEMENTS_STATE, state);
     return currentState;
   }
-
+  
+  /**
+   * @see org.eclipse.ui.ISourceProvider#getProvidedSourceNames()
+   */
   public String[] getProvidedSourceNames() {
     return new String[] { INCLUDED_ELEMENTS_STATE };
   }
 
-  
   /**
    * @param aVisibleState the visibility of the Reset Inclusions Menu.
    */
   public void setVisibility(final boolean aVisibleState) {
-      if (isVisible == aVisibleState) {
-          return;
-      }
-      isVisible = aVisibleState;
-      String currentState;
-      if (isVisible) {
-          currentState = INCLUDED_ELEMENTS_VISIBLE;
-      } else {
-          currentState = INCLUDED_ELEMENTS_NOT_VISIBLE;
-      }
-      fireSourceChanged(ISources.WORKBENCH, INCLUDED_ELEMENTS_STATE, currentState);
+    if (isVisible == aVisibleState)
+      return;
+    isVisible = aVisibleState;
+    String currentState;
+    if (isVisible) {
+      currentState = INCLUDED_ELEMENTS_VISIBLE;
+    } else {
+      currentState = INCLUDED_ELEMENTS_NOT_VISIBLE;
+    }
+    fireSourceChanged(ISources.WORKBENCH, INCLUDED_ELEMENTS_STATE, currentState);
   }
-
 
 }

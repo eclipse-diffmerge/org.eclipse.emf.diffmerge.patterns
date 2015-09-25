@@ -39,7 +39,7 @@ public class DefaultPatternsXMIResource extends XMIResourceImpl{
 
   /**
    * Constructor
-   * @param uri_p
+   * @param uri_p a non-null uri
    */
   public DefaultPatternsXMIResource(URI uri_p) {
     super(uri_p);

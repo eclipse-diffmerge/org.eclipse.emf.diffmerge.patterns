@@ -43,42 +43,46 @@ import org.osgi.framework.BundleContext;
  */
 public class PatternsUIPlugin extends AbstractUIPlugin {
 
-  // The plug-in ID
+  /** The plug-in ID */
   public static final String PLUGIN_ID = "org.eclipse.emf.diffmerge.patterns.ui"; //$NON-NLS-1$
 
-  // The shared instance
+  /** The shared instance */
   private static PatternsUIPlugin plugin;
 
-  /** IDs related to the Model Environment UI extension point */
+  /** ID related to the Model Environment UI extension point */
   private static final String MODEL_ENVIRONMENT_UI_EXTENSION_POINT =
       "org.eclipse.emf.diffmerge.patterns.ui.modelenvironmentui"; //$NON-NLS-1$
+  /** ID related to the Model Environment UI extension point */
   private static final String MODEL_ENVIRONMENT_UI_POINT_PROPERTY = "class"; //$NON-NLS-1$
 
   
   /** The current Job Factory (may not be null) */
   private IPatternJobFactory _patternJobFactory;
 
-  /** IDs related to the Job Factory extension point */
+  /** ID related to the Job Factory extension point */
   private static final String JOB_FACTORY_EXTENSION_POINT =
       "org.eclipse.emf.diffmerge.patterns.ui.jobFactory"; //$NON-NLS-1$
+  /** ID related to the Job Factory extension point */
   private static final String JOB_FACTORY_POINT_PROPERTY = "class"; //$NON-NLS-1$
 
 
   /** The current Dialog and Wizard Factory (may not be null) */
   private IPatternDialogAndWizardFactory _patternDialogAndWizardFactory;
 
-  /** IDs related to the DialogAndWizard Factory extension point */
+  /** ID related to the DialogAndWizard Factory extension point */
   private static final String DIALOG_AND_WIZARD_FACTORY_EXTENSION_POINT =
       "org.eclipse.emf.diffmerge.patterns.ui.dialogAndWizardFactory"; //$NON-NLS-1$
+  /** ID related to the DialogAndWizard Factory extension point */
   private static final String DIALOG_AND_WIZARD_FACTORY_POINT_PROPERTY = "class"; //$NON-NLS-1$
 
   
   /** The current UIExtender (may not be null) */
   private IUIExtender _uiExtender;
 
-  /** IDs related to the UIExtender extension point */
+  /** ID related to the UIExtender extension point */
   private static final String UI_EXTENDER_EXTENSION_POINT =
       "org.eclipse.emf.diffmerge.patterns.ui.uiextender"; //$NON-NLS-1$
+  /** ID related to the UIExtender extension point */
   private static final String UI_EXTENDER_POINT_PROPERTY = "class"; //$NON-NLS-1$
   
   
@@ -88,7 +92,21 @@ public class PatternsUIPlugin extends AbstractUIPlugin {
 
   /** Identifiers for UI images */
   public static enum ImageID {
-    CATALOG, PATTERN, INSTANCE, COLLAPSEALL, EXPANDALL, REFRESH, SORT }
+    /** The catalog image */
+    CATALOG,
+    /** The pattern image */
+    PATTERN,
+    /** The instance image */
+    INSTANCE,
+    /** The "collapse all" image */
+    COLLAPSEALL,
+    /** The "expand all" image */
+    EXPANDALL,
+    /** The refresh image */
+    REFRESH,
+    /** The sort image */
+    SORT
+  }
 
   /** The current model environment UI services provider (may be null) */
   private IModelEnvironmentUI _modelEnvironmentUI;
@@ -103,26 +121,24 @@ public class PatternsUIPlugin extends AbstractUIPlugin {
   public PatternsUIPlugin() {
     _persistentSelection = new PersistentSelection();
   }
-
-  /*
-   * (non-Javadoc)
+  
+  /**
    * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
    */
   @Override
-  public void start(BundleContext context) throws Exception {
-    super.start(context);
+  public void start(BundleContext context_p) throws Exception {
+    super.start(context_p);
     plugin = this;
     initializeIcons();
   }
-
-  /*
-   * (non-Javadoc)
+  
+  /**
    * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
    */
   @Override
-  public void stop(BundleContext context) throws Exception {
+  public void stop(BundleContext context_p) throws Exception {
     plugin = null;
-    super.stop(context);
+    super.stop(context_p);
   }
 
   /**

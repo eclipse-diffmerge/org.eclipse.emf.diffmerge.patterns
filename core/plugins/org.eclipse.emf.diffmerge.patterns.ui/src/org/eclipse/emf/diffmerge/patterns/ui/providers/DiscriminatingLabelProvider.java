@@ -74,7 +74,7 @@ public class DiscriminatingLabelProvider extends LabelProvider {
   
   /**
    * Return a label for the given pattern instance
-   * @param pattern_p a non-null pattern instance
+   * @param instance_p a non-null pattern instance
    * @return a non-null string
    */
   private String getPatternInstanceText(IPatternInstance instance_p) {
@@ -129,7 +129,7 @@ public class DiscriminatingLabelProvider extends LabelProvider {
   
   /**
    * Return a label for the given pattern repository
-   * @param pattern_p a non-null pattern repository
+   * @param repository_p a non-null pattern repository
    * @return a non-null string
    */
   private String getPatternRepositoryText(IPatternRepository repository_p) {

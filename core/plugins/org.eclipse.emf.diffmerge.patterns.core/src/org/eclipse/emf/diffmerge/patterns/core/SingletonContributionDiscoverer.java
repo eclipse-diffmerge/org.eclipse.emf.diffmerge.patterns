@@ -23,16 +23,16 @@ import org.eclipse.core.runtime.Platform;
  * A class that will discover the contribution singleton object contributed through the given extension point,
  * under the given extension point property and having the expected given type.
  * @author Skander Turki
- *
- * @param <SingletonContributionType>
  */
 public class SingletonContributionDiscoverer<SingletonContributionType>{
 
   /** The current Contributed Singleton (may not null) */
   private SingletonContributionType _contributedSingleton;
   
-  /** IDs related to the Contributed Singleton extension point */
+  /** ID related to the Contributed Singleton extension point */
   private String SINGLETON_CONTRIBUTION_EXTENSION_POINT;
+  
+  /** Property related to the Contributed Singleton extension point */
   private String SINGLETON_CONTRIBUTION_PROPERTY;
   
   /** The expected type of the contributed object */
@@ -41,9 +41,9 @@ public class SingletonContributionDiscoverer<SingletonContributionType>{
   
   /**
    * Constructor
-   * @param type
-   * @param factoryExtensionPointID_p
-   * @param factoryProperty_p
+   * @param type the non-null expected type of the contributed object
+   * @param factoryExtensionPointID_p the non-null ID related to the Contributed Singleton extension point
+   * @param factoryProperty_p the non-null property related to the Contributed Singleton extension point
    */
   public SingletonContributionDiscoverer(Class<?> type, String factoryExtensionPointID_p, String factoryProperty_p){
     _type = type;

@@ -35,13 +35,16 @@ import org.eclipse.uml2.uml.Association;
  */
 @SuppressWarnings("restriction")
 public class UMLDesignerSemanticMapping extends DefaultSemanticMapping{
-
+  
+  /**
+   * Default constructor
+   */
   public UMLDesignerSemanticMapping(){
     super();
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.diagrams.sirius.extensions.DefaultSemanticMapping#getSemanticStorage(fr.obeo.dsl.viewpoint.DSemanticDecorator)
+   * @see org.eclipse.emf.diffmerge.patterns.diagrams.sirius.extensions.DefaultSemanticMapping#getSemanticStorage(java.lang.Object)
    */
   @Override
   public EObject getSemanticStorage(Object decorator_p) {
@@ -80,7 +83,7 @@ public class UMLDesignerSemanticMapping extends DefaultSemanticMapping{
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.diagrams.sirius.extensions.DefaultSemanticMapping#getSemanticCandidatesForGraphicalStorage(org.eclipse.emf.ecore.EObject, org.eclipse.sirius.diagram.DDiagram)
+   * @see org.eclipse.emf.diffmerge.patterns.diagrams.sirius.extensions.DefaultSemanticMapping#getSemanticCandidatesForGraphicalStorage(org.eclipse.emf.ecore.EObject, java.lang.Object)
    */
   @Override
   public Collection<EObject> getSemanticCandidatesForGraphicalStorage(EObject element_p, Object diagram_p) {
@@ -90,7 +93,7 @@ public class UMLDesignerSemanticMapping extends DefaultSemanticMapping{
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.diagrams.sirius.extensions.DefaultSemanticMapping#getSemanticSelection(org.eclipse.sirius.viewpoint.DSemanticDecorator)
+   * @see org.eclipse.emf.diffmerge.patterns.diagrams.sirius.extensions.DefaultSemanticMapping#getSemanticSelection(java.lang.Object)
    */
   @Override
   public Collection<EObject> getSemanticSelection(Object decorator_p) {
@@ -100,7 +103,7 @@ public class UMLDesignerSemanticMapping extends DefaultSemanticMapping{
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.diagrams.extensions.ISemanticMapping#conformsToMapping(org.eclipse.emf.ecore.EObject, fr.obeo.dsl.viewpoint.description.AbstractNodeMapping, boolean, boolean, fr.obeo.dsl.viewpoint.DContainer)
+   * @see org.eclipse.emf.diffmerge.patterns.diagrams.sirius.extensions.DefaultSemanticMapping#conformsToMapping(org.eclipse.emf.ecore.EObject, org.eclipse.sirius.diagram.description.AbstractNodeMapping, boolean, boolean, java.lang.Object)
    */
   @Override
   public boolean conformsToMapping(EObject semanticElt_p, AbstractNodeMapping mapping_p,

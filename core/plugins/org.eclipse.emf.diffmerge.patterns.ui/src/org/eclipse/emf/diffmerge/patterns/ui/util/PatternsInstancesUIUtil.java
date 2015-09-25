@@ -40,7 +40,7 @@ public final class PatternsInstancesUIUtil {
    * Private constructor that forbids instantiation
    */
   private PatternsInstancesUIUtil() {
-    // NOTHING
+    // Nothing needed
   }
   
   /**
@@ -107,9 +107,9 @@ public final class PatternsInstancesUIUtil {
    * Return a description of the roles played by the reference element in the given instance
    * @param instance_p a non-null instance
    * @param referenceElement_p a potentially null EObject
-   * @param unknownMessage_p default text to return
-   * @param noRoleMessage_p role not found text to return
-   * @return 
+   * @param unknownMessage_p default non-null text
+   * @param noRoleMessage_p default non-null "role not found" text
+   * @return a non-null string
    */
   public static String getRolesAsText(IPatternInstance instance_p, EObject referenceElement_p,
       String unknownMessage_p, String noRoleMessage_p) {

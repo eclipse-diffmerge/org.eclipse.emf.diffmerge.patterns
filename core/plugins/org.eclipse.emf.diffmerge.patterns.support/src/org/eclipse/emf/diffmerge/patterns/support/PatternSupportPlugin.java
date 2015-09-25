@@ -43,9 +43,9 @@ public class PatternSupportPlugin extends Plugin {
     return getBundle().getSymbolicName();
   }
   
-	/**
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 */
+  /**
+   * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
+   */
 	@Override
   public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -53,7 +53,7 @@ public class PatternSupportPlugin extends Plugin {
 	}
 	
 	/**
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
+	 * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
 	 */
 	@Override
   public void stop(BundleContext context) throws Exception {

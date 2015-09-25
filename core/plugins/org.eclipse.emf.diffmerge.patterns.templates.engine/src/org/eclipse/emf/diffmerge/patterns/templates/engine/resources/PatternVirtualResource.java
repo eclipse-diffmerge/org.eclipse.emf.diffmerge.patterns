@@ -45,6 +45,7 @@ public class PatternVirtualResource extends ResourceImpl{
   /**
    * Constructor
    * @param copiedToOriginalMap_p a non-null Map
+   * @param originalEditingDomain_p an editing domain
    */
   public PatternVirtualResource(Map<EObject, EObject> copiedToOriginalMap_p, 
       EditingDomain originalEditingDomain_p){
@@ -75,8 +76,8 @@ public class PatternVirtualResource extends ResourceImpl{
   }
   
   /**
-   * Having the value object, we need to trace back to the key object in the given map.
-   * @return
+   * Having the value object, we need to trace back to the key object in the given map
+   * @return a potentially null element
    */
   private EObject getKeyForValue(Map<EObject, EObject> map_p, EObject value_p){
     EObject result = null;
@@ -117,7 +118,7 @@ public class PatternVirtualResource extends ResourceImpl{
   }
   
   /**
-   * GFetter for the editing domain.
+   * Getter for the editing domain.
    */
   public EditingDomain getEditingDomain(){
     return _originalEditingDomain;

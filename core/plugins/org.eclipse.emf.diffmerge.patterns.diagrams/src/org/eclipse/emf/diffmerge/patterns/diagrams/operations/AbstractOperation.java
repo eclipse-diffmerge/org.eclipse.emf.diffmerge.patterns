@@ -14,16 +14,18 @@
  */
 package org.eclipse.emf.diffmerge.patterns.diagrams.operations;
 
+
 /**
- * An operation which is executed.
+ * An executable operation whose result is typed.
+ * @param <T> the type of the result
  * @author Olivier Constant
  * @author Skander Turki
  */
 public abstract class AbstractOperation<T> {
-
+  
   /**
    * Executes operation
-   * @return
+   * @return a potentially null object
    */
   protected abstract T execute();
   

@@ -43,9 +43,9 @@ public interface ITextualLanguageInterpreterFacade {
   IPatternConformityStatus checkElement(TextualRoleConstraint constraint_p, EObject element_p);
   
   /**
-   * Return the elements derived by the given rule in the context of the given pattern application
-   * @param rule_p
-   * @param context_p
+   * Return the elements derived by the given rule in the context of the given pattern application context
+   * @param rule_p a non-null rule
+   * @param context_p a non-null object
    * @return a potentially empty, unmodifiable list, or null if failure
    */
   EList<EObject> deriveCandidateElements(TextualRoleDerivationRule rule_p,

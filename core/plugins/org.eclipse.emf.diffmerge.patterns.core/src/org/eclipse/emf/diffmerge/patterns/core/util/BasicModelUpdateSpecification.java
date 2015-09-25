@@ -17,15 +17,12 @@ package org.eclipse.emf.diffmerge.patterns.core.util;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
-
-import org.eclipse.emf.diffmerge.patterns.core.api.IPattern;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPattern.IModelUpdateSpecification;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 
 /**
  * An implementation of IModelUpdateSpecification.
- * @see IPattern.IModelUpdateSpecification
  * @author Olivier Constant
  * @author Skander Turki
  */

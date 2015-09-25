@@ -59,7 +59,7 @@ public class CreatePatternAction extends AbstractPersistentSelectionAction {
   
   /**
    * Instantiates a PatternWizardDialog
-   * @return
+   * @return a potentially null object
    */
   protected PatternWizardDialog instantiatePatternWizardDialog(List<Object> selection_p){
     if(_genericTypeUtil != null && _dialogAndWizardFactory != null){

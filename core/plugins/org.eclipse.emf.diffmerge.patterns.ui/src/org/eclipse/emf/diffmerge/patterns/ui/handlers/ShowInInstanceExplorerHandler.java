@@ -14,9 +14,7 @@
  */
 package org.eclipse.emf.diffmerge.patterns.ui.handlers;
 
-import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.emf.diffmerge.patterns.ui.actions.ShowInInstanceExplorerViewAction;
-import org.eclipse.emf.diffmerge.patterns.ui.viewers.AbstractInstanceExplorerView;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
@@ -27,11 +25,10 @@ import org.eclipse.ui.IWorkbenchWindow;
  * A handler for the "show in instance explorer" command.
  * @author Skander Turki
  */
-public class ShowInInstanceExplorerHandler<DiagramElementType, D extends AbstractInstanceExplorerView> 
-extends AbstractWorkbenchSelectionHandler {
+public class ShowInInstanceExplorerHandler extends AbstractWorkbenchSelectionHandler {
   
   /**
-   * @see AbstractWorkbenchSelectionHandler#handleSelection(ISelection, IWorkbenchPart, ExecutionEvent)
+   * @see AbstractWorkbenchSelectionHandler#handleSelection(ISelection, IWorkbenchPart)
    */
   @Override
   protected Object handleSelection(ISelection selection_p, IWorkbenchPart activePart_p) {
@@ -41,8 +38,7 @@ extends AbstractWorkbenchSelectionHandler {
       if (page != null) {
         IWorkbenchPart part = page.getActivePart();
         if (part != null) {
-          ShowInInstanceExplorerViewAction<?> action =
-              new ShowInInstanceExplorerViewAction<AbstractInstanceExplorerView>();
+          ShowInInstanceExplorerViewAction action = new ShowInInstanceExplorerViewAction();
           action.setActivePart(null, part);
           action.selectionChanged(null, selection_p);
           action.run(null);

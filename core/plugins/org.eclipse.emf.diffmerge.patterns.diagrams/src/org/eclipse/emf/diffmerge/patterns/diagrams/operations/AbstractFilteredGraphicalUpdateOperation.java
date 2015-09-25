@@ -55,6 +55,8 @@ public abstract class AbstractFilteredGraphicalUpdateOperation extends AbstractM
    * @param name_p an optional name
    * @param diagram_p the non-null diagram to update
    * @param filter_p the non-null filter for semantic elements whose representation must be updated
+   * @param isDirtying_p whether the operation is dirtying
+   * @param sourceContext_p an optional context object for the source side of the operation
    */
   protected AbstractFilteredGraphicalUpdateOperation(String name_p, Object diagram_p, 
       ModelsUtil.IElementFilter filter_p, boolean isDirtying_p, Object sourceContext_p) {
@@ -126,8 +128,8 @@ public abstract class AbstractFilteredGraphicalUpdateOperation extends AbstractM
 
   /**
    * Returns a list of all diagram elements in the given roots.
-   * @param roots_p
-   * @return
+   * @param roots_p a non-null collection
+   * @return a non-null list
    */
   protected abstract List<Object> getAllDiagramElements(Collection<Object> roots_p);
 

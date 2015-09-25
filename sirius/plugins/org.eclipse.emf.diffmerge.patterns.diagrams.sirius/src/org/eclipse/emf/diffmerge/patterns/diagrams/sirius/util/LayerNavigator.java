@@ -33,7 +33,7 @@ import org.eclipse.sirius.viewpoint.ViewpointPackage;
 
 
 /**
- * Class providing services related to layers navigation (GEF, Doremi, GMF).
+ * Class providing services related to layers navigation (GEF, Sirius, GMF).
  * @author Olivier Constant
  * @author Skander Turki
  */
@@ -45,9 +45,11 @@ public class LayerNavigator {
   /** Current Diagram Editor */
   private DDiagramEditor _diagramEditor;
   
+  
   /**
    * Constructor
-   * @param element_p
+   * @param element_p a non-null element
+   * @param diagramEditor_p a non-null diagram editor
    */
   public LayerNavigator(EObject element_p, DDiagramEditor diagramEditor_p){
     IModelEnvironment accessor = CorePatternsPlugin.getDefault().getModelEnvironment();
@@ -98,7 +100,7 @@ public class LayerNavigator {
  /**
   * Returns true when a representation of the given obj exists in the given diagram editor
   * @param obj a potentially-null EObject
-  * @param diagram_p a potentially-null DDiagramEditor
+  * @param diagramEditor_p a potentially-null DDiagramEditor
   * @return a boolean
   */
  private boolean isContainedInDiagram(EObject obj, DDiagramEditor diagramEditor_p) {
@@ -152,14 +154,14 @@ public class LayerNavigator {
  
  
  /**
-  * Returns the GMF representation of the Doremi element
-  * @param doremiElement_p a non-null DSemanticDecorator
+  * Returns the GMF representation of the Sirius element
+  * @param siriusElement_p a non-null DSemanticDecorator
   * @return a potentially null EObject
   */
- public View getUpGmfElement(DSemanticDecorator doremiElement_p) {
+ public View getUpGmfElement(DSemanticDecorator siriusElement_p) {
    EObject result = null;
    if(isOperational()){
-     result = getOpposite(doremiElement_p,
+     result = getOpposite(siriusElement_p,
          NotationPackage.eINSTANCE.getView_Element());
    }
    if(result instanceof View){
@@ -169,13 +171,13 @@ public class LayerNavigator {
  }
 
  /**
-  * Returns the Doremi representation of the semantic element
+  * Returns the Sirius representation of the semantic element
   * @param semanticElement_p a non-null EObject
   * @return a potentially null DSemanticDecorator
   */
  // Warning: use only if the given semantic element has at most one representation
  // in the current session
- public DSemanticDecorator getUpDoremiElement(EObject semanticElement_p) {
+ public DSemanticDecorator getUpSiriusElement(EObject semanticElement_p) {
    EObject result = null;
    if(isOperational()){
      result = getOppositeInDiagram(semanticElement_p,

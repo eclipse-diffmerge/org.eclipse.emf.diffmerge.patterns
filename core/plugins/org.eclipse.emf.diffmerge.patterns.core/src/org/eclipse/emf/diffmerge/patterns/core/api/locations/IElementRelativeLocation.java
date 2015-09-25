@@ -31,7 +31,6 @@ public interface IElementRelativeLocation extends IAtomicLocation {
   
   /**
    * Return the model element to which this location is relative
-   * @param context_p a potentially-null context object
    * @return a potentially null element, where null means ill-formed 
    */
   EObject getElement();

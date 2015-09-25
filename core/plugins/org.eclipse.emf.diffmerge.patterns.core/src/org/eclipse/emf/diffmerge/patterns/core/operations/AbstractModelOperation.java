@@ -179,7 +179,7 @@ public abstract class AbstractModelOperation<T> implements IModelOperation<T> {
 
   /**
    * Set the model Environment executing this operation
-   * @param modelAccessor_p a non-null model Environment
+   * @param modelEnvironment_p a non-null model Environment
    */
   public void setModelEnvironment(IModelEnvironment modelEnvironment_p) {
     _modelEnvironment = modelEnvironment_p;

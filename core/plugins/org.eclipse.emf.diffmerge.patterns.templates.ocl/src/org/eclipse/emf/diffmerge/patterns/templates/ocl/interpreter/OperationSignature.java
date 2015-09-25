@@ -63,7 +63,7 @@ public class OperationSignature {
   
   /**
    * Shorter constructor
-   * @see OperationSignature#OperationSignature(EClassifier, String, EClassifier, List)
+   * @see OperationSignature#OperationSignature(EClassifier, String, EClassifier, boolean)
    */
   public OperationSignature(EClassifier owner_p, String name_p, EClassifier type_p,
       boolean isMany_p) {

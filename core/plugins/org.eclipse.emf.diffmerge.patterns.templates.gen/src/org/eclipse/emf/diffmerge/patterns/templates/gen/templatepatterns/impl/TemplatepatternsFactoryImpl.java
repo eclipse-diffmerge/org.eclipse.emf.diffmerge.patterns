@@ -371,7 +371,8 @@ public class TemplatepatternsFactoryImpl extends EFactoryImpl implements Templat
 	 * @deprecated
 	 * @generated
 	 */
-	@Deprecated
+	@SuppressWarnings("javadoc")
+  @Deprecated
 	public static TemplatepatternsPackage getPackage() {
 		return TemplatepatternsPackage.eINSTANCE;
 	}

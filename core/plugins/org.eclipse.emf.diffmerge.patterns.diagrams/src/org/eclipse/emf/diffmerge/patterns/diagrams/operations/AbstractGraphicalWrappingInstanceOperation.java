@@ -40,7 +40,13 @@ import org.eclipse.emf.ecore.EObject;
 public abstract class AbstractGraphicalWrappingInstanceOperation<F> extends AbstractGraphicalWrappingOperation<F, F> {
 
   /** Kinds of graphical refresh to perform */
-  public static enum RefreshRequestKind { NONE, DIAGRAM, INSTANCE }
+  public static enum RefreshRequestKind {
+    /** No refresh */
+    NONE,
+    /** Diagram refresh */
+    DIAGRAM,
+    /** Instance refresh */
+    INSTANCE }
 
   /** The non-null, potentially empty collection of pattern instances to refresh */
   private final Collection<IPatternInstance> _instances;

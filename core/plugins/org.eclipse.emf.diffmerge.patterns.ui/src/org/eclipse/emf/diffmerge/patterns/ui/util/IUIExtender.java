@@ -47,7 +47,7 @@ public interface IUIExtender{
 
   /**
    * Returns the ID of the modeller's instance explorer view.
-   * @return
+   * @return a non-null string
    */
   public String getInstanceExplorerViewID();
   

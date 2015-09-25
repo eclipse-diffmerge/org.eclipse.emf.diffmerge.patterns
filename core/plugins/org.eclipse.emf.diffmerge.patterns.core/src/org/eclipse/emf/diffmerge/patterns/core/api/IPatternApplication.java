@@ -31,7 +31,6 @@ public interface IPatternApplication extends IPatternBasedSpecification, IPatter
   
   /**
    * Check conformity of the model w.r.t. the pattern of this application.
-   * @param application_p a non-null application of this pattern
    * @param ignoredFeatures_p a non-null, potentially empty set of features to ignore
    * @return a non-null status about conformity
    */

@@ -33,21 +33,23 @@ public abstract class AbstractLayoutReuseOperation
   /** The non-null pattern instance whose representation must be updated */
   private final IPatternInstance _instance;
 
-  /** The vector to apply (default is (0,0)) */
-  private int _vectorX, _vectorY;
+  /** The vector X to apply (default is (0,0)) */
+  private int _vectorX;
+  /** The vector Y to apply (default is (0,0)) */
+  private int _vectorY;
 
-  /**
-   * This boolean says whether the layout should be updated
-   */
+  /** Whether the layout should be updated */
   private final boolean _updateLayout;
 
-  /**
-   * This boolean says whether the style should be updated
-   */
+  /** Whether the style should be updated */
   private final boolean _updateStyle;
-
+  
+  
   /**
    * Constructor
+   * @param instance_p a non-null instance
+   * @param updateLayout_p whether the layout must be updated
+   * @param updateStyle_p whether the style must be updated
    */
   public AbstractLayoutReuseOperation(IPatternInstance instance_p, boolean updateLayout_p, boolean updateStyle_p) {
     _instance = instance_p;

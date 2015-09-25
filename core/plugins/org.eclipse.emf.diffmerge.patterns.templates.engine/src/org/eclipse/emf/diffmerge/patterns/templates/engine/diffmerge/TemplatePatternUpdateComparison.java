@@ -37,8 +37,7 @@ public class TemplatePatternUpdateComparison extends TemplatePatternComparison {
   
   /**
    * Constructor
-   * @param pattern_p a non-null template pattern
-   * @param application_p a non-null pattern application
+   * @param specification_p a non-null pattern update specification
    */
   public TemplatePatternUpdateComparison(TemplatePatternUpdateSpecification specification_p) {
     super(specification_p.getOriginalPattern(),

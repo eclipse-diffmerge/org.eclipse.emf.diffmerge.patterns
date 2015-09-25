@@ -41,18 +41,20 @@ public class PatternCoreDiagramPlugin implements BundleActivator {
   /** The current diagram utility class (may not be null) */
   private AbstractDiagramUtil _diagramUtil;
   
-  /** IDs related to the diagram utility extension point */
+  /** ID related to the diagram utility extension point */
   private static final String DIAGRAM_UTIL_EXTENSION_POINT =
       PLUGIN_ID + ".diagramUtil"; //$NON-NLS-1$
+  /** ID related to the diagram utility extension point */
   private static final String DIAGRAM_UTIL_POINT_PROPERTY = "class"; //$NON-NLS-1$
 	
   
   /** The current semantic mapping (may be null) */
   private ISemanticMapping<?> _semanticMapping;
 
-  /** IDs related to the SemanticMapping extension point */
+  /** ID related to the SemanticMapping extension point */
   private static final String SEMANTIC_MAPPING_EXTENSION_POINT =
       "org.eclipse.emf.diffmerge.patterns.diagrams.semanticMapping"; //$NON-NLS-1$
+  /** ID related to the SemanticMapping extension point */
   private static final String SEMANTIC_MAPPING_EXTENSION_POINT_PROPERTY = "class"; //$NON-NLS-1$
   
   /** The current Operation Factory (may not be null) */
@@ -61,6 +63,7 @@ public class PatternCoreDiagramPlugin implements BundleActivator {
   /** IDs related to the Operation Factory extension point */
   private static final String OPERATION_FACTORY_EXTENSION_POINT =
       "org.eclipse.emf.diffmerge.patterns.diagrams.operationFactory"; //$NON-NLS-1$
+  /** IDs related to the Operation Factory extension point */
   private static final String OPERATION_FACTORY_POINT_PROPERTY = "class"; //$NON-NLS-1$
   
   

@@ -70,7 +70,10 @@ public abstract class AbstractPatternBrowsingWizard extends AbstractPatternWizar
   protected boolean doPerformFinish() {
     return true;
   }
-
+  
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard#instantiatePatternImageBuilderJob(org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard, java.util.List, boolean)
+   */
   @Override
   protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternBrowsingSpecification> wizard_p,  
       List<Object> context_p, boolean updatePattern_p){
@@ -80,7 +83,10 @@ public abstract class AbstractPatternBrowsingWizard extends AbstractPatternWizar
     }
     return null;
   }
-
+  
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard#instantiatePatternImageBuilderJob(org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard, java.lang.String, boolean)
+   */
   @Override
   protected Job instantiatePatternImageBuilderJob(AbstractPatternWizard<TemplatePatternBrowsingSpecification> wizard_p,  
       String imageSpecification_p, boolean updatePattern_p){

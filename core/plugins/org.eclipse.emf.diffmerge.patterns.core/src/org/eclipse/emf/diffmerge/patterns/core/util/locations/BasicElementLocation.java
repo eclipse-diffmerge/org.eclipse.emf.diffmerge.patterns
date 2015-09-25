@@ -28,7 +28,7 @@ public class BasicElementLocation extends AbstractElementRelativeLocation implem
   
   /**
    * Constructor
-   * @param pattern_p a non-null element
+   * @param element_p a non-null element
    */
   public BasicElementLocation(EObject element_p) {
     super(element_p);

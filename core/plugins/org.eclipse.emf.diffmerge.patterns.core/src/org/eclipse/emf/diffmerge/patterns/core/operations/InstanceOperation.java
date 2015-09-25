@@ -35,7 +35,18 @@ public class InstanceOperation extends AbstractModelOperation<IEvaluationStatus>
    * Kinds of operations which can be applied onto a pattern instance 
    */
   public static enum InstanceOperationKind {
-    CHECK, DELETE, DELETE_WITH_ELEMENTS, FOLD, UNFOLD, UPDATE
+    /** The instance check operation */
+    CHECK,
+    /** The instance soft delete operation */
+    DELETE,
+    /** The instance hard delete operation */
+    DELETE_WITH_ELEMENTS,
+    /** The instance folding operation */
+    FOLD,
+    /** The instance unfolding operation */
+    UNFOLD,
+    /** The instance update operation */
+    UPDATE
   }
 
   /** The non-null pattern instance on which the operation applies */
