@@ -25,7 +25,7 @@ import org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment;
 import org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelOperation;
 import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.AbstractIdentifiedElement;
 import org.eclipse.emf.diffmerge.patterns.core.operations.AbstractModelOperation;
-import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.SiriusCorePlugin;
+import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.SiriusPatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.operations.SiriusCreatePatternAndInstanceOperation;
 import org.eclipse.emf.diffmerge.patterns.support.environment.DefaultModelEnvironment;
 import org.eclipse.emf.diffmerge.patterns.support.resources.DefaultPatternsXMIResource;
@@ -63,7 +63,7 @@ public abstract class AbstractSiriusModelEnvironment implements IModelEnvironmen
   public AbstractSiriusModelEnvironment(){
     ResourceSet rset = new ResourceSetImpl();
     _patternCatalogCommonEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(rset);
-    String edID = SiriusCorePlugin.PLUGIN_ID + '.' + CATALOG_COMMON_EDITING_DOMAIN_ID_END;
+    String edID = SiriusPatternsPlugin.PLUGIN_ID + '.' + CATALOG_COMMON_EDITING_DOMAIN_ID_END;
     _patternCatalogCommonEditingDomain.setID(edID);
   }
   

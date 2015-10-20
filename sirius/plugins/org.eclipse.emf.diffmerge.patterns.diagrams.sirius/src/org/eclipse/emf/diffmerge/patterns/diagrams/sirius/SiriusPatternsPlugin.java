@@ -22,18 +22,18 @@ import org.osgi.framework.BundleContext;
  * @author Olivier Constant
  * @author Skander Turki
  */
-public class SiriusCorePlugin extends AbstractUIPlugin {
+public class SiriusPatternsPlugin extends AbstractUIPlugin {
   
 	/** The plug-in ID */
 	public static final String PLUGIN_ID = "org.eclipse.emf.diffmerge.patterns.diagrams.sirius"; //$NON-NLS-1$
 
 	/** The shared instance */
-	private static SiriusCorePlugin plugin;
+	private static SiriusPatternsPlugin plugin;
 	
 	/**
 	 * Constructor
 	 */
-	public SiriusCorePlugin() {
+	public SiriusPatternsPlugin() {
 	  // Nothing needed
 	}
 	
@@ -59,7 +59,7 @@ public class SiriusCorePlugin extends AbstractUIPlugin {
 	 * Return the shared instance
 	 * @return the shared instance
 	 */
-	public static SiriusCorePlugin getDefault() {
+	public static SiriusPatternsPlugin getDefault() {
 		return plugin;
 	}
 	
