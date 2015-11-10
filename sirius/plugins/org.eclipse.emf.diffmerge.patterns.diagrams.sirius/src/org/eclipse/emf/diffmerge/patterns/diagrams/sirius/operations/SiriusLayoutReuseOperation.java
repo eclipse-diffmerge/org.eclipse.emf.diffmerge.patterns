@@ -107,8 +107,8 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
    * Set the vector to apply to the layout
    */
   public void setVector(int vx_p, int vy_p) {
-    _innerLayoutReuseOperation.set_vectorX(vx_p);
-    _innerLayoutReuseOperation.set_vectorY(vy_p);
+    _innerLayoutReuseOperation.setVectorX(vx_p);
+    _innerLayoutReuseOperation.setVectorY(vy_p);
   }
   
   /**
@@ -124,7 +124,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
    * @param target_p a potentially null element
    */
   private boolean isMerged(EObject target_p) {
-    List<EObject> mergedElements = LocationsUtil.getMergeTargets(_innerLayoutReuseOperation.get_instance());
+    List<EObject> mergedElements = LocationsUtil.getMergeTargets(_innerLayoutReuseOperation.getInstance());
     if (target_p instanceof DSemanticDecorator) {
       DSemanticDecorator decorator = (DSemanticDecorator) target_p;
       if (mergedElements.contains(decorator.getTarget())) {
@@ -205,7 +205,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
       }
       // rearrange non-merged elements locations
       for (DDiagramElement diagramElement : toUpdate) {
-        if (LayoutUtil.isInstanceParticipant(diagramElement, _innerLayoutReuseOperation.get_instance().getElements())) {
+        if (LayoutUtil.isInstanceParticipant(diagramElement, _innerLayoutReuseOperation.getInstance().getElements())) {
           if (!isMerged(diagramElement) && !finalPosElementsList.contains(diagramElement)) {
             if (_roots.contains(diagramElement)) {
               // is a higher level element
@@ -333,7 +333,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
     while(it.hasNext()){
       Object current = it.next();
       if(current instanceof DDiagramElement){ 
-        if(LayoutUtil.isInstanceParticipant((DDiagramElement)current, _innerLayoutReuseOperation.get_instance().getElements())){
+        if(LayoutUtil.isInstanceParticipant((DDiagramElement)current, _innerLayoutReuseOperation.getInstance().getElements())){
           result.add((DDiagramElement)current);
         }
       }
@@ -374,10 +374,10 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
       if(object_p instanceof DSemanticDecorator){
         DSemanticDecorator decorator = (DSemanticDecorator)object_p;
         // Apply the update
-        if ((get_instance().getPattern() instanceof TemplatePattern) && (get_instance().getPatternData() instanceof TemplatePatternData)) {
-          TemplatePattern pattern = (TemplatePattern) get_instance().getPattern();
+        if ((getInstance().getPattern() instanceof TemplatePattern) && (getInstance().getPatternData() instanceof TemplatePatternData)) {
+          TemplatePattern pattern = (TemplatePattern) getInstance().getPattern();
           if (!pattern.getLayoutData().isEmpty()) {
-            TemplatePatternData data = (TemplatePatternData) get_instance().getPatternData();
+            TemplatePatternData data = (TemplatePatternData) getInstance().getPatternData();
             EObject semanticElement = SiriusLayersUtil.downViewpointToSemantic(decorator);
             if (semanticElement != null) {
               EObject templateElement = data.getCounterpart(semanticElement, false);
@@ -388,7 +388,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
                 if (!views.isEmpty() && (views.get(0) instanceof Node)) {
                   Node node = (Node) views.get(0);
                   LayoutConstraint constraint = node.getLayoutConstraint();
-                  if (is_updateStyle()) {
+                  if (isUpdateStyle()) {
                     // Apply font style
                     if (nodeLayout.getFontStyle() != null) {
                       LayoutUtil.applyAbstractDNodePatternFontStyle(nodeLayout.getFontStyle(), node);
@@ -399,12 +399,12 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
                       LayoutUtil.applyNodePatternStyleToDNode(nodeLayout.getOwnedStyle(), node);
                     }
                   }
-                  if (is_updateLayout()) {
+                  if (isUpdateLayout()) {
                     if (constraint instanceof Bounds) {
                       Bounds bounds = (Bounds) constraint;
                       LayoutUtil.nodeLayoutToBounds(nodeLayout, bounds);
                       if (_roots.contains(decorator)) {
-                        LayoutUtil.applyVector(bounds, get_vectorX(), get_vectorY());
+                        LayoutUtil.applyVector(bounds, getVectorX(), getVectorY());
                       }else{
                         LayoutUtil.applyVector(bounds, 0, 0);
                       }
@@ -422,7 +422,7 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
                   // Apply Layout to Edge
                   LayoutUtil.applyEdgeLayout(edge, edgeLayout);
                   // Apply edge style
-                  if (is_updateStyle()) {
+                  if (isUpdateStyle()) {
                     LayoutUtil.applyEdgeStyle(edge, edgeLayout);
                   }
 

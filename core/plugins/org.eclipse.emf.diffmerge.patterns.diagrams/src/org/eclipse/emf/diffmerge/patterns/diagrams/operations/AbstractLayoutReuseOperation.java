@@ -63,28 +63,28 @@ public abstract class AbstractLayoutReuseOperation
   /**
    * Getter
    */
-  public int get_vectorX() {
+  public int getVectorX() {
     return _vectorX;
   }
 
   /**
    * Setter
    */
-  public void set_vectorX(int vectorX_p) {
+  public void setVectorX(int vectorX_p) {
     this._vectorX = vectorX_p;
   }
 
   /**
    * Getter
    */
-  public int get_vectorY() {
+  public int getVectorY() {
     return _vectorY;
   }
 
   /**
    * Setter
    */
-  public void set_vectorY(int vectorY_p) {
+  public void setVectorY(int vectorY_p) {
     this._vectorY = vectorY_p;
   }
 
@@ -98,21 +98,21 @@ public abstract class AbstractLayoutReuseOperation
   /**
    * Getter
    */
-  public IPatternInstance get_instance() {
+  public IPatternInstance getInstance() {
     return _instance;
   }
 
   /**
    * Getter
    */
-  public boolean is_updateLayout() {
+  public boolean isUpdateLayout() {
     return _updateLayout;
   }
 
   /**
    * Getter
    */
-  public boolean is_updateStyle() {
+  public boolean isUpdateStyle() {
     return _updateStyle;
   }
 

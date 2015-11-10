@@ -1591,7 +1591,7 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
         } 
       }
       if (reuseLayout_p || reuseStyle_p) {
-        reuseAppearenceOnAdditions(instanceOperations, reuseLayout_p, reuseStyle_p);
+        reuseAppearanceOnAdditions(instanceOperations, reuseLayout_p, reuseStyle_p);
       }
       IEvaluationStatus localResult = result.isEmpty() ? null : result.get(0);
       if (verbose_p && (localResult != null) && (!localResult.isOk() || localResult.hasWarnings())) {
@@ -1858,7 +1858,7 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
    * Apply pattern layout on graphical elements created by the given operations
    * @param executedOperations_p a non-null, potentially empty set
    */
-  protected void reuseAppearenceOnAdditions(Collection<? extends IModelOperation<?>> executedOperations_p,
+  protected void reuseAppearanceOnAdditions(Collection<? extends IModelOperation<?>> executedOperations_p,
       boolean reuseLayout_p, boolean reuseStyle_p) {
     List<AbstractFilteredGraphicalUpdateOperation> newOperations =
         new ArrayList<AbstractFilteredGraphicalUpdateOperation>();

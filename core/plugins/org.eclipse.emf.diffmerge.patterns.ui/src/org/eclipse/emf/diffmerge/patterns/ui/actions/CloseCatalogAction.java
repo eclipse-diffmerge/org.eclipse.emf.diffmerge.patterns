@@ -62,7 +62,9 @@ public class CloseCatalogAction extends AbstractContextualAction<IFile> {
           Object current = it.next();
           if(current instanceof IFile){
             CloseCatalogOperation operation = new CloseCatalogOperation((IFile)current, domain.getResourceSet());
-            nbClosed =  nbClosed + executeOperation(operation);
+            Integer toAdd = executeOperation(operation);
+            if (toAdd != null)
+              nbClosed =  nbClosed + toAdd;
           }
         }
       }
