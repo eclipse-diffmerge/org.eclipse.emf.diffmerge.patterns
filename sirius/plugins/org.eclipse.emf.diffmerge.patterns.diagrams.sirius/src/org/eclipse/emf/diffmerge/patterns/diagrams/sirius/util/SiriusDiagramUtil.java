@@ -15,15 +15,18 @@
 package org.eclipse.emf.diffmerge.patterns.diagrams.sirius.util;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.diffmerge.patterns.diagrams.PatternCoreDiagramPlugin;
 import org.eclipse.emf.diffmerge.patterns.diagrams.extensions.ISemanticMapping;
 import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.extensions.ISiriusSemanticMapping;
 import org.eclipse.emf.diffmerge.patterns.diagrams.util.AbstractDiagramUtil;
+import org.eclipse.emf.diffmerge.util.ModelsUtil;
 import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
@@ -324,5 +327,47 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil{
     }
     return result;
   }
+
+/**
+ * Sort elements based on the containment order between them. Root elements come first following by their contained elements
+ */
+@Override
+public List<Object> sortElements(List<Object> elementsToSort) {
+	List<Object> result = new ArrayList<Object>();
+	//Obtain a list of viewpoint elements
+	List<EObject> viewpointElementList = new ArrayList<EObject>();
+	for (Object element : elementsToSort)
+	{
+		EObject viewpointElement = SiriusLayersUtil.getViewpointElement(element);
+		if (viewpointElement != null)
+			viewpointElementList.add(viewpointElement);
+		else
+			result.add(element);
+	}
+	//Put root elements in first and then their contained elements
+	List<EObject> roots = ModelsUtil.getRoots(viewpointElementList);
+	for (EObject root : roots)
+	{
+		result.add(root);
+		result.addAll(getAllContainedElementsInList(root, viewpointElementList));
+	}
+	return result;
+}
+
+/**
+ * Return all contained elements of viewpointElement in the list lstVPElements
+ */
+private List<EObject> getAllContainedElementsInList(EObject viewpointElement, List<EObject> lstVPElements)
+{
+	List<EObject> result = new ArrayList<EObject>();
+	TreeIterator<EObject> iterator = viewpointElement.eAllContents();
+	while (iterator.hasNext())
+	{
+		EObject element = iterator.next();
+		if (lstVPElements.contains(element))
+			result.add(element);
+	}
+	return result;
+}
 
 }

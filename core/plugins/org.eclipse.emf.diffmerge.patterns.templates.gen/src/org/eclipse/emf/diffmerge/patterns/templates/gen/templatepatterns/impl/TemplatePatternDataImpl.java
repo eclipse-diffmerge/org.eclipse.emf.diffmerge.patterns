@@ -17,12 +17,11 @@ package org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.WeakHashMap;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -256,7 +255,7 @@ public class TemplatePatternDataImpl extends AbstractPatternDataImpl implements 
     if (result == null) {
       // Map was already initialized: check it
       result = new ModelsUtil.RList<EObject>();
-      Map<String, EObject> clone = new HashMap<String, EObject>(_instanceIdsToElements); 
+      Map<String, EObject> clone = new LinkedHashMap<String, EObject>(_instanceIdsToElements); 
       for (Map.Entry<String, EObject> entry : clone.entrySet()) {
         EObject instanceElement = entry.getValue();
         if (isInModel(instanceElement))
@@ -280,7 +279,7 @@ public class TemplatePatternDataImpl extends AbstractPatternDataImpl implements 
     if (needsInitialization) {
       // Map has not been initialized
       result = new ModelsUtil.RList<EObject>();
-      _instanceIdsToElements = new WeakHashMap<String, EObject>();
+      _instanceIdsToElements = new LinkedHashMap<String, EObject>();
       for (String instanceId : new HashSet<String>(getInstanceIds().keySet())) {
         if(instanceId != null){
           EObject instanceElement = resolveInstanceId(instanceId);

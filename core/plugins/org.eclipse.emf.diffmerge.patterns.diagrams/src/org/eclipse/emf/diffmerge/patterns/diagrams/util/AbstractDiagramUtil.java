@@ -96,4 +96,10 @@ public abstract class AbstractDiagramUtil {
    * Return whether the "show instance" option should be available for the given diagram
    */
   public abstract boolean isShowInstanceEnabled(Object diagram_p);
+  
+  /**
+   * Sort elements according to certain criteria
+   * @return a sorted list
+   */
+  public abstract List<Object> sortElements(List<Object> elements);
 }

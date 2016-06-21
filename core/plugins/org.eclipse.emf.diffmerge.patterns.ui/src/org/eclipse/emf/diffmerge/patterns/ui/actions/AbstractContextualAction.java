@@ -139,7 +139,10 @@ public abstract class AbstractContextualAction<ObjectType> implements IObjectAct
     List<Object> result = new FOrderedSet<Object>();
     if (_selection != null) {
       @SuppressWarnings("unchecked")
-      Iterator<Object> it = _selection.iterator();
+      
+      List<Object> orderedElements = sortElements(_selection.toList());
+      Iterator<Object> it = orderedElements.iterator();
+      
       while (it.hasNext()) {
         Object current = it.next();
         Collection<?> allRefined = toActualSelection(current);
@@ -150,6 +153,15 @@ public abstract class AbstractContextualAction<ObjectType> implements IObjectAct
       }
     }
     return Collections.unmodifiableList(result);
+  }
+
+  /**
+   * Sort the list of elements according to criteria contributed via the Diagram Util extension point
+   * @return a sorted list
+   */
+  private List<Object> sortElements(List<Object> elementsToSort) {
+    AbstractDiagramUtil diagramUtil = PatternCoreDiagramPlugin.getDefault().getDiagramUtilityClass();
+    return diagramUtil.sortElements(elementsToSort);
   }
 
   /**
