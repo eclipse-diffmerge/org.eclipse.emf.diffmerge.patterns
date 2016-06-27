@@ -103,12 +103,10 @@ public final class SiriusUtil {
 //              ContainerMapping cm = (ContainerMapping)mapping_p;
 //               candidates = cm.getNodesCandidates(semanticOfGraphicalContainer,
 //              semanticOfGraphicalContainer, graphicalContainer_p);
-              
-              //We need to call this method to clear the cache. Otherwise, sometimes the cache is not up to date
+              // We need to call the method below to clear the cache. Otherwise, sometimes the cache is not up to date.
               ContainerMappingHelper.clearDNodesDone((IContainerMappingExt)mapping_p);
               candidates = ContainerMappingHelper.getNodesCandidates((IContainerMappingExt)mapping_p, semanticOfGraphicalContainer,
                   semanticOfGraphicalContainer, container);
-
             }
           result = null != candidates && candidates.contains(semanticElt_p);
         }

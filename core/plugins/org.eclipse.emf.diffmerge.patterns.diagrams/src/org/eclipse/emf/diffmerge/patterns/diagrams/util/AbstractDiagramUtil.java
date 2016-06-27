@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2010-2014 Thales Global Services S.A.S.
+ * Copyright (c) 2010-2016 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -98,8 +98,10 @@ public abstract class AbstractDiagramUtil {
   public abstract boolean isShowInstanceEnabled(Object diagram_p);
   
   /**
-   * Sort elements according to certain criteria
-   * @return a sorted list
+   * Sort the given set of user-selected diagram elements for later usage
+   * @param elements_p a non-null, potentially empty list
+   * @return a non-null list
    */
-  public abstract List<Object> sortElements(List<Object> elements);
+  public abstract List<Object> sortElements(Collection<?> elements_p);
+  
 }

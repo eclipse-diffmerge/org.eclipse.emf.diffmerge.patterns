@@ -139,10 +139,8 @@ public abstract class AbstractContextualAction<ObjectType> implements IObjectAct
     List<Object> result = new FOrderedSet<Object>();
     if (_selection != null) {
       @SuppressWarnings("unchecked")
-      
       List<Object> orderedElements = sortElements(_selection.toList());
       Iterator<Object> it = orderedElements.iterator();
-      
       while (it.hasNext()) {
         Object current = it.next();
         Collection<?> allRefined = toActualSelection(current);

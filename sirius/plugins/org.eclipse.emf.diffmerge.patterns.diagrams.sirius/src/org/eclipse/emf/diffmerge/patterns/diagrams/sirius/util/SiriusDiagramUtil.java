@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.diffmerge.patterns.diagrams.PatternCoreDiagramPlugin;
 import org.eclipse.emf.diffmerge.patterns.diagrams.extensions.ISemanticMapping;
 import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.extensions.ISiriusSemanticMapping;
@@ -327,47 +328,46 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil{
     }
     return result;
   }
-
-/**
- * Sort elements based on the containment order between them. Root elements come first following by their contained elements
- */
-@Override
-public List<Object> sortElements(List<Object> elementsToSort) {
-	List<Object> result = new ArrayList<Object>();
-	//Obtain a list of viewpoint elements
-	List<EObject> viewpointElementList = new ArrayList<EObject>();
-	for (Object element : elementsToSort)
-	{
-		EObject viewpointElement = SiriusLayersUtil.getViewpointElement(element);
-		if (viewpointElement != null)
-			viewpointElementList.add(viewpointElement);
-		else
-			result.add(element);
-	}
-	//Put root elements in first and then their contained elements
-	List<EObject> roots = ModelsUtil.getRoots(viewpointElementList);
-	for (EObject root : roots)
-	{
-		result.add(root);
-		result.addAll(getAllContainedElementsInList(root, viewpointElementList));
-	}
-	return result;
-}
-
-/**
- * Return all contained elements of viewpointElement in the list lstVPElements
- */
-private List<EObject> getAllContainedElementsInList(EObject viewpointElement, List<EObject> lstVPElements)
-{
-	List<EObject> result = new ArrayList<EObject>();
-	TreeIterator<EObject> iterator = viewpointElement.eAllContents();
-	while (iterator.hasNext())
-	{
-		EObject element = iterator.next();
-		if (lstVPElements.contains(element))
-			result.add(element);
-	}
-	return result;
-}
-
+  
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.diagrams.util.AbstractDiagramUtil#sortElements(java.util.Collection)
+   */
+  @Override
+  public List<Object> sortElements(Collection<?> elements_p) {
+    // Sort elements based on the containment order between them.
+    // Root elements come first followed by their contained elements.
+    List<Object> result = new UniqueEList<Object>();
+    // Obtain a list of viewpoint elements
+    List<EObject> viewpointElementList = new ArrayList<EObject>();
+    for (Object element : elements_p) {
+      EObject viewpointElement = SiriusLayersUtil.getViewpointElement(element);
+      if (viewpointElement != null)
+        viewpointElementList.add(viewpointElement);
+      else
+        result.add(element);
+    }
+    // Put root elements in first and then their contained elements
+    List<EObject> roots = ModelsUtil.getRoots(viewpointElementList);
+    for (EObject root : roots) {
+      result.add(root);
+      result.addAll(getAllContainedElementsInList(root, viewpointElementList));
+    }
+    return result;
+  }
+  
+  /**
+   * Return a list of all elements within the given super-list which are recursively contained
+   * in the given container element
+   */
+  private List<EObject> getAllContainedElementsInList(EObject container_p, List<EObject> superList_p) {
+    List<EObject> result = new ArrayList<EObject>();
+    TreeIterator<EObject> iterator = container_p.eAllContents();
+    while (iterator.hasNext()) {
+      EObject element = iterator.next();
+      if (superList_p.contains(element))
+        result.add(element);
+    }
+    return result;
+  }
+  
 }
