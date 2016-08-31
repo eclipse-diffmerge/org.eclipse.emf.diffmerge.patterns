@@ -239,6 +239,91 @@
             
          </menu>
       </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
+         <command
+               commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.browsecatalogs"
+               label="Browse Catalogs..."
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
+         <command
+               commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.HighlightAllPatternsInstances"
+               label="Highlight all Instances"
+               style="push">
+         </command>
+         <separator
+               name="org.eclipse.emf.diffmerge.patterns.ui.separator15"
+               visible="true">
+         </separator>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
+         <command
+               commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.PatternInstanceExplorerSetSelectionCommand"
+               icon="/icons/full/pattern.gif"
+               label="Show in Pattern Instance Explorer"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
+         <command
+               commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.manageinstance"
+               label="Manage Instance(s)..."
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
+         <command
+               commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.createtamplate"
+               label="Create Template..."
+               style="push">
+         </command>
+         <separator
+               name="org.eclipse.emf.diffmerge.patterns.ui.separator13"
+               visible="true">
+         </separator>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
+         <command
+               commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.resetinclusions"
+               label="Reset Inclusions"
+               style="push">
+         </command>
+         <separator
+               name="org.eclipse.emf.diffmerge.patterns.ui.separator12"
+               visible="true">
+         </separator>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
+         <command
+               commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.includepatterns"
+               label="Include in Patterns"
+               style="push">
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
+         <command
+               commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.createpattern"
+               label="Create Pattern..."
+               style="push">
+         </command>
+      </menuContribution>
       
        <menuContribution
             allPopups="false"
@@ -258,100 +343,15 @@
          </separator>
       </menuContribution>
   
-    <menuContribution
-            allPopups="false"
-            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
-         <command
-               commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.createpattern"
-               label="Create Pattern..."
-               style="push">
-         </command>
-      </menuContribution>
-      
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
-         <command
-               commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.includepatterns"
-               label="Include in Patterns"
-               style="push">
-         </command>
-      </menuContribution>
-      
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
-         <command
-               commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.resetinclusions"
-               label="Reset Inclusions"
-               style="push">
-         </command>
-         <separator
-               name="org.eclipse.emf.diffmerge.patterns.ui.separator12"
-               visible="true">
-         </separator>
-      </menuContribution>
-      
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
-         <command
-               commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.createtamplate"
-               label="Create Template..."
-               style="push">
-         </command>
-         <separator
-               name="org.eclipse.emf.diffmerge.patterns.ui.separator13"
-               visible="true">
-         </separator>
-      </menuContribution>
-      
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
-         <command
-               commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.manageinstance"
-               label="Manage Instance(s)..."
-               style="push">
-         </command>
-      </menuContribution>
       
       
       
-       <menuContribution
-            allPopups="false"
-            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
-         <command
-               commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.PatternInstanceExplorerSetSelectionCommand"
-               icon="/icons/full/pattern.gif"
-               label="Show in Pattern Instance Explorer"
-               style="push">
-         </command>
-      </menuContribution>
       
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
-         <command
-               commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.HighlightAllPatternsInstances"
-               label="Highlight all Instances"
-               style="push">
-         </command>
-         <separator
-               name="org.eclipse.emf.diffmerge.patterns.ui.separator15"
-               visible="true">
-         </separator>
-      </menuContribution>
       
-      <menuContribution
-            allPopups="false"
-            locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
-         <command
-               commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.browsecatalogs"
-               label="Browse Catalogs..."
-               style="push">
-         </command>
-      </menuContribution>
+      
+      
+      
+      
       
       
   </extension>
