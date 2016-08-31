@@ -99,7 +99,7 @@ import org.eclipse.ui.PlatformUI;
 public class InstancePanelDialog extends InstanceChoiceDialog {
   
   /** The width of push buttons */
-  private static final int BUTTON_WIDTH = 110;
+  private static final int BUTTON_WIDTH = 120;
 
   /** An optional diagram for graphical operations */
   protected final Object _diagram;
