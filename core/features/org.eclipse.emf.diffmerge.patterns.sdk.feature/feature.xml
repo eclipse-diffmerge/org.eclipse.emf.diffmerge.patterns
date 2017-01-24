@@ -3,7 +3,9 @@
       id="org.eclipse.emf.diffmerge.patterns.sdk.feature"
       label="Modeling Patterns Generic Framework (Incubation)"
       version="0.7.1.qualifier"
-      provider-name="Eclipse Modeling Project">
+      provider-name="Eclipse Modeling Project"
+      license-feature="org.eclipse.license"
+      license-feature-version="1.0.1">
 
    <description>
       A technology that supports the creation, storage, application and update of modeling patterns.
@@ -20,10 +22,6 @@ are made available under the terms of the Eclipse Public License v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
    </copyright>
-
-   <license url="%licenseURL">
-      %license
-   </license>
 
    <requires>
       <import plugin="org.eclipse.core.runtime"/>

@@ -3,7 +3,9 @@
       id="org.eclipse.emf.diffmerge.patterns.umldesigner.sdk.feature"
       label="UML Designer Extension Feature for Modeling Patterns (Incubation)"
       version="0.5.1.qualifier"
-      provider-name="Eclipse Modeling Project">
+      provider-name="Eclipse Modeling Project"
+      license-feature="org.eclipse.license"
+      license-feature-version="1.0.1">
 
    <description>
       This feature integrates the Modeling Patterns technology into UML Designer, a Sirius-based UML modeling tool.
@@ -17,10 +19,6 @@ v1.0
 which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
    </copyright>
-
-   <license url="%licenseURL">
-      %license
-   </license>
 
    <includes
          id="org.eclipse.emf.diffmerge.patterns.sirius.sdk.feature"

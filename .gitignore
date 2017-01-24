@@ -27,6 +27,9 @@ tmp/
 # PDT-specific
 .buildpath
 
+# Maven output
+target/
+
 ########
 ## Sonar
 ########

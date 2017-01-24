@@ -1,0 +1,18 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>org.eclipse.emf.diffmerge.patterns.root</artifactId>
+	<packaging>pom</packaging>
+	<parent>
+		<groupId>org.eclipse.emf.diffmerge</groupId>
+		<artifactId>org.eclipse.emf.diffmerge.patterns.configuration</artifactId>
+		<version>0.7.0-SNAPSHOT</version>
+		<relativePath>./releng/org.eclipse.emf.diffmerge.patterns.configuration</relativePath>
+	</parent>
+	<modules>
+		<module>core</module>
+		<module>doc</module>
+		<module>sirius</module>
+		<module>releng</module>
+		<module>umldesigner</module>
+	</modules>
+</project>
