@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2010-2014 Thales Global Services S.A.S.
+ * Copyright (c) 2010-2017 Thales Global Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -280,8 +280,9 @@ extends Wizard {
 	 * Notify all listeners that the pattern image has changed
 	 */
 	protected void patternImageChanged() {
+	  Image changedImage = getPatternImage();
 	  for (IPatternImageChangedListener listener : _listeners) {
-	    listener.patternImageChanged(_image);
+	    listener.patternImageChanged(changedImage);
 	  }
 	}
 	
@@ -330,17 +331,19 @@ extends Wizard {
    * @param image_p the potentially null image
    * @param updatePattern_p whether the pattern must be updated with the image
    */
-  public final synchronized void setPatternImage(final TemplatePattern pattern_p,
+  public final void setPatternImage(final TemplatePattern pattern_p,
       final String imageSpecifiation_p, final Image image_p, final boolean updatePattern_p) {
-    if (_image != null)
-      _image.dispose();
     if (AbstractPatternWizard.this.isDisposed()) {
       // Too late: just dispose the image
       if (image_p != null)
         image_p.dispose();
     } else {
-      _image = image_p;
-      _patternForImage = pattern_p;
+      Image oldImage;
+      synchronized (this) {
+        oldImage = _image;
+        _image = image_p;
+        _patternForImage = pattern_p;
+      }
       Display.getDefault().asyncExec(new Runnable() {
         /**
          * @see java.lang.Runnable#run()
@@ -359,6 +362,8 @@ extends Wizard {
           } // Otherwise, image is deprecated
         }
       });
+      if (oldImage != null)
+        oldImage.dispose();
     }
   }
   
