@@ -14,5 +14,6 @@
 		<module>org.eclipse.emf.diffmerge.patterns.configuration</module>
 		<module>org.eclipse.emf.diffmerge.patterns.target</module>
 		<module>org.eclipse.emf.diffmerge.patterns.update</module>
+		<module>org.eclipse.emf.diffmerge.patterns.javadoc</module>
 	</modules>
 </project>
