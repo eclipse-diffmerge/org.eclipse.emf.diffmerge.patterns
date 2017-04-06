@@ -4,7 +4,7 @@ Created-By: 16.0-b13 (Sun Microsystems Inc.)
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.diffmerge.patterns.templates.gen.edit;singleton:=true
-Bundle-Version: 0.5.1.qualifier
+Bundle-Version: 0.8.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.provider.TemplatePatternsEditPlugin$Implementation
 Bundle-Vendor: %providerName

@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.diffmerge.patterns.sdk.feature"
       label="Modeling Patterns Generic Framework (Incubation)"
-      version="0.7.1.qualifier"
+      version="0.8.0.qualifier"
       provider-name="Eclipse Modeling Project"
       license-feature="org.eclipse.license"
       license-feature-version="1.0.1">
@@ -142,5 +142,11 @@ http://www.eclipse.org/legal/epl-v10.html
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
+   <plugin
+         id="org.eclipse.emf.diffmerge.patterns.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
 
 </feature>
