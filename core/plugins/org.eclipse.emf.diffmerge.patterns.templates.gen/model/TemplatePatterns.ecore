@@ -88,8 +88,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
         eType="#//AbstractRoleConstraint" containment="true" eOpposite="#//AbstractRoleConstraint/role"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="exclusive" lowerBound="1"
-        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"
-        defaultValueLiteral=""/>
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
         eType="#//TemplatePattern" eOpposite="#//TemplatePattern/roles"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="additionDerivationRule"
