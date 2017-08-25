@@ -26,7 +26,7 @@ import org.eclipse.emf.diffmerge.api.diff.IReferenceValuePresence;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePatternApplicationComparison;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePatternComparison;
 import org.eclipse.emf.diffmerge.patterns.ui.util.UIUtil;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.swt.SWT;

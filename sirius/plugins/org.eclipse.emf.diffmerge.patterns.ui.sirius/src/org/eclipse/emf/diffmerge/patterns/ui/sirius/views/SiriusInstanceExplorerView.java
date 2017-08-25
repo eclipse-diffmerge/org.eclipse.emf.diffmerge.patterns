@@ -29,7 +29,7 @@ import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.util.SiriusLayersUtil;
 import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.util.SiriusUtil;
 import org.eclipse.emf.diffmerge.patterns.ui.dialogs.InstancePanelDialog;
 import org.eclipse.emf.diffmerge.patterns.ui.viewers.AbstractInstanceExplorerView;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;

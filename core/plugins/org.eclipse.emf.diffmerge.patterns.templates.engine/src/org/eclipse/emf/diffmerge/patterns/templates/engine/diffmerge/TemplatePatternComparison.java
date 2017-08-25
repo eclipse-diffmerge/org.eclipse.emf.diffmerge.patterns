@@ -33,8 +33,8 @@ import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
 import org.eclipse.emf.diffmerge.diffdata.impl.EComparisonImpl;
 import org.eclipse.emf.diffmerge.impl.policies.DefaultMatchPolicy;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
-import org.eclipse.emf.diffmerge.util.structures.FHashMap;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
+import org.eclipse.emf.diffmerge.structures.common.FHashMap;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
 
 

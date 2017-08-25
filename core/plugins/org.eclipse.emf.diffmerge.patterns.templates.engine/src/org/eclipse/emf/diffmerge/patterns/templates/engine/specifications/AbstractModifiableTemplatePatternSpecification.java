@@ -48,9 +48,9 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Additio
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatepatternsFactory;
-import org.eclipse.emf.diffmerge.util.structures.FArrayList;
-import org.eclipse.emf.diffmerge.util.structures.FHashMap;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
+import org.eclipse.emf.diffmerge.structures.common.FArrayList;
+import org.eclipse.emf.diffmerge.structures.common.FHashMap;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -747,7 +747,7 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
       EObject templateElement = getCounterpart(sourceElement_p, false);
       if (templateElement != null) {
         role.getTemplateElements().remove(templateElement);
-        _sourceElementToRole.remove(sourceElement_p);
+        _sourceElementToRole.removeKey(sourceElement_p);
         roleUpdated();
       }
     }
@@ -761,7 +761,7 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
     for (Map.Entry<EObject, TemplatePatternRole> entry : 
       new HashSet<Map.Entry<EObject, TemplatePatternRole>>(_sourceElementToRole.entrySet())) {
       if (entry.getValue() == role_p)
-        _sourceElementToRole.remove(entry.getKey());
+        _sourceElementToRole.remove(entry);
     }
     roleUpdated();
   }

@@ -28,7 +28,7 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.resources.PatternVirt
 import org.eclipse.emf.diffmerge.patterns.templates.gen.TemplatePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternData;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;

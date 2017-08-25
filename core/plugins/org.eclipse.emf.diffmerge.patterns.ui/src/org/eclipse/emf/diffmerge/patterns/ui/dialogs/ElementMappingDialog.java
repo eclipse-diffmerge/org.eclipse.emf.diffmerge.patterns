@@ -23,10 +23,13 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.ECollections;
 import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.diffmerge.patterns.core.api.locations.IElementMappingLocation;
+import org.eclipse.emf.diffmerge.patterns.core.util.locations.BasicElementMappingLocation;
+import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole;
 import org.eclipse.emf.diffmerge.patterns.ui.Messages;
 import org.eclipse.emf.diffmerge.patterns.ui.viewers.ModelSubsetViewer;
-import org.eclipse.emf.diffmerge.util.structures.FArrayList;
-import org.eclipse.emf.diffmerge.util.structures.FHashMap;
+import org.eclipse.emf.diffmerge.structures.common.FArrayList;
+import org.eclipse.emf.diffmerge.structures.common.FHashMap;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -36,7 +39,7 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -47,10 +50,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Shell;
-
-import org.eclipse.emf.diffmerge.patterns.core.api.locations.IElementMappingLocation;
-import org.eclipse.emf.diffmerge.patterns.core.util.locations.BasicElementMappingLocation;
-import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole;
 
 
 /**
@@ -330,8 +329,8 @@ public class ElementMappingDialog extends MessageDialog {
        * @see org.eclipse.emf.diffmerge.patterns.ui.viewers.ModelSubsetViewer#getSorter()
        */
       @Override
-      protected ViewerSorter getSorter() {
-        return new ViewerSorter() {
+      protected ViewerComparator getSorter() {
+        return new ViewerComparator() {
           private static final int MAPPED_CATEGORY = 0;
           private static final int UNMAPPED_CATEGORY = 1;
           /**
@@ -435,8 +434,8 @@ public class ElementMappingDialog extends MessageDialog {
        * @see org.eclipse.emf.diffmerge.patterns.ui.viewers.ModelSubsetViewer#getSorter()
        */
       @Override
-      protected ViewerSorter getSorter() {
-        return new ViewerSorter() {
+      protected ViewerComparator getSorter() {
+        return new ViewerComparator() {
           /**
            * @see org.eclipse.jface.viewers.ViewerComparator#category(java.lang.Object)
            */

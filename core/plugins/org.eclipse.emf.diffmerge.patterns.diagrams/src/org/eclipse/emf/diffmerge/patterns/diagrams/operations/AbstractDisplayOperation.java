@@ -20,9 +20,9 @@ import java.util.List;
 
 import org.eclipse.emf.diffmerge.patterns.core.operations.AbstractModelOperation;
 import org.eclipse.emf.diffmerge.patterns.diagrams.Messages;
+import org.eclipse.emf.diffmerge.structures.common.FArrayList;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.emf.diffmerge.util.ModelsUtil;
-import org.eclipse.emf.diffmerge.util.structures.FArrayList;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
 
 

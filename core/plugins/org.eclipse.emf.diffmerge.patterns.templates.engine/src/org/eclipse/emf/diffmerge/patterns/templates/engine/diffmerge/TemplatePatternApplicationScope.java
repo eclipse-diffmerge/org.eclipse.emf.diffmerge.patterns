@@ -22,8 +22,8 @@ import org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstanceMarker;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternData;
+import org.eclipse.emf.diffmerge.structures.common.FHashSet;
 import org.eclipse.emf.diffmerge.util.ModelsUtil.IElementFilter;
-import org.eclipse.emf.diffmerge.util.structures.FHashSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 

@@ -25,8 +25,8 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsEngin
 import org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider;
 import org.eclipse.emf.diffmerge.patterns.ui.Messages;
 import org.eclipse.emf.diffmerge.patterns.ui.dialogs.AbstractTableChoiceDialog.SelectionKind;
+import org.eclipse.emf.diffmerge.structures.common.FArrayList;
 import org.eclipse.emf.diffmerge.util.ModelsUtil;
-import org.eclipse.emf.diffmerge.util.structures.FArrayList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;

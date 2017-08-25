@@ -20,20 +20,18 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
+import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsEnginePlugin;
+import org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePatternApplicationScope.PatternInstanceMarkerFilter;
+import org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider;
 import org.eclipse.emf.diffmerge.patterns.ui.Messages;
-import org.eclipse.emf.diffmerge.patterns.ui.dialogs.AbstractElementSelectionDialog;
 import org.eclipse.emf.diffmerge.patterns.ui.viewers.ModelSubsetViewer;
+import org.eclipse.emf.diffmerge.structures.common.FArrayList;
 import org.eclipse.emf.diffmerge.util.ModelsUtil.IElementFilter;
-import org.eclipse.emf.diffmerge.util.structures.FArrayList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-
-import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsEnginePlugin;
-import org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePatternApplicationScope.PatternInstanceMarkerFilter;
-import org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider;
 
 
 /**

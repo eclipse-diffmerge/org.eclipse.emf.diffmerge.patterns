@@ -16,18 +16,6 @@ package org.eclipse.emf.diffmerge.patterns.ui.providers;
 
 import java.util.List;
 
-import org.eclipse.emf.diffmerge.patterns.ui.Messages;
-import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin;
-import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin.ImageID;
-import org.eclipse.emf.diffmerge.patterns.ui.dialogs.TemplateUsageDialog;
-import org.eclipse.emf.diffmerge.patterns.ui.environment.IModelEnvironmentUI;
-import org.eclipse.emf.diffmerge.util.ModelsUtil;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPattern;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternRepository;
@@ -41,6 +29,18 @@ import org.eclipse.emf.diffmerge.patterns.diagrams.misc.UnresolvedRepository;
 import org.eclipse.emf.diffmerge.patterns.diagrams.util.PatternsDiagramsUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternData;
+import org.eclipse.emf.diffmerge.patterns.ui.Messages;
+import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin;
+import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin.ImageID;
+import org.eclipse.emf.diffmerge.patterns.ui.dialogs.TemplateUsageDialog;
+import org.eclipse.emf.diffmerge.patterns.ui.environment.IModelEnvironmentUI;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
+import org.eclipse.emf.diffmerge.util.ModelsUtil;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.PlatformUI;
 
 
 /**

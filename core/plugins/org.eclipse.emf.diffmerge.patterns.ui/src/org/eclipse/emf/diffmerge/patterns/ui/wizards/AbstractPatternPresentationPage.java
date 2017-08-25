@@ -64,8 +64,8 @@ import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -566,7 +566,7 @@ extends AbstractPatternPage<T> {
         return result;
       }
     });
-    comboViewer.setSorter(new ViewerSorter());
+    comboViewer.setComparator(new ViewerComparator());
     if (getData() instanceof IRepositorySelection)
       comboViewer.setInput(((IRepositorySelection)getData()).getRepository());
     // Combo viewer: Selection
@@ -756,7 +756,7 @@ extends AbstractPatternPage<T> {
         }
       }
     });
-    result.setSorter(new ViewerSorter());
+    result.setComparator(new ViewerComparator());
     return result;
   }
 

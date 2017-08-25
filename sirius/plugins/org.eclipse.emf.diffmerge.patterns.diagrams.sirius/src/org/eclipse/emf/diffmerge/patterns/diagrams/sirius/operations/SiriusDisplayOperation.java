@@ -27,22 +27,22 @@ import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractDisplayOpe
 import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.extensions.ISiriusSemanticMapping;
 import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.util.SiriusLayersUtil;
 import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.util.SiriusUtil;
+import org.eclipse.emf.diffmerge.structures.common.FHashMap;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.emf.diffmerge.util.ModelsUtil;
-import org.eclipse.emf.diffmerge.util.structures.FHashMap;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.sirius.common.tools.api.interpreter.IInterpreter;
-import org.eclipse.sirius.diagram.tools.api.layout.PinHelper;
 import org.eclipse.sirius.diagram.AbstractDNode;
-import org.eclipse.sirius.viewpoint.SiriusPlugin;
 import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.DDiagramElementContainer;
 import org.eclipse.sirius.diagram.DNodeContainer;
-import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.sirius.diagram.business.internal.metamodel.description.extensions.IContainerMappingExt;
 import org.eclipse.sirius.diagram.business.internal.metamodel.helper.ContainerMappingHelper;
 import org.eclipse.sirius.diagram.description.AbstractNodeMapping;
 import org.eclipse.sirius.diagram.description.NodeMapping;
+import org.eclipse.sirius.diagram.tools.api.layout.PinHelper;
+import org.eclipse.sirius.viewpoint.DSemanticDecorator;
+import org.eclipse.sirius.viewpoint.SiriusPlugin;
 
 
 /**

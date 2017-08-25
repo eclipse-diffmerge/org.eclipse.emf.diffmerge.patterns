@@ -29,8 +29,8 @@ import org.eclipse.emf.diffmerge.patterns.ui.environment.IModelEnvironmentUI.Sor
 import org.eclipse.emf.diffmerge.patterns.ui.providers.CollectionAsTreeContentProvider;
 import org.eclipse.emf.diffmerge.patterns.ui.providers.DiscriminatingLabelProvider;
 import org.eclipse.emf.diffmerge.patterns.ui.util.UIUtil;
+import org.eclipse.emf.diffmerge.structures.common.FHashSet;
 import org.eclipse.emf.diffmerge.util.ModelsUtil;
-import org.eclipse.emf.diffmerge.util.structures.FHashSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -51,8 +51,8 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.jface.viewers.ViewerFilter;
-import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.BusyIndicator;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -142,9 +142,9 @@ public class ModelSubsetViewer extends Viewer {
     _treeViewer.setContentProvider(_dataProvider); //TODO: ITreeContentProvider
     _treeViewer.setLabelProvider(labelProvider);
     _sortingMethod = null;
-    ViewerSorter sorter = getSorter();
+    ViewerComparator sorter = getSorter();
     if (sorter != null)
-      _treeViewer.setSorter(sorter);
+      _treeViewer.setComparator(sorter);
     else
       setSortingMethod(SortingMethod.BY_TYPE_AND_NAME);
     if (_showParentsButton != null) {
@@ -552,7 +552,7 @@ public class ModelSubsetViewer extends Viewer {
    * Return a specific sorter for this viewer
    * @return a potentially null sorter
    */
-  protected ViewerSorter getSorter() {
+  protected ViewerComparator getSorter() {
     return null;
   }
 
@@ -711,8 +711,8 @@ public class ModelSubsetViewer extends Viewer {
       IModelEnvironmentUI me = PatternsUIPlugin.getDefault().getModelEnvironmentUI();
       if (me != null) {
         _sortingMethod = newMethod_p;
-        ViewerSorter sorter = me.getSorter(newMethod_p);
-        _treeViewer.setSorter(sorter);
+        ViewerComparator sorter = me.getSorter(newMethod_p);
+        _treeViewer.setComparator(sorter);
       }
     }
   }

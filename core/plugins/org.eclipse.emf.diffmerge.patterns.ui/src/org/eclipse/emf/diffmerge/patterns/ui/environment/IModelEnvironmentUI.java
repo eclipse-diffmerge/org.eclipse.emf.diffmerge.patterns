@@ -16,7 +16,7 @@ package org.eclipse.emf.diffmerge.patterns.ui.environment;
 
 import java.util.List;
 
-import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.graphics.Image;
 
 
@@ -48,7 +48,7 @@ public interface IModelEnvironmentUI {
    * @param method_p a non-null sorting method
    * @return a potentially null sorter
    */
-  ViewerSorter getSorter(SortingMethod method_p);
+  ViewerComparator getSorter(SortingMethod method_p);
   
   /**
    * Return a specific label for the given element if applicable

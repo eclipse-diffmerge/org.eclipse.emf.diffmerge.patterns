@@ -28,7 +28,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.graphics.Image;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Version;
@@ -69,8 +69,8 @@ public class DefaultModelEnvironmentUI implements IModelEnvironmentUI{
   /**
    * @see org.eclipse.emf.diffmerge.patterns.ui.environment.IModelEnvironmentUI#getSorter(org.eclipse.emf.diffmerge.patterns.ui.environment.IModelEnvironmentUI.SortingMethod)
    */
-  public ViewerSorter getSorter(SortingMethod method_p) {
-    ViewerSorter result;
+  public ViewerComparator getSorter(SortingMethod method_p) {
+    ViewerComparator result;
     if (method_p == null || method_p == SortingMethod.NONE)
       result = null;
     else
@@ -81,7 +81,7 @@ public class DefaultModelEnvironmentUI implements IModelEnvironmentUI{
   /**
    * A viewer sorter that can sort by name or name and type
    */
-  public static class NameTypeViewerSorter extends ViewerSorter {
+  public static class NameTypeViewerSorter extends ViewerComparator {
     /** The non-null sorting method: BY_NAME or BY_NAME_AND_TYPE */
     private final SortingMethod _sortingMethod;
     /**
@@ -111,7 +111,6 @@ public class DefaultModelEnvironmentUI implements IModelEnvironmentUI{
         String typeName2 = element2.eClass().getName();
         if (typeName2 == null)
           typeName2 = ""; //$NON-NLS-1$
-        @SuppressWarnings("unchecked")
         int onTypes = getComparator().compare(typeName1, typeName2);
         if (onTypes != 0) {
           result = onTypes;

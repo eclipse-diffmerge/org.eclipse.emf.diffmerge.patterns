@@ -17,18 +17,17 @@ package org.eclipse.emf.diffmerge.patterns.ui.viewers;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.swt.graphics.Font;
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.emf.diffmerge.patterns.ui.util.UIUtil;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
-
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.IBijectiveTemplatePatternSpecification;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.IMultiRoleSelection;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.IRoleSelection;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.ITemplatePatternBasedSpecification;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternApplicationSpecification;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole;
+import org.eclipse.emf.diffmerge.patterns.ui.util.UIUtil;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.widgets.Composite;
 
 
 /**

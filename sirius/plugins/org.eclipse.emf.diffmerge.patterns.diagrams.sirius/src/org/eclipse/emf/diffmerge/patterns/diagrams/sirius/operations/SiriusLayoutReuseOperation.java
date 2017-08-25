@@ -31,7 +31,7 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Layout;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.NodeLayout;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternData;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Edge;

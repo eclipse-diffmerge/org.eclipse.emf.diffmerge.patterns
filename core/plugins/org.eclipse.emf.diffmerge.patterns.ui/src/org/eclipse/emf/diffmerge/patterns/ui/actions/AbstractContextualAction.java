@@ -28,7 +28,7 @@ import org.eclipse.emf.diffmerge.patterns.diagrams.PatternCoreDiagramPlugin;
 import org.eclipse.emf.diffmerge.patterns.diagrams.util.AbstractDiagramUtil;
 import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin;
 import org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternDialogAndWizardFactory;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;

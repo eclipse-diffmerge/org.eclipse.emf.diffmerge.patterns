@@ -55,7 +55,7 @@ import org.eclipse.emf.diffmerge.patterns.ui.util.UIUtil;
 import org.eclipse.emf.diffmerge.patterns.ui.viewers.AbstractInstanceExplorerView;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.PatternWizardDialog;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.update.PatternUpdateWizard;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.dialogs.IDialogConstants;

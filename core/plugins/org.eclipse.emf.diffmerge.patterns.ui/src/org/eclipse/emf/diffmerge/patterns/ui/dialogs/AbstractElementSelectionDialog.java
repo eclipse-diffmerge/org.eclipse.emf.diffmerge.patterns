@@ -16,9 +16,10 @@ package org.eclipse.emf.diffmerge.patterns.ui.dialogs;
 
 import java.util.Collection;
 
+import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.ui.util.UIUtil;
 import org.eclipse.emf.diffmerge.patterns.ui.viewers.ModelSubsetViewer;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -31,8 +32,6 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-
-import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 
 
 /**

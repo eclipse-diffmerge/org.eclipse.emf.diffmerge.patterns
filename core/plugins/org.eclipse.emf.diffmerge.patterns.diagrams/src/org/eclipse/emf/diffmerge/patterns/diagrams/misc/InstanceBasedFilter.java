@@ -17,13 +17,12 @@ package org.eclipse.emf.diffmerge.patterns.diagrams.misc;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.eclipse.emf.diffmerge.util.ModelsUtil.IElementFilter;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
-import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.core.util.LocationsUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternData;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
+import org.eclipse.emf.diffmerge.util.ModelsUtil.IElementFilter;
+import org.eclipse.emf.ecore.EObject;
 
 
 /**

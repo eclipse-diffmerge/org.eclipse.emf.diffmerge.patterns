@@ -26,8 +26,8 @@ import org.eclipse.emf.diffmerge.patterns.diagrams.factories.IPatternOperationFa
 import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsEnginePlugin;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider;
-import org.eclipse.emf.diffmerge.util.structures.FArrayList;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
+import org.eclipse.emf.diffmerge.structures.common.FArrayList;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
 
 

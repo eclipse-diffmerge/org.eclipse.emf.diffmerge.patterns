@@ -16,12 +16,12 @@ package org.eclipse.emf.diffmerge.patterns.ui.actions;
 
 import java.util.List;
 
+import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 
 
 /**

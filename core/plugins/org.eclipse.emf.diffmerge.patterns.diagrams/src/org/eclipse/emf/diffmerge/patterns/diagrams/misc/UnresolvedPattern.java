@@ -16,9 +16,9 @@ package org.eclipse.emf.diffmerge.patterns.diagrams.misc;
 
 import java.util.List;
 
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.diagrams.util.PatternsDiagramsUtil;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 
 
 /**
