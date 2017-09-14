@@ -113,20 +113,20 @@
             categoryId="org.eclipse.emf.diffmerge.patterns.ui.sirius.category"
             defaultHandler="org.eclipse.emf.diffmerge.patterns.ui.handlers.ApplyPatternHandler"
             id="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.applypattern"
-            name="Apply Pattern">
+            name="Apply Pattern...">
       </command>
       <command
             categoryId="org.eclipse.emf.diffmerge.patterns.ui.sirius.category"
             defaultHandler="org.eclipse.emf.diffmerge.patterns.ui.handlers.CreatePatternHandler"
             id="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.createpattern"
-            name="Create Pattern">
+            name="Create Pattern...">
       </command>
        
       <command
             categoryId="org.eclipse.emf.diffmerge.patterns.ui.sirius.category"
             defaultHandler="org.eclipse.emf.diffmerge.patterns.ui.handlers.IncludeInPatternsHandler"
             id="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.includepatterns"
-            name="Include in patterns">
+            name="Include in Patterns">
       </command>
       
       
@@ -134,35 +134,35 @@
             categoryId="org.eclipse.emf.diffmerge.patterns.ui.sirius.category"
             defaultHandler="org.eclipse.emf.diffmerge.patterns.ui.handlers.ResetInclusionsHandler"
             id="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.resetinclusions"
-            name="Reset inclusions">
+            name="Reset Inclusions">
       </command>
        
       <command 
             categoryId="org.eclipse.emf.diffmerge.patterns.ui.sirius.category"
             defaultHandler="org.eclipse.emf.diffmerge.patterns.ui.handlers.CreateTemplateHandler"
             id="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.createtamplate"
-            name="Create template">
+            name="Create Template...">
       </command>
        
       <command
             categoryId="org.eclipse.emf.diffmerge.patterns.ui.sirius.category"
             defaultHandler="org.eclipse.emf.diffmerge.patterns.ui.handlers.ManageInstanceSetSelectionHandler"
             id="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.manageinstance"
-            name="Manage Pattern Instance">
+            name="Manage Instance(s)...">
       </command>
             
       <command
             categoryId="org.eclipse.emf.diffmerge.patterns.ui.sirius.category"
             defaultHandler="org.eclipse.emf.diffmerge.patterns.ui.handlers.HighlightAllPatternsInstancesHandler"
             id="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.HighlightAllPatternsInstances"
-            name="Highlight all patterns instances">
+            name="Highlight all Instances">
       </command>
       
       <command
             categoryId="org.eclipse.emf.diffmerge.patterns.ui.sirius.category"
             defaultHandler="org.eclipse.emf.diffmerge.patterns.ui.handlers.BrowseCatalogHandler"
             id="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.browsecatalogs"
-            name="Browse Catalogs">
+            name="Browse Catalogs...">
       </command>
       <command
             categoryId="org.eclipse.emf.diffmerge.patterns.ui.sirius.category"
@@ -205,13 +205,6 @@
       </view>
    </extension>
          
-   
-
-   
-
-  <!--> Menu contribution <-->      
-
-
   <extension
          point="org.eclipse.ui.menus">
       <menuContribution
@@ -223,20 +216,21 @@
                label="Patterns">
             <visibleWhen
                   checkEnabled="false">
-               <iterate
-                     ifEmpty="false"
-                     operator="and">
-                  <or>
+               <and>
+                  <with variable="activeEditorInput">
                      <adapt
-                           type="org.eclipse.emf.ecore.EObject">
+                           type="org.eclipse.sirius.ui.business.api.session.SessionEditorInput">
                      </adapt>
+                  </with>
+                  <iterate
+                        ifEmpty="false"
+                        operator="and">
                      <adapt
                            type="org.eclipse.gef.EditPart">
                      </adapt>
-                  </or>
-               </iterate>
+                  </iterate>
+               </and>
             </visibleWhen>
-            
          </menu>
       </menuContribution>
       <menuContribution
@@ -244,7 +238,6 @@
             locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.browsecatalogs"
-               label="Browse Catalogs..."
                style="push">
          </command>
       </menuContribution>
@@ -253,7 +246,6 @@
             locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.HighlightAllPatternsInstances"
-               label="Highlight all Instances"
                style="push">
          </command>
          <separator
@@ -267,7 +259,6 @@
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.PatternInstanceExplorerSetSelectionCommand"
                icon="/icons/full/pattern.gif"
-               label="Show in Pattern Instance Explorer"
                style="push">
          </command>
       </menuContribution>
@@ -276,7 +267,6 @@
             locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.manageinstance"
-               label="Manage Instance(s)..."
                style="push">
          </command>
       </menuContribution>
@@ -285,7 +275,6 @@
             locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.createtamplate"
-               label="Create Template..."
                style="push">
          </command>
          <separator
@@ -298,7 +287,6 @@
             locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.resetinclusions"
-               label="Reset Inclusions"
                style="push">
          </command>
          <separator
@@ -311,7 +299,6 @@
             locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.includepatterns"
-               label="Include in Patterns"
                style="push">
          </command>
       </menuContribution>
@@ -320,7 +307,6 @@
             locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.createpattern"
-               label="Create Pattern..."
                style="push">
          </command>
       </menuContribution>
@@ -330,7 +316,6 @@
             locationURI="popup:project.explorer.menu.patterns.preferences?after=additions">
          <command
                commandId="org.eclipse.emf.diffmerge.patterns.ui.sirius.command.applypattern"
-               label="Apply Pattern..."
                mode="FORCE_TEXT"
                style="push">
             <visibleWhen
@@ -342,17 +327,6 @@
                visible="true">
          </separator>
       </menuContribution>
-  
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
       
   </extension>
 </plugin>
