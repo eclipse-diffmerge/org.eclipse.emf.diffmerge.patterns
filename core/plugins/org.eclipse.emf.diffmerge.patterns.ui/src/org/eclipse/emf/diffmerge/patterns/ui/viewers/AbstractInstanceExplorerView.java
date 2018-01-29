@@ -581,8 +581,10 @@ public abstract class AbstractInstanceExplorerView extends ViewPart{
     String newHeader = DEFAULT_TITLE;
     if (_contextElement != null && _contextElement.eResource() != null) {
       URI uri = _contextElement.eResource().getURI();
-      if (uri != null)
-        newHeader = Messages.InstanceExplorerView_Instances + uri.lastSegment();
+      if (uri != null) {
+        newHeader = Messages.InstanceExplorerView_Instances +
+          '[' + URI.decode(uri.lastSegment()) + ']';
+      }
     }
     _header.setTitle(newHeader, null);
   }
