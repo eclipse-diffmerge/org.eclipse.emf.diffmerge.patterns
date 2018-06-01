@@ -14,9 +14,19 @@
  */
 package org.eclipse.emf.diffmerge.patterns.ui.wizards;
 
+import java.net.URL;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
+import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.AbstractBijectiveTemplatePatternSpecification;
+import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.IRoleSelection;
+import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.AbstractRoleDerivationRule;
+import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.AdditionKind;
+import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole;
+import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatepatternsFactory;
+import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TextualRoleConstraint;
+import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TextualRoleDerivationRule;
 import org.eclipse.emf.diffmerge.patterns.templates.ocl.OclPatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.ui.Messages;
 import org.eclipse.emf.diffmerge.patterns.ui.dialogs.OclInputMessageDialog;
@@ -24,6 +34,7 @@ import org.eclipse.emf.diffmerge.util.ModelsUtil;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ocl.ecore.OCLExpression;
@@ -41,16 +52,7 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Layout;
 import org.eclipse.swt.widgets.Text;
-
-import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
-import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.AbstractBijectiveTemplatePatternSpecification;
-import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.IRoleSelection;
-import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.AbstractRoleDerivationRule;
-import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.AdditionKind;
-import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole;
-import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatepatternsFactory;
-import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TextualRoleConstraint;
-import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TextualRoleDerivationRule;
+import org.eclipse.ui.PlatformUI;
 
 
 /**
@@ -781,7 +783,21 @@ extends AbstractRoleSelectionPage<T> {
    */
   protected void warnOCLAbsent() {
     String msg = Messages.AbstractRoleSpecificationPage_WarnOCLAbsence;
-    MessageDialog.openError(getShell(), CorePatternsPlugin.getDefault().getLabel(), msg);
+    MessageDialog dialog = new MessageDialog(
+        getShell(), CorePatternsPlugin.getDefault().getLabel(), null, msg, MessageDialog.ERROR,
+        new String[] {IDialogConstants.HELP_LABEL, IDialogConstants.CLOSE_LABEL}, 1);
+    int answer = dialog.open();
+    if (answer == 0) {
+      // Help requested
+      try {
+        String helpLocation =
+            "http://help.eclipse.org/oxygen/index.jsp?topic=%2Forg.eclipse.ocl.doc%2Fhelp%2FInstallation.html"; //$NON-NLS-1$
+        URL helpURL = new URL(helpLocation);
+        PlatformUI.getWorkbench().getBrowserSupport().getExternalBrowser().openURL(helpURL);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
   }
   
 }
