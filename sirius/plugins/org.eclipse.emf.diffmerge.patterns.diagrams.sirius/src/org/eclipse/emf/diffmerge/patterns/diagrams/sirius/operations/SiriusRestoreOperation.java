@@ -23,6 +23,7 @@ import org.eclipse.sirius.diagram.BorderedStyle;
 import org.eclipse.sirius.diagram.DEdge;
 import org.eclipse.sirius.diagram.DiagramPackage;
 import org.eclipse.sirius.diagram.EdgeStyle;
+import org.eclipse.sirius.diagram.tools.api.command.view.RefreshSiriusElement;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.sirius.viewpoint.DStylizable;
 import org.eclipse.sirius.viewpoint.Style;
@@ -99,7 +100,7 @@ public class SiriusRestoreOperation extends SiriusFilteredGraphicalUpdateOperati
           DStylizable stylizable = (DStylizable) decorator_p;
           stylizable.getStyle().getCustomFeatures().remove(DiagramPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
           stylizable.getStyle().getCustomFeatures().remove(DiagramPackage.eINSTANCE.getEdgeStyle_StrokeColor().getName());
-          stylizable.getStyle().refresh();
+          RefreshSiriusElement.refresh(stylizable.getStyle());
           if (stylizable.getStyle() instanceof BorderedStyle) {
             BorderedStyle style = (BorderedStyle) stylizable.getStyle();
             // not stable with a diagram refresh

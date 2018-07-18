@@ -32,6 +32,7 @@ import org.eclipse.sirius.diagram.DiagramPackage;
 import org.eclipse.sirius.diagram.EdgeStyle;
 import org.eclipse.sirius.diagram.EndLabelStyle;
 import org.eclipse.sirius.diagram.Square;
+import org.eclipse.sirius.diagram.tools.api.command.view.RefreshSiriusElement;
 import org.eclipse.sirius.viewpoint.BasicLabelStyle;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.sirius.viewpoint.RGBValues;
@@ -155,7 +156,7 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
         style.setBorderSizeComputationExpression(_innerHighlightOperation.get_borderSize().toString());
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSize().getName());
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName());
-        style.refresh();
+        RefreshSiriusElement.refresh(style);
       }
     }
 
@@ -198,7 +199,7 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
           style.setEndLabelStyle(newLabelStyle);
         }
         style.getCustomFeatures().add(ViewpointPackage.eINSTANCE.getBasicLabelStyle_LabelColor().getName());
-        style.refresh();
+        RefreshSiriusElement.refresh(style);
       }
     }
 
@@ -227,7 +228,7 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
         style.setBorderSizeComputationExpression(_innerHighlightOperation.get_borderSize().toString());
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSize().getName());
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName());
-        style.refresh();
+        RefreshSiriusElement.refresh(style);
       }
     }
 
@@ -270,7 +271,7 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSize().getName());
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName());
         //
-        style.refresh();
+        RefreshSiriusElement.refresh(style);
       }
     }
   }

@@ -1,18 +1,21 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="org.eclipse.emf.diffmerge" sequenceNumber="6">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><?pde version="3.8"?><target name="org.eclipse.emf.diffmerge.patterns" sequenceNumber="6">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.license.feature.group" version="1.0.1.v20140414-1359"/>
 <repository location="http://download.eclipse.org/cbi/updates/license/"/>
 </location>
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.egit.feature.group" version="4.1.1.201511131810-r"/>
-<unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.9.0.201506060219"/>
-<unit id="org.eclipse.ocl.all.sdk.feature.group" version="5.1.0.v20160118-1848"/>
-<unit id="org.eclipse.ocl.examples.feature.group" version="6.0.2.v20160118-1848"/>
-<unit id="org.eclipse.sirius.runtime.ide.ui.feature.group" version="3.1.4.201602091241"/>
-<unit id="org.eclipse.team.svn.feature.group" version="3.0.4.I20160131-1700"/>
-<repository location="http://download.eclipse.org/releases/mars"/>
-</location>
+	<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+		<unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.11.0.201706061437"/>
+		<unit id="org.eclipse.ocl.all.sdk.feature.group" version="5.3.0.v20170607-1133"/>
+		<unit id="org.eclipse.ocl.examples.feature.group" version="6.3.0.v20170613-1432"/>
+		<repository location="http://download.eclipse.org/releases/oxygen/201803211000"/>
+	</location>
+	<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+		<unit id="org.eclipse.sirius.runtime.feature.group" version="6.0.1.201808231529"/>
+		<unit id="org.eclipse.sirius.runtime.ide.ui.feature.group" version="6.0.1.201808231529"/>
+		<unit id="org.eclipse.sirius.specifier.feature.group" version="6.0.1.201808231529"/>
+		<unit id="org.eclipse.sirius.specifier.ide.ui.feature.group" version="6.0.1.201808231529"/>
+		<repository location="http://download.eclipse.org/sirius/updates/releases/6.0.1/oxygen"/>
+	</location>
 </locations>
 </target>

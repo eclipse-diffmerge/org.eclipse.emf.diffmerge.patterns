@@ -65,6 +65,7 @@ import org.eclipse.sirius.diagram.LineStyle;
 import org.eclipse.sirius.diagram.Lozenge;
 import org.eclipse.sirius.diagram.Note;
 import org.eclipse.sirius.diagram.Square;
+import org.eclipse.sirius.diagram.tools.api.command.view.RefreshSiriusElement;
 import org.eclipse.sirius.viewpoint.BasicLabelStyle;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.sirius.viewpoint.DStylizable;
@@ -120,7 +121,7 @@ public final class LayoutUtil {
       if (siriusElement instanceof DStylizable) {
         Style style = ((DStylizable) siriusElement).getStyle();
         if (style != null) {
-          style.refresh();
+          RefreshSiriusElement.refresh(style);
         }
         if (style instanceof EdgeStyle) {
           EdgeStyle edgestyle = (EdgeStyle) style;
@@ -731,7 +732,7 @@ public final class LayoutUtil {
             customfeatures.add(DiagramPackage.eINSTANCE.getFlatContainerStyle_BackgroundColor().getName());
           }
         }
-        targetelementstyle.refresh();
+        RefreshSiriusElement.refresh(targetelementstyle);
       }
     }
   }
