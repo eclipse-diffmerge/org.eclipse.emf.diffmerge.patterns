@@ -13,9 +13,9 @@ Require-Bundle: org.eclipse.emf.diffmerge.patterns.templates.engine,
  org.eclipse.emf.diffmerge.patterns.ui,
  org.eclipse.emf.diffmerge.patterns.diagrams.sirius,
  org.eclipse.emf.diffmerge.patterns.diagrams,
- org.eclipse.sirius.diagram.sequence;bundle-version="3.0.0",
- org.eclipse.sirius.diagram.ui;bundle-version="3.0.0",
- org.eclipse.sirius.diagram;bundle-version="3.0.0",
+ org.eclipse.sirius.diagram.sequence;bundle-version="6.0.0",
+ org.eclipse.sirius.diagram.ui;bundle-version="6.0.0",
+ org.eclipse.sirius.diagram;bundle-version="6.0.0",
  org.eclipse.ui.ide
 Comment: fr.obeo.dsl.viewpoint.diagram.sequence
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
