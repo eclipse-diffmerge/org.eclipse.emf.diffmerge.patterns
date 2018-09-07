@@ -27,3 +27,4 @@ Export-Package: org.eclipse.emf.diffmerge.patterns.diagrams.sirius,
  org.eclipse.emf.diffmerge.patterns.diagrams.sirius.operations,
  org.eclipse.emf.diffmerge.patterns.diagrams.sirius.util
 Bundle-Vendor: %providerName
+Automatic-Module-Name: org.eclipse.emf.diffmerge.patterns.diagrams.sirius

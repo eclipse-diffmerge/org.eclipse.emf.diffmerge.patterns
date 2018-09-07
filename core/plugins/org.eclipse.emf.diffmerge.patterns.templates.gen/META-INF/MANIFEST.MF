@@ -19,4 +19,5 @@ Bundle-Activator: org.eclipse.emf.diffmerge.patterns.templates.gen.Te
  mplatePatternsPlugin
 Bundle-SymbolicName: org.eclipse.emf.diffmerge.patterns.templates.gen
  ;singleton:=true
+Automatic-Module-Name: org.eclipse.emf.diffmerge.patterns.templates.gen
 

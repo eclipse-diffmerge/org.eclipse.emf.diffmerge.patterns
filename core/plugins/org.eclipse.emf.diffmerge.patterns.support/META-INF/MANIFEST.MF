@@ -17,3 +17,4 @@ Export-Package: org.eclipse.emf.diffmerge.patterns.support,
  org.eclipse.emf.diffmerge.patterns.support.environment,
  org.eclipse.emf.diffmerge.patterns.support.resources
 Bundle-Vendor: %providerName
+Automatic-Module-Name: org.eclipse.emf.diffmerge.patterns.support

@@ -20,4 +20,5 @@ Bundle-Activator: org.eclipse.emf.diffmerge.patterns.core.gen.corepat
  terns.provider.CorePatternsEditPlugin$Implementation
 Bundle-SymbolicName: org.eclipse.emf.diffmerge.patterns.core.gen.edit
  ; singleton:=true
+Automatic-Module-Name: org.eclipse.emf.diffmerge.patterns.core.gen.edit
 

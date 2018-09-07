@@ -26,3 +26,4 @@ Export-Package: org.eclipse.emf.diffmerge.patterns.diagrams.umldesigner,
  org.eclipse.emf.diffmerge.patterns.diagrams.umldesigner.delete,
  org.eclipse.emf.diffmerge.patterns.diagrams.umldesigner.ext,
  org.eclipse.emf.diffmerge.patterns.diagrams.umldesigner.helper
+Automatic-Module-Name: org.eclipse.emf.diffmerge.patterns.diagrams.umldesigner

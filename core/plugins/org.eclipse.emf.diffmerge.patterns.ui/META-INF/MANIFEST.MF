@@ -36,3 +36,4 @@ Export-Package: org.eclipse.emf.diffmerge.patterns.ui,
  org.eclipse.emf.diffmerge.patterns.ui.wizards.templates,
  org.eclipse.emf.diffmerge.patterns.ui.wizards.update
 Bundle-Vendor: %providerName
+Automatic-Module-Name: org.eclipse.emf.diffmerge.patterns.ui

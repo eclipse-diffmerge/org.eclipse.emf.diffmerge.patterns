@@ -28,3 +28,4 @@ Export-Package: org.eclipse.emf.diffmerge.patterns.ui.sirius,
  org.eclipse.emf.diffmerge.patterns.ui.sirius.views,
  org.eclipse.emf.diffmerge.patterns.ui.sirius.wizards.browsing
 Bundle-Vendor: %providerName
+Automatic-Module-Name: org.eclipse.emf.diffmerge.patterns.ui.sirius

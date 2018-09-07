@@ -27,4 +27,5 @@ Bundle-Activator: org.eclipse.emf.diffmerge.patterns.core.CorePattern
  sPlugin
 Bundle-SymbolicName: org.eclipse.emf.diffmerge.patterns.core;singleto
  n:=true
+Automatic-Module-Name: org.eclipse.emf.diffmerge.patterns.core
 

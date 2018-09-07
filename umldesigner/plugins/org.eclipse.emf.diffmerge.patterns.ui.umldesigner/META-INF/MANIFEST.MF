@@ -19,3 +19,4 @@ Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Export-Package: org.eclipse.emf.diffmerge.patterns.ui.umldesigner,
  org.eclipse.emf.diffmerge.patterns.ui.umldesigner.ext
+Automatic-Module-Name: org.eclipse.emf.diffmerge.patterns.ui.umldesigner

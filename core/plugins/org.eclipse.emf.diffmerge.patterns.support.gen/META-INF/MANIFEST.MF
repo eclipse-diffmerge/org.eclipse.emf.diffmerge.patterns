@@ -17,3 +17,4 @@ Export-Package: org.eclipse.emf.diffmerge.patterns.support.gen,
  org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.impl,
  org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.util
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: org.eclipse.emf.diffmerge.patterns.support.gen

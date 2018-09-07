@@ -1,41 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- <copyright>
- 
   Copyright (c) 2010-2018 Thales Global Services S.A.S.
-  All rights reserved. This program and the accompanying materials
-   are made available under the terms of the Eclipse Public License v1.0
-  which accompanies this distribution, and is available at
-  http://www.eclipse.org/legal/epl-v10.html
+  This program and the accompanying materials are made
+  available under the terms of the Eclipse Public License 2.0
+  which is available at https://www.eclipse.org/legal/epl-2.0/
+  
+  SPDX-License-Identifier: EPL-2.0
   
    Contributors:
   Thales Global Services S.A.S - initial API and implementation
-  
- </copyright>
 -->
 <feature
       id="org.eclipse.emf.diffmerge.patterns.sdk.feature"
-      label="Modeling Patterns Generic Framework (Incubation)"
+      label="%featureName"
       version="0.10.0.qualifier"
-      provider-name="Eclipse Modeling Project"
+      provider-name="%providerName"
       license-feature="org.eclipse.license"
-      license-feature-version="1.0.1">
+      license-feature-version="0.0.0">
 
    <description>
-      A technology that supports the creation, storage, application and update of modeling patterns.
-
-A pattern can be created from model elements and stored in a catalog, which is a separate file. As a result, the model elements form the first instance of the pattern. The pattern can be applied at a specific location in the same model or in a different one, which gives birth to a new instance. When a pattern is applied, each of its elements is added into the model or merged with an existing element of the model. &quot;Merged&quot; means that the characteristics of the two elements are combined.
-
-Patterns and instances have their own separate life cycles, but they can be synchronized whenever needed. Concretely, it is possible to check that an instance still conforms to its pattern and have an overview of the differences. If there are differences, the instance can be updated according to the last version of the pattern. Conversely, every instance can also be used for updating the pattern, thus allowing other instances to be updated accordingly.
+      %description
    </description>
 
    <copyright>
-      Copyright (c) 2010-2018 Thales Global Services S.A.S.
-All rights reserved. This program and the accompanying materials
-are made available under the terms of the Eclipse Public License
-v1.0
-which accompanies this distribution, and is available at
-http://www.eclipse.org/legal/epl-v10.html
+      %copyright
    </copyright>
 
    <license url="%licenseURL">
