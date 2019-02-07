@@ -21,8 +21,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.ECollections;
-import org.eclipse.emf.diffmerge.api.IMatch;
-import org.eclipse.emf.diffmerge.api.Role;
+import org.eclipse.emf.diffmerge.generic.api.IMatch;
+import org.eclipse.emf.diffmerge.generic.api.Role;
 import org.eclipse.emf.diffmerge.impl.scopes.FilteredModelScope;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication;
 import org.eclipse.emf.diffmerge.patterns.core.api.locations.IAtomicLocation;
@@ -154,8 +154,8 @@ public class TemplatePatternCreationSpecification extends AbstractModifiableTemp
         new TemplatePatternDiffPolicy(), new TemplatePatternMergePolicy(), null);
     mergeDifferences();
     //Initialize virtual resource contents and mappings
-    Collection<IMatch> completedMatches = getComparison().getMapping().getCompletedMatches(Role.REFERENCE);
-    for(IMatch match : completedMatches){
+    Collection<IMatch<EObject>> completedMatches = getComparison().getMapping().getCompletedMatches(Role.REFERENCE);
+    for(IMatch<EObject> match : completedMatches){
       EObject ref = match.get(Role.REFERENCE);
       if(ref != null){
         _noIdsMap.put(ref, match.get(Role.TARGET));
@@ -165,7 +165,7 @@ public class TemplatePatternCreationSpecification extends AbstractModifiableTemp
     Map<ComparableReferenceLocation, List<EObject>> origins =
       new HashMap<ComparableReferenceLocation, List<EObject>>();
     ISemanticRuleProvider ruleProvider = getSemanticRuleProvider();
-    List<EObject> contents = getModelScope().getContents();
+    List<EObject> contents = getModelScope().getRoots();
     for (EObject root : contents) {
       if (ruleProvider.getOwnershipDerivationLevel(root) == 0 || contents.size() == 1) {
         // Root element requires role creation

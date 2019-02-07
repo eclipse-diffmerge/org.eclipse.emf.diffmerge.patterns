@@ -40,7 +40,6 @@ public class ResetPersistentSelectionAction extends AbstractModelBasedAction {
 	@Override
 	protected void coreRun(List<Object> selection_p) {
 	  PatternsUIPlugin.getDefault().getPersistentSelection().reset();
-	  @SuppressWarnings("cast")
 	  ISourceProviderService sourceProviderService =
       (ISourceProviderService) PlatformUI.getWorkbench().getService(ISourceProviderService.class);
     ISourceProvider source = sourceProviderService.getSourceProvider(

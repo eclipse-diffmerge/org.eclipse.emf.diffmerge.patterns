@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
+import org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsEnginePlugin;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePatternApplicationScope.PatternInstanceMarkerFilter;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider;
@@ -40,7 +40,7 @@ public class ElementInclusionDialog extends
 AbstractElementSelectionDialog<Collection<EObject>> {
 	
 	/** The non-null type of the element to merge */
-	protected final IModelScope _scope;
+	protected final ITreeDataScope<EObject> _scope;
 	
 	/** The initial selection */
 	protected final Collection<? extends EObject> _initialSelection;
@@ -55,7 +55,7 @@ AbstractElementSelectionDialog<Collection<EObject>> {
    * @param scope_p a non-null model scope for restricting eligibility
    */
   public ElementInclusionDialog(Shell parentShell_p, String message_p, EObject context_p,
-      Collection<? extends EObject> initialSelection_p, IModelScope scope_p) {
+      Collection<? extends EObject> initialSelection_p, ITreeDataScope<EObject> scope_p) {
     this(parentShell_p, message_p, getRelevantElements(context_p),
         initialSelection_p, scope_p);
   }
@@ -103,7 +103,7 @@ AbstractElementSelectionDialog<Collection<EObject>> {
    */
   public ElementInclusionDialog(Shell parentShell_p, String message_p,
       Collection<? extends EObject> candidates_p,
-      Collection<? extends EObject> initialSelection_p, IModelScope scope_p) {
+      Collection<? extends EObject> initialSelection_p, ITreeDataScope<EObject> scope_p) {
     super(parentShell_p, message_p == null? Messages.ElementInclusionDialog_Prompt: message_p,
         candidates_p);
     _initialSelection = initialSelection_p;

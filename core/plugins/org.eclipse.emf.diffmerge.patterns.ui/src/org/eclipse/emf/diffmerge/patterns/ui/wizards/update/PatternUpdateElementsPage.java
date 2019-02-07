@@ -11,8 +11,8 @@
  **********************************************************************/
 package org.eclipse.emf.diffmerge.patterns.ui.wizards.update;
 
-import org.eclipse.emf.diffmerge.api.IMatch;
-import org.eclipse.emf.diffmerge.api.Role;
+import org.eclipse.emf.diffmerge.generic.api.IMatch;
+import org.eclipse.emf.diffmerge.generic.api.Role;
 import org.eclipse.emf.diffmerge.diffdata.EMatch;
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.AbstractModifiableTemplatePatternSpecification;
@@ -29,6 +29,7 @@ import org.eclipse.emf.diffmerge.ui.viewers.FeaturesViewer;
 import org.eclipse.emf.diffmerge.ui.viewers.FeaturesViewer.FeaturesInput;
 import org.eclipse.emf.diffmerge.ui.viewers.ValuesViewer;
 import org.eclipse.emf.diffmerge.ui.viewers.ValuesViewer.ValuesInput;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -306,7 +307,7 @@ extends AbstractModifiableTemplateElementsPage<TemplatePatternUpdateSpecificatio
             if(!((StructuredSelection)detailSelection).isEmpty()){
               Object obj =((StructuredSelection)detailSelection).getFirstElement();
               if(obj instanceof EStructuralFeature){
-                MatchAndFeature maf = new MatchAndFeatureImpl(_selectedMatch, (EStructuralFeature)obj);
+                MatchAndFeature maf = new MatchAndFeatureImpl(_selectedMatch, obj, obj instanceof EAttribute);
                 // Target viewer input
                 ValuesInput targetInput = new ValuesInput(_diffNode, maf);
                 _targetViewer.setInput(targetInput);
@@ -336,7 +337,7 @@ extends AbstractModifiableTemplateElementsPage<TemplatePatternUpdateSpecificatio
         if(obj != null){
           if(obj instanceof EObject){
             // details feature viewer
-            IMatch match = getData().getVisualizationComparison().getMapping().getMatchFor(
+            IMatch<EObject> match = getData().getVisualizationComparison().getMapping().getMatchFor(
                 (EObject)obj, Role.TARGET);
             if(match instanceof EMatch){
               _selectedMatch = (EMatch) match;

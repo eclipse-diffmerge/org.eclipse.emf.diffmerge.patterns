@@ -18,9 +18,9 @@ import java.util.List;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.UniqueEList;
-import org.eclipse.emf.diffmerge.api.IMatch;
-import org.eclipse.emf.diffmerge.api.Role;
-import org.eclipse.emf.diffmerge.api.diff.IDifference;
+import org.eclipse.emf.diffmerge.generic.api.IMatch;
+import org.eclipse.emf.diffmerge.generic.api.Role;
+import org.eclipse.emf.diffmerge.generic.api.diff.IDifference;
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication;
 import org.eclipse.emf.diffmerge.patterns.core.api.ext.IDeleteOperationProvider;
@@ -187,8 +187,8 @@ public class TemplatePatternApplicationComparison extends TemplatePatternCompari
     TemplatePatternData data = getPatternData();
     if (data != null) {
       // Only take the last changes because we can be multipart
-      Collection<IMatch> updatedMatches = getLastUpdatedMatches();
-      for (IMatch match : updatedMatches) {
+      Collection<IMatch<EObject>> updatedMatches = getLastUpdatedMatches();
+      for (IMatch<EObject> match : updatedMatches) {
         EObject instanceElement = match.get(getApplicationRole());
         EObject templateElement = match.get(getPatternRole());
         String mappingMultipart = getMainMultipart();
@@ -258,7 +258,7 @@ public class TemplatePatternApplicationComparison extends TemplatePatternCompari
    * Return the differences corresponding to an unmatched presence on the pattern side
    * @return a non-null, potentially empty, unmodifiable list
    */
-  private List<IDifference> getPresencesInPattern() {
+  private Collection<IDifference<EObject>> getPresencesInPattern() {
     return getDifferences(getPatternRole());
   }
 
@@ -300,7 +300,7 @@ public class TemplatePatternApplicationComparison extends TemplatePatternCompari
    * @param root_p a non-null root of the application scope
    */
   private void storeRootWithRole(EObject root_p) {
-    IMatch match = getMapping().getMatchFor(root_p, getApplicationRole());
+    IMatch<EObject> match = getMapping().getMatchFor(root_p, getApplicationRole());
     EObject original = match.get(getPatternRole());
     TemplatePatternRole role = getRoleOf(original);
     if (role != null && role.acceptsAddition()) {
@@ -323,7 +323,7 @@ public class TemplatePatternApplicationComparison extends TemplatePatternCompari
     IStatus status = null;
     boolean hadDifferences = false;
     Collection<EObject> additions = new FOrderedSet<EObject>();
-    Collection<IDifference> merges = new FOrderedSet<IDifference>();
+    Collection<IDifference<EObject>> merges = new FOrderedSet<IDifference<EObject>>();
     int nbCandidateChanges = 0;
     int nbChangesMade = 0;
     // Updating application, one step per multipart
@@ -331,7 +331,7 @@ public class TemplatePatternApplicationComparison extends TemplatePatternCompari
       if (hasMultiparts())
         setCurrentMultipart(_multipartsIterator.next());
       status = compute();
-      Collection<IDifference> presencesInPattern = destructive_p? getRemainingDifferences():
+      Collection<IDifference<EObject>> presencesInPattern = destructive_p? getRemainingDifferences():
         getPresencesInPattern();
       if (!presencesInPattern.isEmpty()) {
         hadDifferences = true;
@@ -400,11 +400,11 @@ public class TemplatePatternApplicationComparison extends TemplatePatternCompari
    * @return whether the operation succeeded
    */
   private boolean updateModelStep(boolean destructive_p, Collection<EObject> additions_p,
-      Collection<IDifference> merges_p) {
+      Collection<IDifference<EObject>> merges_p) {
     boolean result = true;
-    Collection<IDifference> initialDifferences =
+    Collection<IDifference<EObject>> initialDifferences =
         destructive_p? getRemainingDifferences(): getPresencesInPattern();
-        Collection<IDifference> mergedDifferences =
+        Collection<IDifference<EObject>> mergedDifferences =
             merge(initialDifferences, getApplicationRole(), true, null);
         merges_p.addAll(mergedDifferences);
         // Store elements added according to addition roles and semantic rules
@@ -413,7 +413,7 @@ public class TemplatePatternApplicationComparison extends TemplatePatternCompari
         if(_application.getScopeElement()!= null)
           ruleProvider = TemplatePatternsEnginePlugin.getDefault().getSemanticRuleProviderFor(_application.getScopeElement());
 
-        for (EObject root : getScope(getApplicationRole()).getContents()) {
+        for (EObject root : getScope(getApplicationRole()).getRoots()) {
           if (ruleProvider != null && !ruleProvider.isAllowedToBeRoot(root)) {
             // First attempt: use role
             if (root.eContainer() == null)
@@ -432,7 +432,7 @@ public class TemplatePatternApplicationComparison extends TemplatePatternCompari
         }
         if (result) {
           String suffix = getMultipartSuffix();
-          for (IMatch addMatch : getMapping().getCompletedMatches(getApplicationRole())) {
+          for (IMatch<EObject> addMatch : getMapping().getCompletedMatches(getApplicationRole())) {
             EObject added = addMatch.get(getApplicationRole());
             // Enforce ID registration (MelodymodellerResourceImpl overrides getEObjectByID(String)!)
             ModelImplUtil.setXMLID(added, EcoreUtil.getID(added));

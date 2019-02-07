@@ -14,8 +14,8 @@ package org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.diffmerge.api.IMatch;
-import org.eclipse.emf.diffmerge.api.Role;
+import org.eclipse.emf.diffmerge.generic.api.IMatch;
+import org.eclipse.emf.diffmerge.generic.api.Role;
 import org.eclipse.emf.diffmerge.impl.policies.DefaultDiffPolicy;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsEnginePlugin;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider;
@@ -64,10 +64,10 @@ public class TemplatePatternDiffPolicy extends DefaultDiffPolicy {
   }
 
   /**
-   * @see org.eclipse.emf.diffmerge.api.IDiffPolicy#coverMatch(IMatch)
+   * @see org.eclipse.emf.diffmerge.impl.policies.DefaultDiffPolicy#coverMatch(org.eclipse.emf.diffmerge.generic.api.IMatch)
    */
   @Override
-  public boolean coverMatch(IMatch match_p) {
+  public boolean coverMatch(IMatch<EObject> match_p) {
     EObject obj;
     if(match_p.getUncoveredRole() != null)
       obj = match_p.get(match_p.getUncoveredRole().opposite());

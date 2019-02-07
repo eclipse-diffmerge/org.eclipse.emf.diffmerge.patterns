@@ -11,8 +11,9 @@
  **********************************************************************/
 package org.eclipse.emf.diffmerge.patterns.templates.engine.specifications;
 
-import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
+import org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole;
+import org.eclipse.emf.ecore.EObject;
 
 
 /**
@@ -37,13 +38,13 @@ public interface IModifiableTemplatePatternSpecification extends IBijectiveTempl
    * Return the scope of the elements related to the pattern within the model
    * @return a non-null model scope
    */
-  IModelScope getModelScope();
+  ITreeDataScope<EObject> getModelScope();
   
   /**
    * Return the scope of the template elements within the template pattern
    * @return a non-null model scope
    */
-  IModelScope getPatternScope();
+  ITreeDataScope<EObject> getPatternScope();
   
   /**
    * Return whether layout data must be included in the pattern

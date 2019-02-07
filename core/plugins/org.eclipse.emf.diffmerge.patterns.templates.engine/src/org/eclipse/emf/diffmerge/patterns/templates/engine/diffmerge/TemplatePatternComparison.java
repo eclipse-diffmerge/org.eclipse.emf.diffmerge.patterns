@@ -18,15 +18,15 @@ import java.util.LinkedHashMap;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.diffmerge.api.IDiffPolicy;
-import org.eclipse.emf.diffmerge.api.IMatch;
-import org.eclipse.emf.diffmerge.api.IMatchPolicy;
-import org.eclipse.emf.diffmerge.api.IMergePolicy;
-import org.eclipse.emf.diffmerge.api.IMergeSelector;
-import org.eclipse.emf.diffmerge.api.Role;
-import org.eclipse.emf.diffmerge.api.diff.IDifference;
+import org.eclipse.emf.diffmerge.generic.api.IDiffPolicy;
+import org.eclipse.emf.diffmerge.generic.api.IMatch;
+import org.eclipse.emf.diffmerge.generic.api.IMatchPolicy;
+import org.eclipse.emf.diffmerge.generic.api.IMergePolicy;
+import org.eclipse.emf.diffmerge.generic.api.IMergeSelector;
+import org.eclipse.emf.diffmerge.generic.api.Role;
+import org.eclipse.emf.diffmerge.generic.api.diff.IDifference;
+import org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope;
 import org.eclipse.emf.diffmerge.api.scopes.IEditableModelScope;
-import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
 import org.eclipse.emf.diffmerge.diffdata.impl.EComparisonImpl;
 import org.eclipse.emf.diffmerge.impl.policies.DefaultMatchPolicy;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
@@ -45,7 +45,7 @@ public class TemplatePatternComparison extends EComparisonImpl {
   private final TemplatePattern _pattern;
 
   /** A non-null map from elements of the evolving role to updated matches */
-  private final EMap<EObject, IMatch> _updatedMatches;
+  private final EMap<EObject, IMatch<EObject>> _updatedMatches;
 
 
   /**
@@ -58,17 +58,17 @@ public class TemplatePatternComparison extends EComparisonImpl {
       IEditableModelScope patternScope_p, IEditableModelScope modelScope_p) {
     super(modelScope_p, patternScope_p);
     _pattern = pattern_p;
-    _updatedMatches = new FHashMap<EObject, IMatch>();
+    _updatedMatches = new FHashMap<EObject, IMatch<EObject>>();
   }
 
   /**
    * Collect the updated matches after a merge
    */
   protected void collectUpdatedMatches() {
-    for (IMatch match : getMapping().getCompletedMatches(getEvolvingRole())) {
+    for (IMatch<EObject> match : getMapping().getCompletedMatches(getEvolvingRole())) {
       _updatedMatches.put(match.get(getEvolvingRole()), match);
     }
-    for (IMatch match : getMapping().getCompletedMatches(getEvolvingRole().opposite())) {
+    for (IMatch<EObject> match : getMapping().getCompletedMatches(getEvolvingRole().opposite())) {
       _updatedMatches.put(match.get(getEvolvingRole()), match);
     }
   }
@@ -86,8 +86,8 @@ public class TemplatePatternComparison extends EComparisonImpl {
    * computation/update
    * @return a non-null, potentially empty, unmodifiable set
    */
-  public Collection<IMatch> getLastUpdatedMatches() {
-    Collection<IMatch> result = new FOrderedSet<IMatch>();
+  public Collection<IMatch<EObject>> getLastUpdatedMatches() {
+    Collection<IMatch<EObject>> result = new FOrderedSet<IMatch<EObject>>();
     result.addAll(getMapping().getCompletedMatches(getPatternRole()));
     result.addAll(getMapping().getCompletedMatches(getPatternRole().opposite()));
     return Collections.unmodifiableCollection(result);
@@ -114,7 +114,7 @@ public class TemplatePatternComparison extends EComparisonImpl {
    * the further updates
    * @return a non-null collection
    */
-  public Collection<IMatch> getUpdatedMatches() {
+  public Collection<IMatch<EObject>> getUpdatedMatches() {
     return _updatedMatches.values();
   }
 
@@ -125,16 +125,16 @@ public class TemplatePatternComparison extends EComparisonImpl {
   public IStatus update(final LinkedHashMap<EObject, EObject> noIdsMap_p) {
     final EMap<EObject, EObject> existingMapping = getMapping().toMap(
         getEvolvingRole().opposite(), getEvolvingRole()); // Pattern to model
-    final IMatchPolicy previousMatchPolicy = getLastMatchPolicy();
-    final IDiffPolicy previousDiffPolicy = getLastDiffPolicy();
-    final IMergePolicy previousMergePolicy = getLastMergePolicy();
+    final IMatchPolicy<EObject> previousMatchPolicy = getLastMatchPolicy();
+    final IDiffPolicy<EObject> previousDiffPolicy = getLastDiffPolicy();
+    final IMergePolicy<EObject> previousMergePolicy = getLastMergePolicy();
     clear(); // Also clears last policies
-    IMatchPolicy wrappingMatchPolicy = new DefaultMatchPolicy() {
+    IMatchPolicy<EObject> wrappingMatchPolicy = new DefaultMatchPolicy() {
       /**
-       * @see org.eclipse.emf.diffmerge.impl.policies.DefaultMatchPolicy#getMatchID(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.api.scopes.IModelScope)
+       * @see org.eclipse.emf.diffmerge.impl.policies.DefaultMatchPolicy#getMatchID(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope)
        */
       @Override
-      public Object getMatchID(EObject element_p, IModelScope scope_p){
+      public Object getMatchID(EObject element_p, ITreeDataScope<EObject> scope_p){
         EObject idProvider = element_p;
         EObject existingCounterPart = existingMapping.get(element_p);
         if (existingCounterPart != null)
@@ -152,25 +152,24 @@ public class TemplatePatternComparison extends EComparisonImpl {
   }
 
   /**
-   * 
-   * @see org.eclipse.emf.diffmerge.diffdata.impl.EComparisonImpl#merge(java.util.Collection, org.eclipse.emf.diffmerge.api.Role, boolean, org.eclipse.core.runtime.IProgressMonitor)
+   * @see org.eclipse.emf.diffmerge.generic.gdiffdata.impl.GComparisonImpl#merge(java.util.Collection, org.eclipse.emf.diffmerge.generic.api.Role, boolean, org.eclipse.core.runtime.IProgressMonitor)
    */
   @Override
-  public Collection<IDifference> merge(Collection<? extends IDifference> differences_p,
+  public Collection<IDifference<EObject>> merge(Collection<? extends IDifference<EObject>> differences_p,
       Role destination_p, boolean updateReferences_p, IProgressMonitor monitor_p) {
-    Collection<IDifference> result =
+    Collection<IDifference<EObject>> result =
         super.merge(differences_p, destination_p, updateReferences_p, monitor_p);
     collectUpdatedMatches();
     return result;
   }
 
   /**
-   * @see org.eclipse.emf.diffmerge.api.IComparison#merge(org.eclipse.emf.diffmerge.api.IMergeSelector, boolean, org.eclipse.core.runtime.IProgressMonitor)
+   * @see org.eclipse.emf.diffmerge.generic.gdiffdata.impl.GComparisonImpl#merge(org.eclipse.emf.diffmerge.generic.api.IMergeSelector, boolean, org.eclipse.core.runtime.IProgressMonitor)
    */
   @Override
-  public Collection<IDifference> merge(IMergeSelector merger_p,
+  public Collection<IDifference<EObject>> merge(IMergeSelector<EObject> merger_p,
       boolean updateReferences_p, IProgressMonitor monitor_p) {
-    Collection<IDifference> result =
+    Collection<IDifference<EObject>> result =
         super.merge(merger_p, updateReferences_p, monitor_p);
     collectUpdatedMatches();
     return result;

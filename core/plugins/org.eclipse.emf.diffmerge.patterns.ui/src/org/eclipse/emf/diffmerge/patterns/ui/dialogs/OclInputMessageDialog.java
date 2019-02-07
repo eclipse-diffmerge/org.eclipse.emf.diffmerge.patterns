@@ -69,6 +69,7 @@ import org.eclipse.swt.widgets.Shell;
  * @author Olivier Constant
  * @author Skander Turki
  */
+@SuppressWarnings("restriction")
 public class OclInputMessageDialog extends MessageDialog {
   
   /** The root widget */

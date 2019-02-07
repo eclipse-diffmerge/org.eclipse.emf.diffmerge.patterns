@@ -11,7 +11,7 @@
  **********************************************************************/
 package org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge;
 
-import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
+import org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope;
 import org.eclipse.emf.diffmerge.impl.policies.DefaultMatchPolicy;
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.core.api.ext.IIdProvider;
@@ -55,10 +55,10 @@ public class TemplatePatternUpdateMatchPolicy extends DefaultMatchPolicy{
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.impl.policies.DefaultMatchPolicy#getMatchID(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.api.scopes.IModelScope)
+   * @see org.eclipse.emf.diffmerge.impl.policies.DefaultMatchPolicy#getMatchID(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope)
    */
   @Override
-  public Object getMatchID(EObject element_p, IModelScope scope_p) {
+  public Object getMatchID(EObject element_p, ITreeDataScope<EObject> scope_p) {
     EditingDomain currentEditingDomain = null;
     IIdProvider idProvider = CorePatternsPlugin.getDefault().getIdProvider();
     Comparable<?> result = null;

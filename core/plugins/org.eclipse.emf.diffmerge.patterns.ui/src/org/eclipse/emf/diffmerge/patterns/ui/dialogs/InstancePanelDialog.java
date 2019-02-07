@@ -1721,7 +1721,7 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
    * Return the currently selected instances
    * @return a non-null, potentially empty, unmodifiable list
    */
-  @SuppressWarnings({ "cast", "unchecked" })
+  @SuppressWarnings("unchecked")
   protected List<IPatternInstance> getSelectedInstances() {
     IStructuredSelection selection = (IStructuredSelection) _viewer.getSelection();
     // We know the type is correct

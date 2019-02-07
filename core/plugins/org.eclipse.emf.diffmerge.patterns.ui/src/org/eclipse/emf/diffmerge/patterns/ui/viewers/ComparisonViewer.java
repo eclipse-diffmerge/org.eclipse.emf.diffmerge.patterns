@@ -14,12 +14,13 @@ package org.eclipse.emf.diffmerge.patterns.ui.viewers;
 import java.util.Collection;
 
 import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.diffmerge.api.IComparison;
-import org.eclipse.emf.diffmerge.api.IMatch;
-import org.eclipse.emf.diffmerge.api.Role;
-import org.eclipse.emf.diffmerge.api.diff.IAttributeValuePresence;
-import org.eclipse.emf.diffmerge.api.diff.IDifference;
-import org.eclipse.emf.diffmerge.api.diff.IReferenceValuePresence;
+import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
+import org.eclipse.emf.diffmerge.generic.api.IComparison;
+import org.eclipse.emf.diffmerge.generic.api.IMatch;
+import org.eclipse.emf.diffmerge.generic.api.Role;
+import org.eclipse.emf.diffmerge.generic.api.diff.IAttributeValuePresence;
+import org.eclipse.emf.diffmerge.generic.api.diff.IDifference;
+import org.eclipse.emf.diffmerge.generic.api.diff.IReferenceValuePresence;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePatternApplicationComparison;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePatternComparison;
 import org.eclipse.emf.diffmerge.patterns.ui.util.UIUtil;
@@ -38,7 +39,7 @@ import org.eclipse.swt.widgets.Composite;
 public class ComparisonViewer extends ModelSubsetViewer {
   
   /** The non-null comparison being represented */
-  private IComparison _comparison;
+  private IComparison<EObject> _comparison;
   
   /**
    * Constructor
@@ -55,7 +56,7 @@ public class ComparisonViewer extends ModelSubsetViewer {
    * Return the comparison represented by this viewer
    * @return a non-null comparison
    */
-  protected IComparison getComparison() {
+  protected IComparison<EObject> getComparison() {
     return _comparison;
   }
   
@@ -86,9 +87,9 @@ public class ComparisonViewer extends ModelSubsetViewer {
       // Non-default behavior for elements present in reference only
       // and whose container is present in both sides
       EObject element = (EObject)element_p;
-      IMatch match = _comparison.getMapping().getMatchFor(element, Role.REFERENCE);
+      IMatch<EObject> match = _comparison.getMapping().getMatchFor(element, Role.REFERENCE);
       if (match != null && match.isPartial()) {
-        IMatch containerMatch = _comparison.getContainerOf(match, Role.REFERENCE);
+        IMatch<EObject> containerMatch = _comparison.getContainerOf(match, Role.REFERENCE);
         if (containerMatch != null && !containerMatch.isPartial())
           result = containerMatch.get(Role.TARGET);
       }
@@ -120,12 +121,12 @@ public class ComparisonViewer extends ModelSubsetViewer {
    * @param comparison_p a non-null comparison
    * @return a non-null, potentially empty, unmodifiable collection
    */
-  protected Collection<EObject> getValidElements(IComparison comparison_p) {
+  protected Collection<EObject> getValidElements(IComparison<EObject> comparison_p) {
     Collection<EObject> result = new FOrderedSet<EObject>();
-    result.addAll(comparison_p.getScope(Role.TARGET).getAllContentsAsSet());
-    TreeIterator<IMatch> it = comparison_p.getAllContents(Role.REFERENCE);
+    result.addAll(((IModelScope)comparison_p.getScope(Role.TARGET)).getAllContentsAsSet());
+    TreeIterator<IMatch<EObject>> it = comparison_p.getAllContents(Role.REFERENCE);
     while (it.hasNext()) {
-      IMatch match = it.next();
+      IMatch<EObject> match = it.next();
       if (match.isPartial())
         result.add(match.get(Role.REFERENCE));
     }
@@ -138,7 +139,7 @@ public class ComparisonViewer extends ModelSubsetViewer {
    */
   protected boolean hasBeenAdded(EObject element_p) {
     boolean result = false;
-    IMatch match = _comparison.getMapping().getMatchFor(element_p,
+    IMatch<EObject> match = _comparison.getMapping().getMatchFor(element_p,
         TemplatePatternApplicationComparison.getApplicationRole());
     if (match != null)
       result = match.isPartial();
@@ -151,7 +152,7 @@ public class ComparisonViewer extends ModelSubsetViewer {
    */
   protected boolean hasBeenModified(EObject element_p) {
     boolean result = false;
-    IMatch match = _comparison.getMapping().getMatchFor(element_p,
+    IMatch<EObject> match = _comparison.getMapping().getMatchFor(element_p,
         TemplatePatternApplicationComparison.getApplicationRole());
     if (match != null)
       result = !match.isPartial() && hasModificationDifference(match);
@@ -164,7 +165,7 @@ public class ComparisonViewer extends ModelSubsetViewer {
    */
   protected boolean hasBeenRemoved(EObject element_p) {
     boolean result = false;
-    IMatch match = _comparison.getMapping().getMatchFor(element_p,
+    IMatch<EObject> match = _comparison.getMapping().getMatchFor(element_p,
         TemplatePatternComparison.getPatternRole());
     if (match != null)
       result = match.isPartial();
@@ -176,10 +177,10 @@ public class ComparisonViewer extends ModelSubsetViewer {
    * be considered as modified
    * @param match_p a non-null match
    */
-  protected boolean hasModificationDifference(IMatch match_p) {
+  protected boolean hasModificationDifference(IMatch<EObject> match_p) {
     if (match_p.getOwnershipDifference(Role.TARGET) != null)
       return true;
-    for (IDifference diff : match_p.getRelatedDifferences()) {
+    for (IDifference<EObject> diff : match_p.getRelatedDifferences()) {
       if (isModificationDifference(diff))
         return true;
     }
@@ -191,11 +192,11 @@ public class ComparisonViewer extends ModelSubsetViewer {
    * of the corresponding element
    * @param diff_p a non-null difference
    */
-  protected boolean isModificationDifference(IDifference diff_p) {
+  protected boolean isModificationDifference(IDifference<EObject> diff_p) {
     if (diff_p instanceof IAttributeValuePresence)
       return true;
     if (diff_p instanceof IReferenceValuePresence) {
-      EReference ref = ((IReferenceValuePresence)diff_p).getFeature();
+      EReference ref = (EReference)((IReferenceValuePresence<?>)diff_p).getFeature();
       if (!ref.isContainment())
         return true;
     }
@@ -206,9 +207,10 @@ public class ComparisonViewer extends ModelSubsetViewer {
    * @see org.eclipse.emf.diffmerge.patterns.ui.viewers.ModelSubsetViewer#setInput(java.lang.Object)
    */
   @Override
+  @SuppressWarnings("unchecked")
   public void setInput(Object input_p) {
     if (input_p instanceof IComparison) {
-      _comparison = (IComparison)input_p;
+      _comparison = (IComparison<EObject>)input_p;
       super.setInput(getValidElements(_comparison));
     } else {
       super.setInput(input_p);

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.diffmerge.api.IMatch;
+import org.eclipse.emf.diffmerge.generic.api.IMatch;
 import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.PatternRepository;
 import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractUpdatePatternLayoutInCatalogOperation;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.operations.UpdateCatalogOperation;
@@ -99,7 +99,7 @@ extends SiriusAbstractPatternWithLayoutOperation<TemplatePattern>{
         pattern_p.getLayoutData().clear();
         for (Entry<EObject, Layout> entry : layoutData.entrySet()) {
           EObject sourcePatternElement = entry.getKey();
-          IMatch match = interPatternComparison_p.getMapping().getMatchFor(sourcePatternElement,
+          IMatch<EObject> match = interPatternComparison_p.getMapping().getMatchFor(sourcePatternElement,
               TemplatePatternComparison.getPatternRole().opposite());
           if (match != null) {
             EObject updatedElement = match.get(TemplatePatternComparison.getPatternRole());

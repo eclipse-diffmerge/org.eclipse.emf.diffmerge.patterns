@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
+import org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope;
 import org.eclipse.emf.diffmerge.impl.scopes.FilteredModelScope;
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternRole;
@@ -98,7 +98,7 @@ extends AbstractTemplateElementsPage<T> {
     super(title_p, message_p, data_p);
     EObject context = null;
     try{
-      context = data_p.getModelScope().getContents().get(0);
+      context = data_p.getModelScope().getRoots().get(0);
     }
     catch(Exception ex){
       //Nothing
@@ -181,10 +181,10 @@ extends AbstractTemplateElementsPage<T> {
        */
       @Override
       public void widgetSelected(SelectionEvent e_p) {
-        final IModelScope modelScope = getData().getModelScope();
+        final ITreeDataScope<EObject> modelScope = getData().getModelScope();
         EObject root = EcoreUtil.getRootContainer(getData().getScopeElement());
         ElementInclusionDialog dialog = new ElementInclusionDialog(
-            getShell(), null, root, modelScope.getContents(), modelScope);
+            getShell(), null, root, modelScope.getRoots(), modelScope);
         int answer = dialog.open();
         if (Window.OK == answer) {
           Collection<EObject> choices = dialog.getChoice();
@@ -376,7 +376,7 @@ extends AbstractTemplateElementsPage<T> {
           if (parent != null && !getData().isInModelScope(parent))
             parents.add(parent);
         }
-        IModelScope modelScope = getData().getModelScope();
+        ITreeDataScope<EObject> modelScope = getData().getModelScope();
         ElementInclusionDialog dialog = new ElementInclusionDialog(
             getShell(), null, parents, parents, modelScope);
         int answer = dialog.open();
@@ -778,7 +778,7 @@ extends AbstractTemplateElementsPage<T> {
    */
   protected void promptAndAddDependencies(Collection<? extends EObject> dependencies_p) {
     if (!dependencies_p.isEmpty()) {
-      IModelScope modelScope = getData().getModelScope();
+      ITreeDataScope<EObject> modelScope = getData().getModelScope();
       ElementInclusionDialog dialog = new ElementInclusionDialog(
           getShell(), Messages.AbstractModifiableTemplateElementsPage_SelectDependencies,
           dependencies_p, dependencies_p, modelScope);
@@ -800,7 +800,7 @@ extends AbstractTemplateElementsPage<T> {
   protected void promptAndAddInstances(
       Collection<? extends AbstractPatternInstance> instances_p) {
     if (!instances_p.isEmpty()) {
-      IModelScope modelScope = getData().getModelScope();
+      ITreeDataScope<EObject> modelScope = getData().getModelScope();
       ElementInclusionDialog dialog = new ElementInclusionDialog(
           getShell(), Messages.AbstractModifiableTemplateElementsPage_IncludeInstancesPrompt,
           instances_p, instances_p, modelScope);

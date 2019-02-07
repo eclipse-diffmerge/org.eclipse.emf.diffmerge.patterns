@@ -22,9 +22,8 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.diffmerge.api.diff.IDifference;
-import org.eclipse.emf.diffmerge.api.scopes.IFeaturedModelScope;
-import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
+import org.eclipse.emf.diffmerge.generic.api.diff.IDifference;
+import org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope;
 import org.eclipse.emf.diffmerge.impl.scopes.FilteredModelScope;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication;
 import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
@@ -266,10 +265,10 @@ public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider{
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#initializeTargetScope(org.eclipse.emf.diffmerge.api.scopes.IFeaturedModelScope, org.eclipse.emf.diffmerge.api.scopes.IFeaturedModelScope)
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#initializeTargetScope(org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope, org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope)
    */
-  public void initializeTargetScope(IFeaturedModelScope referenceScope_p,
-      IFeaturedModelScope targetScope_p){
+  public void initializeTargetScope(ITreeDataScope<EObject> referenceScope_p,
+      ITreeDataScope<EObject> targetScope_p){
     for(ISemanticRuleProvider provider : _semanticRuleProviders){
       provider.initializeTargetScope(referenceScope_p, targetScope_p);
     }
@@ -301,9 +300,9 @@ public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider{
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#hasNotInScopeDependencies(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.api.scopes.IModelScope)
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#hasNotInScopeDependencies(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope)
    */
-  public boolean hasNotInScopeDependencies(EObject sourceElement_p, IModelScope scope_p) {
+  public boolean hasNotInScopeDependencies(EObject sourceElement_p, ITreeDataScope<EObject> scope_p) {
     boolean result = false;
     for(ISemanticRuleProvider provider : _semanticRuleProviders){
       result = provider.hasNotInScopeDependencies(sourceElement_p, scope_p);
@@ -420,7 +419,7 @@ public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider{
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#postPatternApplication(org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication, java.util.Collection, java.util.Collection)
    */
   public void postPatternApplication(IPatternApplication _application,
-      Collection<EObject> additions, Collection<IDifference> merges) {
+      Collection<EObject> additions, Collection<IDifference<EObject>> merges) {
     for(ISemanticRuleProvider provider : _semanticRuleProviders){
       provider.postPatternApplication(_application, additions, merges);
     }

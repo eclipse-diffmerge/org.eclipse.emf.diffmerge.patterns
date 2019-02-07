@@ -25,9 +25,10 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.diffmerge.api.IMatch;
-import org.eclipse.emf.diffmerge.api.Role;
 import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
+import org.eclipse.emf.diffmerge.generic.api.IMatch;
+import org.eclipse.emf.diffmerge.generic.api.Role;
+import org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope;
 import org.eclipse.emf.diffmerge.impl.scopes.FilteredModelScope;
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
@@ -284,7 +285,7 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.IBijectiveTemplatePatternSpecification#getAllElements()
    */
   public Collection<EObject> getAllElements() {
-    return getModelScope().getAllContentsAsSet();
+    return ((IModelScope)getModelScope()).getAllContentsAsSet();
   }
 
   /**
@@ -300,7 +301,7 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
    */
   public EObject getCounterpart(EObject element_p, boolean fromPattern_p) {
     Role elementRole = fromPattern_p? getPatternRole(): getPatternRole().opposite();
-    IMatch match = _comparison.getMapping().getMatchFor(element_p, elementRole);
+    IMatch<EObject> match = _comparison.getMapping().getMatchFor(element_p, elementRole);
     EObject result = match != null? match.get(elementRole.opposite()): null;
     return result;
   }
@@ -312,15 +313,15 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
   public Collection<EObject> getDependencies() {
     List<EObject> result = new FOrderedSet<EObject>();
     if (getComparison() != null) {
-      IModelScope sourceScope = getModelScope();
-      TreeIterator<EObject> it = sourceScope.getAllContents();
+      ITreeDataScope<EObject> sourceScope = getModelScope();
+      TreeIterator<EObject> it = sourceScope.iterator();
       while (it.hasNext()) {
         EObject sourceElement = it.next();
         if (INSTANCE_FILTER.accepts(sourceElement)) {
           result.addAll(getDependencies(sourceElement));
         } else {
           it.prune();
-          if (sourceElement == sourceScope.getContents().get(sourceScope.getContents().size()-1))
+          if (sourceElement == sourceScope.getRoots().get(sourceScope.getRoots().size()-1))
             break; // For EDM bug 412378 fixed 05/07/2013
         }
       }
@@ -353,7 +354,7 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
     List<EObject> result = new FOrderedSet<EObject>();
     if (getComparison() != null && INSTANCE_FILTER.accepts(sourceElement_p) &&
         isInModelScope(sourceElement_p)) {
-      IModelScope sourceScope = getModelScope();
+      ITreeDataScope<EObject> sourceScope = getModelScope();
       ISemanticRuleProvider ruleProvider = getSemanticRuleProvider();
       List<EObject> candidates = ruleProvider.getDependencies(sourceElement_p);
       for (EObject candidate : candidates) {
@@ -370,7 +371,7 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
    */
   protected Collection<IPatternInstance> getIncludedInstances() {
     List<IPatternInstance> result = new FArrayList<IPatternInstance>();
-    for (EObject root : getModelScope().getContents()) {
+    for (EObject root : getModelScope().getRoots()) {
       if (root instanceof IPatternInstance)
         result.add((IPatternInstance)root);
     }
@@ -388,14 +389,14 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
   /**
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.IModifiableTemplatePatternSpecification#getModelScope()
    */
-  public IModelScope getModelScope() {
+  public ITreeDataScope<EObject> getModelScope() {
     return _comparison.getScope(getPatternRole().opposite());
   }
   
   /**
    * @see org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.IModifiableTemplatePatternSpecification#getPatternScope()
    */
-  public IModelScope getPatternScope() {
+  public ITreeDataScope<EObject> getPatternScope() {
     return _comparison.getScope(getPatternRole());
   }
 
@@ -406,8 +407,8 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
   public Collection<AbstractPatternInstance> getRelatedInstances() {
     List<AbstractPatternInstance> result = new FOrderedSet<AbstractPatternInstance>();
     if (getComparison() != null) {
-      IModelScope sourceScope = getModelScope();
-      TreeIterator<EObject> it = sourceScope.getAllContents();
+      ITreeDataScope<EObject> sourceScope = getModelScope();
+      TreeIterator<EObject> it = sourceScope.iterator();
       while (it.hasNext()) {
         EObject sourceElement = it.next();
         result.addAll(getRelatedInstances(sourceElement));
@@ -490,7 +491,7 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
    */
   public EObject getScopeElement() {
     EObject result = null;
-    List<EObject> contents = getModelScope().getContents();
+    List<EObject> contents = getModelScope().getRoots();
     if (!contents.isEmpty())
       result = contents.get(0);
     else
@@ -531,8 +532,8 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
    */
   public boolean hasDependencies() {
     if (getComparison() != null) {
-      IModelScope sourceScope = getModelScope();
-      TreeIterator<EObject> it = sourceScope.getAllContents();
+      ITreeDataScope<EObject> sourceScope = getModelScope();
+      TreeIterator<EObject> it = sourceScope.iterator();
       while (it.hasNext()) {
         EObject sourceElement = it.next();
         if (INSTANCE_FILTER.accepts(sourceElement)) {
@@ -540,7 +541,7 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
             return true;
         } else {
           it.prune();
-          if (sourceElement == sourceScope.getContents().get(sourceScope.getContents().size()-1))
+          if (sourceElement == sourceScope.getRoots().get(sourceScope.getRoots().size()-1))
             break; // For EDM bug 412378 fixed 05/07/2013
         }
       }
@@ -568,7 +569,7 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
    */
   public boolean hasDependencies(EObject sourceElement_p) {
     if (getComparison() != null && isInModelScope(sourceElement_p)) {
-      IModelScope sourceScope = getModelScope();
+      ITreeDataScope<EObject> sourceScope = getModelScope();
       ISemanticRuleProvider ruleProvider = getSemanticRuleProvider();
       return ruleProvider.hasNotInScopeDependencies(sourceElement_p, sourceScope);
     }
@@ -584,8 +585,8 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
           CorePatternsPlugin.getDefault().getPatternSupportFor(getScopeElement());
       if (support != null) {
         Collection<? extends IPatternInstance> instancesToIgnore = getInstancesToIgnore();
-        IModelScope sourceScope = getModelScope();
-        TreeIterator<EObject> it = sourceScope.getAllContents();
+        ITreeDataScope<EObject> sourceScope = getModelScope();
+        TreeIterator<EObject> it = sourceScope.iterator();
         while (it.hasNext()) {
           EObject sourceElement = it.next();
           if (hasRelatedInstances(sourceElement, support, instancesToIgnore))
@@ -616,7 +617,7 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
    * Return whether the pattern contains elements which are not mapped to a role
    */
   public boolean hasUnmappedElements() {
-    Iterator<EObject> it = getModelScope().getAllContents();
+    Iterator<EObject> it = getModelScope().iterator();
     while (it.hasNext()) {
       EObject sourceElement = it.next();
       if (getRolesOf(sourceElement).isEmpty())
@@ -665,7 +666,7 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
    * @param element_p a non-null element
    */
   public boolean isInModelScope(EObject element_p) {
-    IMatch match =
+    IMatch<EObject> match =
         getComparison().getMapping().getMatchFor(element_p, getPatternRole().opposite());
     boolean result = match != null;
     return result;
@@ -785,8 +786,9 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
     //Merge
     mergeDifferences();
     //Store completed matches (added elements) ids 
-    Collection<IMatch> completedMatches = getComparison().getMapping().getCompletedMatches(Role.REFERENCE);
-    for(IMatch match : completedMatches){
+    Collection<IMatch<EObject>> completedMatches =
+        getComparison().getMapping().getCompletedMatches(Role.REFERENCE);
+    for(IMatch<EObject> match : completedMatches){
       EObject ref = match.get(Role.REFERENCE);
       if(ref != null){
         _noIdsMap.put(ref, match.get(Role.TARGET));
@@ -805,7 +807,7 @@ extends AbstractBijectiveTemplatePatternSpecification implements IModifiableTemp
     boolean rolesUpdated = false;
     ISemanticRuleProvider ruleProvider = getSemanticRuleProvider();
     for (EObject element : newSourceElements_p) {
-      if (getModelScope().getContents().contains(element) &&
+      if (getModelScope().getRoots().contains(element) &&
           getModelScope().getContents(element).isEmpty() &&
           ruleProvider.isMergeDependency(element) &&
           !ruleProvider.canBeAutomaticallyMerged(element)) {

@@ -14,9 +14,8 @@ package org.eclipse.emf.diffmerge.patterns.templates.engine.ext;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.diffmerge.api.diff.IDifference;
-import org.eclipse.emf.diffmerge.api.scopes.IFeaturedModelScope;
-import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
+import org.eclipse.emf.diffmerge.generic.api.diff.IDifference;
+import org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope;
 import org.eclipse.emf.diffmerge.impl.scopes.FilteredModelScope;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication;
 import org.eclipse.emf.ecore.EAttribute;
@@ -53,8 +52,8 @@ public interface ISemanticRuleProvider {
    * @param referenceScope_p a non-null scope
    * @param targetScope_p a non-null scope
    */
-  void initializeTargetScope(IFeaturedModelScope referenceScope_p,
-      IFeaturedModelScope targetScope_p);
+  void initializeTargetScope(ITreeDataScope<EObject> referenceScope_p,
+      ITreeDataScope<EObject> targetScope_p);
   
   /**
    * Returns the EObjects that should be included in a pattern when the given EObject is selected. 
@@ -162,7 +161,7 @@ public interface ISemanticRuleProvider {
    * @param sourceElement_p a non-null element
    * @param scope_p a non-null scope
    */
-  boolean hasNotInScopeDependencies(EObject sourceElement_p, IModelScope scope_p);
+  boolean hasNotInScopeDependencies(EObject sourceElement_p, ITreeDataScope<EObject> scope_p);
   
   /**
    * Return the references which support the addition of values of the given type
@@ -238,6 +237,6 @@ public interface ISemanticRuleProvider {
    * @param merges_p a potentially empty list of EObjects
    */
   void postPatternApplication(IPatternApplication application_p,
-      Collection<EObject> additions_p, Collection<IDifference> merges_p);
+      Collection<EObject> additions_p, Collection<IDifference<EObject>> merges_p);
   
 }

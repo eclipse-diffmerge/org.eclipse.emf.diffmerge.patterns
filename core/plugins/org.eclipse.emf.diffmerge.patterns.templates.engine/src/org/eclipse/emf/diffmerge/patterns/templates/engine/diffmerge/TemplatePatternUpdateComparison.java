@@ -13,10 +13,11 @@ package org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.diffmerge.api.IMatch;
-import org.eclipse.emf.diffmerge.api.IMergePolicy;
+import org.eclipse.emf.diffmerge.generic.api.IMatch;
+import org.eclipse.emf.diffmerge.generic.api.IMergePolicy;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternUpdateSpecification;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternRole;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 
 
@@ -56,7 +57,7 @@ public class TemplatePatternUpdateComparison extends TemplatePatternComparison {
    * @return a non-null status
    */
   public IStatus updatePattern() {
-    IMergePolicy mergePolicy = new TemplatePatternMergePolicy() {
+    IMergePolicy<EObject> mergePolicy = new TemplatePatternMergePolicy() {
       /**
        * @see org.eclipse.emf.diffmerge.impl.policies.DefaultMergePolicy#useNewEcoreIds
        */
@@ -66,8 +67,8 @@ public class TemplatePatternUpdateComparison extends TemplatePatternComparison {
 //      }
     };
     IStatus result = compute(new TemplatePatternUpdateMatchPolicy(this, 
-        AdapterFactoryEditingDomain.getEditingDomainFor(getReferenceScope().getContents().get(0)),
-        AdapterFactoryEditingDomain.getEditingDomainFor(getTargetScope().getContents().get(0))),
+        AdapterFactoryEditingDomain.getEditingDomainFor(getReferenceScope().getRoots().get(0)),
+        AdapterFactoryEditingDomain.getEditingDomainFor(getTargetScope().getRoots().get(0))),
         new TemplatePatternDiffPolicy(_specification.getIgnoredFeatures()),
         mergePolicy, null);
     if (result.isOK()) {
@@ -87,7 +88,7 @@ public class TemplatePatternUpdateComparison extends TemplatePatternComparison {
     assert sourceRoles.size() == targetRoles.size(); // Because merge has been performed
     for (int i=0; i<sourceRoles.size(); i++) {
       TemplatePatternRole sourceRole = sourceRoles.get(i);
-      IMatch match = getMapping().getMatchFor(sourceRole, getPatternRole().opposite());
+      IMatch<EObject> match = getMapping().getMatchFor(sourceRole, getPatternRole().opposite());
       assert match != null;
       TemplatePatternRole targetRole = (TemplatePatternRole)match.get(getPatternRole());
       assert targetRole != null;

@@ -17,8 +17,8 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.diffmerge.api.IMatch;
-import org.eclipse.emf.diffmerge.api.Role;
+import org.eclipse.emf.diffmerge.generic.api.IMatch;
+import org.eclipse.emf.diffmerge.generic.api.Role;
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPattern;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternApplication;
@@ -208,7 +208,7 @@ public class TemplatePatternEngine implements ITemplatePatternEngine {
     if (traces != null) {
       if (instance_p instanceof AbstractPatternInstance)
         ((AbstractPatternInstance)instance_p).setFolded(false);
-      Iterator<EObject> it = traces.getModelScope().getAllContents();
+      Iterator<EObject> it = traces.getModelScope().iterator();
       while (it.hasNext()) {
         EObject instanceElement = it.next();
         EObject templateElement = traces.getCounterpart(instanceElement, false);
@@ -451,11 +451,12 @@ public class TemplatePatternEngine implements ITemplatePatternEngine {
           TemplatePatternData data = applicationComparison.getPatternData();
           Role applicationRole = TemplatePatternApplicationComparison.getApplicationRole();
           if (data != null) {
-            Collection<IMatch> updatedMatches = applicationComparison.getUpdatedMatches();
-            for (IMatch match : updatedMatches) {
+            Collection<IMatch<EObject>> updatedMatches = applicationComparison.getUpdatedMatches();
+            for (IMatch<EObject> match : updatedMatches) {
               EObject instanceElement = match.get(applicationRole);
               EObject intermediateTemplateElement = match.get(comparison.getPatternRole());
-              IMatch patternMatch = comparison.getMapping().getMatchFor(intermediateTemplateElement, applicationRole);
+              IMatch<EObject> patternMatch = comparison.getMapping().getMatchFor(
+                  intermediateTemplateElement, applicationRole);
               if (patternMatch != null) {
                 EObject templateElement = patternMatch.get(comparison.getPatternRole());
                 String mappingMultipart = applicationComparison.getMainMultipart();

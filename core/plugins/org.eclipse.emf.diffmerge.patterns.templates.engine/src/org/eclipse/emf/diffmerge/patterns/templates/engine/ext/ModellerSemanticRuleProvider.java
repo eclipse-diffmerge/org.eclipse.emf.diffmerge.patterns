@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.diffmerge.api.scopes.IModelScope;
+import org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope;
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport;
@@ -255,11 +255,11 @@ public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvi
     }
     return result;
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#hasNotInScopeDependencies(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.api.scopes.IModelScope)
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#hasNotInScopeDependencies(org.eclipse.emf.ecore.EObject, org.eclipse.emf.diffmerge.generic.api.scopes.ITreeDataScope)
    */
-  public boolean hasNotInScopeDependencies(EObject sourceElement_p, IModelScope scope_p) {
+  public boolean hasNotInScopeDependencies(EObject sourceElement_p, ITreeDataScope<EObject> scope_p) {
     if(sourceElement_p != null){
       for (FeatureIterator<EObject> featureIterator =
           (FeatureIterator<EObject>)sourceElement_p.eCrossReferences().iterator();
