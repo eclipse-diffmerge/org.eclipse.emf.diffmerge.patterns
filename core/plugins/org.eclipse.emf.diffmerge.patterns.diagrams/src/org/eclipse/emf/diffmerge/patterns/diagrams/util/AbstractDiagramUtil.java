@@ -15,8 +15,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.swt.graphics.Point;
+import org.eclipse.emf.edit.provider.ComposedImage.Point;
  
 /**
  * An abstract utility class for services related to diagram template types
@@ -62,10 +61,10 @@ public abstract class AbstractDiagramUtil {
 
   /**
    * Return the current diagram, if any
-   * @param selection_p a potentially null selection
+   * @param selection_p a potentially null iterable of selected objects
    * @return a potentially null diagram
    */
-  public abstract Object getDiagramFromSelection(IStructuredSelection selection_p);
+  public abstract Object getDiagramFromSelection(Iterable<?> selection_p);
   
   /**
    * Export the given GEF edit parts to a string representation of an SVG image.

@@ -16,6 +16,7 @@ import java.util.List;
 import org.eclipse.emf.diffmerge.patterns.ui.util.UIUtil;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.PatternWizardDialog;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.application.PatternApplicationWizard;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
 
 
@@ -39,8 +40,10 @@ public class ApplyPatternAction extends AbstractModelBasedAction {
 	 */
 	@Override
 	protected void coreRun(List<Object> selection_p) {
+	  IStructuredSelection selection = getSelection();
 	  PatternWizardDialog wizardDialog = new PatternWizardDialog(
-	      getShell(), new PatternApplicationWizard(selection_p, _diagramUtil.getDiagramFromSelection(getSelection())));
+	      getShell(), new PatternApplicationWizard(selection_p,
+	          _diagramUtil.getDiagramFromSelection(selection_p == null? null: selection.toList())));
 	  int wizardAnswer = wizardDialog.open();
 	  if (Window.OK == wizardAnswer) {
 	    if (wizardDialog.isSuccessful()) {

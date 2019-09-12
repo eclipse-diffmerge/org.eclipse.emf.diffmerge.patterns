@@ -30,6 +30,7 @@ import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.Templat
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePatternData;
 import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.provider.ComposedImage.Point;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
@@ -39,7 +40,6 @@ import org.eclipse.sirius.diagram.AbstractDNode;
 import org.eclipse.sirius.diagram.DDiagramElement;
 import org.eclipse.sirius.diagram.tools.api.layout.PinHelper;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
-import org.eclipse.swt.graphics.Point;
 
 
 /**
@@ -174,13 +174,14 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
 
     //Calculate translation vector: depends on whether the refenceElmeent is a merged element or not
     // At this point referenceElement should never be null
-    Point translationVector = new Point(0, 0);
+    Point translationVector = new Point();
     if(isMerged(referenceElement) && !_initialElementsLocationsMap.isEmpty()){
       if(_diagramUtil != null ){
         Point initialRefElemLocation = _initialElementsLocationsMap.get(referenceElement);
         Point currentRefElemLocation = _diagramUtil.getLocation(referenceElement);
         if ((initialRefElemLocation != null) && (currentRefElemLocation != null)) {
-          translationVector = new Point(initialRefElemLocation.x - currentRefElemLocation.x, initialRefElemLocation.y - currentRefElemLocation.y);
+          translationVector.x = initialRefElemLocation.x - currentRefElemLocation.x;
+          translationVector.y = initialRefElemLocation.y - currentRefElemLocation.y;
         }
       }
 
@@ -193,7 +194,10 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
         if (diagramElement.eContainer() == _initialElementsContainersMap.get(diagramElement)) {
           LayoutUtil.setLocation(diagramElement, _initialElementsLocationsMap.get(diagramElement));
         } else {
-          LayoutUtil.setLocation(diagramElement, new Point(10, 10));
+          Point point = new Point();
+          point.x = 10;
+          point.y = 10;
+          LayoutUtil.setLocation(diagramElement, point);
           if (diagramElement.eContainer() instanceof DDiagramElement) {
             LayoutUtil.setLocation((DDiagramElement) diagramElement.eContainer(), _initialElementsLocationsMap.get(diagramElement));
             finalPosElementsList.add((DDiagramElement) diagramElement.eContainer());
@@ -218,8 +222,9 @@ public class SiriusLayoutReuseOperation extends SiriusFilteredGraphicalUpdateOpe
                 Point currentLocalRefElemLocation = _diagramUtil.getLocation(localRefElement);
                 // translationVector = new Point(initialRefElemLocation.x - currentRefElemLocation.x, initialRefElemLocation.y - currentRefElemLocation.y);
                 if ((initialLocalRefElemLocation != null) && (currentLocalRefElemLocation != null)) {
-                  translationVector =
-                      new Point(initialLocalRefElemLocation.x - currentLocalRefElemLocation.x, initialLocalRefElemLocation.y - currentLocalRefElemLocation.y);
+                  translationVector = new Point();
+                  translationVector.x = initialLocalRefElemLocation.x - currentLocalRefElemLocation.x;
+                  translationVector.y = initialLocalRefElemLocation.y - currentLocalRefElemLocation.y;
                 }
                 newPosition.x += translationVector.x;
                 newPosition.y += translationVector.y;

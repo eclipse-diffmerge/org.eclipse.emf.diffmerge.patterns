@@ -17,6 +17,7 @@ import java.util.Collections;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractHighlightOperation;
 import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.util.SiriusUtil;
+import org.eclipse.emf.diffmerge.patterns.diagrams.util.BasicRGB;
 import org.eclipse.sirius.diagram.BeginLabelStyle;
 import org.eclipse.sirius.diagram.BorderedStyle;
 import org.eclipse.sirius.diagram.CenterLabelStyle;
@@ -34,7 +35,6 @@ import org.eclipse.sirius.viewpoint.BasicLabelStyle;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.sirius.viewpoint.RGBValues;
 import org.eclipse.sirius.viewpoint.ViewpointPackage;
-import org.eclipse.swt.graphics.RGB;
 
 
 /**
@@ -53,7 +53,7 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
    * @param coverNodes_p whether nodes must be highlighted
    * @param coverPorts_p whether ports must be highlighted
    */
-  public SiriusHighlightOperation(Object diagram_p, IPatternInstance instance_p, RGB color_p,
+  public SiriusHighlightOperation(Object diagram_p, IPatternInstance instance_p, BasicRGB color_p,
       int borderSize_p, boolean coverEdges_p, boolean coverNodes_p, boolean coverPorts_p) {
     this(diagram_p, Collections.singleton(instance_p), color_p, borderSize_p, coverEdges_p, coverNodes_p, coverPorts_p);
     _innerGraphicalOperation = new InnerHighlightOperation(diagram_p, instance_p, color_p, borderSize_p, coverEdges_p, coverNodes_p,
@@ -69,7 +69,8 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
    * @param coverNodes_p whether nodes must be highlighted
    * @param coverPorts_p whether ports must be highlighted
    */
-  public SiriusHighlightOperation(Object diagram_p, Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, boolean coverEdges_p,
+  public SiriusHighlightOperation(Object diagram_p, Collection<? extends IPatternInstance> instances_p,
+      BasicRGB color_p, int borderSize_p, boolean coverEdges_p,
       boolean coverNodes_p, boolean coverPorts_p) {
     super(AbstractHighlightOperation.getName(), diagram_p, instances_p, true, instances_p);
     _innerGraphicalOperation = new InnerHighlightOperation(diagram_p, instances_p, color_p, borderSize_p, coverEdges_p, coverNodes_p, coverPorts_p);
@@ -97,15 +98,16 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
     /**
      * Constructor
      */
-    public InnerHighlightOperation(Object diagram_p, IPatternInstance instance_p, RGB color_p, int borderSize_p, boolean coverEdges_p, boolean coverNodes_p,
-        boolean coverPorts_p) {
+    public InnerHighlightOperation(Object diagram_p, IPatternInstance instance_p, BasicRGB color_p,
+        int borderSize_p, boolean coverEdges_p, boolean coverNodes_p, boolean coverPorts_p) {
       super(diagram_p, instance_p, color_p, borderSize_p, coverEdges_p, coverNodes_p, coverPorts_p);
     }
 
     /**
      * Constructor
      */
-    public InnerHighlightOperation(Object diagram_p, Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, boolean coverEdges_p,
+    public InnerHighlightOperation(Object diagram_p, Collection<? extends IPatternInstance> instances_p,
+        BasicRGB color_p, int borderSize_p, boolean coverEdges_p,
         boolean coverNodes_p, boolean coverPorts_p) {
       super(diagram_p, instances_p, color_p, borderSize_p, coverEdges_p, coverNodes_p, coverPorts_p);
     }
@@ -118,20 +120,20 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
     public void update(Object decorator_p, boolean isMerged) {
       if(decorator_p instanceof DSemanticDecorator){
         _innerHighlightOperation = (InnerHighlightOperation) _innerGraphicalOperation;
-        if ((decorator_p instanceof DEdge) && _innerHighlightOperation.is_coverEdges()) {
+        if ((decorator_p instanceof DEdge) && _innerHighlightOperation.isCoverEdges()) {
           updateEdge((DEdge) decorator_p);
         } else if (decorator_p instanceof DNode) {
           DNode node = (DNode) decorator_p;
           if (SiriusUtil.isBorderedNode(node)) {
-            if (_innerHighlightOperation.is_coverPorts()) {
+            if (_innerHighlightOperation.isCoverPorts()) {
               updateNode(node);
             }
-          } else if (_innerHighlightOperation.is_coverNodes()) {
+          } else if (_innerHighlightOperation.isCoverNodes()) {
             updateNode(node);
           }
-        } else if ((decorator_p instanceof DNodeContainer) && _innerHighlightOperation.is_coverNodes()) {
+        } else if ((decorator_p instanceof DNodeContainer) && _innerHighlightOperation.isCoverNodes()) {
           updateContainer((DNodeContainer) decorator_p);
-        } else if ((decorator_p instanceof DNodeList) && _innerHighlightOperation.is_coverNodes()) {
+        } else if ((decorator_p instanceof DNodeList) && _innerHighlightOperation.isCoverNodes()) {
           updateList((DNodeList) decorator_p);
         }  
       }
@@ -149,8 +151,8 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
         style.setBorderColor(highlightColor);
 
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
-        style.setBorderSize(_innerHighlightOperation.get_borderSize());
-        style.setBorderSizeComputationExpression(_innerHighlightOperation.get_borderSize().toString());
+        style.setBorderSize(_innerHighlightOperation.getBorderSize());
+        style.setBorderSizeComputationExpression(_innerHighlightOperation.getBorderSize().toString());
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSize().getName());
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName());
         RefreshSiriusElement.refresh(style);
@@ -221,8 +223,8 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
         style.setLabelColor(highlightColor);
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
         // not stable with a diagram refresh
-        style.setBorderSize(_innerHighlightOperation.get_borderSize());
-        style.setBorderSizeComputationExpression(_innerHighlightOperation.get_borderSize().toString());
+        style.setBorderSize(_innerHighlightOperation.getBorderSize());
+        style.setBorderSizeComputationExpression(_innerHighlightOperation.getBorderSize().toString());
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSize().getName());
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName());
         RefreshSiriusElement.refresh(style);
@@ -235,9 +237,9 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
      */
     private RGBValues highlightColor() {
       RGBValues color_p= RGBValues.create(
-          _innerHighlightOperation.get_color().red,
-          _innerHighlightOperation.get_color().green,
-          _innerHighlightOperation.get_color().blue);
+          _innerHighlightOperation.getColor().red,
+          _innerHighlightOperation.getColor().green,
+          _innerHighlightOperation.getColor().blue);
       return color_p;
     }
 
@@ -263,8 +265,8 @@ public class SiriusHighlightOperation extends SiriusFilteredGraphicalUpdateOpera
 
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderColor().getName());
         // not stable with a diagram refresh
-        style.setBorderSize(_innerHighlightOperation.get_borderSize());
-        style.setBorderSizeComputationExpression(_innerHighlightOperation.get_borderSize().toString());
+        style.setBorderSize(_innerHighlightOperation.getBorderSize());
+        style.setBorderSizeComputationExpression(_innerHighlightOperation.getBorderSize().toString());
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSize().getName());
         style.getCustomFeatures().add(DiagramPackage.eINSTANCE.getBorderedStyle_BorderSizeComputationExpression().getName());
         //

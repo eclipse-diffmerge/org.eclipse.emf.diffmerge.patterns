@@ -34,9 +34,10 @@ import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.DDiagramElementContainer;
 import org.eclipse.sirius.diagram.DNodeContainer;
 import org.eclipse.sirius.diagram.business.internal.metamodel.description.extensions.IContainerMappingExt;
-import org.eclipse.sirius.diagram.business.internal.metamodel.helper.ContainerMappingHelper;
+import org.eclipse.sirius.diagram.business.internal.metamodel.description.extensions.INodeMappingExt;
+import org.eclipse.sirius.diagram.business.internal.metamodel.helper.ContainerMappingWithInterpreterHelper;
+import org.eclipse.sirius.diagram.business.internal.metamodel.helper.NodeMappingHelper;
 import org.eclipse.sirius.diagram.description.AbstractNodeMapping;
-import org.eclipse.sirius.diagram.description.NodeMapping;
 import org.eclipse.sirius.diagram.tools.api.layout.PinHelper;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
 import org.eclipse.sirius.viewpoint.SiriusPlugin;
@@ -217,12 +218,17 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation{
         if (((ISiriusSemanticMapping)mapping).conformsToMapping(
             semanticTarget_p, mapping_p, true, true, graphicalContainer_p)) {
           if (mapping_p instanceof IContainerMappingExt) {
-            IInterpreter interpreter = SiriusPlugin.getDefault().getInterpreterRegistry().getInterpreter(semanticTarget_p);
-            ContainerMappingHelper cmh = new ContainerMappingHelper(interpreter);
-            result = cmh.createContainer((IContainerMappingExt)mapping_p, semanticTarget_p, target, diagram);
-          } else if (mapping_p instanceof NodeMapping) {
-            NodeMapping nm = (NodeMapping)mapping_p;
-            result = nm.createNode(semanticTarget_p, target, diagram);
+            IInterpreter interpreter =
+                SiriusPlugin.getDefault().getInterpreterRegistry().getInterpreter(semanticTarget_p);
+            ContainerMappingWithInterpreterHelper helper =
+                new ContainerMappingWithInterpreterHelper(interpreter);
+            result = helper.createContainer(
+                (IContainerMappingExt)mapping_p, semanticTarget_p, target, diagram);
+          } else if (mapping_p instanceof INodeMappingExt) {
+            IInterpreter interpreter =
+                SiriusPlugin.getDefault().getInterpreterRegistry().getInterpreter(semanticTarget_p);
+            NodeMappingHelper helper = new NodeMappingHelper(interpreter);
+            result = helper.createNode((INodeMappingExt)mapping_p, semanticTarget_p, target, diagram);
           }
         }
       } catch (Exception e) {

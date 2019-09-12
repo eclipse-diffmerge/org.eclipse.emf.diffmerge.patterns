@@ -14,9 +14,9 @@ package org.eclipse.emf.diffmerge.patterns.diagrams.operations;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.eclipse.swt.graphics.RGB;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.diagrams.Messages;
+import org.eclipse.emf.diffmerge.patterns.diagrams.util.BasicRGB;
 
 /**
  * An operation for highlighting diagram elements
@@ -29,7 +29,7 @@ public abstract class AbstractHighlightOperation extends AbstractGraphicalUpdate
   private static final String NAME = Messages.HighlightOperation_Name;
 
   /** The highlighting color */
-  protected final RGB _color;
+  protected final BasicRGB _color;
 
   /** The highlighting size */
   protected final Integer _borderSize;
@@ -52,9 +52,10 @@ public abstract class AbstractHighlightOperation extends AbstractGraphicalUpdate
    * @param coverNodes_p whether nodes must be highlighted
    * @param coverPorts_p whether ports must be highlighted
    */
-  public AbstractHighlightOperation(Object diagram_p, IPatternInstance instance_p, RGB color_p,
+  public AbstractHighlightOperation(Object diagram_p, IPatternInstance instance_p, BasicRGB color_p,
       int borderSize_p, boolean coverEdges_p, boolean coverNodes_p, boolean coverPorts_p) {
-    this(diagram_p, Collections.singleton(instance_p), color_p, borderSize_p, coverEdges_p, coverNodes_p, coverPorts_p);
+    this(diagram_p, Collections.singleton(instance_p), color_p, borderSize_p, coverEdges_p,
+        coverNodes_p, coverPorts_p);
   }
 
   /**
@@ -68,7 +69,8 @@ public abstract class AbstractHighlightOperation extends AbstractGraphicalUpdate
    */
   @SuppressWarnings("boxing")
   public AbstractHighlightOperation(Object diagram_p, Collection<? extends IPatternInstance> instances_p,
-      RGB color_p, int borderSize_p, boolean coverEdges_p, boolean coverNodes_p, boolean coverPorts_p) {
+      BasicRGB color_p, int borderSize_p, boolean coverEdges_p, boolean coverNodes_p,
+      boolean coverPorts_p) {
     _color = color_p;
     _coverEdges = coverEdges_p;
     _coverNodes = coverNodes_p;
@@ -86,35 +88,35 @@ public abstract class AbstractHighlightOperation extends AbstractGraphicalUpdate
   /**
    * Getter
    */
-  public RGB get_color() {
+  public BasicRGB getColor() {
     return _color;
   }
 
   /**
    * Getter
    */
-  public Integer get_borderSize() {
+  public Integer getBorderSize() {
     return _borderSize;
   }
 
   /**
    * Getter
    */
-  public boolean is_coverEdges() {
+  public boolean isCoverEdges() {
     return _coverEdges;
   }
 
   /**
    * Getter
    */
-  public boolean is_coverNodes() {
+  public boolean isCoverNodes() {
     return _coverNodes;
   }
 
   /**
    * Getter
    */
-  public boolean is_coverPorts() {
+  public boolean isCoverPorts() {
     return _coverPorts;
   }
 

@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.diffmerge.patterns.core.gen;visibility:=reexport,
  org.eclipse.emf.edit
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.eclipse.emf.diffmerge.patterns.support.gen,
  org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport,
  org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.impl,

@@ -11,8 +11,7 @@
  **********************************************************************/
 package org.eclipse.emf.diffmerge.patterns.diagrams.misc;
 
-import org.eclipse.swt.graphics.RGB;
-
+import org.eclipse.emf.diffmerge.patterns.diagrams.util.BasicRGB;
 
 /**
  * A specification of how to highlight a pattern instance.
@@ -21,11 +20,12 @@ import org.eclipse.swt.graphics.RGB;
  */
 public class HighlightingSpecification {
   /** The default highlighting color */
-  private static final RGB DEFAULT_HIGHLIGHTING_COLOR = new RGB(255, 0, 0);
+  private static final BasicRGB DEFAULT_HIGHLIGHTING_COLOR = new BasicRGB(255, 0, 0);
   /** The default specification used by the default constructor */
-  private static final HighlightingSpecification __default = new HighlightingSpecification(DEFAULT_HIGHLIGHTING_COLOR);
+  private static final HighlightingSpecification __default =
+      new HighlightingSpecification(DEFAULT_HIGHLIGHTING_COLOR);
   /** The color for instance highlighting */
-  public RGB color;
+  public BasicRGB color;
   /** Whether edges are covered when highlighting */
   public boolean coverEdges;
   /** Whether containers are covered when highlighting */
@@ -47,7 +47,7 @@ public class HighlightingSpecification {
    * Constructor
    * @param color_p a non-null color
    */
-  private HighlightingSpecification(RGB color_p) {
+  private HighlightingSpecification(BasicRGB color_p) {
     color = color_p;
     coverEdges = true;
     coverNodes = true;

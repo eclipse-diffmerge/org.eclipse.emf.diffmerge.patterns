@@ -224,7 +224,6 @@ public class EdgeBendpointImpl extends AbstractIdentifiedElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("boxing")
   @Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -245,7 +244,6 @@ public class EdgeBendpointImpl extends AbstractIdentifiedElementImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("boxing")
   @Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

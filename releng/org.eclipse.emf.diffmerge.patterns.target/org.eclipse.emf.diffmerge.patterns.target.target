@@ -1,21 +1,39 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><?pde version="3.8"?><target name="org.eclipse.emf.diffmerge.patterns" sequenceNumber="6">
-<locations>
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.license.feature.group" version="1.0.1.v20140414-1359"/>
-<repository location="http://download.eclipse.org/cbi/updates/license/"/>
-</location>
-	<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-		<unit id="org.eclipse.gmf.runtime.sdk.feature.group" version="1.11.0.201706061437"/>
-		<unit id="org.eclipse.ocl.all.sdk.feature.group" version="5.3.0.v20170607-1133"/>
-		<unit id="org.eclipse.ocl.examples.feature.group" version="6.3.0.v20170613-1432"/>
-		<repository location="http://download.eclipse.org/releases/oxygen/201803211000"/>
-	</location>
-	<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-		<unit id="org.eclipse.sirius.runtime.feature.group" version="6.0.1.201808231529"/>
-		<unit id="org.eclipse.sirius.runtime.ide.ui.feature.group" version="6.0.1.201808231529"/>
-		<unit id="org.eclipse.sirius.specifier.feature.group" version="6.0.1.201808231529"/>
-		<unit id="org.eclipse.sirius.specifier.ide.ui.feature.group" version="6.0.1.201808231529"/>
-		<repository location="http://download.eclipse.org/sirius/updates/releases/6.0.1/oxygen"/>
-	</location>
-</locations>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde?>
+<!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
+<target name="org.eclipse.emf.diffmerge.patterns" sequenceNumber="1568641735">
+  <locations>
+    <location includeMode="slicer" includeAllPlatforms="false" includeSource="false" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.license.feature.group" version="0.0.0"/>
+      <repository location="http://download.eclipse.org/cbi/updates/license/"/>
+    </location>
+    <location includeMode="slicer" includeAllPlatforms="false" includeSource="false" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.platform.sdk" version="0.0.0"/>
+      <unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.pde.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.core.runtime.feature.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.feature.group" version="2.18.0.v20190528-0845"/>
+      <unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.transaction.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.emf.validation.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.draw2d.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.gef.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.gmf.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.gmf.runtime.notation.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.uml2.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.ocl.all.sdk.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.ocl.examples.feature.group" version="0.0.0"/>
+      <unit id="com.google.guava" version="0.0.0"/>
+      <repository location="http://download.eclipse.org/releases/2019-06"/>
+    </location>
+    <location includeMode="slicer" includeAllPlatforms="false" includeSource="false" includeConfigurePhase="false" type="InstallableUnit">
+      <unit id="org.eclipse.sirius.runtime.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.runtime.ide.ui.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.specifier.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.sirius.specifier.ide.ui.feature.group" version="0.0.0"/>
+      <repository location="https://download.eclipse.org/sirius/updates/stable/6.3.0-S20190830-130932/2019-06"/>
+    </location>
+  </locations>
 </target>

@@ -280,9 +280,9 @@ extends AbstractPatternWithLayoutOperation<T>{
     		  localfontstyle_p.selectedIsBold = true;
     	  } else if (FontFormat.ITALIC_LITERAL == fontFormat) {
     		  localfontstyle_p.selectedIsItalic = true;
-    	  } else if (format.equals(FontFormat.STRIKE_THROUGH_LITERAL)) {
+    	  } else if (fontFormat.equals(FontFormat.STRIKE_THROUGH_LITERAL)) {
     		  localfontstyle_p.selectedIsStrikeThrough = true;
-    	  } else if (format.equals(FontFormat.UNDERLINE_LITERAL)) {
+    	  } else if (fontFormat.equals(FontFormat.UNDERLINE_LITERAL)) {
     		  localfontstyle_p.selectedIsUnderline = true;
     	  }
       }

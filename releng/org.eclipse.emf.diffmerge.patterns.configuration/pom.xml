@@ -6,11 +6,11 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<tycho.version>1.0.0</tycho.version>
+		<tycho.version>1.4.0</tycho.version>
 		<tycho.extras.version>${tycho.version}</tycho.extras.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- Refresh URL with correct CI build -->
-		<core.repo.url>https://hudson.eclipse.org/diffmerge/job/emf-diffmerge-core-master/lastSuccessfulBuild/artifact/releng/org.eclipse.emf.diffmerge.update/target/repository/</core.repo.url>
+		<core.repo.url>https://ci-staging.eclipse.org/diffmerge/job/emf-diffmerge-core-master/lastSuccessfulBuild/artifact/releng/org.eclipse.emf.diffmerge.update/target/repository/</core.repo.url>
 	</properties>
 
 	<repositories>
@@ -29,7 +29,6 @@
 				<version>${tycho.version}</version>
 				<extensions>true</extensions>
 			</plugin>
-
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
@@ -42,22 +41,11 @@
 							<version>0.11.0-SNAPSHOT</version>
 						</artifact>
 					</target>
-
 					<environments>
 						<environment>
 							<os>linux</os>
 							<ws>gtk</ws>
-							<arch>x86</arch>
-						</environment>
-						<environment>
-							<os>linux</os>
-							<ws>gtk</ws>
 							<arch>x86_64</arch>
-						</environment>
-						<environment>
-							<os>win32</os>
-							<ws>win32</ws>
-							<arch>x86</arch>
 						</environment>
 						<environment>
 							<os>win32</os>
@@ -73,7 +61,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-				<pluginManagement>
+		<pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.eclipse.tycho</groupId>
@@ -82,6 +70,9 @@
 					<configuration>
 						<useJDK>BREE</useJDK>
 						<useProjectSettings>true</useProjectSettings>
+						<excludeResources>
+							<excludeResource>**/.gitignore</excludeResource>
+						</excludeResources>
 					</configuration>
 				</plugin>
 			</plugins>

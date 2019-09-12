@@ -14,8 +14,8 @@ package org.eclipse.emf.diffmerge.patterns.ui.dialogs;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Set;
 
@@ -26,6 +26,7 @@ import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.AbstractPatternD
 import org.eclipse.emf.diffmerge.patterns.diagrams.PatternCoreDiagramPlugin;
 import org.eclipse.emf.diffmerge.patterns.diagrams.factories.IPatternOperationFactory;
 import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractFilteredGraphicalUpdateOperation;
+import org.eclipse.emf.diffmerge.patterns.diagrams.util.BasicRGB;
 import org.eclipse.emf.diffmerge.patterns.templates.gen.templatepatterns.TemplatePattern;
 import org.eclipse.emf.diffmerge.patterns.ui.Messages;
 import org.eclipse.emf.diffmerge.patterns.ui.util.PatternsInstancesUIUtil;
@@ -199,7 +200,9 @@ public abstract class HighlightAllPatternsInstancesPanelDialog extends AbstractH
           CorePatternsPlugin
           .getDefault()
           .getModelEnvironment()
-          .execute( _operationFactory.instantiateHighlightOperation(_diagram, getSelectedInstances(), new RGB(colorRed(_color), colorGreen(_color), colorBlue(_color)), 
+          .execute(_operationFactory.instantiateHighlightOperation(
+              _diagram, getSelectedInstances(),
+              new BasicRGB(colorRed(_color), colorGreen(_color), colorBlue(_color)), 
               3, _highlightEdges,  _highlightNodes, _highlightPorts));
         }
       }
@@ -258,8 +261,11 @@ public abstract class HighlightAllPatternsInstancesPanelDialog extends AbstractH
             }
             if (_reuseStyleAtUpdate && !(instancesWithNoAvailableLayout.size() == instances.size())) {
               for (IPatternInstance instance : instances) {
-                AbstractFilteredGraphicalUpdateOperation lop = _operationFactory.instantiateLayoutReuseOperation(_diagram, instance, 
-                    new Hashtable<Object, Point>(), new Hashtable<Object, Object>(), 0, 0, false, _reuseStyleAtUpdate, _diagram);
+                AbstractFilteredGraphicalUpdateOperation lop =
+                    _operationFactory.instantiateLayoutReuseOperation(
+                        _diagram, instance,
+                        Collections.<Object, org.eclipse.emf.edit.provider.ComposedImage.Point>emptyMap(),
+                        Collections.emptyMap(), 0, 0, false, _reuseStyleAtUpdate, _diagram);
                 env.execute(lop);
               }
             }

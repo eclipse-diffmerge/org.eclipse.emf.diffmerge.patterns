@@ -325,7 +325,6 @@ public abstract class AbstractPatternImpl extends AbstractNamedElementImpl imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

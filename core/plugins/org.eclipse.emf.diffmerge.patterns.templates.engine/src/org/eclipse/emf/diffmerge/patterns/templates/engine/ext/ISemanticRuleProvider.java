@@ -146,10 +146,16 @@ public interface ISemanticRuleProvider {
   EObject getAutomaticMergeTarget(EObject element_p, Object targetScope_p);
   
   /**
-   * Return whether the ownership of the given element might be derived
+   * Return at which level the ownership (container and containment) of the given element
+   * might be derived.
+   * If an element cannot have its ownership derived, return 0.
+   * If an element can have its containment derived from elements of the above category, return 1.
+   * If an element can have its containment derived from elements of the above category, return 2.
+   * Etc.
    * @param element_p a non-null element
+   * @return a positive int
    */
-  boolean ownershipMightBeDerived(EObject element_p);
+  int getOwnershipDerivationLevel(EObject element_p);
   
   /**
    * Return whether the given element is in the model scope and has direct dependencies

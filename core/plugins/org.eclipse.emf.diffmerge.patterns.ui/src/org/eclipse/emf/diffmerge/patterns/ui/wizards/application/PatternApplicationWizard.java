@@ -17,7 +17,7 @@ import static org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGra
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,7 +40,7 @@ import org.eclipse.emf.diffmerge.patterns.ui.PatternsUIPlugin;
 import org.eclipse.emf.diffmerge.patterns.ui.factories.IPatternJobFactory;
 import org.eclipse.emf.diffmerge.patterns.ui.wizards.AbstractPatternWizard;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.swt.graphics.Point;
+import org.eclipse.emf.edit.provider.ComposedImage.Point;
 
 
 /**
@@ -82,8 +82,8 @@ public class PatternApplicationWizard extends AbstractPatternWizard<TemplatePatt
    */
   @Override
   protected boolean doPerformFinish() {
-    Map<Object, Point> elementsLocationsMap = new Hashtable<Object, Point>();
-    Map<Object, Object> elementsContainersMap = new Hashtable<Object, Object>();
+    Map<Object, Point> elementsLocationsMap = new HashMap<Object, Point>();
+    Map<Object, Object> elementsContainersMap = new HashMap<Object, Object>();
     if(_diagramToRefresh != null){
       // Save current diagram elements locations
       for (Object diagramElement : _diagramUtil.getDiagramElements(_diagramToRefresh)) {

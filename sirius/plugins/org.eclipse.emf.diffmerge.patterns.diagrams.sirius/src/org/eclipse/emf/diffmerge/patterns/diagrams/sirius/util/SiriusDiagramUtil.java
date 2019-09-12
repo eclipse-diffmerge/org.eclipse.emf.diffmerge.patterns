@@ -27,6 +27,7 @@ import org.eclipse.emf.diffmerge.patterns.diagrams.util.AbstractDiagramUtil;
 import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.emf.diffmerge.util.ModelsUtil;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.provider.ComposedImage.Point;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.RootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -36,7 +37,6 @@ import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.DDiagramElement;
 import org.eclipse.sirius.diagram.DNodeContainer;
@@ -47,7 +47,6 @@ import org.eclipse.sirius.diagram.description.DiagramDescription;
 import org.eclipse.sirius.diagram.description.DiagramElementMapping;
 import org.eclipse.sirius.diagram.description.Layer;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 
 
@@ -85,7 +84,7 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil{
    */
   @Override
   public Point getLocation(Object diagramElement_p) {
-    Point vector = new Point(0, 0);
+    Point vector = new Point();
     // Get position vector
     if(diagramElement_p instanceof DDiagramElement){
       List<View> views = SiriusLayersUtil.upViewpointToGmf((DDiagramElement)diagramElement_p);
@@ -133,11 +132,10 @@ public class SiriusDiagramUtil extends AbstractDiagramUtil{
   }
 
   /**
-   * 
-   * @see org.eclipse.emf.diffmerge.patterns.diagrams.util.AbstractDiagramUtil#getDiagramFromSelection(org.eclipse.jface.viewers.IStructuredSelection)
+   * @see org.eclipse.emf.diffmerge.patterns.diagrams.util.AbstractDiagramUtil#getDiagramFromSelection(java.lang.Iterable)
    */
   @Override
-  public DDiagram getDiagramFromSelection(IStructuredSelection selection_p) {
+  public DDiagram getDiagramFromSelection(Iterable<?> selection_p) {
     if (selection_p != null) {
       Iterator<?> it = selection_p.iterator();
       while (it.hasNext()) {

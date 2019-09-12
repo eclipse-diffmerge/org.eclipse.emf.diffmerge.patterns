@@ -167,7 +167,7 @@ public class TemplatePatternCreationSpecification extends AbstractModifiableTemp
     ISemanticRuleProvider ruleProvider = getSemanticRuleProvider();
     List<EObject> contents = getModelScope().getContents();
     for (EObject root : contents) {
-      if (!ruleProvider.ownershipMightBeDerived(root) || contents.size() == 1) {
+      if (ruleProvider.getOwnershipDerivationLevel(root) == 0 || contents.size() == 1) {
         // Root element requires role creation
         if (root.eContainer() != null) {
           // Group with other roots in same container

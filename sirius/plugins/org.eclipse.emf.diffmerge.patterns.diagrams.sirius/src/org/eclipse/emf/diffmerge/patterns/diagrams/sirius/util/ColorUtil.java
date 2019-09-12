@@ -29,22 +29,6 @@ public class ColorUtil {
   }
 
   /**
-   * Returns an RGBValues object built out of a red, blue and green int values. When the creation of the object fails a black color object is returned.
-   * @return a non-null RGBValues object.
-   */
-//  public static RGBValues getRGBColor(int red, int green, int blue) {
-//    ViewpointFactory fact = ViewpointFactory.eINSTANCE;
-//    RGBValues rgbValues = fact.createRGBValues();
-//    if (rgbValues != null) {
-//      rgbValues.setRed(red);
-//      rgbValues.setGreen(green);
-//      rgbValues.setBlue(blue);
-//      return rgbValues;
-//    }
-//    return getRGBColor(0, 0, 0);
-//  }
-
-  /**
    * Converts an RGBValues color to a SWT RGB object. If the conversion fails, then a black RGB object is returned.
    * @param rgbValuesObject_p a non-null color object
    * @return a non-null RGB

@@ -36,6 +36,7 @@ import org.eclipse.emf.diffmerge.patterns.diagrams.misc.HighlightingSpecificatio
 import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractFilteredGraphicalUpdateOperation;
 import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGraphicalWrappingInstanceOperation;
 import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind;
+import org.eclipse.emf.diffmerge.patterns.diagrams.util.BasicRGB;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.operations.CloseCatalogOperation;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.NamingUtil;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.TemplatePatternsEnginePlugin;
@@ -55,6 +56,7 @@ import org.eclipse.emf.diffmerge.patterns.ui.wizards.update.PatternUpdateWizard;
 import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposedImage.Point;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.ColorSelector;
@@ -73,7 +75,6 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -744,14 +745,18 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
     Composite composite = createEmptyComposite(parent_p, 5);
     // Color button
     final ColorSelector colorButton = new ColorSelector(composite);
-    colorButton.setColorValue(_highlightingSpecification.color);
+    BasicRGB currentColor = _highlightingSpecification.color;
+    colorButton.setColorValue(currentColor == null? new RGB(0, 0, 0):
+      new RGB(currentColor.red, currentColor.green, currentColor.blue));
     colorButton.addListener(new IPropertyChangeListener() {
       /**
        * @see org.eclipse.jface.util.IPropertyChangeListener#propertyChange(org.eclipse.jface.util.PropertyChangeEvent)
        */
       public void propertyChange(PropertyChangeEvent event_p) {
         if (event_p.getNewValue() instanceof RGB) {
-          _highlightingSpecification.color = (RGB) event_p.getNewValue();
+          RGB newColor = (RGB) event_p.getNewValue();
+          _highlightingSpecification.color =
+              new BasicRGB(newColor.red, newColor.green, newColor.blue);
         }
       }
     });
@@ -1161,8 +1166,8 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
               new ArrayList<AbstractFilteredGraphicalUpdateOperation>(instances.size());
           for (IPatternInstance instance : instances) {
             operations.add(_operationFactory.instantiateLayoutReuseOperation(
-                _diagram, instance, new HashMap<Object, Point>(), new HashMap<Object, Object>(),
-                0, 0, false, _reuseStyleAtUpdate, _diagram));
+                _diagram, instance, Collections.<Object, Point>emptyMap(),
+                Collections.emptyMap(), 0, 0, false, _reuseStyleAtUpdate, _diagram));
           }
           if(!operations.isEmpty()){
             IModelEnvironment env = CorePatternsPlugin.getDefault().getModelEnvironment();
@@ -1679,7 +1684,7 @@ public class InstancePanelDialog extends InstanceChoiceDialog {
    * @see Window#getInitialSize()
    */
   @Override
-  protected Point getInitialSize() {
+  protected org.eclipse.swt.graphics.Point getInitialSize() {
     super.getInitialSize();
     return getShell().computeSize(SWT.DEFAULT, SWT.DEFAULT, true);
   }

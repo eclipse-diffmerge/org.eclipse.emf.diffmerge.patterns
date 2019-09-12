@@ -38,9 +38,9 @@ import org.eclipse.emf.ecore.util.FeatureMapUtil;
 /**
  * A provider of business-specific logics for consistently manipulating models.
  * The default implementation is metamodel-agnostic.
- * IMPORTANT: Any class that inherits from this one has to provide a default constructor with no parameters.
- *            For viewpoints the constructor must set _isMainModel to false. Only the main contributing
- *            plugin should set this property to true.
+ * Any class that inherits from this one has to provide a parameterless default constructor.
+ * For viewpoints, isMainModel() must return false. Only the main contributing plug-in should
+ * have isMainModel() return true.
  * @author Olivier Constant
  * @author Skander Turki
  */
@@ -172,10 +172,10 @@ public abstract class ModellerSemanticRuleProvider implements ISemanticRuleProvi
   }
 
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#ownershipMightBeDerived(org.eclipse.emf.ecore.EObject)
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#getOwnershipDerivationLevel(org.eclipse.emf.ecore.EObject)
    */
-  public boolean ownershipMightBeDerived(EObject element_p) {
-    return element_p instanceof IPatternInstance;
+  public int getOwnershipDerivationLevel(EObject element_p) {
+    return (element_p instanceof IPatternInstance)? 1: 0;
   }
   
   /**

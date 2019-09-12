@@ -22,6 +22,7 @@ import org.eclipse.emf.diffmerge.patterns.ui.Messages;
 import org.eclipse.emf.diffmerge.patterns.ui.dialogs.InstancePanelDialog;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.IStructuredSelection;
 
 
 /**
@@ -57,8 +58,9 @@ public class ManageInstanceAction extends AbstractModelBasedAction {
             MessageDialog.openInformation(getShell(), CorePatternsPlugin.getDefault().getLabel(),
                 Messages.ManageInstanceAction_NotInInstance);
           } else {
+            IStructuredSelection selection = getSelection();
             InstancePanelDialog dialog = new InstancePanelDialog(getShell(), casted,  instances,
-                _diagramUtil.getDiagramFromSelection(getSelection()),
+                _diagramUtil.getDiagramFromSelection(selection == null? null: selection.toList()),
                 (List<Object>)getFilteredSelection(_genericTypeUtil.getGraphicalPartTypeClass()));
             dialog.open();
           }

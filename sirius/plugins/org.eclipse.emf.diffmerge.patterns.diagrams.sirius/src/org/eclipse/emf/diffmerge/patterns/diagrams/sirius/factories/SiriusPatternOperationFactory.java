@@ -32,11 +32,11 @@ import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.operations.SiriusHighl
 import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.operations.SiriusLayoutReuseOperation;
 import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.operations.SiriusRestoreOperation;
 import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.operations.SiriusUpdatePatternInCatalogOperation;
+import org.eclipse.emf.diffmerge.patterns.diagrams.util.BasicRGB;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternCreationSpecification;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternUpdateSpecification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.RGB;
+import org.eclipse.emf.edit.provider.ComposedImage.Point;
 
 
 /**
@@ -97,12 +97,12 @@ public class SiriusPatternOperationFactory implements IPatternOperationFactory{
   }
   
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.diagrams.factories.IPatternOperationFactory#instantiateHighlightOperation(java.lang.Object, java.util.Collection, org.eclipse.swt.graphics.RGB, int, boolean, boolean, boolean)
+   * @see org.eclipse.emf.diffmerge.patterns.diagrams.factories.IPatternOperationFactory#instantiateHighlightOperation(java.lang.Object, java.util.Collection, BasicRGB, int, boolean, boolean, boolean)
    */
   public AbstractFilteredGraphicalUpdateOperation 
   instantiateHighlightOperation(
       Object diagram_p, Collection<? extends IPatternInstance> instances_p,
-      RGB color_p, int borderSize_p, boolean coverEdges_p,
+      BasicRGB color_p, int borderSize_p, boolean coverEdges_p,
       boolean coverNodes_p, boolean coverPorts_p) {
     return  new SiriusHighlightOperation(diagram_p, instances_p, color_p, borderSize_p, coverEdges_p,
         coverNodes_p, coverPorts_p);

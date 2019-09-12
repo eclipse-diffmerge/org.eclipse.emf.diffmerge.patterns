@@ -1,0 +1,33 @@
+target "org.eclipse.emf.diffmerge.patterns"
+
+location "http://download.eclipse.org/cbi/updates/license/" {
+	org.eclipse.license.feature.group lazy
+}
+
+location "http://download.eclipse.org/releases/2019-06" {
+	org.eclipse.equinox.executable.feature.group lazy
+	org.eclipse.platform.sdk lazy
+  	org.eclipse.jdt.feature.group lazy
+  	org.eclipse.pde.feature.group lazy
+  	org.eclipse.sdk.feature.group lazy
+	org.eclipse.core.runtime.feature.feature.group lazy
+  	org.eclipse.emf.feature.group
+	org.eclipse.emf.sdk.feature.group lazy
+	org.eclipse.emf.transaction.sdk.feature.group lazy
+	org.eclipse.emf.validation.sdk.feature.group lazy
+	org.eclipse.draw2d.feature.group lazy
+	org.eclipse.gef.feature.group lazy
+	org.eclipse.gmf.feature.group lazy
+	org.eclipse.gmf.runtime.notation.feature.group lazy
+	org.eclipse.uml2.sdk.feature.group lazy
+	org.eclipse.ocl.all.sdk.feature.group lazy
+	org.eclipse.ocl.examples.feature.group lazy
+	com.google.guava lazy
+}
+
+location "https://download.eclipse.org/sirius/updates/stable/6.3.0-S20190830-130932/2019-06" {
+	org.eclipse.sirius.runtime.feature.group lazy
+	org.eclipse.sirius.runtime.ide.ui.feature.group lazy
+	org.eclipse.sirius.specifier.feature.group lazy
+	org.eclipse.sirius.specifier.ide.ui.feature.group lazy
+}

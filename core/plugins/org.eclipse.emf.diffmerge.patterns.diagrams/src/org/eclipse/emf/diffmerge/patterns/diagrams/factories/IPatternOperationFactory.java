@@ -22,13 +22,13 @@ import org.eclipse.emf.diffmerge.patterns.core.operations.InstanceOperation;
 import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractDisplayOperation;
 import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractFilteredGraphicalUpdateOperation;
 import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGraphicalWrappingInstanceOperation;
-import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractPatternWithLayoutOperation;
 import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractGraphicalWrappingInstanceOperation.RefreshRequestKind;
+import org.eclipse.emf.diffmerge.patterns.diagrams.operations.AbstractPatternWithLayoutOperation;
+import org.eclipse.emf.diffmerge.patterns.diagrams.util.BasicRGB;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternCreationSpecification;
 import org.eclipse.emf.diffmerge.patterns.templates.engine.specifications.TemplatePatternUpdateSpecification;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.RGB;
+import org.eclipse.emf.edit.provider.ComposedImage.Point;
 
 /**
  * A factory that will instantiate the proper operations depending of the design environment
@@ -84,14 +84,15 @@ public interface IPatternOperationFactory {
    * @return a non-null AbstractFilteredGraphicalUpdateOperation (must be a concrete HighlightOperation)
    */
   AbstractFilteredGraphicalUpdateOperation instantiateHighlightOperation(Object diagram_p, 
-      Collection<? extends IPatternInstance> instances_p, RGB color_p, int borderSize_p, 
+      Collection<? extends IPatternInstance> instances_p, BasicRGB color_p, int borderSize_p, 
       boolean coverEdges_p, boolean coverNodes_p, boolean coverPorts_p);
 
   /**
    * Instantiates an operation that is responsible of representing a given set of semantic elements in a given diagram.
    * @return a non-null AbstractFilteredGraphicalUpdateOperation (must be a concrete LayoutReuseOperation)
    */
-  AbstractFilteredGraphicalUpdateOperation instantiateLayoutReuseOperation(Collection<Object> diagramElements_p,  
+  AbstractFilteredGraphicalUpdateOperation instantiateLayoutReuseOperation(
+      Collection<Object> diagramElements_p,  
       IPatternInstance instance_p, Map<Object, Point> initialElementsLocationsMap_p,
       Map<Object, Object> elementsContainersMap_p, int vx_p, int vy_p,
       boolean updateLayout_p, boolean updateStyle_p, Object modelSideContext_p);
@@ -100,7 +101,8 @@ public interface IPatternOperationFactory {
    * Instantiates an operation that is responsible of representing a given set of semantic elements in a given diagram.
    * @return a non-null AbstractFilteredGraphicalUpdateOperation (must be a concrete LayoutReuseOperation)
    */
-  AbstractFilteredGraphicalUpdateOperation instantiateLayoutReuseOperation(Object diagram_p, IPatternInstance instance_p, 
+  AbstractFilteredGraphicalUpdateOperation instantiateLayoutReuseOperation(
+      Object diagram_p, IPatternInstance instance_p, 
       Map<Object, Point> initialElementsLocationsMap_p, Map<Object, Object> elementsContainersMap_p,
       int vx_p, int vy_p, boolean updateLayout_p, boolean updateStyle_p, Object modelSideContext_p);
   
@@ -114,6 +116,7 @@ public interface IPatternOperationFactory {
    * Instantiates an operation that is responsible for updating a pattern and an instance.
    * @return a non-null AbstractPatternWithLayoutOperation (must be a concrete UpdatePatternInCatalogOperation)
    */
-  AbstractPatternWithLayoutOperation<?> instantiateUpdatePatternInCatalogOperation(TemplatePatternUpdateSpecification data_p, List<Object> context_p);
+  AbstractPatternWithLayoutOperation<?> instantiateUpdatePatternInCatalogOperation(
+      TemplatePatternUpdateSpecification data_p, List<Object> context_p);
 
 }

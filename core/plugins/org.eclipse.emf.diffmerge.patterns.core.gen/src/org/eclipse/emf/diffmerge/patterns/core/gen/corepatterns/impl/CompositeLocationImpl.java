@@ -114,7 +114,6 @@ public class CompositeLocationImpl extends AbstractLocationImpl implements Compo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

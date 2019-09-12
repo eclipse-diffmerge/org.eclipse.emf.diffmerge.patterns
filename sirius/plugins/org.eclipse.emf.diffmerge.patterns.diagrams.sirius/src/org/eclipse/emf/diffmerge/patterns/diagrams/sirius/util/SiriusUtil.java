@@ -21,17 +21,24 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.sirius.business.api.dialect.DialectManager;
+import org.eclipse.sirius.business.api.session.Session;
+import org.eclipse.sirius.business.api.session.SessionManager;
 import org.eclipse.sirius.diagram.AbstractDNode;
 import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.DDiagramElement;
 import org.eclipse.sirius.diagram.DDiagramElementContainer;
 import org.eclipse.sirius.diagram.DNode;
 import org.eclipse.sirius.diagram.DNodeContainer;
+import org.eclipse.sirius.diagram.business.api.componentization.DiagramComponentizationManager;
 import org.eclipse.sirius.diagram.business.internal.metamodel.description.extensions.IContainerMappingExt;
-import org.eclipse.sirius.diagram.business.internal.metamodel.helper.ContainerMappingHelper;
+import org.eclipse.sirius.diagram.business.internal.metamodel.description.extensions.INodeMappingExt;
+import org.eclipse.sirius.diagram.business.internal.metamodel.description.operations.SiriusElementMappingSpecOperations;
+import org.eclipse.sirius.diagram.business.internal.metamodel.helper.ContainerMappingWithInterpreterHelper;
+import org.eclipse.sirius.diagram.business.internal.metamodel.helper.NodeMappingHelper;
 import org.eclipse.sirius.diagram.description.AbstractNodeMapping;
 import org.eclipse.sirius.diagram.description.ContainerMapping;
 import org.eclipse.sirius.diagram.description.ContainerMappingImport;
+import org.eclipse.sirius.diagram.description.DescriptionPackage;
 import org.eclipse.sirius.diagram.description.DiagramDescription;
 import org.eclipse.sirius.diagram.description.DiagramElementMapping;
 import org.eclipse.sirius.diagram.description.Layer;
@@ -41,14 +48,14 @@ import org.eclipse.sirius.ecore.extender.business.api.accessor.ModelAccessor;
 import org.eclipse.sirius.ecore.extender.business.api.accessor.ModelAccessorsRegistry;
 import org.eclipse.sirius.viewpoint.SiriusPlugin;
 import org.eclipse.sirius.viewpoint.description.AbstractMappingImport;
-import org.eclipse.sirius.diagram.description.DescriptionPackage;
+import org.eclipse.sirius.viewpoint.description.Viewpoint;
 
 
 /**
  * Utility class providing services related to Viewpoint concepts
  * @author Olivier Constant
  */
-@SuppressWarnings({ "deprecation", "restriction" })
+@SuppressWarnings("restriction")
 public final class SiriusUtil {
   
   /**
@@ -87,22 +94,24 @@ public final class SiriusUtil {
         EObject semanticOfGraphicalContainer = SiriusLayersUtil.getSemanticElement(container);
         // Check precondition
         if (result && considerPrecondition_p) {
-            result = mapping_p.checkPrecondition(semanticElt_p, semanticOfGraphicalContainer, container);
+          result = SiriusElementMappingSpecOperations.checkPrecondition(
+              mapping_p, semanticElt_p, semanticOfGraphicalContainer, container);
         }
         // Check semantic candidates
         if (result && considerCandidates_p) {
           List<EObject> candidates = null;
-            if (mapping_p instanceof NodeMapping) {
-              NodeMapping nm = (NodeMapping)mapping_p;
-              candidates = nm.getNodesCandidates(semanticOfGraphicalContainer,
-                  semanticOfGraphicalContainer, container);
-            } else if (mapping_p instanceof IContainerMappingExt) {
-//              ContainerMapping cm = (ContainerMapping)mapping_p;
-//               candidates = cm.getNodesCandidates(semanticOfGraphicalContainer,
-//              semanticOfGraphicalContainer, graphicalContainer_p);
+            if (mapping_p instanceof INodeMappingExt) {
+              INodeMappingExt nm = (INodeMappingExt)mapping_p;
               // We need to call the method below to clear the cache. Otherwise, sometimes the cache is not up to date.
-              ContainerMappingHelper.clearDNodesDone((IContainerMappingExt)mapping_p);
-              candidates = ContainerMappingHelper.getNodesCandidates((IContainerMappingExt)mapping_p, semanticOfGraphicalContainer,
+              NodeMappingHelper.clearDNodesDone(nm);
+              candidates = NodeMappingHelper.getNodesCandidates(
+                  nm, semanticOfGraphicalContainer, semanticOfGraphicalContainer, container);
+            } else if (mapping_p instanceof IContainerMappingExt) {
+              IContainerMappingExt cm = (IContainerMappingExt)mapping_p;
+              // We need to call the method below to clear the cache. Otherwise, sometimes the cache is not up to date.
+              ContainerMappingWithInterpreterHelper.clearDNodesDone(cm);
+              candidates = ContainerMappingWithInterpreterHelper.getNodesCandidates(
+                  cm, semanticOfGraphicalContainer,
                   semanticOfGraphicalContainer, container);
             }
           result = null != candidates && candidates.contains(semanticElt_p);
@@ -147,7 +156,10 @@ public final class SiriusUtil {
     }
     // For all layers of the DiagramDescription, get all
     // AbstractNodeMappings which deal with the root of diagrams
-    EList<Layer> layers = desc.getAllLayers(); //_diagram.getActivatedLayers();
+    Session session = SessionManager.INSTANCE.getSession(diagram_p); // Must be non-null in this context
+    Collection<Viewpoint> selectedViewpoints = session.getSelectedViewpoints(false);
+    EList<Layer> layers = new DiagramComponentizationManager().getAllLayers(
+        selectedViewpoints, diagram_p.getDescription());
     for(Layer layer : layers) {
       result.addAll(layer.getContainerMappings());
       result.addAll(layer.getNodeMappings());

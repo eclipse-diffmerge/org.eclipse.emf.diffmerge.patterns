@@ -14,7 +14,9 @@ package org.eclipse.emf.diffmerge.patterns.templates.engine.ext;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -151,15 +153,16 @@ public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider{
   }
 
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#ownershipMightBeDerived(org.eclipse.emf.ecore.EObject)
+   * @see org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ISemanticRuleProvider#getOwnershipDerivationLevel(org.eclipse.emf.ecore.EObject)
    */
-  public boolean ownershipMightBeDerived(EObject root) {
-    boolean result = false;
+  public int getOwnershipDerivationLevel(EObject element_p) {
     for(ISemanticRuleProvider provider : _semanticRuleProviders){
-      result = provider.ownershipMightBeDerived(root);
-      if(result == true) return result;
+      int result = provider.getOwnershipDerivationLevel(element_p);
+      if (result > 0) {
+        return result;
+      }
     }
-    return result;
+    return 0;
   }
 
   /**
@@ -203,29 +206,40 @@ public class SemanticRuleProvidersDispatcher implements ISemanticRuleProvider{
    */
   public Boolean enforceOwnership(Collection<? extends EObject> roots_p, Object context_p) {
     Collection<EObject> enforcedRoots = new ArrayList<EObject>();
-    ISemanticRuleProvider mainProvider = null;
-    for(EObject root : roots_p) {
+    List<EObject> sortedRoots = new ArrayList<EObject>(roots_p).stream()
+        .sorted(Comparator.<EObject>comparingInt(e -> getOwnershipDerivationLevel(e)))
+        .collect(Collectors.toList());
+    for (EObject root : sortedRoots) {
+      ISemanticRuleProvider mainProvider = null;
       Boolean rootSuccess = Boolean.FALSE;
       Collection<EObject> singleton = new ArrayList<EObject>();
       singleton.add(root);
       for (ISemanticRuleProvider provider : _semanticRuleProviders) {
         if (provider.isMainModel()) {
+          // Defer usage of main provider to give priority to secondary providers
           mainProvider = provider;
         } else {
-          if (provider.isApplicableTo(root))
+          if (provider.isApplicableTo(root)) {
             rootSuccess = provider.enforceOwnership(singleton, context_p);
-          if (rootSuccess != null && rootSuccess.booleanValue())
+          }
+          if (rootSuccess != null && rootSuccess.booleanValue()) {
+            // Secondary provider has succeeded
             break;
+          } // Else try other providers
         }
       }
       if (mainProvider != null && rootSuccess != null && !rootSuccess.booleanValue() &&
           mainProvider.isApplicableTo(root)) {
+        // Secondary providers failed, there was no cancel, main provider is applicable: try it
         rootSuccess = mainProvider.enforceOwnership(singleton, context_p);
-        if (rootSuccess == null)
+        if (rootSuccess == null) {
           return null; // Canceled
+        }
       }
-      if (rootSuccess != null && rootSuccess.booleanValue())
+      if (rootSuccess != null && rootSuccess.booleanValue()) {
+        // Success for this root
         enforcedRoots.add(root);
+      }
     }
     return Boolean.valueOf(enforcedRoots.size() == roots_p.size());
   }

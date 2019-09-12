@@ -40,7 +40,8 @@ public class AddToPersistentSelectionAction extends AbstractModelBasedAction {
 	@Override
 	protected void coreRun(List<Object> selection_p) {
 	  PatternsUIPlugin.getDefault().getPersistentSelection().addElements(selection_p);
-	  ISourceProviderService sourceProviderService =
+	  @SuppressWarnings("cast")
+    ISourceProviderService sourceProviderService =
       (ISourceProviderService) PlatformUI.getWorkbench().getService(
           ISourceProviderService.class);
 	  ISourceProvider source = sourceProviderService.getSourceProvider(IncludedElementsProvider.INCLUDED_ELEMENTS_STATE);

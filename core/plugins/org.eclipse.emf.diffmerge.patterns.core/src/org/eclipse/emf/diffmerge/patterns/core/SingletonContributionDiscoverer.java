@@ -27,10 +27,10 @@ public class SingletonContributionDiscoverer<SingletonContributionType>{
   private SingletonContributionType _contributedSingleton;
   
   /** ID related to the Contributed Singleton extension point */
-  private String SINGLETON_CONTRIBUTION_EXTENSION_POINT;
+  private String _singletonContributionExtensionPoint;
   
   /** Property related to the Contributed Singleton extension point */
-  private String SINGLETON_CONTRIBUTION_PROPERTY;
+  private String _singletonContributionProperty;
   
   /** The expected type of the contributed object */
   private Class<?> _type;
@@ -44,8 +44,8 @@ public class SingletonContributionDiscoverer<SingletonContributionType>{
    */
   public SingletonContributionDiscoverer(Class<?> type, String factoryExtensionPointID_p, String factoryProperty_p){
     _type = type;
-    SINGLETON_CONTRIBUTION_EXTENSION_POINT = factoryExtensionPointID_p;
-    SINGLETON_CONTRIBUTION_PROPERTY = factoryProperty_p;
+    _singletonContributionExtensionPoint = factoryExtensionPointID_p;
+    _singletonContributionProperty = factoryProperty_p;
   }
   
   /**
@@ -67,10 +67,10 @@ public class SingletonContributionDiscoverer<SingletonContributionType>{
   private SingletonContributionType discoverContributedSingleton() {
     IExtensionRegistry registry = Platform.getExtensionRegistry();
     IConfigurationElement[] config = registry.getConfigurationElementsFor(
-        SINGLETON_CONTRIBUTION_EXTENSION_POINT);
+        _singletonContributionExtensionPoint);
     for (IConfigurationElement e : config) {
       try {
-        Object o = e.createExecutableExtension(SINGLETON_CONTRIBUTION_PROPERTY);
+        Object o = e.createExecutableExtension(_singletonContributionProperty);
         if (_type.cast(o)!=null)
           return (SingletonContributionType)o;
       } catch (Exception ex) {

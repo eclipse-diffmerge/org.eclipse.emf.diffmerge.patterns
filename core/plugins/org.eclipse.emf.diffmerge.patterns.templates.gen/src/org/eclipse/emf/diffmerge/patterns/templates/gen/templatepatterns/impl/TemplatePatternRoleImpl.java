@@ -470,7 +470,6 @@ public class TemplatePatternRoleImpl extends AbstractPatternRoleImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("boxing")
   @Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -500,7 +499,7 @@ public class TemplatePatternRoleImpl extends AbstractPatternRoleImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings({ "unchecked", "boxing" })
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
