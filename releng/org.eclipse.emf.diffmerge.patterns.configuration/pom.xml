@@ -9,8 +9,7 @@
 		<tycho.version>1.4.0</tycho.version>
 		<tycho.extras.version>${tycho.version}</tycho.extras.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- Refresh URL with correct CI build -->
-		<core.repo.url>https://ci-staging.eclipse.org/diffmerge/job/emf-diffmerge-core-master/lastSuccessfulBuild/artifact/releng/org.eclipse.emf.diffmerge.update/target/repository/</core.repo.url>
+		<core.repo.url>https://ci.eclipse.org/diffmerge/job/emf-diffmerge-core-master/lastSuccessfulBuild/artifact/releng/org.eclipse.emf.diffmerge.update/target/repository/</core.repo.url>
 	</properties>
 
 	<repositories>
@@ -82,8 +81,6 @@
 		<profile>
 			<id>sign</id>
 			<activation>
-				<!-- Signing can be manually applied by -Psign; but can only be executed 
-					on hudson.eclipse.org -->
 				<activeByDefault>false</activeByDefault>
 			</activation>
 			<build>
@@ -101,8 +98,6 @@
 							</execution>
 						</executions>
 					</plugin>
-					<!-- Note that plugins bound to same phase will be executed in the same 
-						order as they are listed, so that metadata generated after signing -->
 					<plugin>
 						<groupId>org.eclipse.cbi.maven.plugins</groupId>
 						<artifactId>eclipse-jarsigner-plugin</artifactId>
