@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde?>
 <!-- generated with https://github.com/eclipse-cbi/targetplatform-dsl -->
-<target name="org.eclipse.emf.diffmerge.patterns" sequenceNumber="1568641735">
+<target name="org.eclipse.emf.diffmerge.patterns" sequenceNumber="1569678930">
   <locations>
     <location includeMode="slicer" includeAllPlatforms="false" includeSource="false" includeConfigurePhase="false" type="InstallableUnit">
-      <unit id="org.eclipse.license.feature.group" version="0.0.0"/>
+      <unit id="org.eclipse.license.feature.group" version="2.0.2.v20181016-2210"/>
       <repository location="http://download.eclipse.org/cbi/updates/license/"/>
     </location>
     <location includeMode="slicer" includeAllPlatforms="false" includeSource="false" includeConfigurePhase="false" type="InstallableUnit">
