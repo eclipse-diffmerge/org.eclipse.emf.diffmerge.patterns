@@ -48,6 +48,7 @@
 							<version>0.12.0-SNAPSHOT</version>
 						</artifact>
 					</target>
+					<includePackedArtifacts>true</includePackedArtifacts>
 					<environments>
 						<environment>
 							<os>linux</os>
@@ -151,6 +152,29 @@
 								</goals>
 							</execution>
 						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>tycho-p2-plugin</artifactId>
+						<version>${tycho.version}</version>
+						<executions>
+							<execution>
+								<id>default-p2-metadata-default</id>
+								<configuration>
+									<attachP2Metadata>false</attachP2Metadata>
+								</configuration>
+							</execution>
+							<execution>
+								<id>attach-p2-metadata</id>
+								<phase>package</phase>
+								<goals>
+									<goal>p2-metadata</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<defaultP2Metadata>false</defaultP2Metadata>
+						</configuration>
 					</plugin>
 				</plugins>
 			</build>
