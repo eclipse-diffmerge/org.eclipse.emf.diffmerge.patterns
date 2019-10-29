@@ -39,9 +39,9 @@ import org.eclipse.emf.diffmerge.patterns.templates.engine.diffmerge.TemplatePat
 import org.eclipse.emf.diffmerge.patterns.templates.engine.ext.ModellerSemanticRuleProvider;
 import org.eclipse.emf.diffmerge.patterns.ui.dialogs.MultiStorageChoiceDialog;
 import org.eclipse.emf.diffmerge.patterns.ui.dialogs.MultiStorageChoiceDialog.MultiStorageKind;
+import org.eclipse.emf.diffmerge.structures.common.FArrayList;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.emf.diffmerge.util.ModelsUtil;
-import org.eclipse.emf.diffmerge.util.structures.FArrayList;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;

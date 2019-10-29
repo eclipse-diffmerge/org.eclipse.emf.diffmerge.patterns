@@ -16,7 +16,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.extensions.DefaultSemanticMapping;
 import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.util.SiriusUtil;
-import org.eclipse.emf.diffmerge.util.structures.FOrderedSet;
+import org.eclipse.emf.diffmerge.structures.common.FOrderedSet;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.sirius.diagram.AbstractDNode;
 import org.eclipse.sirius.diagram.DSemanticDiagram;

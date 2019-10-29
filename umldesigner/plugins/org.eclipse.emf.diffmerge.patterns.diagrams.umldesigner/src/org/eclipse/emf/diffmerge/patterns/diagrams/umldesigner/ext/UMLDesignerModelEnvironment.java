@@ -11,46 +11,32 @@
  **********************************************************************/
 package org.eclipse.emf.diffmerge.patterns.diagrams.umldesigner.ext;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.diffmerge.patterns.core.CorePatternsPlugin;
 import org.eclipse.emf.diffmerge.patterns.core.api.IIdentifiedElement;
 import org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstanceMarker;
-import org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment;
-import org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelOperation;
 import org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport;
-import org.eclipse.emf.diffmerge.patterns.core.gen.corepatterns.AbstractIdentifiedElement;
 import org.eclipse.emf.diffmerge.patterns.core.operations.AbstractModelOperation;
 import org.eclipse.emf.diffmerge.patterns.core.util.ResourcesUtil;
-import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.operations.SiriusCreatePatternAndInstanceOperation;
+import org.eclipse.emf.diffmerge.patterns.diagrams.sirius.extensions.AbstractSiriusModelEnvironment;
 import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.PatternCatalogResourceHelper;
-import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.operations.CreateCatalogOperation;
-import org.eclipse.emf.diffmerge.patterns.repositories.catalogs.operations.OpenCatalogOperation;
 import org.eclipse.emf.diffmerge.patterns.support.contributions.BasicPatternSupport;
-import org.eclipse.emf.diffmerge.patterns.support.environment.DefaultModelEnvironment;
 import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonPatternInstance;
 import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonPatternInstanceSet;
 import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonpatternsupportFactory;
 import org.eclipse.emf.diffmerge.patterns.support.gen.commonpatternsupport.CommonpatternsupportPackage;
-import org.eclipse.emf.diffmerge.patterns.support.resources.DefaultPatternsXMIResource;
-import org.eclipse.emf.diffmerge.ui.EMFDiffMergeUIPlugin;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
-import org.eclipse.emf.edit.command.ChangeCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.EditPart;
 import org.eclipse.sirius.business.api.session.Session;
 import org.eclipse.sirius.business.api.session.SessionManager;
+import org.eclipse.sirius.tools.api.command.semantic.AddSemanticResourceCommand;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
@@ -59,138 +45,131 @@ import org.eclipse.uml2.uml.resource.UMLResource;
  * A model environment for UMLDesigner.
  * @author Skander Turki
  */
-public class UMLDesignerModelEnvironment implements IModelEnvironment{
+public class UMLDesignerModelEnvironment extends AbstractSiriusModelEnvironment {
   
-  /** The non-null editing domain */
-  private TransactionalEditingDomain _patternCatalogCommonEditingDomain;
-  /** The editing domain ID */
-  private static final String CATALOG_COMMON_EDITING_DOMAIN_ID = "Catalogs_Common_Editing_Domain"; //$NON-NLS-1$
-
-
   /**
    * Constructor
    */
   public UMLDesignerModelEnvironment() {
-    ResourceSet rset = new ResourceSetImpl();
-    _patternCatalogCommonEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(rset);
-    _patternCatalogCommonEditingDomain.setID(CATALOG_COMMON_EDITING_DOMAIN_ID);
-    if (_patternCatalogCommonEditingDomain instanceof AdapterFactoryEditingDomain)
-      ((AdapterFactoryEditingDomain) _patternCatalogCommonEditingDomain).setAdapterFactory(
-          EMFDiffMergeUIPlugin.getDefault().getAdapterFactoryLabelProvider().getAdapterFactory());
+    super();
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#abortOperation()
+   * Create and return an instance set located in a resource of the given URI in the given
+   * resource set
+   * @param uri_p a non-null URI
+   * @param resourceSet_p a non-null resource set
+   * @return a potentially null instance set
    */
-  public void abortOperation() {
-    throw new OperationCanceledException();
-  }
-
-  /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#asyncExecute(org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelOperation)
-   */
-  public void asyncExecute(IModelOperation<?> operation_p) {
-    if (operation_p instanceof AbstractModelOperation<?>)
-      ((AbstractModelOperation<?>)operation_p).setModelEnvironment(this);
-    ModelAccessJob job = new ModelAccessJob(operation_p);
-    job.schedule();
-  }
-
-  /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#execute(org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelOperation)
-   */
-  public <E> E execute(final IModelOperation<E> operation_p) {
-    if (operation_p instanceof AbstractModelOperation){
-      Object context = null;
-      EditingDomain domain = null;
-
-      // List<Resource> hackedResources = new ArrayList<Resource>();
-      if(operation_p instanceof CreateCatalogOperation){
-        CreateCatalogOperation cop = (CreateCatalogOperation)operation_p;
-        if(cop.getTargetContext() instanceof TransactionalEditingDomain)
-          domain = (EditingDomain) cop.getTargetContext();
-      } if(operation_p instanceof OpenCatalogOperation){
-        OpenCatalogOperation oop = (OpenCatalogOperation)operation_p;
-        if(oop.getTargetContext() instanceof TransactionalEditingDomain)
-          domain = (EditingDomain) oop.getTargetContext();
-      } else if(operation_p instanceof SiriusCreatePatternAndInstanceOperation) {
-        SiriusCreatePatternAndInstanceOperation sop = (SiriusCreatePatternAndInstanceOperation)operation_p;
-        context = adaptContext(sop.getPatternSideContext());
-      } else {
-        AbstractModelOperation<E> op = (AbstractModelOperation<E>)operation_p;
-        op.setModelEnvironment(this);
-        context = adaptContext(op.getTargetContext());
+  protected CommonPatternInstanceSet createInstanceSet(final URI uri_p, ResourceSet resourceSet_p) {
+    CommonPatternInstanceSet result = null;
+    resourceSet_p.getPackageRegistry().put(
+        CommonpatternsupportPackage.eNS_URI, CommonpatternsupportPackage.eINSTANCE);
+    AbstractModelOperation<Object> operation = new AbstractModelOperation<Object>(
+        "Create Instance Set Operation", resourceSet_p, false, false, true, resourceSet_p, resourceSet_p){ //$NON-NLS-1$
+      /**
+       * @see org.eclipse.emf.diffmerge.patterns.core.operations.AbstractModelOperation#run()
+       */
+      @Override
+      protected Object run() {
+        Resource resource = getResourceSet().createResource(uri_p);
+        CommonPatternInstanceSet set =
+            CommonpatternsupportFactory.eINSTANCE.createCommonPatternInstanceSet();
+        resource.getContents().add(set);
+        ResourcesUtil.makePersistent(resource);
+        return set;
       }
-      if(domain == null)
-        if(context instanceof IPatternInstanceMarker) //is a pattern catalog context
-          domain = AdapterFactoryEditingDomain.getEditingDomainFor(context);
-        else if(context instanceof AbstractIdentifiedElement) //is a pattern catalog context
-          domain = getEditingDomain((AbstractIdentifiedElement)context);
-        else
-          domain = AdapterFactoryEditingDomain.getEditingDomainFor(context);
-      if (domain instanceof TransactionalEditingDomain){
-        OperationWithResultCommand<E> cmd = new OperationWithResultCommand<E>(domain.getResourceSet(), operation_p);
-        domain.getCommandStack().execute(cmd);
-        return cmd.getOperationResult();
-      }}
-    return null;
-  }
-
-  /**
-   * The navigation to the editing domain associated with the context is realized differently depending on the type of the context.
-   * This method tries to find the appropriate Object that should be used in this navigation.
-   * @param context a potentially null Object. 
-   * @return a potentially null Object
-   */
-  private Object adaptContext(Object context_p) {
-    Object context = context_p;
-    if(context instanceof EObject)
-      return context;
-    if(context instanceof ResourceSet){
-      if(!((ResourceSet)context).getResources().isEmpty())
-        context = ((ResourceSet)context).getResources().get(0);
-    }
-    if(context instanceof Resource){
-      if(!((Resource)context).getContents().isEmpty())
-        context = ((Resource)context).getContents().get(0);
-    }
-    if(context instanceof Collection){
-      context = ((Collection<?>) context).iterator().next();
-    }
-    if(context instanceof EditPart){
-      context = ((EditPart)context).getModel();
-    }
-    return context;
-  }
-
-  /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getInverseCrossReferencer(org.eclipse.emf.ecore.EObject)
-   */
-  public ECrossReferenceAdapter getInverseCrossReferencer(EObject element_p) {
-    ECrossReferenceAdapter result = null;
-    if (element_p != null) {
-      Session session = SessionManager.INSTANCE.getSession(element_p);
-      if (session != null)
-        result = session.getSemanticCrossReferencer();
+    };
+    CorePatternsPlugin.getDefault().getModelEnvironment().execute(operation);
+    if(!resourceSet_p.getResources().isEmpty()){
+      for(Resource res : resourceSet_p.getResources()){
+        if(!res.getContents().isEmpty() &&
+            res.getContents().get(0) instanceof CommonPatternInstanceSet){
+          result = (CommonPatternInstanceSet) res.getContents().get(0);
+          break;
+        }
+      }
     }
     return result;
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#isModelResource(org.eclipse.emf.ecore.resource.Resource)
+   * Ensure that the given instance set is covered by the Sirius session that encompasses
+   * a resource of the given URI, if any
+   * @param instanceSet_p a non-null instance set
+   * @param uri_p a non-null URI
    */
-  public boolean isModelResource(Resource resource_p) {
-    return resource_p instanceof UMLResource;
+  protected void ensureInSession(CommonPatternInstanceSet instanceSet_p, URI uri_p) {
+    Resource instanceSetResource = instanceSet_p.eResource();
+    Session session = getExistingSession(uri_p);
+    if (session != null && !session.getSemanticResources().contains(instanceSetResource)) {
+      AddSemanticResourceCommand command = new AddSemanticResourceCommand(
+          session, instanceSetResource.getURI(), new NullProgressMonitor());
+      session.getTransactionalEditingDomain().getCommandStack().execute(command);
+    }
   }
-
+  
   /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#isModelElement(java.lang.Object)
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getEditingDomain(org.eclipse.emf.ecore.EObject)
    */
-  public boolean isModelElement(Object object_p) {
-    return object_p instanceof CommonPatternInstance ||
-        object_p instanceof Element;
+  public EditingDomain getEditingDomain(EObject context_p) {
+    if(context_p instanceof IIdentifiedElement) {
+      return getCommonCatalogEditingDomain();
+    }
+    return AdapterFactoryEditingDomain.getEditingDomainFor(context_p);
   }
-
+  
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getEditingDomain(org.eclipse.core.resources.IFile)
+   */
+  public EditingDomain getEditingDomain(IFile file_p) {
+    EditingDomain domain = null;
+    if(file_p != null){
+      if(file_p.getFileExtension().equals(PatternCatalogResourceHelper.PATTERN_CATALOG_FILE_EXTENSION)){
+        loadCatalog(file_p);
+        return getCommonCatalogEditingDomain();
+      }
+      domain = getExistingEditingDomain(file_p);
+    }
+    return domain;
+  }
+  
+  /**
+   * Try to find an existing editing domain for the given IFile
+   * @param file_p a potentially null IFile
+   * @return a potentially null editing domain
+   */
+  protected EditingDomain getExistingEditingDomain(IFile file_p) {
+    EditingDomain result = null;
+    if(file_p != null){
+      URI fileUri = URI.createURI(file_p.getFullPath().toString());
+      Session existingSession = getExistingSession(fileUri);
+      if (existingSession != null) {
+        result = existingSession.getTransactionalEditingDomain();
+      }
+    }
+    return result;
+  }
+  
+  /**
+   * Try to find an existing session for the given URI
+   * @param uri_p a non-null URI
+   * @return a potentially null session
+   */
+  protected Session getExistingSession(URI uri_p) {
+    Session result = null;
+      Collection<Session> sessions = SessionManager.INSTANCE.getSessions();
+      for(Session session : sessions){
+        EditingDomain candidate = session.getTransactionalEditingDomain();
+        Resource res = candidate.getResourceSet().getResource(uri_p, false);
+        if(res != null){
+          result = session;
+          break;
+        }
+      }
+    return result;
+  }
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getModelResourceFromInstanceSet(org.eclipse.emf.diffmerge.patterns.core.api.IPatternInstanceMarker)
    */
@@ -216,22 +195,47 @@ public class UMLDesignerModelEnvironment implements IModelEnvironment{
     }
     return null;
   }
-
+  
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#isAppropriatePatternSupport(org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport)
+   */
+  public boolean isAppropriatePatternSupport(IPatternSupport support_p) {
+    return support_p instanceof BasicPatternSupport;
+  }
+  
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#isModelResource(org.eclipse.emf.ecore.resource.Resource)
+   */
+  public boolean isModelResource(Resource resource_p) {
+    return resource_p instanceof UMLResource;
+  }
+  
+  /**
+   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#isModelElement(java.lang.Object)
+   */
+  public boolean isModelElement(Object object_p) {
+    return object_p instanceof CommonPatternInstance ||
+        object_p instanceof Element;
+  }
+  
   /**
    * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getOrCreateInstanceSetForModelResource(org.eclipse.emf.ecore.resource.Resource)
    */
   public IPatternInstanceMarker getOrCreateInstanceSetForModelResource(
       Resource resource_p) {
+    CommonPatternInstanceSet result = null;
     if(resource_p != null){
       ResourceSet modelRSet = resource_p.getResourceSet();
-      modelRSet.getPackageRegistry().put(CommonpatternsupportPackage.eNS_URI, CommonpatternsupportPackage.eINSTANCE);
-      final URI insResURI = URI.createURI(resource_p.getURI().trimFileExtension().toString() + "." + CommonpatternsupportPackage.eNAME); //$NON-NLS-1$
-      Resource patRes = null;
+      modelRSet.getPackageRegistry().put(
+          CommonpatternsupportPackage.eNS_URI, CommonpatternsupportPackage.eINSTANCE);
+      final URI insResURI = URI.createURI(
+          resource_p.getURI().trimFileExtension().toString() + "." + CommonpatternsupportPackage.eNAME); //$NON-NLS-1$
       try {
-        patRes = modelRSet.getResource(insResURI, true);
+        Resource patRes = modelRSet.getResource(insResURI, true);
         patRes.load(null);
-        if(!patRes.getContents().isEmpty() && (patRes.getContents().get(0) instanceof CommonPatternInstanceSet)){
-          return (CommonPatternInstanceSet)patRes.getContents().get(0);
+        if(!patRes.getContents().isEmpty() &&
+            patRes.getContents().get(0) instanceof CommonPatternInstanceSet){
+          result = (CommonPatternInstanceSet)patRes.getContents().get(0);
         }
       } catch (IllegalStateException e) {
         //continue;
@@ -239,110 +243,21 @@ public class UMLDesignerModelEnvironment implements IModelEnvironment{
       } catch (Exception e) {
         //continue;
       }
-      //Not found: Create a new one
-
-      modelRSet.getPackageRegistry().put(CommonpatternsupportPackage.eNS_URI, CommonpatternsupportPackage.eINSTANCE);
-      AbstractModelOperation<Object> operation = new AbstractModelOperation<Object>(
-          "Create Instance Set Operation", modelRSet, false, false, true, modelRSet, modelRSet){ //$NON-NLS-1$
-        /**
-         * @see org.eclipse.emf.diffmerge.patterns.core.operations.AbstractModelOperation#run()
-         */
-        @Override
-        protected Object run() {
-          Resource resource = getResourceSet().createResource(insResURI);
-          CommonPatternInstanceSet set = CommonpatternsupportFactory.eINSTANCE.createCommonPatternInstanceSet();
-          resource.getContents().add(set);
-          ResourcesUtil.makePersistent(resource);
-          return set;
-        }
-
-      };
-      CorePatternsPlugin.getDefault().getModelEnvironment().execute(operation);
-      if(!modelRSet.getResources().isEmpty()){
-        for(Resource res : modelRSet.getResources()){
-          if(!res.getContents().isEmpty() && (res.getContents().get(0) instanceof CommonPatternInstanceSet)){
-            return (CommonPatternInstanceSet) res.getContents().get(0);
-          }
-        }
+      if (result == null) {
+        result = createInstanceSet(insResURI, modelRSet);
       }
-    }
-    return null;
-  }
-
-  /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getOverridenClasses()
-   */
-  public Collection<? extends Class<?>> getOverridenClasses() {
-    List<Class<?>> lst = new ArrayList<Class<?>>();
-    lst.add(DefaultModelEnvironment.class);
-    return lst;
-  }
-
-  /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#createPatternCatalogResource(org.eclipse.emf.common.util.URI)
-   */
-  public Resource createPatternCatalogResource(URI uri) {
-    return new DefaultPatternsXMIResource(uri);
-  }
-
-  /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#isAppropriatePatternSupport(org.eclipse.emf.diffmerge.patterns.core.api.ext.IPatternSupport)
-   */
-  public boolean isAppropriatePatternSupport(IPatternSupport o) {
-    return o instanceof BasicPatternSupport;
-  }
-
-  /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getEditingDomain(org.eclipse.emf.ecore.EObject)
-   */
-  public EditingDomain getEditingDomain(EObject context_p) {
-    if(context_p instanceof IIdentifiedElement)
-      return _patternCatalogCommonEditingDomain;
-    return AdapterFactoryEditingDomain.getEditingDomainFor(context_p);
-  }
-
-  /**
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getEditingDomain(org.eclipse.core.resources.IFile)
-   */
-  public EditingDomain getEditingDomain(IFile file_p) {
-    EditingDomain domain = null;
-    if(file_p != null){
-      if(file_p.getFileExtension().equals(PatternCatalogResourceHelper.PATTERN_CATALOG_FILE_EXTENSION)){
-        loadCatalog(file_p);
-        return _patternCatalogCommonEditingDomain;
-      }
-      domain = getExistingEditingDomain(file_p);
-    }
-    return domain;
-  }
-
-
-  /**
-   * Tries to find an existing editing domain for the given IFile
-   * @param file_p a potentially null IFile
-   * @return a potentially null editing domain
-   */
-  private EditingDomain getExistingEditingDomain(IFile file_p) {
-    EditingDomain result = null;
-    if(file_p != null){
-      Collection<Session> sessions = SessionManager.INSTANCE.getSessions();
-      for(Session session : sessions){
-        EditingDomain candidate = session.getTransactionalEditingDomain();
-        Resource res = candidate.getResourceSet().getResource(URI.createURI(file_p.getFullPath().toString()), true);
-        if(res != null){
-          result = candidate;
-          break;
-        }
+      if (result != null) {
+        ensureInSession(result, resource_p.getURI());
       }
     }
     return result;
   }
-
+  
   /**
-   * load the given file into the common catalogs' editing domain
+   * Load the given file into the editing domain of the common catalog
    * @param file_p a non-null file
    */
-  private Resource loadCatalog(IFile file_p) {
+  protected Resource loadCatalog(IFile file_p) {
     Resource res = null;
     @SuppressWarnings("deprecation")
     URI uri = URI.createPlatformResourceURI(file_p.getFullPath().toString());
@@ -352,60 +267,5 @@ public class UMLDesignerModelEnvironment implements IModelEnvironment{
     } 
     return res;
   }
-
-  /**
-   * 
-   * @see org.eclipse.emf.diffmerge.patterns.core.api.ext.IModelEnvironment#getCommonCatalogEditingDomain()
-   */
-  public TransactionalEditingDomain getCommonCatalogEditingDomain(){
-    if(_patternCatalogCommonEditingDomain == null){
-      ResourceSet rset = new ResourceSetImpl();
-      _patternCatalogCommonEditingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(rset);
-      _patternCatalogCommonEditingDomain.setID(CATALOG_COMMON_EDITING_DOMAIN_ID);
-    }
-    return _patternCatalogCommonEditingDomain; 
-  }
-
-
-
-  /**
-   * An operation that supports undo/redo
-   * @author Skander TURKI
-   *
-   * @param <E>
-   */
-  private class OperationWithResultCommand<E> extends ChangeCommand{
-
-    /**
-     * Constructor
-     */
-    protected OperationWithResultCommand(ResourceSet recordSet_p, IModelOperation<E>  operation_p) {
-      super(recordSet_p);
-      _operation = operation_p;
-    }
-
-    /** the operation to execute*/
-    protected IModelOperation<E> _operation;
-
-    /** result of the operation */
-    protected E _result = null;
-    
-    /**
-     * @see org.eclipse.emf.edit.command.ChangeCommand#doExecute()
-     */
-    @Override
-    protected void doExecute() {
-      _result = _operation.run(null);
-    }
-
-    /**
-     * @return result
-     */
-    public E getOperationResult(){
-      return _result;
-    }
-
-  }
-
-
+  
 }
