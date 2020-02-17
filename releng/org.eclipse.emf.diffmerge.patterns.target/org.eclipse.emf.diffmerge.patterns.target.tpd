@@ -25,7 +25,7 @@ location "http://download.eclipse.org/releases/2019-06" {
 	com.google.guava lazy
 }
 
-location "https://download.eclipse.org/sirius/updates/stable/6.3.0-S20190830-130932/2019-06" {
+location "http://download.eclipse.org/sirius/updates/releases/6.3.0/2019-06" {
 	org.eclipse.sirius.runtime.feature.group lazy
 	org.eclipse.sirius.runtime.ide.ui.feature.group lazy
 	org.eclipse.sirius.specifier.feature.group lazy
