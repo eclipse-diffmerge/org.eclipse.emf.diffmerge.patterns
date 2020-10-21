@@ -7,7 +7,7 @@
 
 	<properties>
 		<cbi.jarsigner.version>1.1.3</cbi.jarsigner.version>
-		<core.repo.url>https://ci.eclipse.org/diffmerge/job/emf-diffmerge-core-master/lastSuccessfulBuild/artifact/releng/org.eclipse.emf.diffmerge.update/target/repository/</core.repo.url>
+		<core.repo.url>diffmerge/lastSuccessfulBuild/artifact/releng/org.eclipse.emf.diffmerge.update/target</core.repo.url>
 		<java.version>1.8</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
