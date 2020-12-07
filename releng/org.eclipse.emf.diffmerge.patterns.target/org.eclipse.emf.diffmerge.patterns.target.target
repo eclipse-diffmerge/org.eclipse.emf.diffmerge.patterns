@@ -33,7 +33,7 @@
       <unit id="org.eclipse.sirius.runtime.ide.ui.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.sirius.specifier.feature.group" version="0.0.0"/>
       <unit id="org.eclipse.sirius.specifier.ide.ui.feature.group" version="0.0.0"/>
-      <repository location="https://download.eclipse.org/sirius/updates/stable/6.4.0-S20200921-043506/2020-06"/>
+      <repository location="https://download.eclipse.org/sirius/updates/releases/6.4.0/2020-06"/>
     </location>
   </locations>
 </target>
