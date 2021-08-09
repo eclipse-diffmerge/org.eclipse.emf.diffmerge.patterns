@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
@@ -35,6 +36,7 @@ import org.eclipse.sirius.diagram.business.internal.metamodel.description.extens
 import org.eclipse.sirius.diagram.business.internal.metamodel.description.operations.SiriusElementMappingSpecOperations;
 import org.eclipse.sirius.diagram.business.internal.metamodel.helper.ContainerMappingWithInterpreterHelper;
 import org.eclipse.sirius.diagram.business.internal.metamodel.helper.NodeMappingHelper;
+import org.eclipse.sirius.diagram.business.internal.metamodel.operations.DDiagramElementContainerOperations;
 import org.eclipse.sirius.diagram.description.AbstractNodeMapping;
 import org.eclipse.sirius.diagram.description.ContainerMapping;
 import org.eclipse.sirius.diagram.description.ContainerMappingImport;
@@ -83,7 +85,7 @@ public final class SiriusUtil {
       boolean considerPrecondition_p, boolean considerCandidates_p, Object graphicalContainer_p) {
     boolean result = false;
     if((graphicalContainer_p instanceof DDiagram) || (graphicalContainer_p instanceof DDiagramElementContainer) ){
-      EObject container = (EObject)graphicalContainer_p;
+    	DDiagramElementContainer container = (DDiagramElementContainer)graphicalContainer_p;
       //ModelAccessorsRegistry reg = ViewpointPlugin.getDefault().getModelAccessorRegistry();
       ModelAccessorsRegistry reg = SiriusPlugin.getDefault().getModelAccessorRegistry();
       ModelAccessor accessor = reg.getModelAccessor(semanticElt_p);
@@ -99,22 +101,24 @@ public final class SiriusUtil {
         }
         // Check semantic candidates
         if (result && considerCandidates_p) {
-          List<EObject> candidates = null;
+          List<AbstractDNode> candidates = new BasicEList<>();
             if (mapping_p instanceof INodeMappingExt) {
               INodeMappingExt nm = (INodeMappingExt)mapping_p;
               // We need to call the method below to clear the cache. Otherwise, sometimes the cache is not up to date.
               NodeMappingHelper.clearDNodesDone(nm);
-              candidates = NodeMappingHelper.getNodesCandidates(
-                  nm, semanticOfGraphicalContainer, semanticOfGraphicalContainer, container);
+              candidates.addAll(DDiagramElementContainerOperations.getNodesFromMapping(container, nm));
+//              candidates = NodeMappingHelper.getNodesCandidates(
+//                  nm, semanticOfGraphicalContainer, semanticOfGraphicalContainer, container);
             } else if (mapping_p instanceof IContainerMappingExt) {
               IContainerMappingExt cm = (IContainerMappingExt)mapping_p;
               // We need to call the method below to clear the cache. Otherwise, sometimes the cache is not up to date.
               ContainerMappingWithInterpreterHelper.clearDNodesDone(cm);
-              candidates = ContainerMappingWithInterpreterHelper.getNodesCandidates(
-                  cm, semanticOfGraphicalContainer,
-                  semanticOfGraphicalContainer, container);
+              candidates.addAll(DDiagramElementContainerOperations.getContainersFromMapping(container, cm));
+//              candidates = ContainerMappingWithInterpreterHelper.getNodesCandidates(
+//                  cm, semanticOfGraphicalContainer,
+//                  semanticOfGraphicalContainer, container);
             }
-          result = null != candidates && candidates.contains(semanticElt_p);
+          result = candidates.contains(semanticElt_p);
         }
       }
     }

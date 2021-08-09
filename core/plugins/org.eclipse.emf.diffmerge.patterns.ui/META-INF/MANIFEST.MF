@@ -17,7 +17,7 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui,
  org.eclipse.emf.ecore.editor,
  org.eclipse.emf.diffmerge.patterns.templates.gen.editor,
  org.eclipse.emf.ecore
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.emf.diffmerge.patterns.ui,
  org.eclipse.emf.diffmerge.patterns.ui.actions,

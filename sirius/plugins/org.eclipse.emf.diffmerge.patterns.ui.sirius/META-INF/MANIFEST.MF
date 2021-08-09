@@ -13,12 +13,12 @@ Require-Bundle: org.eclipse.emf.diffmerge.patterns.templates.engine,
  org.eclipse.emf.diffmerge.patterns.ui,
  org.eclipse.emf.diffmerge.patterns.diagrams.sirius,
  org.eclipse.emf.diffmerge.patterns.diagrams,
- org.eclipse.sirius.diagram.sequence;bundle-version="6.0.0",
- org.eclipse.sirius.diagram.ui;bundle-version="6.0.0",
- org.eclipse.sirius.diagram;bundle-version="6.0.0",
+ org.eclipse.sirius.diagram.sequence,
+ org.eclipse.sirius.diagram.ui,
+ org.eclipse.sirius.diagram,
  org.eclipse.ui.ide
 Comment: fr.obeo.dsl.viewpoint.diagram.sequence
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.emf.diffmerge.patterns.ui.sirius,
  org.eclipse.emf.diffmerge.patterns.ui.sirius.dialogs,
