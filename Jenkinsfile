@@ -2,7 +2,7 @@ pipeline {
   agent { label 'migration' }
   tools {
         maven 'apache-maven-latest'
-        jdk 'oracle-jdk8-latest'
+        jdk 'openjdk-jdk11-latest'
   }
   parameters {
     string(name: 'CORE_BRANCH', defaultValue: 'master', description: 'When build is not triggered by diffmerge-core build, set the branch of diffmerge-core')

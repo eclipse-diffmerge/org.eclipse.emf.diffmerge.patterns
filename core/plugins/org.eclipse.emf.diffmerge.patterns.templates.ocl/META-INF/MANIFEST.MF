@@ -14,6 +14,6 @@ Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.emf.diffmerge.patterns.templates.ocl.OclPatternsPlugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.emf.diffmerge.patterns.templates.ocl;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.eclipse.emf.diffmerge.patterns.templates.ocl
 
