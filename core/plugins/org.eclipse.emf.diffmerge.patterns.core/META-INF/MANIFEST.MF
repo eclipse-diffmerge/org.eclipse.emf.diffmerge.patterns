@@ -13,7 +13,7 @@ Export-Package: org.eclipse.emf.diffmerge.patterns.core;uses:="org.eclipse.osgi.
 Bundle-ActivationPolicy: lazy
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.emf.edit,

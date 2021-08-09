@@ -13,8 +13,12 @@ package org.eclipse.emf.diffmerge.patterns.diagrams.sirius.util;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Spliterators;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
@@ -33,8 +37,7 @@ import org.eclipse.sirius.diagram.business.api.componentization.DiagramComponent
 import org.eclipse.sirius.diagram.business.internal.metamodel.description.extensions.IContainerMappingExt;
 import org.eclipse.sirius.diagram.business.internal.metamodel.description.extensions.INodeMappingExt;
 import org.eclipse.sirius.diagram.business.internal.metamodel.description.operations.SiriusElementMappingSpecOperations;
-import org.eclipse.sirius.diagram.business.internal.metamodel.helper.ContainerMappingWithInterpreterHelper;
-import org.eclipse.sirius.diagram.business.internal.metamodel.helper.NodeMappingHelper;
+import org.eclipse.sirius.diagram.business.internal.metamodel.helper.DiagramElementMappingHelper;
 import org.eclipse.sirius.diagram.description.AbstractNodeMapping;
 import org.eclipse.sirius.diagram.description.ContainerMapping;
 import org.eclipse.sirius.diagram.description.ContainerMappingImport;
@@ -83,7 +86,7 @@ public final class SiriusUtil {
       boolean considerPrecondition_p, boolean considerCandidates_p, Object graphicalContainer_p) {
     boolean result = false;
     if((graphicalContainer_p instanceof DDiagram) || (graphicalContainer_p instanceof DDiagramElementContainer) ){
-      EObject container = (EObject)graphicalContainer_p;
+    	EObject container = (EObject) graphicalContainer_p;
       //ModelAccessorsRegistry reg = ViewpointPlugin.getDefault().getModelAccessorRegistry();
       ModelAccessorsRegistry reg = SiriusPlugin.getDefault().getModelAccessorRegistry();
       ModelAccessor accessor = reg.getModelAccessor(semanticElt_p);
@@ -99,26 +102,21 @@ public final class SiriusUtil {
         }
         // Check semantic candidates
         if (result && considerCandidates_p) {
-          List<EObject> candidates = null;
-            if (mapping_p instanceof INodeMappingExt) {
-              INodeMappingExt nm = (INodeMappingExt)mapping_p;
-              // We need to call the method below to clear the cache. Otherwise, sometimes the cache is not up to date.
-              NodeMappingHelper.clearDNodesDone(nm);
-              candidates = NodeMappingHelper.getNodesCandidates(
-                  nm, semanticOfGraphicalContainer, semanticOfGraphicalContainer, container);
-            } else if (mapping_p instanceof IContainerMappingExt) {
-              IContainerMappingExt cm = (IContainerMappingExt)mapping_p;
-              // We need to call the method below to clear the cache. Otherwise, sometimes the cache is not up to date.
-              ContainerMappingWithInterpreterHelper.clearDNodesDone(cm);
-              candidates = ContainerMappingWithInterpreterHelper.getNodesCandidates(
-                  cm, semanticOfGraphicalContainer,
-                  semanticOfGraphicalContainer, container);
+          if (mapping_p instanceof INodeMappingExt || mapping_p instanceof IContainerMappingExt) {
+            DDiagram diagram = graphicalContainer_p instanceof DDiagram ? (DDiagram) graphicalContainer_p : ((DDiagramElementContainer) graphicalContainer_p).getParentDiagram();
+            Iterator<EObject> iterator = DiagramElementMappingHelper.getSemanticIterator(mapping_p, semanticOfGraphicalContainer, diagram);
+            if (iterator != null) {
+              return streamIterator(iterator).anyMatch(x -> x.equals(semanticElt_p));
             }
-          result = null != candidates && candidates.contains(semanticElt_p);
+          }
         }
       }
     }
     return result;
+  }
+  
+  static <T> Stream<T> streamIterator(final Iterator<T> iterator) {
+    return StreamSupport.stream(Spliterators.spliteratorUnknownSize(iterator, 0), false);
   }
   
   /**
