@@ -1,5 +1,7 @@
 target "org.eclipse.emf.diffmerge.patterns"
 
+include "https://download.eclipse.org/sirius/updates/stable/7.0.0-S20210908-102403/2021-06/targets/modules/gmf-runtime-1.14.tpd"
+
 with source, requirements
 
 location "http://download.eclipse.org/cbi/updates/license/" {
@@ -19,15 +21,13 @@ location "http://download.eclipse.org/releases/2021-06" {
 	org.eclipse.emf.validation.sdk.feature.group lazy
 	org.eclipse.draw2d.feature.group lazy
 	org.eclipse.gef.feature.group lazy
-	org.eclipse.gmf.feature.group lazy
-	org.eclipse.gmf.runtime.notation.feature.group lazy
 	org.eclipse.uml2.sdk.feature.group lazy
 	org.eclipse.ocl.all.sdk.feature.group lazy
 	org.eclipse.ocl.examples.feature.group lazy
 	com.google.guava lazy
 }
 
-location "https://download.eclipse.org/sirius/updates/stable/7.0.0-S20210722-123507/2021-06" {
+location "https://download.eclipse.org/sirius/updates/stable/7.0.0-S20210908-102403/2021-06" {
 	org.eclipse.sirius.runtime.feature.group lazy
 	org.eclipse.sirius.runtime.ide.ui.feature.group lazy
 }

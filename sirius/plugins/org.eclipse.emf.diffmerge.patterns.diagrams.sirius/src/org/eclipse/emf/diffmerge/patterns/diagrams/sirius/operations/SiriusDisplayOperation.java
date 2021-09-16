@@ -33,14 +33,14 @@ import org.eclipse.sirius.diagram.AbstractDNode;
 import org.eclipse.sirius.diagram.DDiagram;
 import org.eclipse.sirius.diagram.DDiagramElementContainer;
 import org.eclipse.sirius.diagram.DNodeContainer;
-import org.eclipse.sirius.diagram.business.internal.metamodel.description.extensions.IContainerMappingExt;
-import org.eclipse.sirius.diagram.business.internal.metamodel.description.extensions.INodeMappingExt;
 import org.eclipse.sirius.diagram.business.internal.metamodel.helper.ContainerMappingWithInterpreterHelper;
 import org.eclipse.sirius.diagram.business.internal.metamodel.helper.NodeMappingHelper;
 import org.eclipse.sirius.diagram.description.AbstractNodeMapping;
+import org.eclipse.sirius.diagram.description.ContainerMapping;
+import org.eclipse.sirius.diagram.description.NodeMapping;
 import org.eclipse.sirius.diagram.tools.api.layout.PinHelper;
+import org.eclipse.sirius.tools.api.SiriusPlugin;
 import org.eclipse.sirius.viewpoint.DSemanticDecorator;
-import org.eclipse.sirius.viewpoint.SiriusPlugin;
 
 
 /**
@@ -217,18 +217,18 @@ public class SiriusDisplayOperation extends AbstractDisplayOperation{
       try {
         if (((ISiriusSemanticMapping)mapping).conformsToMapping(
             semanticTarget_p, mapping_p, true, true, graphicalContainer_p)) {
-          if (mapping_p instanceof IContainerMappingExt) {
+          if (mapping_p instanceof ContainerMapping) {
             IInterpreter interpreter =
                 SiriusPlugin.getDefault().getInterpreterRegistry().getInterpreter(semanticTarget_p);
             ContainerMappingWithInterpreterHelper helper =
                 new ContainerMappingWithInterpreterHelper(interpreter);
             result = helper.createContainer(
-                (IContainerMappingExt)mapping_p, semanticTarget_p, target, diagram);
-          } else if (mapping_p instanceof INodeMappingExt) {
+                (ContainerMapping)mapping_p, semanticTarget_p, target, diagram);
+          } else if (mapping_p instanceof NodeMapping) {
             IInterpreter interpreter =
                 SiriusPlugin.getDefault().getInterpreterRegistry().getInterpreter(semanticTarget_p);
             NodeMappingHelper helper = new NodeMappingHelper(interpreter);
-            result = helper.createNode((INodeMappingExt)mapping_p, semanticTarget_p, target, diagram);
+            result = helper.createNode((NodeMapping)mapping_p, semanticTarget_p, target, diagram);
           }
         }
       } catch (Exception e) {

@@ -34,8 +34,6 @@ import org.eclipse.sirius.diagram.DDiagramElementContainer;
 import org.eclipse.sirius.diagram.DNode;
 import org.eclipse.sirius.diagram.DNodeContainer;
 import org.eclipse.sirius.diagram.business.api.componentization.DiagramComponentizationManager;
-import org.eclipse.sirius.diagram.business.internal.metamodel.description.extensions.IContainerMappingExt;
-import org.eclipse.sirius.diagram.business.internal.metamodel.description.extensions.INodeMappingExt;
 import org.eclipse.sirius.diagram.business.internal.metamodel.description.operations.SiriusElementMappingSpecOperations;
 import org.eclipse.sirius.diagram.business.internal.metamodel.helper.DiagramElementMappingHelper;
 import org.eclipse.sirius.diagram.description.AbstractNodeMapping;
@@ -49,7 +47,7 @@ import org.eclipse.sirius.diagram.description.NodeMapping;
 import org.eclipse.sirius.diagram.description.NodeMappingImport;
 import org.eclipse.sirius.ecore.extender.business.api.accessor.ModelAccessor;
 import org.eclipse.sirius.ecore.extender.business.api.accessor.ModelAccessorsRegistry;
-import org.eclipse.sirius.viewpoint.SiriusPlugin;
+import org.eclipse.sirius.tools.api.SiriusPlugin;
 import org.eclipse.sirius.viewpoint.description.AbstractMappingImport;
 import org.eclipse.sirius.viewpoint.description.Viewpoint;
 
@@ -102,7 +100,7 @@ public final class SiriusUtil {
         }
         // Check semantic candidates
         if (result && considerCandidates_p) {
-          if (mapping_p instanceof INodeMappingExt || mapping_p instanceof IContainerMappingExt) {
+          if (mapping_p instanceof NodeMapping || mapping_p instanceof ContainerMapping) {
             DDiagram diagram = graphicalContainer_p instanceof DDiagram ? (DDiagram) graphicalContainer_p : ((DDiagramElementContainer) graphicalContainer_p).getParentDiagram();
             Iterator<EObject> iterator = DiagramElementMappingHelper.getSemanticIterator(mapping_p, semanticOfGraphicalContainer, diagram);
             if (iterator != null) {
