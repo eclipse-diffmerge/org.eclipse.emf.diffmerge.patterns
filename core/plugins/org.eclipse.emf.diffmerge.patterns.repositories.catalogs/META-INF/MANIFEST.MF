@@ -15,7 +15,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.transaction
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 0.14.0.qualifier
+Bundle-Version: 0.14.1.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.emf.diffmerge.patterns.repositories.catalogs.PatternCatalogsPlugin

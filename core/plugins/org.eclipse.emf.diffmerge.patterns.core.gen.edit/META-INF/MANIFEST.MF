@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.core.runtime,org.eclipse.emf.diffmerge.patterns.core
  ore;visibility:=reexport,org.eclipse.emf.ecore.edit;visibility:=reexp
  ort
 Bundle-Vendor: %providerName
-Bundle-Version: 0.14.0.qualifier
+Bundle-Version: 0.14.1.qualifier
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.emf.diffmerge.patterns.core.gen.corepat
  terns.provider.CorePatternsEditPlugin$Implementation
